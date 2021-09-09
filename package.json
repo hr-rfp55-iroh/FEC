@@ -1,0 +1,38 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Catwalk IROH",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -w server/index.js",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRRFP55-IROH/FEC.git"
+  },
+  "author": "Team Iroh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HRRFP55-IROH/FEC/issues"
+  },
+  "homepage": "https://github.com/HRRFP55-IROH/FEC#readme",
+  "dependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.21.4",
+    "babel-loader": "^8.2.2",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.52.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^12.0.0",
+    "eslint": "^7.32.0",
+    "jest": "^27.1.1",
+    "nodemon": "^2.0.12",
+    "webpack-cli": "^4.8.0"
+  }
+}
