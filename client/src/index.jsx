@@ -1,68 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import config from '../../config.js';
 import axios from 'axios';
+import config from '../../config';
+import Component from './components/Component.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      products: [],
-      reviews: [],
-      questions: [],
-      cart: []
+      products: ['test'],
+      // reviews: [],
+      // questions: [],
+      // cart: []
     };
-
     this.readProduct = this.readProduct.bind(this);
-    this.sendRequest = this.sendRequest.bind(this);
   }
 
   componentDidMount() {
     this.readProduct();
   }
 
-  sendRequest(event, method, route, callback) {
-    method = method || 'get';
-    route = route || 'products';
-
-    var options = {
-      method: method,
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/${route}`,
-      headers: { 'Authorization': config.API_TOKEN }
-    };
-
-    axios(options)
-      .then(response => {
-        console.log(response);
-        callback(null, response);
-      })
-      .catch(err => {
-        console.error(err);
-        callback(err, null);
-      });
-  }
-
   readProduct() {
-    var options = {
+    const options = {
       method: 'get',
       url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
-      headers: { 'Authorization': config.API_TOKEN }
+      headers: { Authorization: config.API_TOKEN },
     };
 
     axios(options)
-      .then(response => {
+      .then((response) => {
         this.setState({
-          products: response.data
+          products: response.data,
         });
-        console.log(this.state.products);
+        console.log(response);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 
   render() {
+    const { products } = this.state;
     return (
-      <h1 onClick={this.sendRequest}>Hello World</h1>
+      <div>
+        <h1>Hello World!</h1>
+        <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
+        <Component products={products} />
+      </div>
     );
   }
 
