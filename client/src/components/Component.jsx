@@ -5,8 +5,9 @@ const Component = (props) => {
   const { products } = props;
   return (
     <div>
-      { products }
-      hello
+      {products.map((product, index) => (
+        <div key={index}>{product.name}</div>
+      ))}
     </div>
   );
 };
