@@ -8,10 +8,18 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-
+      products: [],
+      reviews: [],
+      questions: [],
+      cart: []
     };
 
+    this.readProduct = this.readProduct.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
+  }
+
+  componentDidMount() {
+    this.readProduct();
   }
 
   sendRequest(event, method, route, callback) {
@@ -21,7 +29,7 @@ class App extends React.Component {
     var options = {
       method: method,
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/${route}`,
-      headers: {'Authorization': config.API_TOKEN}
+      headers: { 'Authorization': config.API_TOKEN }
     };
 
     axios(options)
@@ -33,6 +41,23 @@ class App extends React.Component {
         console.error(err);
         callback(err, null);
       });
+  }
+
+  readProduct() {
+    var options = {
+      method: 'get',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
+      headers: { 'Authorization': config.API_TOKEN }
+    };
+
+    axios(options)
+      .then(response => {
+        this.setState({
+          products: response.data
+        });
+        console.log(this.state.products);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

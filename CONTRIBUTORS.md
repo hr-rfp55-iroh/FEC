@@ -22,58 +22,68 @@ npm start
 
 Open [http://localhost:3004](http://localhost:3004) with your browser to see the result.
 
-Creating a new Feature Branch
-Clone from this repo
+### Creating a new Feature Branch
+1. Clone from this repo
 
 ```bash
 git clone https://github.com/HRRFP55-IROH/FEC.git
 ```
-Make sure you are on branch main with latest version
+2. Make sure you are on branch main with latest version
 
-Create a branch with a name descriptive of the feature you are developing
+3. Create a branch with a name descriptive of the feature you are developing
 
-Make changes, commit frequently
+4. Make changes, commit frequently
 
-Push to feature-branch on GitHub
+5. Push to feature-branch on GitHub
 
+````bash
 git checkout main
 git pull
 git checkout -b feature-name
 # do work, commit often
 git push origin feature-name
 # submit Pull Request
-Adding Features from Branches to main
-Submit Pull Request
-base main <- feature-name
-reference Trello ticket with link
-Have a team member complete a Code Review according to Code Review Guidlines
-reviewer will check to ensure code meets standards
-Syncing changes with main
+````
+
+### Adding Features from Branches to `main`
+1. Submit Pull Request
+    1. base main <- feature-name
+    2. reference Trello ticket with link
+2. Have a team member complete a Code Review according to Code Review Guidlines
+    1. reviewer will check to ensure code meets standards
+
+### Syncing changes with `main`
 Avoid conflicts in PR
 
-Switch to branch main locally
+1. Switch to branch main locally
 
-Pull changes made to main by others
+2. Pull changes made to main by others
 
-Switch to feature-branch
+3. Switch to feature-branch
 
-Merge changes from main -> feature-branch
+4. Merge changes from main -> feature-branch
 
-Handle any merge conflicts in VS Code
+5. Handle any merge conflicts in VS Code
 
-Push up to GitHub feature-branch
+6. Push up to GitHub feature-branch
 
+````bash
 git checkout main
 git pull
 git checkout feature-branch
 git merge main
 # handle merge conflicts
 git push origin feature-branch
-Pulling Features for Testing
-create new branch locally branched from main
-checkout new branch
-pull from origin feature-branch
+````
+
+### Pulling Features for Testing
+1. create new branch locally branched from main
+2. checkout new branch
+3. pull from origin feature-branch
+
+````bash
 git checkout main
 git pull
 git checkout -b feature-branch
 git pull origin feature-branch
+````
