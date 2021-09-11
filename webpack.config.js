@@ -10,4 +10,5 @@ module.exports = {
     rules: [{ test: /\.(js|jsx)$/, use: 'babel-loader' }],
   },
   mode: 'development',
+  resolve: { extensions: ['', '.jsx', '.js'] },
 };

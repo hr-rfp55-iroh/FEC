@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../../config';
-import Component from './Component.jsx';
-import RatingReview from './RR/RatingReview.jsx';
+import Component from './Component';
+import RatingReview from './RR/RatingReview';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +20,8 @@ class App extends React.Component {
   componentDidMount() {
     this.readProduct();
   }
-  //Product Info HTTP requests
+  // Product Info HTTP requests
+
   readProduct() {
     const options = {
       method: 'get',
@@ -37,9 +38,9 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   }
-  //Q&A HTTP requests
+  // Q&A HTTP requests
 
-  //R&R HTTP requests
+  // R&R HTTP requests
 
   render() {
     const { products } = this.state;
