@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../../config';
-import Component from './Component';
 import RatingReview from './RR/RatingReview';
 
 class App extends React.Component {
@@ -34,7 +33,8 @@ class App extends React.Component {
         this.setState({
           products: response.data,
         });
-        console.log(response);
+        const { products } = this.state;
+        console.log(products);
       })
       .catch((err) => console.log(err));
   }
@@ -43,12 +43,11 @@ class App extends React.Component {
   // R&R HTTP requests
 
   render() {
-    const { products } = this.state;
+    // const { products } = this.state;
     return (
       <div>
         <h1>Hello World!</h1>
         <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
-        <Component products={products} />
         <div id="RR">
           <RatingReview />
         </div>
