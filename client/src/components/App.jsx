@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from '../../../config';
 import RatingReview from './RR/RatingReview';
 import StarRating from './PO/StarRating';
+import Form from './QA/Form';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,6 +53,9 @@ class App extends React.Component {
         <div id="RR">
           <StarRating />
           <RatingReview />
+        </div>
+        <div id="QA">
+          <Form />
         </div>
       </div>
     );
