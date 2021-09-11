@@ -18,6 +18,8 @@ app.use(express.static(`${__dirname}/../client/dist`));
 app.get('/qa/questions', (req, res) => {
   if (req) {
     let { product_id } = req.query;
+    // TODO : include params for page and count of questions returned
+    // ? will need to find an example that actually returns more than one page of data
     qa.getQforProduct(product_id, options, (err, data) => {
       if (err) {
         res.status(418).send('err from app.get');
