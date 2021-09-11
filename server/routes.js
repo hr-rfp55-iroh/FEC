@@ -3,7 +3,6 @@ const qa = require('./helpers/QA/questions.js');
 const path = require('path');
 const config = require(path.join('./../', 'config.js'));
 
-// console.log(config.API_TOKEN)
 const options = {
   method: 'get',
   headers: { Authorization: config.API_TOKEN },
@@ -18,12 +17,12 @@ app.use(express.static(`${__dirname}/../client/dist`));
 
 app.get('/qa/questions', (req, res) => {
   if (req) {
-    qa.getQforProduct(options, (err, data) => {
+    let { product_id } = req.query;
+    qa.getQforProduct(product_id, options, (err, data) => {
       if (err) {
-        console.log(err.response, 'err from app.get');
-        res.status(418).send('err from app.get', err.data);
+        res.status(418).send('err from app.get');
       } else {
-        console.log(data, 'data');
+        console.log('successful questions request');
         res.status(200).send(data);
       }
     });
