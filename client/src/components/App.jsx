@@ -11,7 +11,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // currentProduct is the product_id of the currently selected product.
     this.state = {
+      currentProduct: 1,
       products: ['test'],
       // reviews: [],
       // questions: [],
@@ -53,13 +55,13 @@ class App extends React.Component {
   // R&R HTTP requests
 
   render() {
-    const { products } = this.state;
+    const { products, currentProduct } = this.state;
     return (
       <div>
         <h1>Hello World!</h1>
         <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
         <div id="PO">
-          <Overview />
+          <Overview selected={currentProduct} />
         </div>
         <div id="RR">
           <RatingReview />

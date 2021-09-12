@@ -15,6 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../client/dist`));
 
+app.get('/po/info/:id', (req, res) => {
+  console.log('PARAMS', req.params.id);
+  res.end();
+});
+
 app.get('/qa/questions', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned

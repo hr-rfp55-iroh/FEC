@@ -1,13 +1,28 @@
 import React from 'react';
+import axios from 'axios';
 import StarRating from './StarRating';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getProductInfo = this.getProductInfo.bind(this);
+
     this.state = {
 
     };
+  }
+
+  componentDidMount() {
+    this.getProductInfo();
+  }
+
+  getProductInfo() {
+    const { selected } = this.props;
+    axios.get(`/po/info/${selected}`)
+      .then(() => {
+        console.log('successful axios request');
+      });
   }
 
   render() {
