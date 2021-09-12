@@ -22,4 +22,5 @@ module.exports = {
   plugins: [
     'react',
   ],
+  ignorePatterns: ['bundle.js'],
 };

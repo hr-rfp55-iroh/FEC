@@ -4,7 +4,10 @@ const Form = (props) => (
   <div>
     Questions & Answers
     {/* {props} */}
-    <form placeholder="Ask Your Question Here"> </form>
+    <form>
+      <input type='text' name='search' placeholder="Search For Your Question Here" />
+      <input type='submit' value='submit'></input>
+    </form>
   </div>
 );
 
