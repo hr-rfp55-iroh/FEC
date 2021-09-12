@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
+import Information from './Information';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -56,14 +57,12 @@ class Overview extends React.Component {
         </div>
         <div id="po-info-pnl">
           <StarRating />
-          <li>{cat}</li>
-          <li>{title}</li>
-          <li>{price}</li>
+          <Information category={cat} name={title} price={price} />
           <li>Style Selector</li>
           <li>Share on Social Media</li>
         </div>
         <div id="po-overview-pnl">
-          <li>{desc}</li>
+          {desc}
         </div>
       </div>
     );
