@@ -4,6 +4,8 @@ import config from '../../../config';
 
 import Overview from './PO/Overview';
 import RatingReview from './RR/RatingReview';
+import Form from './QA/Form';
+import Unit from './QA/Unit';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,18 +36,24 @@ class App extends React.Component {
       .then((response) => {
         this.setState({
           products: response.data,
+          isProductsLoaded: true,
         });
         const { products } = this.state;
         console.log(products);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          isProductsLoaded: false,
+        });
+      });
   }
   // Q&A HTTP requests
 
   // R&R HTTP requests
 
   render() {
-    // const { products } = this.state;
+    const { products } = this.state;
     return (
       <div>
         <h1>Hello World!</h1>
@@ -55,6 +63,12 @@ class App extends React.Component {
         </div>
         <div id="RR">
           <RatingReview />
+        </div>
+        <div id="QA">
+          <Form />
+          <Unit products={products} currentProduct="this.state currentProduct" />
+          {/*  current product id will determine what Q&A is displayed  */}
+          {/*  I will grab this product_id from whatever current display is :D */}
         </div>
       </div>
     );

@@ -33,7 +33,9 @@
 }
 
 /* Q&A Style */
-
+#QA {
+  border: 2px solid black;
+}
 /* R&R Style */
 #RR {
   border: 2px solid black;
