@@ -20,8 +20,8 @@ class Overview extends React.Component {
   getProductInfo() {
     const { selected } = this.props;
     axios.get(`/po/info/${selected}`)
-      .then(() => {
-        console.log('successful axios request');
+      .then((results) => {
+        console.log('successful axios request', results.data);
       });
   }
 
