@@ -30,7 +30,7 @@ class Unit extends React.Component {
       <div>
         <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
         <br />
-        <Modal />
+        <Modal allQuestions={allQuestions} />
         <Answer />
         <br />
         <button type="submit">Load More Answers</button>

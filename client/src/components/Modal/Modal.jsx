@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
+// import './modal.css';
 
-const Modal = () => {
+const Modal = (props) => {
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
-    console.log('hello the set state works');
+
     setModal(!modal);
   };
 
   return (
     <>
-      <button onClick={toggleModal} type="submit">Hello Modal! </button>
+      <button className="button-modal" onClick={toggleModal} type="submit">Hello Modal! (Open) </button>
       {modal && (
-        <div>
-          <div>
-            <h2>
-              Hello Modal!
-            </h2>
-            <p>
-              CONTENT!
-            </p>
-            <button name="close" type="submit" onClick={toggleModal}>Close The Modal </button>
+        <div className="modal">
+          <div onClick={toggleModal} onKeyPress={toggleModal} className="overlay" role="button" tabIndex="0">
+            <div className="modal-content">
+
+              <h2>
+                Content Title
+              </h2>
+              <p>
+                Content
+              </p>
+            </div>
+            <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button>
           </div>
         </div>
       )}
+      {/* <p>hello from down here</p> */}
     </>
   );
 };
