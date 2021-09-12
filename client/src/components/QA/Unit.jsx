@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Question from './Question';
 import Answer from './Answer';
+import Modal from '../Modal/Modal';
 
 class Unit extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Unit extends React.Component {
     const { isQuestionsLoaded, allQuestions } = this.state;
     return (
       <div>
+        <Modal />
         <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
         <br />
         <Answer />
