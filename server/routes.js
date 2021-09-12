@@ -1,7 +1,7 @@
 const express = require('express');
-const qa = require('./helpers/QA/questions.js');
-const path = require('path');
-const config = require(path.join('./../', 'config.js'));
+const qa = require('./helpers/QA/Questions');
+
+const config = require('../config');
 
 const options = {
   method: 'get',
@@ -23,7 +23,7 @@ app.get('/qa/questions', (req, res) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        console.log('successful questions request');
+        // console.log('successful questions request');
         res.status(200).send(data);
       }
     });
@@ -32,12 +32,12 @@ app.get('/qa/questions', (req, res) => {
 
 app.get('/qa/answers', (req, res) => {
   if (req) {
-    console.log(req.query);
+    // console.log(req.query);
     qa.getAforProduct(req.query, options, (err, data) => {
       if (err) {
         res.status(418).send('err from app.get--Answers');
       } else {
-        console.log('successful answers request');
+        // console.log('successful answers request');
         res.status(200).send(data);
       }
     });
