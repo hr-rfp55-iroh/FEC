@@ -16,15 +16,18 @@ class Unit extends React.Component {
   }
 
   getQuestions() {
-    axios('http://localhost:3004/qa/questions')
-      .then((results) => console.log(results))
-      .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data, }));
+    // currently will just use product_id 40344 for now
+    const req = { product_id: 40344 };
+    axios(`http://localhost:3004/qa/questions/?product_id=${req.product_id}`, req)
+      .then((results) => this.setState({ allQuestions: results.data, isQuestionsLoaded: true }))
+      .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
   }
 
   render() {
+    const { isQuestionsLoaded, allQuestions } = this.state;
     return (
       <div>
-        <Question />
+        <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
         <br />
         <Answer />
         <br />

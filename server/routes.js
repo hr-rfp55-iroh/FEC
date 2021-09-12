@@ -21,7 +21,7 @@ app.get('/qa/questions', (req, res) => {
     // ? will need to find an example that actually returns more than one page of data
     qa.getQforProduct(req.query, options, (err, data) => {
       if (err) {
-        res.status(418).send('err from app.get--Questions');
+        res.status(418).send(err);
       } else {
         console.log('successful questions request');
         res.status(200).send(data);
