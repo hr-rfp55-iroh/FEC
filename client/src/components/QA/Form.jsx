@@ -6,7 +6,7 @@ const Form = (props) => (
     {/* {props} */}
     <form>
       <input type='text' name='search' placeholder="Search For Your Question Here" />
-      <input type='submit' value='submit'></input>
+      <input type='submit' value='Search'></input>
     </form>
   </div>
 );
