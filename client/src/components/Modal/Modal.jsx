@@ -14,7 +14,7 @@ const Modal = () => {
         <div>
           <div>
             <h2>
-              Hello Modal
+              Hello Modal!
             </h2>
             <p>
               CONTENT!
