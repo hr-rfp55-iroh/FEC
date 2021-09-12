@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-// import './modal.css';
 
 const Modal = (props) => {
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
-
     setModal(!modal);
   };
 

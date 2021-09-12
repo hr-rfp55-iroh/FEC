@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Question from './Question';
 import Answer from './Answer';
-import Modal from '../Modal/Modal';
+import Modal from '../Shared/Modal';
 
 class Unit extends React.Component {
   constructor(props) {
