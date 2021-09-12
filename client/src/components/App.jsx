@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../../config';
 
-import ProductOverview from './PO/ProductOverview';
+import Overview from './PO/Overview';
 import RatingReview from './RR/RatingReview';
 
 class App extends React.Component {
@@ -51,7 +51,7 @@ class App extends React.Component {
         <h1>Hello World!</h1>
         <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
         <div id="PO">
-          <ProductOverview />
+          <Overview />
         </div>
         <div id="RR">
           <RatingReview />

@@ -1,6 +1,36 @@
 /* General Layout */
 
 /* Product Overview Style */
+#product-overview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#po-gallery-pnl {
+  width: 60%;
+  color: beige;
+  background: slategray;
+  text-align: center;
+  line-height: 200px;
+}
+
+#po-info-pnl {
+  width: 30%;
+  background: beige;
+  text-align: left;
+}
+
+#po-overview-pnl {
+  width: 100%;
+  text-align: center;
+}
+
+#po-gallery-pnl, #po-info-pnl, #po-overview-pnl {
+  margin: 10px 10px 10px 10px;
+  position: relative;
+  padding: 10px;
+}
 
 /* Q&A Style */
 
