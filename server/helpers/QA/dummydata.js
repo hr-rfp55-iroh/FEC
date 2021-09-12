@@ -1,4 +1,4 @@
-const exampleQuestion = {
+const exampleData = {
   "product_id": "40344",
   "results": [
     {
@@ -171,5 +171,5 @@ const exampleQuestion = {
         }
       }
     }
-  ]
+  ],
 }
