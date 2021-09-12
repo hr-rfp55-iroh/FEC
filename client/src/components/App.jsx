@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../../config';
 import RatingReview from './RR/RatingReview';
+import StarRating from './PO/StarRating';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends React.Component {
         <h1>Hello World!</h1>
         <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
         <div id="RR">
+          <StarRating />
           <RatingReview />
         </div>
       </div>
