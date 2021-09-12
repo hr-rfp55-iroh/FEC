@@ -28,9 +28,9 @@ class Unit extends React.Component {
     const { isQuestionsLoaded, allQuestions } = this.state;
     return (
       <div>
-        <Modal />
         <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
         <br />
+        <Modal />
         <Answer />
         <br />
         <button type="submit">Load More Answers</button>

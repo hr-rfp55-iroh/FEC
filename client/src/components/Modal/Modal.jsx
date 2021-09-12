@@ -9,7 +9,7 @@ const Modal = () => {
 
   return (
     <>
-      <button onClick={toggleModal} type="submit">Hello </button>
+      <button onClick={toggleModal} type="submit">Hello Modal! </button>
       {modal && (
         <div>
           <div>
@@ -19,7 +19,7 @@ const Modal = () => {
             <p>
               CONTENT!
             </p>
-            <button name="close" type="submit" onClick={toggleModal}>Close </button>
+            <button name="close" type="submit" onClick={toggleModal}>Close The Modal </button>
           </div>
         </div>
       )}
