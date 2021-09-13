@@ -105,12 +105,20 @@
   border-radius: 3px;
   max-width: 500px;
   min-width: 500px;
+  /* min-height: 300px; */
+  /* max-height: 600px; */
 }
 
+.submit-button {
+  position: absolute;
+  top: 75%;
+  right: 45%;
+  padding: 5px 5px;
+}
 .close-modal {
   position: absolute;
-  top: 50%;
-  right: 50%;
+  top: 75%;
+  right: 60%;
   padding: 5px 5px;
 }
 /* R&R Style */
