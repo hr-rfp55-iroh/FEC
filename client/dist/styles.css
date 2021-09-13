@@ -2,6 +2,8 @@
 
 /* Product Overview Style */
 #product-overview {
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -9,21 +11,57 @@
 
 #po-gallery-pnl {
   width: 60%;
+  height: 500px;
+  line-height: 500px;
   color: beige;
   background: slategray;
   text-align: center;
-  line-height: 200px;
 }
 
 #po-info-pnl {
-  width: 30%;
-  background: beige;
+  width: 20%;
   text-align: left;
+}
+
+#star-rating-overview {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#star-rating-overview a {
+  margin-left: 10px;
+  margin-bottom: 3px;
+  color: black;
+  font-size: 10pt;
+}
+
+#star-rating-overview a:hover {
+  color: skyblue;
+}
+
+#category {
+  text-transform: uppercase;
+  font-size: 13pt;
+}
+
+#product-name {
+  font-weight: bold;
+  font-size: 18pt;
+}
+
+#price {
+  padding: 5px;
+}
+
+#price:before {
+  content: '$';
 }
 
 #po-overview-pnl {
   width: 100%;
-  text-align: center;
+  margin-left: 50px;
 }
 
 #po-gallery-pnl, #po-info-pnl, #po-overview-pnl {
