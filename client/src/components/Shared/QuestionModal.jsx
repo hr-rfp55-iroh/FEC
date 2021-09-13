@@ -13,9 +13,9 @@ const QuestionModal = (props) => {
       <button className="button-modal" onClick={toggleModal} type="submit">Submit A Question</button>
       {modal && (
         <div className="modal">
-          <div className="overlay" role="button" tabIndex="0">
-            {/* <div onClick={toggleModal} onKeyPress={toggleModal}
-            className="overlay" role="button" tabIndex="0"> */}
+          {/* <div className="overlay" role="button" tabIndex="0"> */}
+          <div onClick={toggleModal} onKeyPress={toggleModal}
+            className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
 
               <h2>
