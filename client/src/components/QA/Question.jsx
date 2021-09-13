@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Question = (props) => {
   // const convertDate = (date) => {
@@ -20,6 +21,23 @@ const Question = (props) => {
       )) : ''}
     </div>
   );
+};
+
+Question.propTypes = {
+  allQuestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      question_id: PropTypes.number,
+      asker_name: PropTypes.string,
+      question_body: PropTypes.string,
+      question_date: PropTypes.number,
+    }),
+  ),
+  isQuestionsLoaded: PropTypes.bool,
+};
+
+Question.defaultProps = {
+  isQuestionsLoaded: '',
+  allQuestions: '',
 };
 
 export default Question;

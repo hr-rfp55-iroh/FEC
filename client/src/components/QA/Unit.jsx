@@ -21,17 +21,27 @@ class Unit extends React.Component {
     const { currentProduct } = this.props;
     const req = { product_id: currentProduct };
     axios(`http://localhost:3004/qa/questions/?product_id=${req.product_id}`, req)
-      .then((results) => this.setState({ allQuestions: results.data, isQuestionsLoaded: true }))
+      .then((results) => this.setState({
+        allQuestions: results.data,
+        isQuestionsLoaded: true,
+        questionsList: results.data.results,
+      }))
       .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
   }
 
   render() {
-    const { isQuestionsLoaded, allQuestions, error } = this.state;
+    const {
+      isQuestionsLoaded, allQuestions, error, questionsList,
+    } = this.state;
     return (
       <div>
         {error ? '' : (
           <div>
-            <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
+            <Question
+              isQuestionsLoaded={isQuestionsLoaded}
+              allQuestions={allQuestions}
+              questionsList={questionsList}
+            />
             <br />
             <Modal />
             <Answer />
