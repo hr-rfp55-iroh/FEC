@@ -10,15 +10,16 @@ const QuestionModal = (props) => {
   };
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
-    const obj = { question: text, email, nickname };
-    let requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
-    // TODO : insert post route here that takes in obj
-    const isFilledIn = text !== '' || email !== '' || nickname !== '';
-    if (isFilledIn) {
-      console.log('All Fields Provided!');
-    } else {
-      alert('Please fill in required fields: ' + requiredFields);
-    }
+    // const obj = { question: text, email, nickname };
+    // let requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
+    // // TODO : insert post route here that takes in obj
+    // const isFilledIn = text !== '' || email !== '' || nickname !== '';
+    // if (isFilledIn) {
+    //   console.log('All Fields Provided!');
+    // } else {
+    //   alert('Please fill in required fields: ' + requiredFields);
+    // }
+
   };
 
   return (
