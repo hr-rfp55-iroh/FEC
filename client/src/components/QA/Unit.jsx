@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Question from './Question';
 import Answer from './Answer';
 import Modal from '../Shared/Modal';
+import QuestionModal from '../Shared/QuestionModal';
 
 class Unit extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class Unit extends React.Component {
               questionsList={questionsList}
             />
             <br />
+            <QuestionModal />
             <Modal />
             <Answer />
             <br />
