@@ -78,3 +78,8 @@
 #RR {
   border: 2px solid black;
 }
+#review-list {
+  height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
