@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const QuestionModal = (props) => {
+  const { currentProduct } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -30,7 +32,7 @@ const QuestionModal = (props) => {
 
     // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
     //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
-    const obj = { question: text, email, name: nickname }; // TODO need product id for post
+    const obj = { question: text, email, name: nickname, product_id: currentProduct }; // TODO need product id for post
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
       axios.post('url', obj) // TODO place actual endpoint in here
@@ -86,6 +88,14 @@ const QuestionModal = (props) => {
       {/* <p>hello from down here</p> */}
     </div>
   );
+};
+
+QuestionModal.propTypes = {
+  currentProduct: PropTypes.number,
+};
+
+QuestionModal.defaultProps = {
+  currentProduct: 30344,
 };
 
 export default QuestionModal;
