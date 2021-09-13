@@ -13,11 +13,8 @@ const QuestionModal = (props) => {
     e.preventDefault();
     const missingFields = {};
     let isFieldsFilled = true;
-    const obj = { question: text, email, nickname };
-    console.log(obj);
     if (text.length === 0) {
       isFieldsFilled = false;
-      // setErrors({ question: 'fill out question' })
       missingFields.question = 'fill out question';
     }
     if (email.length === 0) {
@@ -28,12 +25,17 @@ const QuestionModal = (props) => {
       isFieldsFilled = false;
       missingFields.nickname = 'fill out nickname';
     }
-    setErrors({ missingFields });
+    setErrors(missingFields);
 
-    // let requiredFields = [`${text === '' ? 'Question' : ''},
-    // ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
+    const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
+    const obj = { question: text, email, name: nickname };
+    // console.log(obj);
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
+    }
+    if (!isFieldsFilled) {
+      console.log(errors)
+      alert('Fill in the required fields:', /* Object.keys(errors) */ requiredFields);
     }
   };
 
@@ -56,7 +58,10 @@ const QuestionModal = (props) => {
 
                 <textarea name="submitQuestion" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Why did you like the product or not?" required />
                 <br />
-                <div>What is your nickname? (required)</div>
+                <div> What is your nickname? (required) </div>
+                <div>
+                  {errors.nickname}
+                </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jackson11!" required />
                 <div>What is your email? (required)</div>
