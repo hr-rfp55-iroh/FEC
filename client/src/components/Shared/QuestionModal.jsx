@@ -20,7 +20,7 @@ const QuestionModal = (props) => {
       isFieldsFilled = false;
       missingFields.question = 'We need your question 😎 ';
     }
-    if (email.length === 0) {
+    if (email.length === 0) { // TODO actually parse the email
       isFieldsFilled = false;
       missingFields.email = 'Missing email 📧 ';
     }
@@ -37,10 +37,10 @@ const QuestionModal = (props) => {
     }; // TODO need product id for post
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
-      axios.post('url', obj) // TODO place actual endpoint in here
-        .then((results) => console.log(results)) // TODO how to get results back to Q
-        .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
-        .catch((err) => console.log(err)); //
+      axios.post('url', obj); // TODO place actual endpoint in here
+      // .then((results) => console.log(results)) // TODO how to get results back to Q
+      // .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
+      // .catch((err) => console.log(err)); //
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Modal = (props) => {
+const Modal = () => { // TODO: Pass props in :D
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = (props) => (
+const Form = () => ( // TODO take in props as a param
   <div>
     Questions & Answers
     {/* {props} */}
