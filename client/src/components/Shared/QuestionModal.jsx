@@ -15,15 +15,15 @@ const QuestionModal = (props) => {
     let isFieldsFilled = true;
     if (text.length === 0) {
       isFieldsFilled = false;
-      missingFields.question = 'fill out question';
+      missingFields.question = 'We need your question 😎 ';
     }
     if (email.length === 0) {
       isFieldsFilled = false;
-      missingFields.email = 'fill out email';
+      missingFields.email = 'Missing email 📧 ';
     }
     if (nickname.length === 0) {
       isFieldsFilled = false;
-      missingFields.nickname = 'fill out nickname';
+      missingFields.nickname = 'Missing nickname 📇 ';
     }
     setErrors(missingFields);
 
@@ -34,8 +34,8 @@ const QuestionModal = (props) => {
       // TODO : insert post route here that takes in obj
     }
     if (!isFieldsFilled) {
-      console.log(errors)
-      alert('Fill in the required fields:', /* Object.keys(errors) */ requiredFields);
+      // console.log(errors)
+      // alert('Fill in the required fields:', /* Object.keys(errors) */ requiredFields);
     }
   };
 
@@ -53,8 +53,11 @@ const QuestionModal = (props) => {
                 Your Question:
               </h2>
               <div>What is your question? (required)</div>
-              <br />
               <form>
+                <div>
+                  {errors.question}
+                </div>
+                <br />
 
                 <textarea name="submitQuestion" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Why did you like the product or not?" required />
                 <br />
@@ -65,6 +68,9 @@ const QuestionModal = (props) => {
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jackson11!" required />
                 <div>What is your email? (required)</div>
+                <div>
+                  {errors.email}
+                </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Enter your email here" required />
 
