@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const QuestionModal = (props) => {
   const [modal, setModal] = useState(false);
+  const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
@@ -9,17 +10,30 @@ const QuestionModal = (props) => {
     setModal(!modal);
   };
   const handleQuestionSubmit = (e) => {
+    // TODO : insert post route here that takes in obj
     e.preventDefault();
-    // const obj = { question: text, email, nickname };
+    let isFieldsFilled = true;
+    const obj = { question: text, email, nickname };
+    console.log(obj);
+    if (text.length === 0) {
+      setErrors({ question: 'fill out question' })
+    }
+    if (email.length === 0) {
+      setErrors({ email: 'fill out email' })
+    }
+    if (nickname.length === 0) {
+      setErrors({ nickname: 'fill out nickname' })
+    }
+
+
     // let requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
-    // // TODO : insert post route here that takes in obj
     // const isFilledIn = text !== '' || email !== '' || nickname !== '';
     // if (isFilledIn) {
     //   console.log('All Fields Provided!');
     // } else {
     //   alert('Please fill in required fields: ' + requiredFields);
     // }
-
+    // if (name.length === 0) {
   };
 
   return (
