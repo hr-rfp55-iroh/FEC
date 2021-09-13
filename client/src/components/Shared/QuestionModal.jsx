@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const QuestionModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -27,15 +28,15 @@ const QuestionModal = (props) => {
     }
     setErrors(missingFields);
 
-    const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' : ''}, ${nickname === '' ? 'Nickname' : ''}`];
-    const obj = { question: text, email, name: nickname };
-    // console.log(obj);
+    // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
+    //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
+    const obj = { question: text, email, name: nickname }; // TODO need product id for post
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
-    }
-    if (!isFieldsFilled) {
-      // console.log(errors)
-      // alert('Fill in the required fields:', /* Object.keys(errors) */ requiredFields);
+      axios.post('url', obj) // TODO place actual endpoint in here
+        .then((results) => console.log(results)) // TODO how to get results back to Q
+        .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
+        .catch((err) => console.log(err)); //
     }
   };
 

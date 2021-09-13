@@ -34,6 +34,7 @@ class Unit extends React.Component {
     const {
       isQuestionsLoaded, allQuestions, error, questionsList,
     } = this.state;
+    const { currentProduct } = this.props;
     return (
       <div>
         {!isQuestionsLoaded || error ? '' : (
@@ -43,7 +44,7 @@ class Unit extends React.Component {
               questionsList={questionsList}
             />
             <br />
-            <QuestionModal />
+            <QuestionModal currentProduct={currentProduct} />
             <Modal />
             <Answer />
             <br />
