@@ -32,7 +32,9 @@ const QuestionModal = (props) => {
 
     // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
     //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
-    const obj = { question: text, email, name: nickname, product_id: currentProduct }; // TODO need product id for post
+    const obj = {
+      question: text, email, name: nickname, product_id: currentProduct,
+    }; // TODO need product id for post
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
       axios.post('url', obj) // TODO place actual endpoint in here
