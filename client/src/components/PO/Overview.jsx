@@ -7,14 +7,13 @@ import Information from './Information';
 import StyleSelector from './StyleSelector';
 
 const Overview = (props) => {
+  const { selected } = props;
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
   useEffect(() => {
-    const { selected } = props;
-
     axios.get(`/po/info/${selected}`)
       .then((results) => {
         setCategory(results.data.category);
@@ -33,7 +32,7 @@ const Overview = (props) => {
         <StarRating />
         <Information category={category} name={name} price={price} />
         {/* TODO: Price should depend on style. Price could also be on sale. */}
-        <StyleSelector />
+        <StyleSelector productId={selected} />
         <li>Share on Social Media</li>
       </div>
       <div id="po-overview-pnl">

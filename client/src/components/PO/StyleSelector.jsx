@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-class StyleSelector extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // styles: [],
-      // selected: 0,
-    };
-  }
+const StyleSelector = (props) => {
+  const { productId } = props;
+  const [styleId, setStyleId] = useState(0);
 
-  render() {
-    return (
-      <div>
-        Style Selector
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    axios.get(`/po/styles/${productId}`)
+      .then((results) => {
+        console.log(results.data.results);
+      });
+  });
+
+  return (
+    <div>
+      Style Selector
+    </div>
+  );
+};
 
 export default StyleSelector;

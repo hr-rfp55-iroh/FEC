@@ -24,6 +24,14 @@ app.get('/po/info/:id', (req, res) => {
   });
 });
 
+app.get('/po/styles/:id', (req, res) => {
+  po.getStylesById(req.params.id, options, (err, results) => {
+    if (err) {
+      res.status(404).send(err);
+    } else { res.send(results); }
+  });
+});
+
 app.get('/qa/questions', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned
