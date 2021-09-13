@@ -35,10 +35,9 @@ class Unit extends React.Component {
     } = this.state;
     return (
       <div>
-        {error ? '' : (
+        {!isQuestionsLoaded || error ? '' : (
           <div>
             <Question
-              isQuestionsLoaded={isQuestionsLoaded}
               allQuestions={allQuestions}
               questionsList={questionsList}
             />
