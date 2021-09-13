@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Form = (props) => (
+const Form = () => ( // TODO take in props as a param
   <div>
     Questions & Answers
     {/* {props} */}
     <form>
-      <input type='text' name='search' placeholder="Search For Your Question Here" />
-      <input type='submit' value='Search'></input>
+      <input type="text" name="search" placeholder="Search For Your Question Here" />
+      <input type="submit" value="Search" />
     </form>
   </div>
 );

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const exampleData = {
   product_id: '40344',
   results: [

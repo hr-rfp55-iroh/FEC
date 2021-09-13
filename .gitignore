@@ -7,3 +7,5 @@ config.js
 .DS_Store
 
 coverage
+
+dummydata.js

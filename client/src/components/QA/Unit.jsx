@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Question from './Question';
 import Answer from './Answer';
+import Modal from '../Shared/Modal';
+import QuestionModal from '../Shared/QuestionModal';
 
 class Unit extends React.Component {
   constructor(props) {
@@ -16,29 +19,54 @@ class Unit extends React.Component {
   }
 
   getQuestions() {
-    // currently will just use product_id 40344 for now
-    const req = { product_id: 40344 };
+    const { currentProduct } = this.props;
+    const req = { product_id: currentProduct };
     axios(`http://localhost:3004/qa/questions/?product_id=${req.product_id}`, req)
-      .then((results) => this.setState({ allQuestions: results.data, isQuestionsLoaded: true }))
+      .then((results) => this.setState({
+        allQuestions: results.data,
+        isQuestionsLoaded: true,
+        questionsList: results.data.results,
+      }))
       .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
   }
 
   render() {
-    const { isQuestionsLoaded, allQuestions } = this.state;
+    const {
+      isQuestionsLoaded, allQuestions, error, questionsList,
+    } = this.state;
+    const { currentProduct } = this.props;
     return (
       <div>
-        <Question isQuestionsLoaded={isQuestionsLoaded} allQuestions={allQuestions} />
-        <br />
-        <Answer />
-        <br />
-        <button type="submit">Load More Answers</button>
-        <div>
-          <button type="submit">Load More Questions</button>
-          <button type="submit">Add A Question</button>
-        </div>
+        {!isQuestionsLoaded || error ? '' : (
+          <div>
+            <Question
+              allQuestions={allQuestions}
+              questionsList={questionsList}
+            />
+            <br />
+            <QuestionModal currentProduct={currentProduct} />
+            <Modal />
+            <Answer />
+            <br />
+            <button type="submit">Load More Answers</button>
+            <div>
+              <button type="submit">Load More Questions</button>
+              <button type="submit">Add A Question</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
+
+Unit.propTypes = {
+  currentProduct: PropTypes.number,
+
+};
+Unit.defaultProps = {
+  currentProduct: 40344,
+
+};
 
 export default Unit;
