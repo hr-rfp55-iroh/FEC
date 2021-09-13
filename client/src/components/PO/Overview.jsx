@@ -1,73 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+
 import StarRating from './StarRating';
 import Information from './Information';
+import StyleSelector from './StyleSelector';
 
-class Overview extends React.Component {
-  constructor(props) {
-    super(props);
+const Overview = (props) => {
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
 
-    this.getProductInfo = this.getProductInfo.bind(this);
-
-    this.state = {
-      title: '',
-      desc: '',
-      cat: '',
-      price: '',
-    };
-  }
-
-  componentDidMount() {
-    this.getProductInfo();
-  }
-
-  getProductInfo() {
-    const { selected } = this.props;
+  useEffect(() => {
+    const { selected } = props;
 
     axios.get(`/po/info/${selected}`)
       .then((results) => {
-        const {
-          name,
-          description,
-          category,
-          default_price,
-        } = results.data;
-        this.setState({
-          title: name,
-          desc: description,
-          cat: category,
-          price: default_price,
-        });
+        setCategory(results.data.category);
+        setName(results.data.name);
+        setDescription(results.data.description);
+        setPrice(results.data.default_price);
       });
-  }
+  });
 
-  render() {
-    const {
-      title,
-      desc,
-      cat,
-      price,
-    } = this.state;
-
-    return (
-      <div id="product-overview">
-        <div id="po-gallery-pnl">
-          <li>Image Gallery</li>
-        </div>
-        <div id="po-info-pnl">
-          <StarRating />
-          <Information category={cat} name={title} price={price} />
-          <li>Style Selector</li>
-          <li>Share on Social Media</li>
-        </div>
-        <div id="po-overview-pnl">
-          {desc}
-        </div>
+  return (
+    <div id="product-overview">
+      <div id="po-gallery-pnl">
+        <li>Image Gallery</li>
       </div>
-    );
-  }
-}
+      <div id="po-info-pnl">
+        <StarRating />
+        <Information category={category} name={name} price={price} />
+        {/* TODO: Price should depend on style. Price could also be on sale. */}
+        <StyleSelector />
+        <li>Share on Social Media</li>
+      </div>
+      <div id="po-overview-pnl">
+        {description}
+      </div>
+    </div>
+  );
+};
 
 Overview.propTypes = {
   selected: PropTypes.number,
