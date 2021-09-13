@@ -55,7 +55,7 @@ class App extends React.Component {
   // R&R HTTP requests
 
   render() {
-    const { products, currentProduct } = this.state;
+    const { products, currentProduct, isProductsLoaded } = this.state;
     return (
       <div>
         <h1>Hello World!</h1>
@@ -69,9 +69,7 @@ class App extends React.Component {
         {isProductsLoaded ? (
           <div id="QA">
             <Form />
-            <Unit products={products} currentProduct="this.state currentProduct" />
-            {/*  current product id will determine what Q&A is displayed  */}
-            {/*  I will grab this product_id from whatever current display is :D */}
+            <Unit products={products} currentProduct={currentProduct} />
           </div>
         ) : ''}
       </div>

@@ -7,7 +7,7 @@ const Modal = (props) => {
   };
 
   return (
-    <>
+    <div>
       <button className="button-modal" onClick={toggleModal} type="submit">Hello Modal! (Open) </button>
       {modal && (
         <div className="modal">
@@ -26,7 +26,7 @@ const Modal = (props) => {
         </div>
       )}
       {/* <p>hello from down here</p> */}
-    </>
+    </div>
   );
 };
 
