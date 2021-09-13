@@ -4,17 +4,20 @@ import axios from 'axios';
 const StyleSelector = (props) => {
   const { productId } = props;
   const [styleId, setStyleId] = useState(0);
+  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     axios.get(`/po/styles/${productId}`)
       .then((results) => {
-        console.log(results.data.results);
+        setStyles(results.data.results);
       });
-  });
+  }, [styleId]);
+
+  const mappedList = styles.map((style) => <li>{style.name}</li>);
 
   return (
     <div>
-      Style Selector
+      {mappedList}
     </div>
   );
 };

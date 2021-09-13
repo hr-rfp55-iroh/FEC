@@ -21,7 +21,7 @@ const Overview = (props) => {
         setDescription(results.data.description);
         setPrice(results.data.default_price);
       });
-  });
+  }, [selected]);
 
   return (
     <div id="product-overview">
