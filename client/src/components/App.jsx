@@ -64,7 +64,7 @@ class App extends React.Component {
           <Overview selected={currentProduct} />
         </div>
         <div id="RR">
-          <RatingReview />
+          <RatingReview selected={currentProduct} />
         </div>
         <div id="QA">
           <Form />

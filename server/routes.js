@@ -1,11 +1,12 @@
 const express = require('express');
 const po = require('./helpers/PO/po-requests');
 const qa = require('./helpers/QA/Questions');
+const review = require('./helpers/RR/review-requests');
+const rating = require('./helpers/RR/rating-requests');
 
 const config = require('../config');
 
 const options = {
-  method: 'get',
   headers: { Authorization: config.API_TOKEN },
 };
 
@@ -51,6 +52,18 @@ app.get('/qa/answers', (req, res) => {
       }
     });
   }
+});
+
+app.get('/reviews/', (req, res) => {
+  const { product_id } = req.query;
+  const { headers } = options;
+  review.getReviews({ headers, params: { product_id } }, (err, data) => {
+    if (err) {
+      res.status(500).send(`error getting reviews from Atelier API: ${err}`);
+    } else {
+      res.status(200).send(data);
+    }
+  });
 });
 
 module.exports = app;
