@@ -1,4 +1,5 @@
 const express = require('express');
+const po = require('./helpers/PO/po-requests');
 const qa = require('./helpers/QA/Questions');
 
 const config = require('../config');
@@ -14,6 +15,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../client/dist`));
+
+app.get('/po/info/:id', (req, res) => {
+  po.getProductById(req.params.id, options, (err, results) => {
+    if (err) {
+      res.status(404).send(err);
+    } else { res.send(results); }
+  });
+});
 
 app.get('/qa/questions', (req, res) => {
   if (req) {
