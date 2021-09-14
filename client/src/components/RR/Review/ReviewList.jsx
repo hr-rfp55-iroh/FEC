@@ -73,11 +73,11 @@ class ReviewList extends React.Component {
         {reviews.length > 2
           && count < reviews.length
           && (
-            <button type="button" onClick={this.handleMoreReviewsClick}>
+            <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
               MORE REVIEWS
             </button>
           )}
-        <button type="button">
+        <button type="button" className="review-list-btn">
           ADD A REVIEW
         </button>
       </div>
