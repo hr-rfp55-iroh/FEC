@@ -12,6 +12,8 @@ const QuestionModal = (props) => {
   const toggleModal = () => {
     setModal(!modal);
   };
+  // regex fn to test for basic email structure "_____@__.__"
+  const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const handleValidationAndSubmit = (e) => {
     e.preventDefault();
     const missingFields = {};
@@ -23,6 +25,10 @@ const QuestionModal = (props) => {
     if (email.length === 0) { // TODO actually parse the email
       isFieldsFilled = false;
       missingFields.email = 'Missing email 📧 ';
+    }
+    if (!isEmailValid(email)) {
+      isFieldsFilled = false;
+      missingFields.email = 'Enter a valid email! 📧 ';
     }
     if (nickname.length === 0) {
       isFieldsFilled = false;
