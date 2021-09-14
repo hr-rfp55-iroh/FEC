@@ -53,7 +53,6 @@ class Unit extends React.Component {
             <br />
             <div>
               <button type="submit">Load More Questions</button>
-              <button type="submit">Add A Question</button>
             </div>
           </div>
         )}
