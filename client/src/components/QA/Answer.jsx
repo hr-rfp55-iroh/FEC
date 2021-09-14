@@ -5,7 +5,7 @@ const Answer = ({ answer }) => {
     answerer_name, body, date, helpfulness, id, photos,
   } = answer;
   return (
-    <div key={id}>
+    <div>
       <a><strong>A:</strong></a>
       {body}
       <br />
@@ -26,9 +26,9 @@ const Answer = ({ answer }) => {
       {' '}
       {/* //TODO onclick toggle FN for report -> reported */}
       <div>
-        {photos.map((photo) => (<div key={id}><img alt="" src={photo} id="answer-images" /></div>))}
+        {photos.map((photo) => (<div key={photo.toString()}><img alt="" src={photo} id="answer-images" /></div>))}
       </div>
-    </div>
+    </div >
   );
 };
 

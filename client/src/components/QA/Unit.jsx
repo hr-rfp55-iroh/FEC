@@ -30,7 +30,7 @@ class Unit extends React.Component {
 
   render() {
     const {
-      isQuestionsLoaded, allQuestions, error, questionsList,
+      isQuestionsLoaded, error, questionsList,
     } = this.state;
     const { currentProduct } = this.props;
     // const { answers } = questionsList;
@@ -38,20 +38,17 @@ class Unit extends React.Component {
       <div>
         {!isQuestionsLoaded || error ? '' : (
           <div>
-            {questionsList.map((q) => {
-              { console.log(q) }
-              return (
-
-                < Question
-                  question_id={q.question_id}
-                  question_body={q.question_body}
-                  question_date={q.question_date}
-                  asker_name={q.asker_name}
-                  question_helpfulness={q.question_helpfulness}
-                  answers={q.answers}
-                />
-              )
-            })}
+            {questionsList.map((q) => (
+              <Question
+                key={q.question_id}
+                question_id={q.question_id}
+                question_body={q.question_body}
+                question_date={q.question_date}
+                asker_name={q.asker_name}
+                question_helpfulness={q.question_helpfulness}
+                answers={q.answers}
+              />
+            ))}
             <br />
             <QuestionModal currentProduct={currentProduct} />
             <br />

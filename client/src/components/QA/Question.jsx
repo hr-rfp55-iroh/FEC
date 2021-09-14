@@ -7,10 +7,9 @@ const Question = ({
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
 
-
   return (
 
-    <div key={question_id}>
+    <div>
       <a><strong>Q:</strong></a>
       {question_body}
       By:
@@ -31,7 +30,7 @@ const Question = ({
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {sortedAnswers.map((answer) => <Answer answer={answer} />)}
+      {sortedAnswers.map((answer) => <Answer answer={answer} key={answer.body} />)}
     </div>
   );
 };

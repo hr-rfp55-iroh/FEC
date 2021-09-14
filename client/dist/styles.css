@@ -74,6 +74,12 @@
 #QA {
   border: 2px solid black;
 }
+#answer-images {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+
+}
 
 .btn-modal {
   padding: 10px 10px;
