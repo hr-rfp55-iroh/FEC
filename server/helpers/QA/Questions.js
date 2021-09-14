@@ -1,12 +1,7 @@
 const axios = require('axios');
-
 const config = require('../../../config');
 
 const headers = { Authorization: config.API_TOKEN };
-
-// GET /qa/questions
-// Retrieves a list of questions for a particular product.
-// This list does not include any reported questions.
 
 const getQforProduct = (req, options, callback) => {
   // TODO : include params for page and count of questions returned
@@ -35,6 +30,7 @@ const postQforProduct = (req, callback) => {
     },
     method: 'POST',
   };
+  console.log('from post q for product', obj);
   axios(obj)
     .then((results) => callback(null, results))
     .catch((error) => callback(error));

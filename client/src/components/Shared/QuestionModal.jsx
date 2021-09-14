@@ -40,14 +40,15 @@ const QuestionModal = (props) => {
     // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
     //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
     const obj = {
-      body: text, email, name: nickname, product_id: currentProduct,
+      body: text, email: email, name: nickname, product_id: currentProduct,
     }; // TODO need product id for post
+    console.log(email, name)
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
-      axios.post('url', obj); // TODO place actual endpoint in here
-      // .then((results) => console.log(results)) // TODO how to get results back to Q
-      // .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
-      // .catch((err) => console.log(err)); //
+      axios.post('qa/questions', obj) // TODO place actual endpoint in here
+        .then((results) => console.log(results)) // TODO how to get results back to Q
+        .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
+        .catch((err) => console.log(err)); //
     }
   };
 
@@ -78,13 +79,13 @@ const QuestionModal = (props) => {
                   {errors.nickname}
                 </div>
                 <br />
-                <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jackson11!" required />
+                <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
                 <div>What is your email? (required)</div>
                 <div>
                   {errors.email}
                 </div>
                 <br />
-                <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Enter your email here" required />
+                <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
 
               </form>
             </div>
