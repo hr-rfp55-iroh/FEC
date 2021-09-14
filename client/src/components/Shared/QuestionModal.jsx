@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// {
-//   "body" : "test",
-//   "name" : "username",
-//   "email" : "hello@gmail.com",
-//   "product_id" : 40344
-
-// }
 const QuestionModal = (props) => {
   const { currentProduct } = props;
   const [modal, setModal] = useState(false);
@@ -36,19 +29,13 @@ const QuestionModal = (props) => {
       missingFields.nickname = 'Missing nickname 📇 ';
     }
     setErrors(missingFields);
-
-    // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
-    //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
     const obj = {
-      body: text, email: email, name: nickname, product_id: currentProduct,
+      body: text, email, name: nickname, product_id: currentProduct,
     }; // TODO need product id for post
-    console.log(email, name)
     if (isFieldsFilled) {
-      // TODO : insert post route here that takes in obj
-      axios.post('qa/questions', obj) // TODO place actual endpoint in here
-        .then((results) => console.log(results)) // TODO how to get results back to Q
-        .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
-        .catch((err) => console.log(err)); //
+      axios.post('qa/questions', obj)
+        .then((results) => console.log(results))
+        .catch((err) => console.log(err));
     }
   };
 
@@ -58,8 +45,6 @@ const QuestionModal = (props) => {
       {modal && (
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
-            {/* <div onClick={toggleModal} onKeyPress={toggleModal} */}
-            {/* className="overlay" role="button" tabIndex="0"> */}
             <div className="modal-content">
 
               <h2>
