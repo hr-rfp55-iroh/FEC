@@ -6,9 +6,6 @@ const Question = ({
   question_body, question_date, asker_name, question_helpfulness, answers,
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
-  // console.log('sorted', sortedAnswers);
-  // console.log('sorted + sliced', sortedAnswers.slice(0, 2));
-  // console.log('sorted + sliced to 2', sortedAnswers.slice(2));
 
   return (
 
