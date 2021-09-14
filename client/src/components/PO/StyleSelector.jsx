@@ -1,16 +1,26 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Style from './Style';
 
 const StyleSelector = (props) => {
-  const { styles, setStyles } = props;
+  const { productSelected } = props;
 
   const [price, setPrice] = useState('');
   const [sale, setSale] = useState('');
   const [styleId, setStyleId] = useState(-1);
   const [styleName, setStyleName] = useState('');
+  const [styles, setStyles] = useState([]);
+
+  // Displays a product's styles when product is selected
+  useEffect(() => {
+    axios.get(`/po/styles/${productSelected}`)
+      .then((results) => {
+        setStyles(results.data.results);
+      });
+  }, [productSelected]);
 
   // Conditional rendering of prices block
   const priceDiv = sale
@@ -65,8 +75,13 @@ const StyleSelector = (props) => {
   const defaultName = styles.length === 0 ? '' : styles[0].name;
   if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
 
-  const defaultPrice = styles.length === 0 ? '' : styles[0].original_price;
-  if (price === '' && defaultPrice !== '') { setPrice(defaultPrice); }
+  if (styles.length !== 0 && price === '') {
+    const defaultPrice = styles[0].sale_price
+      ? styles[0].sale_price
+      : styles[0].original_price;
+
+    setPrice(defaultPrice);
+  }
 
   return (
     <div>
@@ -81,13 +96,11 @@ const StyleSelector = (props) => {
 
 // TODO: Put array in parent component, do not pass as prop
 StyleSelector.propTypes = {
-  styles: PropTypes.array,
-  setStyles: PropTypes.func,
+  productSelected: PropTypes.number,
 };
 
 StyleSelector.defaultProps = {
-  styles: [],
-  setStyles: null,
+  productSelected: -1,
 };
 
 export default StyleSelector;
