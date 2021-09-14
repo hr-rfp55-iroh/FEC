@@ -69,4 +69,40 @@ const markQasHelpful = (req, callback) => {
     .catch((error) => callback(error));
 };
 
-module.exports = { getQforProduct, getAforProduct, postQforProduct, postAforProduct, markQasHelpful };
+const reportQ = (req, callback) => {
+  const { question_id } = req.body;
+  const obj = {
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/report`,
+    headers,
+    method: 'PUT',
+  };
+  axios(obj)
+    .then((results) => callback(null, results))
+    .catch((error) => callback(error));
+};
+
+const markAnsAsHelpful = (req, callback) => {
+  const { answer_id } = req.body;
+  const obj = {
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/helpful`,
+    headers,
+    method: 'PUT',
+  };
+  axios(obj)
+    .then((results) => callback(null, results))
+    .catch((error) => callback(error));
+};
+
+const reportAnswer = (req, callback) => {
+  const { answer_id } = req.body;
+  const obj = {
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer_id}/report`,
+    headers,
+    method: 'PUT',
+  };
+  axios(obj)
+    .then((results) => callback(null, results))
+    .catch((error) => callback(error));
+};
+
+module.exports = { getQforProduct, getAforProduct, postQforProduct, postAforProduct, markQasHelpful, reportQ, markAnsAsHelpful, reportAnswer };

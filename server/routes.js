@@ -87,11 +87,53 @@ app.post('/qa/answers', (req, res) => {
     });
   }
 });
+
 // mark question as helpful
 app.put('/qa/questions/helpful', (req, res) => {
   if (req) {
     // console.log(req);
     qa.markQasHelpful(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+
+// report question
+app.put('/qa/questions/report', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.reportQ(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+// mark answer as helpful
+app.put('/qa/answers/helpful', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.markAnsAsHelpful(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+
+// report answer
+app.put('/qa/answers/report', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.reportAnswer(req, (err, data) => {
       if (err) {
         res.status(418).send(err);
       } else {
