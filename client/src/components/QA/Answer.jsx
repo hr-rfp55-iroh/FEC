@@ -26,8 +26,18 @@ const Answer = ({ answer }) => {
       (
       {helpfulness}
       ) |
-      {!reported ?
-        <span role="button" onClick={(e) => { e.preventDefault; setReported(true); }}> Report </span>
+      {' '}
+      {!reported
+        ? (
+          <button
+            type="submit"
+            className="helpful"
+            onClick={(e) => { e.preventDefault(); setReported(true); }}
+          >
+            {' '}
+            Report
+          </button>
+        )
         : <span><strong> Reported</strong></span>}
       {' '}
       {/* //TODO onclick toggle FN for report -> reported */}
