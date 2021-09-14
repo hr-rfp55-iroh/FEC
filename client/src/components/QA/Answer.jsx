@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Answer = (props) => (
+const Answer = ({ answer }) => (
   <div>
     <div>
       Answer

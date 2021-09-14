@@ -6,6 +6,8 @@ const Question = ({
   question_id, question_body, question_date, asker_name, question_helpfulness, answers,
 }) => {
   const answersForCurrentQ = Object.keys(answers);
+  const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
+
   return (
 
     <div key={question_id}>
