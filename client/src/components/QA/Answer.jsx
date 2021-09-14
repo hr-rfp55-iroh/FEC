@@ -41,22 +41,22 @@ Answer.propTypes = {
     date: PropTypes.string,
     helpfulness: PropTypes.number,
     id: PropTypes.number,
-    photos: PropTypes.shape([PropTypes.string]),
+    // photos: PropTypes.shape([PropTypes.string]),
   }),
   answerer_name: PropTypes.string,
   body: PropTypes.string,
   date: PropTypes.string,
   helpfulness: PropTypes.number,
-  photos: PropTypes.shape([PropTypes.string]),
+  // photos: PropTypes.shape(PropTypes.string]),
 };
 
 Answer.defaultProps = {
   answer: '',
   answerer_name: '',
   body: '',
-  date: PropTypes.string,
-  helpfulness: PropTypes.number,
-  photos: PropTypes.shape([PropTypes.string]),
+  date: '',
+  helpfulness: 0,
+  // photos: PropTypes.shape({ PropTypes.string }),
 };
 
 export default Answer;
