@@ -1,5 +1,9 @@
 const axios = require('axios');
 
+const config = require('../../../config');
+
+const headers = { Authorization: config.API_TOKEN };
+
 // GET /qa/questions
 // Retrieves a list of questions for a particular product.
 // This list does not include any reported questions.
@@ -19,8 +23,21 @@ const getAforProduct = (req, options, callback) => {
     .catch((error) => callback(error));
 };
 
-// const postQforProduct = (req, options, callback) => {
+const postQforProduct = (req, callback) => {
+  const {
+    body, email, name, product_id,
+  } = req.body;
+  const obj = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/',
+    headers,
+    data: {
+      body, email, name, product_id,
+    },
+    method: 'POST',
+  };
+  return axios(obj)
+    .then((results) => callback(null, results))
+    .catch((error) => callback(error));
+};
 
-// };
-
-module.exports = { getQforProduct, getAforProduct };
+module.exports = { getQforProduct, getAforProduct, postQforProduct };

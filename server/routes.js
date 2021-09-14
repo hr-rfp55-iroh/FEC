@@ -33,6 +33,7 @@ app.get('/po/styles/:id', (req, res) => {
   });
 });
 
+// get questions for the item
 app.get('/qa/questions', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned
@@ -48,15 +49,27 @@ app.get('/qa/questions', (req, res) => {
   }
 });
 
+// get answers for the item
 app.get('/qa/answers', (req, res) => {
   if (req) {
-    // console.log(req.query);
     qa.getAforProduct(req.query, options, (err, data) => {
       if (err) {
         res.status(418).send('err from app.get--Answers');
       } else {
-        // console.log('successful answers request');
         res.status(200).send(data);
+      }
+    });
+  }
+});
+
+// post a question for the item
+app.post('/qa/questions', (req, res) => {
+  if (req) {
+    qa.postQforProduct(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data.data);
       }
     });
   }

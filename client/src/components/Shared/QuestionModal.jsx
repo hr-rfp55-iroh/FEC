@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+// {
+//   "body" : "test",
+//   "name" : "username",
+//   "email" : "hello@gmail.com",
+//   "product_id" : 40344
+
+// }
 const QuestionModal = (props) => {
   const { currentProduct } = props;
   const [modal, setModal] = useState(false);
@@ -33,7 +40,7 @@ const QuestionModal = (props) => {
     // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
     //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
     const obj = {
-      question: text, email, name: nickname, product_id: currentProduct,
+      body: text, email, name: nickname, product_id: currentProduct,
     }; // TODO need product id for post
     if (isFieldsFilled) {
       // TODO : insert post route here that takes in obj
