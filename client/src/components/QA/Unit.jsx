@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Question from './Question';
-import Answer from './Answer';
+// import Answer from './Answer';
 import Modal from '../Shared/Modal';
 import QuestionModal from '../Shared/QuestionModal';
 
@@ -56,8 +56,7 @@ class Unit extends React.Component {
             })}
             <br />
             <QuestionModal currentProduct={currentProduct} />
-            <Modal />
-            <Answer currentProduct={currentProduct} />
+            {/* <Answer currentProduct={currentProduct} /> */}
             <br />
             <button type="submit">Load More Answers</button>
             <div>

@@ -1,36 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Answer from './Answer';
 
 const Question = ({
   question_id, question_body, question_date, asker_name, question_helpfulness, answers,
-}) => (
-  <div>
-    Question:
-    {question_body}
-    , Asked By:
-    {asker_name}
-    , On:
-    {question_date}
-    , helpfulness:
-    {question_helpfulness}
-  </div>
-);
-// const { isQuestionsLoaded, allQuestions } = props;
-// return (
-//   <div>
-//     {isQuestionsLoaded ? allQuestions.results.map((q) => (
-//       <div key={q.question_id}>
-//         {q.asker_name}
-//         {' '}
-//         asks:
-//         {q.question_body}
-//         {'  '}
-//         on
-//         {q.question_date}
-//       </div>
-//     )) : ''}
-//   </div>
-// );
+}) => {
+  const answersForCurrentQ = Object.keys(answers);
+  { console.log(answersForCurrentQ); }
+  return (
+
+    <div key={question_id}>
+      <a><strong>Q:</strong></a>
+      {question_body}
+      By:
+      {asker_name}
+      ,
+      {' '}
+      {question_date}
+      | Helpful?
+      <a onClick="toggleFn">Yes</a>
+      {' '}
+      {/* {//TODO onclick toggleFn for "YES"} */}
+      {' '}
+      (
+      {question_helpfulness}
+      ) |
+      {' '}
+      <a onClick="modal for add answer">Add Answer</a>
+      {' '}
+      {/* //TODO onlick modal for "Add Answer" */}
+      {' '}
+      {console.log(Object.keys(answers))}
+      {Object.keys(answers).length > 0 ? <Answer /> : 'No Answers For this Q'}
+      {/* {answers.map((a) => (
+      <div>
+
+      <Answer key={answer_id} />
+      </div>
+    ))} */}
+    </div>
+  );
+};
+
 // Question.propTypes = {
 //   allQuestions:
 //     PropTypes.shape({
