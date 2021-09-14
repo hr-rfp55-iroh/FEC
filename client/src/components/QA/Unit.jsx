@@ -56,7 +56,6 @@ class Unit extends React.Component {
             })}
             <br />
             <QuestionModal currentProduct={currentProduct} />
-            {/* <Answer currentProduct={currentProduct} /> */}
             <br />
             <button type="submit">Load More Answers</button>
             <div>

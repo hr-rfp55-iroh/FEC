@@ -6,7 +6,6 @@ const Question = ({
   question_id, question_body, question_date, asker_name, question_helpfulness, answers,
 }) => {
   const answersForCurrentQ = Object.keys(answers);
-  { console.log(answersForCurrentQ); }
   return (
 
     <div key={question_id}>
@@ -30,14 +29,7 @@ const Question = ({
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {console.log(Object.keys(answers))}
-      {Object.keys(answers).length > 0 ? <Answer /> : 'No Answers For this Q'}
-      {/* {answers.map((a) => (
-      <div>
-
-      <Answer key={answer_id} />
-      </div>
-    ))} */}
+      {answersForCurrentQ.length > 0 ? <Answer /> : 'No Answers For this Q'}
     </div>
   );
 };
