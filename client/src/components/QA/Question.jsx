@@ -7,6 +7,7 @@ const Question = ({
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
 
+
   return (
 
     <div key={question_id}>
@@ -18,7 +19,7 @@ const Question = ({
       {' '}
       {question_date}
       | Helpful?
-      <a onClick="toggleFn">Yes</a>
+      <a>Yes</a>
       {' '}
       {/* {//TODO onclick toggleFn for "YES"} */}
       {' '}
@@ -26,7 +27,7 @@ const Question = ({
       {question_helpfulness}
       ) |
       {' '}
-      <a onClick="modal for add answer">Add Answer</a>
+      <a>Add Answer</a>
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
