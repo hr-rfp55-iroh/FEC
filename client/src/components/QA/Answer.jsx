@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Answer = ({ answer }) => {
@@ -6,6 +6,7 @@ const Answer = ({ answer }) => {
     answerer_name, body, date, helpfulness, photos,
   } = answer;
   const photoAlias = photos;
+  const [reported, setReported] = useState(false);
   return (
     <div>
       <span><strong>A:</strong></span>
@@ -24,7 +25,10 @@ const Answer = ({ answer }) => {
       {/* //TODO onclick toggle FN for YES! */}
       (
       {helpfulness}
-      ) | Report
+      ) |
+      {!reported ?
+        <span role="button" onClick={(e) => { e.preventDefault; setReported(true); }}> Report </span>
+        : <span><strong> Reported</strong></span>}
       {' '}
       {/* //TODO onclick toggle FN for report -> reported */}
       {/* //TODO find a way to resize image to improve efficiency */}
