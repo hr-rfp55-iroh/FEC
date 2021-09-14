@@ -6,20 +6,28 @@ const Style = (props) => {
   const {
     selected,
     thumb,
+    styleId,
     name,
-    selectedStyle,
-    setSelectedStyle,
+    price,
+    sale,
+    setStyleId,
+    setStyleName,
+    setPrice,
+    setSale,
   } = props;
 
   const [checkmark, setCheckmark] = useState('');
 
   useEffect(() => {
-    if (selected) { setCheckmark('😊'); } else { setCheckmark(''); }
+    if (selected) { setCheckmark('✔️'); } else { setCheckmark(''); }
   }, [selected]);
 
   const handleSelection = () => {
-    if (!selected) { setCheckmark('😊'); }
-    setSelectedStyle(selectedStyle);
+    setSale(sale);
+    setPrice(price);
+    setCheckmark('✔️');
+    setStyleName(name);
+    setStyleId(styleId);
   };
 
   const checkmarkDiv = (
@@ -48,16 +56,18 @@ Style.propTypes = {
   selected: PropTypes.bool,
   thumb: PropTypes.string,
   name: PropTypes.string,
-  selectedStyle: PropTypes.number,
-  setSelectedStyle: PropTypes.func,
+  styleId: PropTypes.number,
+  setStyleId: PropTypes.func,
+  setStyleName: PropTypes.func,
 };
 
 Style.defaultProps = {
   selected: false,
   thumb: '',
   name: '',
-  selectedStyle: -1,
-  setSelectedStyle: null,
+  styleId: -1,
+  setStyleId: null,
+  setStyleName: null,
 };
 
 export default Style;

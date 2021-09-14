@@ -1,57 +1,71 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import Style from './Style';
 
 const StyleSelector = (props) => {
-  const { productId } = props;
-  const [selectedStyle, setSelectedStyle] = useState(-1);
-  const [styles, setStyles] = useState([]);
-
-  // Displays a product's styles when product is selected
-  useEffect(() => {
-    axios.get(`/po/styles/${productId}`)
-      .then((results) => {
-        setStyles(results.data.results);
-      });
-  }, [productId]);
+  const { styles, setStyles } = props;
+  const [price, setPrice] = useState('');
+  const [sale, setSale] = useState('');
+  const [styleId, setStyleId] = useState(-1);
+  const [styleName, setStyleName] = useState('');
+  const priceDiv = sale
+    ? (<div>SALE: {price} OLD PRICE: {price}</div>)
+    : (<div>{price}</div>);
 
   // Sets the selected style and rerenders list of styles.
   useEffect(() => {
     for (const style of styles) {
-      style['default?'] = style.style_id === selectedStyle;
+      style['default?'] = style.style_id === styleId;
     }
     setStyles(styles);
-  }, [selectedStyle]);
+  }, [styleId]);
 
   const mappedList = styles.map(
     (style) => (
       <Style
         key={style.style_id}
-        setSelectedStyle={setSelectedStyle}
-        selectedStyle={style.style_id}
+        setStyleName={setStyleName}
+        setStyleId={setStyleId}
+        setPrice={setPrice}
+        setSale={setSale}
         name={style.name}
+        styleId={style.style_id}
+        price={style.original_price}
+        sale={style.sale_price}
         selected={style['default?']}
         thumb={style.photos[0].thumbnail_url}
       />
     ),
   );
 
+  // Set initial values for name and price
+  const defaultName = styles.length === 0 ? '' : styles[0].name;
+  if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
+
+  const defaultPrice = styles.length === 0 ? '' : styles[0].original_price;
+  if (price === '' && defaultPrice !== '') { setPrice(defaultPrice); }
+
   return (
-    <div id="style-selector">
-      {mappedList}
+    <div>
+      {priceDiv}
+      <div>{styleName}</div>
+      <div id="style-selector">
+        {mappedList}
+      </div>
     </div>
   );
 };
 
 StyleSelector.propTypes = {
-  productId: PropTypes.number,
+  styles: PropTypes.array,
+  setStyles: PropTypes.func,
 };
 
 StyleSelector.defaultProps = {
-  productId: 1,
+  styles: [],
+  setStyles: null,
 };
 
 export default StyleSelector;
