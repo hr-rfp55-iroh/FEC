@@ -105,4 +105,13 @@ const reportAnswer = (req, callback) => {
     .catch((error) => callback(error));
 };
 
-module.exports = { getQforProduct, getAforProduct, postQforProduct, postAforProduct, markQasHelpful, reportQ, markAnsAsHelpful, reportAnswer };
+module.exports = {
+  getQforProduct,
+  getAforProduct,
+  postQforProduct,
+  postAforProduct,
+  markQasHelpful,
+  reportQ,
+  markAnsAsHelpful,
+  reportAnswer,
+};
