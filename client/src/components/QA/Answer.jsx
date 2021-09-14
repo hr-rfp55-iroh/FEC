@@ -41,7 +41,7 @@ Answer.propTypes = {
     date: PropTypes.string,
     helpfulness: PropTypes.number,
     id: PropTypes.number,
-    // photos: PropTypes.shape([PropTypes.string]),
+    photos: PropTypes.shape({ photo: PropTypes.string }),
   }),
   answerer_name: PropTypes.string,
   body: PropTypes.string,
