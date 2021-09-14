@@ -34,6 +34,7 @@ const Question = ({
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
       {sortedAnswers.slice(0, 2).map((answer) => <Answer answer={answer} key={answer.body} />)}
+      <button type="submit">Load More Answers</button>
     </div>
   );
 };
