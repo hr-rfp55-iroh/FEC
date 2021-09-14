@@ -35,18 +35,29 @@ class Unit extends React.Component {
       isQuestionsLoaded, allQuestions, error, questionsList,
     } = this.state;
     const { currentProduct } = this.props;
+    // const { answers } = questionsList;
     return (
       <div>
         {!isQuestionsLoaded || error ? '' : (
           <div>
-            <Question
-              allQuestions={allQuestions}
-              questionsList={questionsList}
-            />
+            {questionsList.map((q) => {
+              { console.log(q) }
+              return (
+
+                < Question
+                  question_id={q.question_id}
+                  question_body={q.question_body}
+                  question_date={q.question_date}
+                  asker_name={q.asker_name}
+                  question_helpfulness={q.question_helpfulness}
+                  answers={q.answers}
+                />
+              )
+            })}
             <br />
             <QuestionModal currentProduct={currentProduct} />
             <Modal />
-            <Answer />
+            <Answer currentProduct={currentProduct} />
             <br />
             <button type="submit">Load More Answers</button>
             <div>
