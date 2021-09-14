@@ -31,11 +31,13 @@ const QuestionModal = (props) => {
     setErrors(missingFields);
     const obj = {
       body: text, email, name: nickname, product_id: currentProduct,
-    }; // TODO need product id for post
+    };
     if (isFieldsFilled) {
       axios.post('qa/questions', obj)
-        .then((results) => console.log(results))
-        .catch((err) => console.log(err));
+        .then(toggleModal())
+        .then(alert('Question Posted!'))
+        .then(() => { setText(''); setEmail(''); setNickname(''); })
+        .catch(() => alert('Question could not be posted.'));
     }
   };
 
@@ -80,7 +82,6 @@ const QuestionModal = (props) => {
           </div>
         </div>
       )}
-      {/* <p>hello from down here</p> */}
     </div>
   );
 };
