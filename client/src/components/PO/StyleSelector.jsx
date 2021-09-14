@@ -6,25 +6,47 @@ import Style from './Style';
 
 const StyleSelector = (props) => {
   const { styles, setStyles } = props;
+
   const [price, setPrice] = useState('');
   const [sale, setSale] = useState('');
   const [styleId, setStyleId] = useState(-1);
   const [styleName, setStyleName] = useState('');
+
+  // Conditional rendering of prices block
   const priceDiv = sale
-    ? (<div>SALE: {price} OLD PRICE: {price}</div>)
-    : (<div>{price}</div>);
+    ? (
+      <div id="prices">
+        <div id="original-price" style={{ textDecoration: 'line-through' }}>
+          {price}
+        </div>
+        <div id="sale">
+          {sale}
+        </div>
+      </div>
+    )
+    : (
+      <div id="prices">
+        <div id="original-price">
+          {price}
+        </div>
+      </div>
+    );
 
   // Sets the selected style and rerenders list of styles.
   useEffect(() => {
-    for (const style of styles) {
+    const newStyles = [...styles];
+
+    for (const style of newStyles) {
       style['default?'] = style.style_id === styleId;
     }
-    setStyles(styles);
+
+    setStyles(newStyles);
   }, [styleId]);
 
   const mappedList = styles.map(
     (style) => (
       <Style
+        thumb={style.photos[0].thumbnail_url}
         key={style.style_id}
         setStyleName={setStyleName}
         setStyleId={setStyleId}
@@ -35,7 +57,6 @@ const StyleSelector = (props) => {
         price={style.original_price}
         sale={style.sale_price}
         selected={style['default?']}
-        thumb={style.photos[0].thumbnail_url}
       />
     ),
   );
@@ -58,6 +79,7 @@ const StyleSelector = (props) => {
   );
 };
 
+// TODO: Put array in parent component, do not pass as prop
 StyleSelector.propTypes = {
   styles: PropTypes.array,
   setStyles: PropTypes.func,
