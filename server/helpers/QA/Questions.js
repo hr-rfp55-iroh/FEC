@@ -57,4 +57,16 @@ const postAforProduct = (req, callback) => {
     .catch((error) => callback(error));
 };
 
-module.exports = { getQforProduct, getAforProduct, postQforProduct, postAforProduct };
+const markQasHelpful = (req, callback) => {
+  const { question_id } = req.body;
+  const obj = {
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question_id}/helpful`,
+    headers,
+    method: 'PUT',
+  };
+  axios(obj)
+    .then((results) => callback(null, results))
+    .catch((error) => callback(error));
+};
+
+module.exports = { getQforProduct, getAforProduct, postQforProduct, postAforProduct, markQasHelpful };

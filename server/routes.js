@@ -75,7 +75,7 @@ app.post('/qa/questions', (req, res) => {
   }
 });
 
-//post an answer for the item
+// post an answer for the item
 app.post('/qa/answers', (req, res) => {
   if (req) {
     qa.postAforProduct(req, (err, data) => {
@@ -88,6 +88,18 @@ app.post('/qa/answers', (req, res) => {
   }
 });
 // mark question as helpful
+app.put('/qa/questions/helpful', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.markQasHelpful(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
 
 app.get('/reviews/', (req, res) => {
   const { product_id } = req.query;
