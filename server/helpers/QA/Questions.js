@@ -35,7 +35,7 @@ const postQforProduct = (req, callback) => {
     },
     method: 'POST',
   };
-  return axios(obj)
+  axios(obj)
     .then((results) => callback(null, results))
     .catch((error) => callback(error));
 };
