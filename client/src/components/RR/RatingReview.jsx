@@ -7,9 +7,7 @@ const RatingReview = (props) => {
   return (
     <div>
       <h2>Ratings and Reviews</h2>
-      <div>
-        <ReviewList selected={selected} />
-      </div>
+      <ReviewList selected={selected} />
     </div>
   );
 };

@@ -124,9 +124,50 @@
 /* R&R Style */
 #RR {
   border: 2px solid black;
+  padding: 20px;
 }
 #review-list {
   height: 600px;
   overflow: hidden;
   overflow-y: scroll;
+  list-style: none;
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+.review-tile {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid;
+}
+.review-header,
+.review-footer {
+  display: flex;
+  color: grey;
+  margin: 5px 0px;
+  font-size: 0.85em;
+}
+.review-header {
+  justify-content: space-between;
+}
+.review-summary {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+.photo-list {
+  display: flex;
+}
+.photo {
+  margin-right: 5px;
+}
+.review-response {
+  background-color: lightgray;
+  padding: 15px;
+  margin: 10px;
+}
+.review-list-btn {
+  margin: 15px 0px;
 }

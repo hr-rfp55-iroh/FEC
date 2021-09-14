@@ -2,24 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ReviewPhoto = (props) => {
-  const { id, url } = props;
+  const { photo } = props;
   return (
-    <div>
-      Image
-      {id}
-      {url}
+    <div className="photo">
+      <img src={photo.url} height="60" alt="product-review" />
     </div>
   );
 };
 
 ReviewPhoto.propTypes = {
-  id: PropTypes.number,
-  url: PropTypes.string,
+  photo: PropTypes.objectOf(PropTypes.any),
 };
 
 ReviewPhoto.defaultProps = {
-  id: 1,
-  url: 'default',
+  photo: {
+    id: 1,
+    url: 'default',
+  },
 };
 
 export default ReviewPhoto;
