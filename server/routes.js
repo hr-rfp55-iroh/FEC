@@ -75,6 +75,20 @@ app.post('/qa/questions', (req, res) => {
   }
 });
 
+//post an answer for the item
+app.post('/qa/answers', (req, res) => {
+  if (req) {
+    qa.postAforProduct(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data.data);
+      }
+    });
+  }
+});
+// mark question as helpful
+
 app.get('/reviews/', (req, res) => {
   const { product_id } = req.query;
   const { headers } = options;
