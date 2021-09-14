@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 
 const Question = ({
-  question_id, question_body, question_date, asker_name, question_helpfulness, answers,
+  question_body, question_date, asker_name, question_helpfulness, answers,
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
 
   return (
 
     <div>
-      <a><strong>Q:</strong></a>
+      <span><strong>Q:</strong></span>
       {question_body}
       By:
       {asker_name}
@@ -18,7 +18,7 @@ const Question = ({
       {' '}
       {question_date}
       | Helpful?
-      <a>Yes</a>
+      <span>Yes</span>
       {' '}
       {/* {//TODO onclick toggleFn for "YES"} */}
       {' '}
@@ -26,7 +26,7 @@ const Question = ({
       {question_helpfulness}
       ) |
       {' '}
-      <a>Add Answer</a>
+      <span>Add Answer</span>
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
@@ -35,18 +35,28 @@ const Question = ({
   );
 };
 
-// Question.propTypes = {
-//   allQuestions:
-//     PropTypes.shape({
-//       question_id: PropTypes.number,
-//       asker_name: PropTypes.string,
-//       question_body: PropTypes.string,
-//       question_date: PropTypes.number,
-//     }),
-// };
+Question.propTypes = {
+  question_body: PropTypes.string,
+  question_date: PropTypes.string,
+  asker_name: PropTypes.string,
+  question_helpfulness: PropTypes.number,
+  answers: PropTypes.shape({
+    answerer_name: PropTypes.string,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    helpfulness: PropTypes.number,
+    id: PropTypes.number,
+    photos: PropTypes.shape([PropTypes.string]),
 
-// Question.defaultProps = {
-//   allQuestions: '',
-// };
+  }),
+};
+
+Question.defaultProps = {
+  question_body: '',
+  question_date: '',
+  asker_name: '',
+  question_helpfulness: '',
+  answers: '',
+};
 
 export default Question;
