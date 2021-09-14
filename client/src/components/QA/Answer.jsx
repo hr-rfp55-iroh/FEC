@@ -1,17 +1,15 @@
 import React from 'react';
 
-const Answer = ({ answer }) => (
-  <div>
+const Answer = ({ answer }) => {
+  const {
+    answer_name, body, date, helpfulness, id, photos,
+  } = answer;
+  return (
     <div>
-      Answer
+      <a><strong>A:</strong></a>
+      {body}
     </div>
-    <div>
-      User/Date
-    </div>
-    <div>
-      Helpful?
-    </div>
-  </div>
-);
+  );
+};
 
 export default Answer;

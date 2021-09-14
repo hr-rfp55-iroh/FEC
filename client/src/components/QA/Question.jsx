@@ -5,7 +5,7 @@ import Answer from './Answer';
 const Question = ({
   question_id, question_body, question_date, asker_name, question_helpfulness, answers,
 }) => {
-  const answersForCurrentQ = Object.keys(answers);
+  const before = Object.keys(answers);
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
 
   return (
@@ -31,7 +31,7 @@ const Question = ({
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {answersForCurrentQ.length > 0 ? <Answer /> : 'No Answers For this Q'}
+      {sortedAnswers.map((answer) => <Answer answer={answer} />)}
     </div>
   );
 };
