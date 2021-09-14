@@ -66,4 +66,16 @@ app.get('/reviews/', (req, res) => {
   });
 });
 
+app.get('/reviews/meta/', (req, res) => {
+  const { product_id } = req.query;
+  const { headers } = options;
+  rating.getReviewMetadata({ headers, params: { product_id } }, (err, data) => {
+    if (err) {
+      res.status(500).send(`error getting reviews from Atelier API: ${err}`);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 module.exports = app;
