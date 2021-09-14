@@ -1,27 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RatingBar from './RatingBar';
 
 const ratingsBreakdown = (ratings) => {
-  let result = [];
+  const result = [];
   const values = Object.values(ratings);
-  const totalCount = values.reduce((memo, value) => memo + value);
+  const totalCount = values.reduce((memo, value) => memo + Number(value), 0);
   for (let i = 0; i < 5; i += 1) {
-    let barInfo = {};
+    const barInfo = {};
     barInfo.star = i + 1;
     barInfo.ratingCount = ratings[i + 1] || 0;
     if (totalCount) {
-      barInfo.percent = barInfo.rating / totalCount;
+      barInfo.percent = Math.round((Number(barInfo.ratingCount) * 100) / totalCount);
     } else {
       barInfo.percent = 0;
     }
+    result.push(barInfo);
   }
   return result;
 };
 
 const RatingBreakdown = (props) => {
   const { ratings } = props;
+  const barInfo = ratingsBreakdown(ratings);
   return (
     <div className="rating-breakdown">
+      {barInfo.map((info) => (<RatingBar info={info} />))}
     </div>
   );
 };
