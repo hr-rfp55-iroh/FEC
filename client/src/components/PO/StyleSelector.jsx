@@ -10,6 +10,7 @@ const StyleSelector = (props) => {
   const [selectedStyle, setSelectedStyle] = useState(-1);
   const [styles, setStyles] = useState([]);
 
+  // Displays a product's styles when product is selected
   useEffect(() => {
     axios.get(`/po/styles/${productId}`)
       .then((results) => {
@@ -17,10 +18,12 @@ const StyleSelector = (props) => {
       });
   }, [productId]);
 
+  // Sets the selected style and rerenders list of styles.
   useEffect(() => {
     for (const style of styles) {
       style['default?'] = style.style_id === selectedStyle;
     }
+    setStyles(styles);
   }, [selectedStyle]);
 
   const mappedList = styles.map(

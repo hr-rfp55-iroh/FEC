@@ -2,7 +2,7 @@
 
 /* Product Overview Style */
 #product-overview {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -75,14 +75,20 @@
   flex-wrap: wrap;
 }
 
-.style-thumb img {
-  cursor: pointer;
-  border-style: solid;
-  border-width: 1px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 50px;
-  width: 70px;
+.style-thumb, .style-thumb img {
   height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.style-thumb {
+  position: relative;
+}
+
+#checkmark {
+  top: 0;
+  z-index: 10;
+  position: absolute;
 }
 
 /* Q&A Style */
