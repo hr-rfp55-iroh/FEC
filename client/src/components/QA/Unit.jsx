@@ -9,9 +9,11 @@ class Unit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSearchInProgress: false,
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.handleDisplayUnitOnSearch = this.handleDisplayUnitOnSearch.bind(this);
+    this.getResultFromSearch = this.getResultFromSearch.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +21,15 @@ class Unit extends React.Component {
   }
 
   handleDisplayUnitOnSearch(e) {
-    console.log('from class', e);
+    if (e.length >= 3) {
+      this.setState({ isSearchInProgress: true });
+    } else {
+      this.setState({ isSearchInProgress: false });
+    }
+  }
+
+  getResultFromSearch(resultArr) {
+    this.setState({ searchResult: resultArr });
   }
 
   getQuestions() {
@@ -34,36 +44,54 @@ class Unit extends React.Component {
 
   render() {
     const {
-      isQuestionsLoaded, error, questionsList,
+      isQuestionsLoaded, error, questionsList, isSearchInProgress, searchResult
     } = this.state;
+    let list;
     const { currentProduct } = this.props;
+    // console.log(isSearchInProgress, 'SEARCH!!!!')
+    if (isQuestionsLoaded && !isSearchInProgress) {
+      list = questionsList.map((q) => (
+        <Question
+          key={q.question_id}
+          question_id={q.question_id}
+          question_body={q.question_body}
+          question_date={q.question_date}
+          asker_name={q.asker_name}
+          question_helpfulness={q.question_helpfulness}
+          answers={q.answers}
+        />
+      ));
+    } else if (isSearchInProgress) {
+      list = searchResult.map((q => (
+        <Question
+          key={q.question_id}
+          question_id={q.question_id}
+          question_body={q.question_body}
+          question_date={q.question_date}
+          asker_name={q.asker_name}
+          question_helpfulness={q.question_helpfulness}
+          answers={q.answers}
+        />
+      )));
+    }
     return (
       <div>
         <Form
           questionsList={questionsList}
           handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
+          getResultFromSearch={this.getResultFromSearch}
         />
-        {!isQuestionsLoaded || error ? '' : (
+        {list}
+        {console.log('LIST!', list)}
+
+        <div>
+          <br />
+          <br />
+          <QuestionModal currentProduct={currentProduct} />
           <div>
-            {questionsList.map((q) => (
-              <Question
-                key={q.question_id}
-                question_id={q.question_id}
-                question_body={q.question_body}
-                question_date={q.question_date}
-                asker_name={q.asker_name}
-                question_helpfulness={q.question_helpfulness}
-                answers={q.answers}
-              />
-            ))}
-            <br />
-            <QuestionModal currentProduct={currentProduct} />
-            <br />
-            <div>
-              <button type="submit">Load More Questions</button>
-            </div>
+            <button type="submit">Load More Questions</button>
           </div>
-        )}
+        </div>
       </div>
     );
   }
