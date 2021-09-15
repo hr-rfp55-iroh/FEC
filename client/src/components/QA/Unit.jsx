@@ -11,10 +11,15 @@ class Unit extends React.Component {
     this.state = {
     };
     this.getQuestions = this.getQuestions.bind(this);
+    this.handleDisplayUnitOnSearch = this.handleDisplayUnitOnSearch.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions();
+  }
+
+  handleDisplayUnitOnSearch(e) {
+    console.log('from class', e);
   }
 
   getQuestions() {
@@ -34,7 +39,10 @@ class Unit extends React.Component {
     const { currentProduct } = this.props;
     return (
       <div>
-        <Form questionsList={questionsList} />
+        <Form
+          questionsList={questionsList}
+          handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
+        />
         {!isQuestionsLoaded || error ? '' : (
           <div>
             {questionsList.map((q) => (
