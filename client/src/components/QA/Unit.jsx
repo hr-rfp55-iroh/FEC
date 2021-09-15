@@ -68,7 +68,7 @@ class Unit extends React.Component {
         />
       ));
     } else if (isSearchInProgress) {
-      list = searchResult.map((q => (
+      list = searchResult.map((q) => (
         <Question
           className="question-component"
           key={q.question_id}
@@ -79,7 +79,7 @@ class Unit extends React.Component {
           question_helpfulness={q.question_helpfulness}
           answers={q.answers}
         />
-      )));
+      ));
     }
     return (
       <div>
