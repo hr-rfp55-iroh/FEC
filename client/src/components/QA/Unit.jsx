@@ -31,7 +31,6 @@ class Unit extends React.Component {
       isQuestionsLoaded, error, questionsList,
     } = this.state;
     const { currentProduct } = this.props;
-    // const { answers } = questionsList;
     return (
       <div>
         {!isQuestionsLoaded || error ? '' : (

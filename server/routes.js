@@ -91,11 +91,11 @@ app.post('/qa/answers', (req, res) => {
 app.put('/qa/questions/helpful', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.markQasHelpful(req, (err, data) => {
+    qa.markQasHelpful(req, (err) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(204).send(data);
+        res.status(204).send(null);
       }
     });
   }

@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Answer from './Answer';
 
 const Question = ({
-  question_body, question_date, asker_name, question_helpfulness, answers,
+  question_body, question_date, asker_name, answers, question_id, question_helpfulness,
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
+  const obj = { question_id };
+  const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
+  const handleHelpfulQuestion = (e) => {
+    e.preventDefault();
+    axios.put('/qa/questions/helpful', obj)
+      .then(() => setHelpfulness(helpfulnessAlias + 1))
+      .catch(() => alert('Cannot mark question as helpful'));
+  };
 
   return (
 
@@ -18,12 +27,19 @@ const Question = ({
       {' '}
       {question_date}
       | Helpful?
-      <span>Yes</span>
+      <span
+        role="button"
+        onKeyPress={handleHelpfulQuestion}
+        onClick={(e) => handleHelpfulQuestion(e)}
+        tabIndex={-1}
+      >
+        <strong>Yes</strong>
+      </span>
       {' '}
       {/* {//TODO onclick toggleFn for "YES"} */}
       {' '}
       (
-      {question_helpfulness}
+      {helpfulnessAlias}
       ) |
       {' '}
       <span>Add Answer</span>
@@ -41,6 +57,7 @@ Question.propTypes = {
   question_date: PropTypes.string,
   asker_name: PropTypes.string,
   question_helpfulness: PropTypes.number,
+  question_id: PropTypes.number,
   answers: PropTypes.shape({
     answerer_name: PropTypes.string,
     body: PropTypes.string,
@@ -58,6 +75,7 @@ Question.defaultProps = {
   asker_name: '',
   question_helpfulness: '',
   answers: '',
+  question_id: '',
 };
 
 export default Question;

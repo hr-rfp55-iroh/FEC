@@ -66,7 +66,7 @@ const markQasHelpful = (req, callback) => {
     method: 'PUT',
   };
   axios(obj)
-    .then((results) => callback(null, results))
+    .then(() => callback(null))
     .catch((error) => callback(error));
 };
 
