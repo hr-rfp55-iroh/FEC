@@ -26,12 +26,7 @@ class ReviewList extends React.Component {
 
   getReviews() {
     const { selected } = this.props;
-    // Test for product with no review
-    // const selected = 40346;
-
-    // Test for product with different reviews
-    // const selected = 40345;
-
+    console.log('this is selected', selected);
     axios.get('/reviews/', { params: { product_id: selected } })
       .then((response) => {
         this.setState({
