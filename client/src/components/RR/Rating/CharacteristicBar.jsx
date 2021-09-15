@@ -16,7 +16,7 @@ const CharacteristicBar = (props) => {
   return (
     <div className="charc">
       <div className="charc-label">{charc}</div>
-      <div style={{ height: '15px', marginLeft: `${percent * 0.98}%`}}>▾</div>
+      {percent > 0 && <div style={{ height: '15px', marginLeft: `${percent * 0.98}%` }}>▾</div>}
       <div className="charc-bar">
         <div className="bar-midpoint" />
       </div>
