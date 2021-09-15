@@ -35,9 +35,6 @@ class RatingSummary extends React.Component {
 
   getReviewMetadata() {
     const { selected } = this.props;
-    // Test for product with different reviews
-    // const selected = 40345;
-
     axios.get('/reviews/meta/', { params: { product_id: selected } })
       .then((response) => {
         const { ratings, recommended, characteristics } = response.data;

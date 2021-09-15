@@ -36,6 +36,12 @@ class RatingReview extends React.Component {
 
   render() {
     const { selected } = this.props;
+    // Test for product with no review
+    // const selected = 40346;
+
+    // Test for product with different reviews
+    // const selected = 40347;
+
     const { filter } = this.state;
     return (
       <div>
