@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 
-
 const Form = (props) => { // TODO take in props as a param
   const { questionsList } = props;
+  const questions = questionsList;
   const [search, setSearch] = useState('');
   const handleSearch = (e) => {
-    // setSearch(e);
     setSearch(e);
     console.log(search);
-    let result = questionsList.filter((question) => {
-      let q = question.question_body.toLowerCase();
-      return q.includes(search);
-    })
-    console.log(result);
+    if (e.length >= 3) {
+      const result = questions.filter((question) => {
+        const q = question.question_body.toLowerCase();
+        return q.includes(search);
+      });
+      console.log(result);
+    }
   };
 
   return (
