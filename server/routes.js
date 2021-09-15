@@ -137,7 +137,7 @@ app.put('/qa/answers/report', (req, res) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(204).send(data);
       }
     });
   }
