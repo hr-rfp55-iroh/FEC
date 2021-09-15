@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RatingBar = (props) => {
-  const { info } = props;
+  const { info, handleRatingFilterClick } = props;
   const { star, percent, ratingCount } = info;
+  const handleBarClick = () => {
+    handleRatingFilterClick(star);
+  };
   return (
-    <div className="bar">
+    <div className="bar" onClick={handleBarClick} onKeyPress={handleBarClick} role="presentation">
       <div className="rating-star-label">
         {star}
         &nbsp;
@@ -17,7 +20,7 @@ const RatingBar = (props) => {
       <div className="rating-count-label">
         {ratingCount}
         &nbsp;
-        reviews
+        ratings
       </div>
     </div>
 
@@ -25,15 +28,17 @@ const RatingBar = (props) => {
 };
 
 RatingBar.propTypes = {
-  info: PropTypes.objectOf(PropTypes.any);
+  info: PropTypes.objectOf(PropTypes.any),
+  handleRatingFilterClick: PropTypes.func,
 };
 
 RatingBar.defaultProps = {
-  info = {
+  info: {
     star: 1,
     percent: 0,
     ratingCount: 0,
   },
+  handleRatingFilterClick: () => {},
 };
 
 export default RatingBar;
