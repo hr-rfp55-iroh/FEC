@@ -12,7 +12,7 @@ const Overview = (props) => {
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [skus, setSkus] = useState([]);
+  const [skus, setSkus] = useState({});
 
   useEffect(() => {
     axios.get(`/po/info/${selected}`)

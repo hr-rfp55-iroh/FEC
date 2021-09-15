@@ -81,19 +81,25 @@ const StyleSelector = (props) => {
   );
 
   // Set initial values for name, skus and price
-  const defaultName = styles.length === 0 ? '' : styles[0].name;
-  if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
+  useEffect(() => {
+    const defaultName = styles.length === 0 ? '' : styles[0].name;
+    if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
+  });
 
-  const defaultSkus = styles.length === 0 ? '' : styles[0].skus;
-  if (defaultSkus !== '' && styleIndex === 0) { setSkus(defaultSkus); }
+  useEffect(() => {
+    const defaultSkus = styles.length === 0 ? '' : styles[0].skus;
+    if (defaultSkus !== '' && styleIndex === 0) { setSkus(defaultSkus); }
+  });
 
-  if (styles.length !== 0 && price === '') {
-    const defaultPrice = styles[0].sale_price
-      ? styles[0].sale_price
-      : styles[0].original_price;
+  useEffect(() => {
+    if (styles.length !== 0 && price === '') {
+      const defaultPrice = styles[0].sale_price
+        ? styles[0].sale_price
+        : styles[0].original_price;
 
-    setPrice(defaultPrice);
-  }
+      setPrice(defaultPrice);
+    }
+  });
 
   return (
     <div>
@@ -106,7 +112,6 @@ const StyleSelector = (props) => {
   );
 };
 
-// TODO: Put array in parent component, do not pass as prop
 StyleSelector.propTypes = {
   productSelected: PropTypes.number,
   setSkus: PropTypes.func,
