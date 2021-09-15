@@ -9,10 +9,12 @@ const Style = (props) => {
     name,
     price,
     sale,
+    index,
     setStyleId,
     setStyleName,
     setPrice,
     setSale,
+    setIndex,
     selected,
   } = props;
 
@@ -21,6 +23,7 @@ const Style = (props) => {
     : (<div id="checkmark" />);
 
   const handleSelection = () => {
+    setIndex(index);
     setSale(sale);
     setPrice(price);
     setStyleName(name);
@@ -51,11 +54,13 @@ Style.propTypes = {
   sale: PropTypes.string,
   thumb: PropTypes.string,
   name: PropTypes.string,
+  index: PropTypes.number,
   styleId: PropTypes.number,
   setStyleId: PropTypes.func,
   setStyleName: PropTypes.func,
   setPrice: PropTypes.func,
   setSale: PropTypes.func,
+  setIndex: PropTypes.func,
 };
 
 Style.defaultProps = {
@@ -64,11 +69,13 @@ Style.defaultProps = {
   sale: '',
   thumb: '',
   name: '',
+  index: 0,
   styleId: -1,
   setStyleId: null,
   setStyleName: null,
   setPrice: null,
   setSale: null,
+  setIndex: null,
 };
 
 export default Style;

@@ -6,11 +6,12 @@ import axios from 'axios';
 import Style from './Style';
 
 const StyleSelector = (props) => {
-  const { productSelected } = props;
+  const { productSelected, setSkus } = props;
 
   const [price, setPrice] = useState('');
   const [sale, setSale] = useState('');
   const [styleId, setStyleId] = useState(-1);
+  const [styleIndex, setStyleIndex] = useState(0);
   const [styleName, setStyleName] = useState('');
   const [styles, setStyles] = useState([]);
 
@@ -21,6 +22,12 @@ const StyleSelector = (props) => {
         setStyles(results.data.results);
       });
   }, [productSelected]);
+
+  useEffect(() => {
+    if (styles.length === 0) { return; }
+
+    setSkus(styles[styleIndex].skus);
+  }, [styleIndex]);
 
   // Conditional rendering of prices block
   const priceDiv = sale
@@ -54,8 +61,10 @@ const StyleSelector = (props) => {
   }, [styleId]);
 
   const mappedList = styles.map(
-    (style) => (
+    (style, index) => (
       <Style
+        index={index}
+        setIndex={setStyleIndex}
         thumb={style.photos[0].thumbnail_url}
         key={style.style_id}
         setStyleName={setStyleName}
@@ -71,9 +80,12 @@ const StyleSelector = (props) => {
     ),
   );
 
-  // Set initial values for name and price
+  // Set initial values for name, skus and price
   const defaultName = styles.length === 0 ? '' : styles[0].name;
   if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
+
+  const defaultSkus = styles.length === 0 ? '' : styles[0].skus;
+  if (defaultSkus !== '' && styleIndex === 0) { setSkus(defaultSkus); }
 
   if (styles.length !== 0 && price === '') {
     const defaultPrice = styles[0].sale_price
@@ -97,10 +109,12 @@ const StyleSelector = (props) => {
 // TODO: Put array in parent component, do not pass as prop
 StyleSelector.propTypes = {
   productSelected: PropTypes.number,
+  setSkus: PropTypes.func,
 };
 
 StyleSelector.defaultProps = {
   productSelected: -1,
+  setSkus: null,
 };
 
 export default StyleSelector;
