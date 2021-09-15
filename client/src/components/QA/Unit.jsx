@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Question from './Question';
-import Answer from './Answer';
-import Modal from '../Shared/Modal';
 import QuestionModal from '../Shared/QuestionModal';
 
 class Unit extends React.Component {
@@ -23,7 +21,6 @@ class Unit extends React.Component {
     const req = { product_id: currentProduct };
     axios(`http://localhost:3004/qa/questions/?product_id=${req.product_id}`, req)
       .then((results) => this.setState({
-        allQuestions: results.data,
         isQuestionsLoaded: true,
         questionsList: results.data.results,
       }))
@@ -32,26 +29,30 @@ class Unit extends React.Component {
 
   render() {
     const {
-      isQuestionsLoaded, allQuestions, error, questionsList,
+      isQuestionsLoaded, error, questionsList,
     } = this.state;
     const { currentProduct } = this.props;
+    // const { answers } = questionsList;
     return (
       <div>
         {!isQuestionsLoaded || error ? '' : (
           <div>
-            <Question
-              allQuestions={allQuestions}
-              questionsList={questionsList}
-            />
+            {questionsList.map((q) => (
+              <Question
+                key={q.question_id}
+                question_id={q.question_id}
+                question_body={q.question_body}
+                question_date={q.question_date}
+                asker_name={q.asker_name}
+                question_helpfulness={q.question_helpfulness}
+                answers={q.answers}
+              />
+            ))}
             <br />
             <QuestionModal currentProduct={currentProduct} />
-            <Modal />
-            <Answer />
             <br />
-            <button type="submit">Load More Answers</button>
             <div>
               <button type="submit">Load More Questions</button>
-              <button type="submit">Add A Question</button>
             </div>
           </div>
         )}

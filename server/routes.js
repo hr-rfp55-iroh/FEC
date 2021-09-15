@@ -33,6 +33,7 @@ app.get('/po/styles/:id', (req, res) => {
   });
 });
 
+// get questions for the item
 app.get('/qa/questions', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned
@@ -48,15 +49,95 @@ app.get('/qa/questions', (req, res) => {
   }
 });
 
+// get answers for the item
 app.get('/qa/answers', (req, res) => {
   if (req) {
-    // console.log(req.query);
     qa.getAforProduct(req.query, options, (err, data) => {
       if (err) {
         res.status(418).send('err from app.get--Answers');
       } else {
-        // console.log('successful answers request');
         res.status(200).send(data);
+      }
+    });
+  }
+});
+
+// post a question for the item
+app.post('/qa/questions', (req, res) => {
+  if (req) {
+    qa.postQforProduct(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data.data);
+      }
+    });
+  }
+});
+
+// post an answer for the item
+app.post('/qa/answers', (req, res) => {
+  if (req) {
+    qa.postAforProduct(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data.data);
+      }
+    });
+  }
+});
+
+// mark question as helpful
+app.put('/qa/questions/helpful', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.markQasHelpful(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+
+// report question
+app.put('/qa/questions/report', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.reportQ(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+// mark answer as helpful
+app.put('/qa/answers/helpful', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.markAnsAsHelpful(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
+      }
+    });
+  }
+});
+
+// report answer
+app.put('/qa/answers/report', (req, res) => {
+  if (req) {
+    // console.log(req);
+    qa.reportAnswer(req, (err, data) => {
+      if (err) {
+        res.status(418).send(err);
+      } else {
+        res.status(201).send(data);
       }
     });
   }

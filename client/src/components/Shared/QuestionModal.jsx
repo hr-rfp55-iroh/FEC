@@ -12,6 +12,8 @@ const QuestionModal = (props) => {
   const toggleModal = () => {
     setModal(!modal);
   };
+  // regex fn to test for basic email structure "_____@__.__"
+  const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const handleValidationAndSubmit = (e) => {
     e.preventDefault();
     const missingFields = {};
@@ -20,27 +22,28 @@ const QuestionModal = (props) => {
       isFieldsFilled = false;
       missingFields.question = 'We need your question 😎 ';
     }
-    if (email.length === 0) { // TODO actually parse the email
+    if (email.length === 0) {
       isFieldsFilled = false;
       missingFields.email = 'Missing email 📧 ';
+    }
+    if (!isEmailValid(email)) {
+      isFieldsFilled = false;
+      missingFields.email = 'Enter a valid email! 📧 ';
     }
     if (nickname.length === 0) {
       isFieldsFilled = false;
       missingFields.nickname = 'Missing nickname 📇 ';
     }
     setErrors(missingFields);
-
-    // const requiredFields = [`${text === '' ? 'Question' : ''}, ${email === '' ? 'Email' :
-    //  ''}, ${nickname === '' ? 'Nickname' : ''}`];
     const obj = {
-      question: text, email, name: nickname, product_id: currentProduct,
-    }; // TODO need product id for post
+      body: text, email, name: nickname, product_id: currentProduct,
+    };
     if (isFieldsFilled) {
-      // TODO : insert post route here that takes in obj
-      axios.post('url', obj); // TODO place actual endpoint in here
-      // .then((results) => console.log(results)) // TODO how to get results back to Q
-      // .then(() => console.log('Question Posted :D')) // TODO how to get results back to Q
-      // .catch((err) => console.log(err)); //
+      axios.post('qa/questions', obj)
+        .then(toggleModal())
+        .then(alert('Question Posted!'))
+        .then(() => { setText(''); setEmail(''); setNickname(''); })
+        .catch(() => alert('Question could not be posted.'));
     }
   };
 
@@ -50,8 +53,6 @@ const QuestionModal = (props) => {
       {modal && (
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
-            {/* <div onClick={toggleModal} onKeyPress={toggleModal} */}
-            {/* className="overlay" role="button" tabIndex="0"> */}
             <div className="modal-content">
 
               <h2>
@@ -60,7 +61,7 @@ const QuestionModal = (props) => {
               <div>What is your question? (required)</div>
               <form>
                 <div>
-                  {errors.question}
+                  <span className="submit-question-error">{errors.question}</span>
                 </div>
                 <br />
 
@@ -68,16 +69,16 @@ const QuestionModal = (props) => {
                 <br />
                 <div> What is your nickname? (required) </div>
                 <div>
-                  {errors.nickname}
+                  <span className="submit-question-error">{errors.nickname}</span>
                 </div>
                 <br />
-                <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jackson11!" required />
+                <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
                 <div>What is your email? (required)</div>
                 <div>
-                  {errors.email}
+                  <span className="submit-question-error">{errors.email}</span>
                 </div>
                 <br />
-                <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Enter your email here" required />
+                <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
 
               </form>
             </div>
@@ -87,7 +88,6 @@ const QuestionModal = (props) => {
           </div>
         </div>
       )}
-      {/* <p>hello from down here</p> */}
     </div>
   );
 };

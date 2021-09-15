@@ -105,6 +105,12 @@
 #QA {
   border: 2px solid black;
 }
+#answer-images {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+
+}
 
 .btn-modal {
   padding: 10px 10px;
@@ -151,6 +157,9 @@
   top: 75%;
   right: 60%;
   padding: 5px 5px;
+}
+.submit-question-error {
+  color: red
 }
 
 /*********** R&R Style ***********/
