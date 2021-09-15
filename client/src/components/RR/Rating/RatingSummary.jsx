@@ -5,7 +5,9 @@ import RatingBreakdown from './RatingBreakdown';
 import ProductBreakdown from './ProductBreakdown';
 
 const RatingSummary = (props) => {
-  const { metaData, handleRatingFilterClick, handleRemoveFilterClick, filter } = props;
+  const {
+    metaData, handleRatingFilterClick, handleRemoveFilterClick, filter,
+  } = props;
   const {
     characteristics, ratings, avgRating, ratingCount, recRate,
   } = metaData;
