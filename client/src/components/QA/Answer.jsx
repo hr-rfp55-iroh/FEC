@@ -7,6 +7,9 @@ const Answer = ({ answer }) => {
   } = answer;
   const photoAlias = photos;
   const [reported, setReported] = useState(false);
+  // const handleReport = (e) => {
+
+  // }
   return (
     <div>
       <span><strong>A:</strong></span>
