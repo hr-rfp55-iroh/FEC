@@ -9,12 +9,25 @@ const Question = ({
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
   const obj = { question_id };
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
+  const [count, setCount] = useState(2);
+  const [button, setButton] = useState('');
   const handleHelpfulQuestion = (e) => {
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
       .then(() => setHelpfulness(helpfulnessAlias + 1))
       .catch(() => alert('Cannot mark question as helpful'));
   };
+  const handleLoadMoreAnswers = () => {
+    setCount(count + 2);
+    if (sortedAnswers.length > count) {
+      setButton(collpaseAnswersBtn);
+    }
+  };
+  const handleCollapseAnswers = () => {
+    setCount(2);
+  };
+  const showMoreAnswersBtn = (<button onClick={handleLoadMoreAnswers} type="submit">Load More Answers</button>);
+  const collpaseAnswersBtn = (<button onClick={handleCollapseAnswers} type="submit">Collapse Answers</button>);
 
   return (
 
@@ -46,8 +59,9 @@ const Question = ({
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {sortedAnswers.slice(0, 2).map((answer) => <Answer answer={answer} key={answer.body} />)}
-      {sortedAnswers.length > 2 ? <button type="submit">Load More Answers</button> : ''}
+      {sortedAnswers.slice(0, count).map((answer) => <Answer answer={answer} key={answer.body} />)}
+      {sortedAnswers.length > count ? showMoreAnswersBtn : button}
+      {/* {button} */}
     </div>
   );
 };
