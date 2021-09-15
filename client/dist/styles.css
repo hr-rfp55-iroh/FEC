@@ -164,9 +164,11 @@
 .report {
   color: rgb(0, 4, 255)
 }
-/* .helpful {
-  font-weight: 400;
-} */
+.searchBar{
+  width: 60%;
+  height: 50%;
+  margin: 10px;
+}
 
 /*********** R&R Style ***********/
 #RR {

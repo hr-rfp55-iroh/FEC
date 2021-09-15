@@ -42,9 +42,11 @@ class Unit extends React.Component {
       .catch(() => this.setState({ isQuestionsLoaded: false }));
   }
 
-  handleMap() {
-
-  }
+  // handleMap(arr, questionComponent) {
+  //   arr.map((ele) => {
+  //     questionComponent.
+  //   })
+  // }
 
   render() {
     const {
@@ -55,6 +57,7 @@ class Unit extends React.Component {
     if (isQuestionsLoaded && !isSearchInProgress) {
       list = questionsList.map((q) => (
         <Question
+          className="question-component"
           key={q.question_id}
           question_id={q.question_id}
           question_body={q.question_body}
@@ -67,6 +70,7 @@ class Unit extends React.Component {
     } else if (isSearchInProgress) {
       list = searchResult.map((q => (
         <Question
+          className="question-component"
           key={q.question_id}
           question_id={q.question_id}
           question_body={q.question_body}
