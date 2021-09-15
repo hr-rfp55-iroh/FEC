@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import StarRating from './StarRating';
 import Information from './Information';
 import StyleSelector from './StyleSelector';
+import AddToCart from './AddToCart';
 
 const Overview = (props) => {
   const { selected } = props;
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [skus, setSkus] = useState({});
 
   useEffect(() => {
     axios.get(`/po/info/${selected}`)
@@ -29,10 +31,8 @@ const Overview = (props) => {
       <div id="po-info-pnl">
         <StarRating />
         <Information category={category} name={name} />
-        {/* TODO: Price should depend on style. Price could also be on sale. */}
-        <StyleSelector
-          productSelected={selected}
-        />
+        <StyleSelector productSelected={selected} setSkus={setSkus} />
+        <AddToCart skus={skus} />
         <li>Share on Social Media</li>
       </div>
       <div id="po-overview-pnl">
