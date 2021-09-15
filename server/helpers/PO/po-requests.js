@@ -1,8 +1,10 @@
 const axios = require('axios');
+const config = require('../../../config');
 
-const getProductById = (id, options, callback) => {
-  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`;
+const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const options = { headers: { Authorization: config.API_TOKEN } };
 
+const axiosGet = (url, callback) => {
   axios.get(url, options)
     .then((response) => {
       callback(null, response.data);
@@ -12,16 +14,12 @@ const getProductById = (id, options, callback) => {
     });
 };
 
-const getStylesById = (id, options, callback) => {
-  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`;
+const getProductById = (id, callback) => {
+  axiosGet(`${apiUrl}/products/${id}`, callback);
+};
 
-  axios.get(url, options)
-    .then((response) => {
-      callback(null, response.data);
-    })
-    .catch((err) => {
-      callback(err, null);
-    });
+const getStylesById = (id, callback) => {
+  axiosGet(`${apiUrl}/products/${id}/styles`, callback);
 };
 
 module.exports = { getProductById, getStylesById };
