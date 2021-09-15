@@ -3,10 +3,16 @@ const config = require('../../../config');
 
 const headers = { Authorization: config.API_TOKEN };
 
-const getQforProduct = (req, options, callback) => {
+const getQforProduct = (req, query, options, callback) => {
   // TODO : include params for page and count of questions returned
   const { product_id } = req;
-  axios(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}`, options)
+  const { count } = query;
+  const obj = {
+    headers,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&count=${count}`,
+    method: 'GET',
+  };
+  axios(obj)
     .then((results) => callback(null, results.data))
     .catch((error) => callback(error));
 };

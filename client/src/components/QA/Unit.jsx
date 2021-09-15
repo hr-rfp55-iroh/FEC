@@ -18,13 +18,15 @@ class Unit extends React.Component {
 
   getQuestions() {
     const { currentProduct } = this.props;
-    const req = { product_id: currentProduct };
-    axios(`http://localhost:3004/qa/questions/?product_id=${req.product_id}`, req)
+    // axios(`http://localhost:3004/qa/questions/${currentProduct}`, { params: { count: 30 } })
+    axios(`http://localhost:3004/qa/questions/${currentProduct}`, { params: { count: 30 } })
       .then((results) => this.setState({
         isQuestionsLoaded: true,
         questionsList: results.data.results,
       }))
       .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
+    // .then((results) => console.log('hello, results', results.data.results, currentProduct))
+    // .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
   }
 
   render() {
@@ -66,7 +68,7 @@ Unit.propTypes = {
 
 };
 Unit.defaultProps = {
-  currentProduct: 40344,
+  currentProduct: '',
 
 };
 

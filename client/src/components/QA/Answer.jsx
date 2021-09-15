@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -12,9 +12,9 @@ const Answer = ({ answer }) => {
   const ansObj = { answer_id: id };
   const handleReportAnswer = (e) => {
     e.preventDefault();
-    axios.put('/qa/answers/report', ansObj)
-      .then((results) => console.log(results))
-      .catch((error) => console.log(error));
+    axios.put('/qa/answers/report', ansObj);
+    // .then(() => )
+    // .catch((error) => console.log(error));
   };
   const handleHelpfulAnswer = (e) => {
     e.preventDefault();
@@ -45,7 +45,6 @@ const Answer = ({ answer }) => {
         <strong>Yes</strong>
       </span>
       {' '}
-      {/* //TODO onclick toggle FN for YES! */}
       (
       {helpfulTrigger}
       ) |

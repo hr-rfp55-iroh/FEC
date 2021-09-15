@@ -34,11 +34,13 @@ app.get('/po/styles/:id', (req, res) => {
 });
 
 // get questions for the item
-app.get('/qa/questions', (req, res) => {
+app.get('/qa/questions/:product_id', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned
     // ? will need to find an example that actually returns more than one page of data
-    qa.getQforProduct(req.query, options, (err, data) => {
+    // console.log(req)
+    // console.log(req)
+    qa.getQforProduct(req.params, req.query, options, (err, data) => {
       if (err) {
         res.status(418).send(err);
       } else {
