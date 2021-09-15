@@ -30,7 +30,6 @@ const postQforProduct = (req, callback) => {
     },
     method: 'POST',
   };
-  console.log('from post q for product', obj);
   axios(obj)
     .then((results) => callback(null, results))
     .catch((error) => callback(error));
@@ -85,7 +84,7 @@ const markAnsAsHelpful = (req, callback) => {
     method: 'PUT',
   };
   axios(obj)
-    .then((results) => callback(null, results))
+    .then(() => callback(null))
     .catch((error) => callback(error));
 };
 
@@ -97,7 +96,7 @@ const reportAnswer = (req, callback) => {
     method: 'PUT',
   };
   axios(obj)
-    .then((results) => callback(null, results))
+    .then(() => callback(null))
     .catch((error) => callback(error));
 };
 

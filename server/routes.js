@@ -96,7 +96,7 @@ app.put('/qa/questions/helpful', (req, res) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(204).send(data);
       }
     });
   }
@@ -106,11 +106,11 @@ app.put('/qa/questions/helpful', (req, res) => {
 app.put('/qa/questions/report', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.reportQ(req, (err, data) => {
+    qa.reportQ(req, (err) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.sendStatus(201);
       }
     });
   }
@@ -119,11 +119,12 @@ app.put('/qa/questions/report', (req, res) => {
 app.put('/qa/answers/helpful', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.markAnsAsHelpful(req, (err, data) => {
+    qa.markAnsAsHelpful(req, (err) => {
       if (err) {
+        console.log(err);
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(201).send(null);
       }
     });
   }

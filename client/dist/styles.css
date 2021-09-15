@@ -161,6 +161,12 @@
 .submit-question-error {
   color: red
 }
+.report {
+  color: rgb(0, 4, 255)
+}
+/* .helpful {
+  font-weight: 400;
+} */
 
 /*********** R&R Style ***********/
 #RR {

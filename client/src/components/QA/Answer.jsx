@@ -8,11 +8,17 @@ const Answer = ({ answer }) => {
   } = answer;
   const photoAlias = photos;
   const [reported, setReported] = useState(false);
-  const handleReport = (e) => {
+  const ansObj = { answer_id: id };
+  const handleReportAnswer = (e) => {
     e.preventDefault();
-    console.log(e);
-    axios.put('/qa/answers/report', { answer_id: id })
+    axios.put('/qa/answers/report', ansObj)
       .then((results) => console.log(results))
+      .catch((error) => console.log(error));
+  };
+  const handleHelpfulAnswer = (e) => {
+    e.preventDefault();
+    axios.put('/qa/answers/helpful', ansObj)
+      .then(() => console.log('success'))
       .catch((error) => console.log(error));
   };
   return (
@@ -28,28 +34,38 @@ const Answer = ({ answer }) => {
       {date}
       {' '}
       | Helpful?
-      <span>Yes</span>
+      <span
+        role="button"
+        onClick={(e) => handleHelpfulAnswer(e)}
+        onKeyPress={handleHelpfulAnswer}
+        className="helpful"
+        tabIndex={-1}
+      >
+        <strong>Yes</strong>
+      </span>
       {' '}
       {/* //TODO onclick toggle FN for YES! */}
       (
       {helpfulness}
       ) |
       {' '}
-      {!reported
-        ? (
-          <span
-            role="button"
-            type="submit"
-            className="helpful"
-            onKeyDown={handleReport}
-            onClick={(e) => { handleReport(e); setReported(true); }}
-            tabIndex={-1}
-          >
-            {' '}
-            Report
-          </span>
-        )
-        : <span><strong> Reported</strong></span>}
+      {
+        !reported
+          ? (
+            <span
+              role="button"
+              type="submit"
+              className="report"
+              onKeyDown={handleReportAnswer}
+              onClick={(e) => { handleReportAnswer(e); setReported(true); }}
+              tabIndex={-1}
+            >
+              {' '}
+              Report
+            </span>
+          )
+          : <span><strong> Reported</strong></span>
+      }
       {' '}
       {/* //TODO find a way to resize image to improve efficiency */}
       <div>
@@ -65,7 +81,9 @@ Answer.propTypes = {
     date: PropTypes.string,
     helpfulness: PropTypes.number,
     id: PropTypes.number,
-    photos: PropTypes.shape({ photo: PropTypes.string }),
+    // photos: PropTypes.shape({ photo: PropTypes.string }),
+    // photos: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
+    photos: PropTypes.arrayOf(PropTypes.string),
   }),
   answerer_name: PropTypes.string,
   body: PropTypes.string,
