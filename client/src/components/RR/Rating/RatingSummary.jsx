@@ -62,7 +62,7 @@ class RatingSummary extends React.Component {
     const { handleRatingFilterClick, handleRemoveFilterClick, filter } = this.props;
     return (
       <div className="rating">
-        <div className="container star">
+        <div className="star">
           <div id="rating-avg">{avgRating}</div>
           <Star rating={avgRating} />
         </div>

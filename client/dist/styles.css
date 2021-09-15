@@ -169,12 +169,18 @@
 }
 .container {
   display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
 }
 .rating {
   flex-grow: 1;
+  width: 25%;
+  min-width: 350px;
 }
 .review {
-  flex-grow: 3;
+  flex-grow: 2;
+  width: 75%;
+  min-width: 450px;
 }
 /* -- Rating Section -- */
 #rating-avg {
@@ -183,6 +189,7 @@
   margin-right: 10px;
 }
 .star {
+  display: flex;
   align-items: center;
 }
 .rating-count,
