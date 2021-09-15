@@ -11,7 +11,6 @@ const Overview = (props) => {
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [styles, setStyles] = useState([]);
 
   useEffect(() => {
     axios.get(`/po/info/${selected}`)
@@ -19,14 +18,6 @@ const Overview = (props) => {
         setCategory(results.data.category);
         setName(results.data.name);
         setDescription(results.data.description);
-      });
-  }, [selected]);
-
-  // Displays a product's styles when product is selected
-  useEffect(() => {
-    axios.get(`/po/styles/${selected}`)
-      .then((results) => {
-        setStyles(results.data.results);
       });
   }, [selected]);
 
@@ -40,8 +31,7 @@ const Overview = (props) => {
         <Information category={category} name={name} />
         {/* TODO: Price should depend on style. Price could also be on sale. */}
         <StyleSelector
-          styles={styles}
-          setStyles={setStyles}
+          productSelected={selected}
         />
         <li>Share on Social Media</li>
       </div>

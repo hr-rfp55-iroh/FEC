@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Style = (props) => {
   const {
-    selected,
     thumb,
     styleId,
     name,
@@ -14,25 +13,19 @@ const Style = (props) => {
     setStyleName,
     setPrice,
     setSale,
+    selected,
   } = props;
 
-  const [checkmark, setCheckmark] = useState('');
-
-  useEffect(() => {
-    if (selected) { setCheckmark('✔️'); } else { setCheckmark(''); }
-  }, [selected]);
+  const checkmarkDiv = selected
+    ? (<div id="checkmark">✅</div>)
+    : (<div id="checkmark" />);
 
   const handleSelection = () => {
     setSale(sale);
     setPrice(price);
-    setCheckmark('✔️');
     setStyleName(name);
     setStyleId(styleId);
   };
-
-  const checkmarkDiv = (
-    <div id="checkmark">{checkmark}</div>
-  );
 
   return (
     <div
@@ -54,20 +47,28 @@ const Style = (props) => {
 
 Style.propTypes = {
   selected: PropTypes.bool,
+  price: PropTypes.string,
+  sale: PropTypes.string,
   thumb: PropTypes.string,
   name: PropTypes.string,
   styleId: PropTypes.number,
   setStyleId: PropTypes.func,
   setStyleName: PropTypes.func,
+  setPrice: PropTypes.func,
+  setSale: PropTypes.func,
 };
 
 Style.defaultProps = {
   selected: false,
+  price: '',
+  sale: '',
   thumb: '',
   name: '',
   styleId: -1,
   setStyleId: null,
   setStyleName: null,
+  setPrice: null,
+  setSale: null,
 };
 
 export default Style;
