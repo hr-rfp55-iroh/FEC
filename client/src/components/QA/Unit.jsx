@@ -39,16 +39,19 @@ class Unit extends React.Component {
         isQuestionsLoaded: true,
         questionsList: results.data.results,
       }))
-      .catch((err) => this.setState({ isQuestionsLoaded: false, error: err.response.data }));
+      .catch(() => this.setState({ isQuestionsLoaded: false }));
+  }
+
+  handleMap() {
+
   }
 
   render() {
     const {
-      isQuestionsLoaded, error, questionsList, isSearchInProgress, searchResult
+      isQuestionsLoaded, questionsList, isSearchInProgress, searchResult,
     } = this.state;
     let list;
     const { currentProduct } = this.props;
-    // console.log(isSearchInProgress, 'SEARCH!!!!')
     if (isQuestionsLoaded && !isSearchInProgress) {
       list = questionsList.map((q) => (
         <Question
@@ -82,8 +85,6 @@ class Unit extends React.Component {
           getResultFromSearch={this.getResultFromSearch}
         />
         {list}
-        {console.log('LIST!', list)}
-
         <div>
           <br />
           <br />

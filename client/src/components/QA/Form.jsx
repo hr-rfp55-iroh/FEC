@@ -4,15 +4,14 @@ const Form = (props) => { // TODO take in props as a param
   const { questionsList, handleDisplayUnitOnSearch, getResultFromSearch } = props;
   const questions = questionsList;
   const [search, setSearch] = useState('');
-  // const [result, setResult] = useState('');
   const handleSearch = (e) => {
     setSearch(e);
     handleDisplayUnitOnSearch(e);
-    const alias = questions.filter((question) => {
+    const result = questions.filter((question) => {
       const q = question.question_body.toLowerCase();
       return q.includes(search);
     });
-    getResultFromSearch(alias);
+    getResultFromSearch(result);
   };
 
   return (
