@@ -15,8 +15,7 @@ class ReviewList extends React.Component {
   }
 
   componentDidMount() {
-    const { sortOption } = this.props;
-    this.getReviews(sortOption);
+    this.getReviews('relevant');
   }
 
   handleMoreReviewsClick() {
@@ -94,14 +93,12 @@ class ReviewList extends React.Component {
 
 ReviewList.propTypes = {
   handleSortSelection: PropTypes.func,
-  sortOption: PropTypes.string,
   selected: PropTypes.number,
   filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 ReviewList.defaultProps = {
   handleSortSelection: () => {},
-  sortOption: 'relevant',
   selected: 40344,
   filter: [1, 2, 3, 4, 5],
 };
