@@ -22,7 +22,7 @@ const QuestionModal = (props) => {
       isFieldsFilled = false;
       missingFields.question = 'We need your question 😎 ';
     }
-    if (email.length === 0) { // TODO actually parse the email
+    if (email.length === 0) {
       isFieldsFilled = false;
       missingFields.email = 'Missing email 📧 ';
     }
@@ -61,7 +61,7 @@ const QuestionModal = (props) => {
               <div>What is your question? (required)</div>
               <form>
                 <div>
-                  {errors.question}
+                  <span className="submit-question-error">{errors.question}</span>
                 </div>
                 <br />
 
@@ -69,13 +69,13 @@ const QuestionModal = (props) => {
                 <br />
                 <div> What is your nickname? (required) </div>
                 <div>
-                  {errors.nickname}
+                  <span className="submit-question-error">{errors.nickname}</span>
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
                 <div>What is your email? (required)</div>
                 <div>
-                  {errors.email}
+                  <span className="submit-question-error">{errors.email}</span>
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />

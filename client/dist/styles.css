@@ -149,6 +149,9 @@
   right: 60%;
   padding: 5px 5px;
 }
+.submit-question-error {
+  color: red
+}
 
 /*********** R&R Style ***********/
 #RR {
