@@ -29,6 +29,18 @@ app.get('/po/styles/:id', (req, res) => {
   });
 });
 
+app.get('/cart', (req, res) => {
+  po.getCart((err, results) => {
+    if (err) { res.status(404).send(err); } else { res.send(results); }
+  });
+});
+
+app.post('/cart', (req, res) => {
+  po.postToCart(req.body, (err, results) => {
+    if (err) { res.status(500).send(err); } else { res.send(results); }
+  });
+});
+
 // get questions for the item
 app.get('/qa/questions', (req, res) => {
   if (req) {

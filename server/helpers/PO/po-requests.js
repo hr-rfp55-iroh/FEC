@@ -22,4 +22,25 @@ const getStylesById = (id, callback) => {
   axiosGet(`${apiUrl}/products/${id}/styles`, callback);
 };
 
-module.exports = { getProductById, getStylesById };
+const getCart = (callback) => {
+  axiosGet(`${apiUrl}/cart`, callback);
+};
+
+const postToCart = (item, callback) => {
+  const url = `${apiUrl}/cart`;
+
+  axios.post(url, item, options)
+    .then((response) => {
+      callback(null, response.data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
+
+module.exports = {
+  getProductById,
+  getStylesById,
+  getCart,
+  postToCart,
+};
