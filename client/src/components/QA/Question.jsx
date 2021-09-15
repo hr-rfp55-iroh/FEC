@@ -17,17 +17,17 @@ const Question = ({
       .then(() => setHelpfulness(helpfulnessAlias + 1))
       .catch(() => alert('Cannot mark question as helpful'));
   };
+  const handleCollapseAnswers = () => {
+    setCount(2);
+  };
   const handleLoadMoreAnswers = () => {
+    const collpaseAnswersBtn = (<button onClick={handleCollapseAnswers} type="submit">Collapse Answers</button>);
     setCount(count + 2);
     if (sortedAnswers.length > count) {
       setButton(collpaseAnswersBtn);
     }
   };
-  const handleCollapseAnswers = () => {
-    setCount(2);
-  };
   const showMoreAnswersBtn = (<button onClick={handleLoadMoreAnswers} type="submit">Load More Answers</button>);
-  const collpaseAnswersBtn = (<button onClick={handleCollapseAnswers} type="submit">Collapse Answers</button>);
 
   return (
 
