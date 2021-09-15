@@ -10,10 +10,12 @@ class Unit extends React.Component {
     super(props);
     this.state = {
       isSearchInProgress: false,
+      count: 4,
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.handleDisplayUnitOnSearch = this.handleDisplayUnitOnSearch.bind(this);
     this.getResultFromSearch = this.getResultFromSearch.bind(this);
+    this.handleDisplayMoreQ = this.handleDisplayMoreQ.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +30,9 @@ class Unit extends React.Component {
     }
   }
 
-  getResultFromSearch(resultArr) {
-    this.setState({ searchResult: resultArr });
+  handleDisplayMoreQ() {
+    const { count } = this.state;
+    this.setState({ count: count + 2 });
   }
 
   getQuestions() {
@@ -42,15 +45,13 @@ class Unit extends React.Component {
       .catch(() => this.setState({ isQuestionsLoaded: false }));
   }
 
-  // handleMap(arr, questionComponent) {
-  //   arr.map((ele) => {
-  //     questionComponent.
-  //   })
-  // }
+  getResultFromSearch(resultArr) {
+    this.setState({ searchResult: resultArr });
+  }
 
   render() {
     const {
-      isQuestionsLoaded, questionsList, isSearchInProgress, searchResult,
+      isQuestionsLoaded, questionsList, isSearchInProgress, searchResult, count,
     } = this.state;
     let list;
     const { currentProduct } = this.props;
@@ -66,7 +67,7 @@ class Unit extends React.Component {
           question_helpfulness={q.question_helpfulness}
           answers={q.answers}
         />
-      ));
+      )).slice(0, count);
     } else if (isSearchInProgress) {
       list = searchResult.map((q) => (
         <Question
@@ -79,7 +80,8 @@ class Unit extends React.Component {
           question_helpfulness={q.question_helpfulness}
           answers={q.answers}
         />
-      ));
+      )).slice(0, count);
+      console.log('question length2', list.length);
     }
     return (
       <div>
@@ -94,7 +96,7 @@ class Unit extends React.Component {
           <br />
           <QuestionModal currentProduct={currentProduct} />
           <div>
-            <button type="submit">Load More Questions</button>
+            <button type="submit" onClick={this.handleDisplayMoreQ}>Load More Questions</button>
           </div>
         </div>
       </div>
