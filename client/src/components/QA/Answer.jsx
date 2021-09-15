@@ -81,15 +81,12 @@ Answer.propTypes = {
     date: PropTypes.string,
     helpfulness: PropTypes.number,
     id: PropTypes.number,
-    // photos: PropTypes.shape({ photo: PropTypes.string }),
-    // photos: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
     photos: PropTypes.arrayOf(PropTypes.string),
   }),
   answerer_name: PropTypes.string,
   body: PropTypes.string,
   date: PropTypes.string,
   helpfulness: PropTypes.number,
-  // photos: PropTypes.shape(PropTypes.string]),
 };
 
 Answer.defaultProps = {
@@ -98,7 +95,6 @@ Answer.defaultProps = {
   body: '',
   date: '',
   helpfulness: 0,
-  // photos: PropTypes.shape({ PropTypes.string }),
 };
 
 export default Answer;
