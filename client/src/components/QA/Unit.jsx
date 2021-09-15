@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Question from './Question';
 import QuestionModal from '../Shared/QuestionModal';
+import Form from './Form';
 
 class Unit extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Unit extends React.Component {
     const { currentProduct } = this.props;
     return (
       <div>
+        <Form questionsList={questionsList} />
         {!isQuestionsLoaded || error ? '' : (
           <div>
             {questionsList.map((q) => (

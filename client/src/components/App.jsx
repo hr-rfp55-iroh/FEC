@@ -4,7 +4,6 @@ import config from '../../../config';
 
 import Overview from './PO/Overview';
 import RatingReview from './RR/RatingReview';
-import Form from './QA/Form';
 import Unit from './QA/Unit';
 
 class App extends React.Component {
@@ -68,7 +67,6 @@ class App extends React.Component {
         </div>
         {isProductsLoaded ? (
           <div id="QA">
-            <Form />
             <Unit products={products} currentProduct={currentProduct} />
           </div>
         ) : ''}
