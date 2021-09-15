@@ -7,7 +7,7 @@ const ratingsBreakdown = (ratings) => {
   const result = [];
   const values = Object.values(ratings);
   const totalCount = values.reduce((memo, value) => memo + Number(value), 0);
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 4; i >= 0; i -= 1) {
     const barInfo = {};
     barInfo.star = i + 1;
     barInfo.ratingCount = ratings[i + 1] || 0;
