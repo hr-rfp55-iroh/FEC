@@ -26,12 +26,7 @@ class ReviewList extends React.Component {
 
   getReviews() {
     const { selected } = this.props;
-    // Test for product with no review
-    // const selected = 40346;
-
-    // Test for product with different reviews
-    // const selected = 40345;
-
+    console.log('this is selected', selected);
     axios.get('/reviews/', { params: { product_id: selected } })
       .then((response) => {
         this.setState({
@@ -45,10 +40,15 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, count } = this.state;
+    const { filter } = this.props;
+    let filteredReviews = reviews.slice();
+    if (filter.length) {
+      filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
+    }
     return (
       <div className="review">
         <div>
-          {reviews.length}
+          {filteredReviews.length}
           &nbsp;
           reviews,
           <label htmlFor="sort-options">
@@ -62,16 +62,16 @@ class ReviewList extends React.Component {
             </select>
           </label>
         </div>
-        {reviews.length > 0
+        {filteredReviews.length > 0
           && (
           <ul id="review-list">
-            {reviews.slice(0, count).map((review) => (
+            {filteredReviews.slice(0, count).map((review) => (
               <ReviewTile review={review} />
             ))}
           </ul>
           )}
-        {reviews.length > 2
-          && count < reviews.length
+        {filteredReviews.length > 2
+          && count < filteredReviews.length
           && (
             <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
               MORE REVIEWS
@@ -87,10 +87,12 @@ class ReviewList extends React.Component {
 
 ReviewList.propTypes = {
   selected: PropTypes.number,
+  filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 ReviewList.defaultProps = {
   selected: 40344,
+  filter: [1, 2, 3, 4, 5],
 };
 
 export default ReviewList;

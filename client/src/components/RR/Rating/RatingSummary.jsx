@@ -35,23 +35,30 @@ class RatingSummary extends React.Component {
 
   getReviewMetadata() {
     const { selected } = this.props;
-    // Test for product with different reviews
-    // const selected = 40345;
-
     axios.get('/reviews/meta/', { params: { product_id: selected } })
       .then((response) => {
         const { ratings, recommended, characteristics } = response.data;
-        const ratingCalc = ratingAverageAndCount(ratings);
-        const rec = Number(recommended.true);
-        const notRec = Number(recommended.false);
-        const recRate = Math.round((rec * 100) / (rec + notRec));
-        this.setState({
-          characteristics,
-          ratings,
-          avgRating: Number(ratingCalc.avg),
-          ratingCount: ratingCalc.count,
-          recRate,
-        });
+        if (!Object.keys(ratings).length) {
+          this.setState({
+            characteristics,
+            ratings,
+            avgRating: null,
+            ratingCount: 0,
+            recRate: null,
+          });
+        } else {
+          const ratingCalc = ratingAverageAndCount(ratings);
+          const rec = Number(recommended.true);
+          const notRec = Number(recommended.false);
+          const recRate = Math.round((rec * 100) / (rec + notRec));
+          this.setState({
+            characteristics,
+            ratings,
+            avgRating: Number(ratingCalc.avg),
+            ratingCount: ratingCalc.count,
+            recRate,
+          });
+        }
       })
       .catch((err) => {
         console.log('Error getting review metadata: ', err);
@@ -62,22 +69,39 @@ class RatingSummary extends React.Component {
     const {
       characteristics, ratings, avgRating, ratingCount, recRate,
     } = this.state;
+    const { handleRatingFilterClick, handleRemoveFilterClick, filter } = this.props;
     return (
       <div className="rating">
-        <div className="container star">
-          <div id="rating-avg">{avgRating}</div>
-          <Star rating={avgRating} />
-        </div>
-        <div className="rating-count">
-          {ratingCount}
-          &nbsp;
-          ratings
-        </div>
-        <div className="rec-rate">
-          {recRate}
-          % of reviews recommend this product
-        </div>
-        <RatingBreakdown ratings={ratings} />
+        {avgRating && (
+          <div className="star">
+            <div id="rating-avg">{avgRating}</div>
+            <Star rating={avgRating} />
+          </div>
+        )}
+        {ratingCount ? (
+          <div className="rating-count">
+            {ratingCount}
+            &nbsp;
+            ratings
+          </div>
+        )
+          : (
+            <div className="rating-count">
+              No customer ratings
+            </div>
+          )}
+        {recRate && (
+          <div className="rec-rate">
+            {recRate}
+            % of reviews recommend this product
+          </div>
+        )}
+        <RatingBreakdown
+          ratings={ratings}
+          handleRatingFilterClick={handleRatingFilterClick}
+          handleRemoveFilterClick={handleRemoveFilterClick}
+          filter={filter}
+        />
         <ProductBreakdown characteristics={characteristics} />
       </div>
     );
@@ -86,10 +110,16 @@ class RatingSummary extends React.Component {
 
 RatingSummary.propTypes = {
   selected: PropTypes.number,
+  handleRatingFilterClick: PropTypes.func,
+  handleRemoveFilterClick: PropTypes.func,
+  filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 RatingSummary.defaultProps = {
   selected: 40344,
+  handleRatingFilterClick: () => {},
+  handleRemoveFilterClick: () => {},
+  filter: [],
 };
 
 export default RatingSummary;
