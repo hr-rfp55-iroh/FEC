@@ -13,7 +13,7 @@ class App extends React.Component {
 
     // currentProduct is the product_id of the currently selected product.
     this.state = {
-      currentProduct: 40344,
+      currentProduct: 40346,
       products: ['test'],
       // reviews: [],
       // questions: [],
