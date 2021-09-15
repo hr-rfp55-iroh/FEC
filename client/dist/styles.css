@@ -51,11 +51,17 @@
   font-size: 18pt;
 }
 
-#price {
+#prices {
+  display: flex;
+  font-size: 10pt;
   padding: 5px;
 }
 
-#price:before {
+#original-price {
+  margin-right: 5px;
+}
+
+#original-price:before, #sale:before {
   content: '$';
 }
 
@@ -76,6 +82,9 @@
 }
 
 .style-thumb, .style-thumb img {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   height: 70px;
   width: 70px;
   border-radius: 50px;
@@ -95,6 +104,12 @@
 /* Q&A Style */
 #QA {
   border: 2px solid black;
+}
+#answer-images {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+
 }
 
 .btn-modal {
@@ -142,6 +157,9 @@
   top: 75%;
   right: 60%;
   padding: 5px 5px;
+}
+.submit-question-error {
+  color: red
 }
 
 /*********** R&R Style ***********/
