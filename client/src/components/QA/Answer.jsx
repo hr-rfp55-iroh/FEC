@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ const Answer = ({ answer }) => {
   } = answer;
   const photoAlias = photos;
   const [reported, setReported] = useState(false);
+  const [helpfulTrigger, setHelpfulTrigger] = useState(helpfulness);
   const ansObj = { answer_id: id };
   const handleReportAnswer = (e) => {
     e.preventDefault();
@@ -18,8 +19,8 @@ const Answer = ({ answer }) => {
   const handleHelpfulAnswer = (e) => {
     e.preventDefault();
     axios.put('/qa/answers/helpful', ansObj)
-      .then(() => console.log('success'))
-      .catch((error) => console.log(error));
+      .then(() => setHelpfulTrigger(helpfulTrigger + 1))
+      .catch(() => alert('Cannot mark answer as helpful'));
   };
   return (
     <div>
@@ -46,7 +47,7 @@ const Answer = ({ answer }) => {
       {' '}
       {/* //TODO onclick toggle FN for YES! */}
       (
-      {helpfulness}
+      {helpfulTrigger}
       ) |
       {' '}
       {
