@@ -7,11 +7,18 @@ class RatingReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // sort: 'relevant',
+      sortOption: 'relevant',
       filter: [],
     };
     this.handleRatingFilterClick = this.handleRatingFilterClick.bind(this);
     this.handleRemoveFilterClick = this.handleRemoveFilterClick.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
+  }
+
+  handleSortSelection(sortOption) {
+    this.setState({
+      sortOption,
+    });
   }
 
   handleRatingFilterClick(star) {
@@ -35,15 +42,14 @@ class RatingReview extends React.Component {
   }
 
   render() {
-    const { selected } = this.props;
+    // const { selected } = this.props;
     // Test for product with no review
     // const selected = 40346;
 
     // Test for product with different reviews
-    // const selected = 40345;
+    const selected = 40345;
     // const selected = 40347;
-
-    const { filter } = this.state;
+    const { filter, sortOption } = this.state;
     return (
       <div>
         <h2>Ratings and Reviews</h2>
@@ -54,7 +60,12 @@ class RatingReview extends React.Component {
             handleRemoveFilterClick={this.handleRemoveFilterClick}
             filter={filter}
           />
-          <ReviewList selected={selected} filter={filter} />
+          <ReviewList
+            selected={selected}
+            filter={filter}
+            sortOption={sortOption}
+            handleSortSelection={this.handleSortSelection}
+          />
         </div>
       </div>
     );
@@ -62,10 +73,12 @@ class RatingReview extends React.Component {
 }
 
 RatingReview.propTypes = {
+  sortOption: PropTypes.string,
   selected: PropTypes.number,
 };
 
 RatingReview.defaultProps = {
+  sortOption: 'relevant',
   selected: 40344,
 };
 
