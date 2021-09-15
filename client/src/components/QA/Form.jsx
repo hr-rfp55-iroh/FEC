@@ -23,7 +23,7 @@ const Form = (props) => { // TODO take in props as a param
           type="text"
           value={search}
           name="search"
-          placeholder="Search For Your Question Here"
+          placeholder="Have a question? Search for answers..."
           className="searchBar"
           onChange={(e) => handleSearch(e.target.value)}
         />
