@@ -22,7 +22,15 @@ const Style = (props) => {
     ? (<div id="checkmark">✅</div>)
     : (<div id="checkmark" />);
 
-  const handleSelection = () => {
+  const handleClick = () => {
+    // Reset options for size and quantity in AddToCart.jsx
+    const sizeOption = document.getElementById('size-selection');
+
+    sizeOption.value = -1;
+    const event = new Event('change', { bubbles: true });
+    sizeOption.dispatchEvent(event);
+
+    // Set all appropriate info and trigger rerender
     setIndex(index);
     setSale(sale);
     setPrice(price);
@@ -33,8 +41,8 @@ const Style = (props) => {
   return (
     <div
       className="style-thumb"
-      onClick={handleSelection}
-      onKeyPress={handleSelection}
+      onClick={handleClick}
+      onKeyPress={handleClick}
       role="button"
       tabIndex={0}
     >
