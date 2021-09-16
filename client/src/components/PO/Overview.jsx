@@ -10,18 +10,14 @@ import AddToCart from './AddToCart';
 
 const Overview = (props) => {
   const { selected } = props;
+
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [skus, setSkus] = useState({});
   // const [thumbnails, setThumbnails] = useState([]);
 
-  /**
-   * styles: array of style objects
-   * styleName: the name of selected style
-   * styleIndex: the index of the image
-   * styleId: this variable controls selected style by its ID
-   */
+  // style states
   const [styles, setStyles] = useState([]);
   const [styleName, setStyleName] = useState('');
   const [styleIndex, setStyleIndex] = useState(0);
@@ -63,12 +59,12 @@ const Overview = (props) => {
 
   // Set a list of skus when index is set
   useEffect(() => {
-    if (styles.length === 0) { return; }
+    if (styles.length === 0 || styles[styleIndex] === undefined) { return; }
 
     setSkus(styles[styleIndex].skus);
   }, [styleChanges]);
 
-  // Compares styleId to determine current selection then rerenders
+  // Rebuilds styles list on new style selection
   useEffect(() => {
     const newStyles = [...styles];
 
@@ -92,6 +88,7 @@ const Overview = (props) => {
           styleName={styleName}
           price={price}
           salePrice={salePrice}
+          styleChanges={styleChanges}
           setPrice={setPrice}
           setSalePrice={setSalePrice}
           setStyleName={setStyleName}

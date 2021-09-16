@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Style from './Style';
 
 const StyleSelector = (props) => {
-  const { styles } = props;
+  const { styles, styleChanges } = props;
   const { styleName, price, salePrice } = props;
   const {
     setPrice,
@@ -48,6 +48,7 @@ const StyleSelector = (props) => {
         name={style.name}
         index={index}
         styleId={style.style_id}
+        styleChanges={styleChanges}
         setStyleChanges={setStyleChanges}
         setPrice={setPrice}
         setSalePrice={setSalePrice}
@@ -71,6 +72,7 @@ const StyleSelector = (props) => {
 
 StyleSelector.propTypes = {
   styles: PropTypes.array,
+  styleChanges: PropTypes.bool,
   styleName: PropTypes.string,
   price: PropTypes.string,
   salePrice: PropTypes.string,
@@ -87,6 +89,7 @@ StyleSelector.propTypes = {
 
 StyleSelector.defaultProps = {
   styles: [],
+  styleChanges: false,
   styleName: '',
   price: '',
   salePrice: '',
