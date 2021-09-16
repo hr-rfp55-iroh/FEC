@@ -46,6 +46,7 @@ const Question = ({
         onKeyPress={handleHelpfulQuestion}
         onClick={(e) => handleHelpfulQuestion(e)}
         tabIndex={-1}
+        className="pointer"
       >
         <strong>Yes</strong>
       </span>
