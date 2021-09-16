@@ -1,5 +1,18 @@
 /* General Layout */
 
+#navbar-products {
+  position: relative;
+  margin-left: 75px;
+}
+
+.nav-button {
+  cursor: pointer;
+  background: white;
+  border: 1px solid black;
+  width: 200px;
+  margin: 5px 5px 5px 5px;
+}
+
 /* Product Overview Style */
 #product-overview {
   width: 90%;
