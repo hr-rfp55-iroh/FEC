@@ -85,8 +85,10 @@ class App extends React.Component {
     const { products, currentProduct, isProductsLoaded } = this.state;
     return (
       <div>
+        <div id="grocery">
+          <img src="./static/grocery-bags.png" alt="grocery" />
+        </div>
         <h1>Project Catwalk</h1>
-
         <Navbar next={this.incrementProduct} previous={this.decrementProduct} />
         {/* <button
           type="submit"

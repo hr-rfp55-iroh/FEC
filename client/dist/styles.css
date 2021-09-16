@@ -3,12 +3,25 @@
 
 /* GROCERY LIST THEME */
 #app {
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
 
+#grocery {
+  background: seagreen;
+  margin: auto;
+  width: 1em;
+}
+
+#grocery img {
+  position: absolute;
+  margin-top: 3em;
+  margin-left: 20em;
+  height: 10em;
+}
+
 h1 {
-  padding: 1em 2em;
+  padding: 2em 2em;
   width: 80%;
   margin: auto;
   color: honeydew;
