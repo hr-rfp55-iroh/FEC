@@ -12,6 +12,7 @@ const getQforProduct = (req, query, options, callback) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=${product_id}&count=${count}`,
     method: 'GET',
   };
+
   axios(obj)
     .then((results) => callback(null, results.data))
     .catch((error) => callback(error));

@@ -19,6 +19,7 @@ class App extends React.Component {
       // questions: [],
       // cart: []
     };
+
     this.readProduct = this.readProduct.bind(this);
 
     // NAVBAR

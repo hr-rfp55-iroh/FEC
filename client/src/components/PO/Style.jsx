@@ -1,22 +1,25 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const Style = (props) => {
+  const { selected } = props;
+  const { thumb, price, salePrice } = props;
+  const { name, index, styleId } = props;
   const {
-    thumb,
-    styleId,
-    name,
-    price,
-    sale,
-    index,
-    setStyleId,
-    setStyleName,
+    setStyleChanges,
     setPrice,
-    setSale,
-    setIndex,
-    selected,
+    setSalePrice,
+    setStyleName,
+    setStyleIndex,
+    setStyleId,
   } = props;
+
+  const [localChanges, setLocalChanges] = useState(false);
+
+  useEffect(() => {
+    setStyleChanges(localChanges);
+  }, [localChanges]);
 
   const checkmarkDiv = selected
     ? (<div id="checkmark">✅</div>)
@@ -31,11 +34,12 @@ const Style = (props) => {
     sizeOption.dispatchEvent(event);
 
     // Set all appropriate info and trigger rerender
-    setIndex(index);
-    setSale(sale);
     setPrice(price);
+    setSalePrice(salePrice);
     setStyleName(name);
+    setStyleIndex(index);
     setStyleId(styleId);
+    setLocalChanges(!localChanges);
   };
 
   return (
@@ -62,6 +66,20 @@ const Style = (props) => {
     </div>
   );
 };
+
+// thumb={style.photos[0].thumbnail_url}
+// selected={style['default?']}
+// price={style.original_price}
+// salePrice={style.sale_price}
+// name={style.name}
+// index={index}
+// styleId={style.style_id}
+// setStyleChanges={setStyleChanges}
+// setPrice={setPrice}
+// setSalePrice={setSalePrice}
+// setStyleName={setStyleName}
+// setStyleIndex={setStyleIndex}
+// setStyleId={setStyleId}
 
 Style.propTypes = {
   selected: PropTypes.bool,
