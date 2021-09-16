@@ -23,15 +23,15 @@ class ReviewStarRating extends React.Component {
     return (
       <div className="star">
         <div className="review-rating" onChange={this.handleSelectOption}>
-          <input type="radio" id={`5star${name}`} name="review-rating" value="5" required />
+          <input type="radio" id={`5star${name}`} name={`review-rating-${name}`} value="5" required />
           <label htmlFor={`5star${name}`} ></label>
-          <input type="radio" id={`4star${name}`} name="review-rating" value="4" />
+          <input type="radio" id={`4star${name}`} name={`review-rating-${name}`} value="4" />
           <label htmlFor={`4star${name}`} ></label>
-          <input type="radio" id={`3star${name}`} name="review-rating" value="3" />
+          <input type="radio" id={`3star${name}`} name={`review-rating-${name}`} value="3" />
           <label htmlFor={`3star${name}`} ></label>
-          <input type="radio" id={`2star${name}`} name="review-rating" value="2" />
+          <input type="radio" id={`2star${name}`} name={`review-rating-${name}`} value="2" />
           <label htmlFor={`2star${name}`} ></label>
-          <input type="radio" id={`1star${name}`} name="review-rating" value="1" />
+          <input type="radio" id={`1star${name}`} name={`review-rating-${name}`} value="1" />
           <label htmlFor={`1star${name}`} ></label>
         </div>
         <p>{displayText}</p>

@@ -12,6 +12,8 @@ const CreateReviewModal = (props) => {
   const [modal, setModal] = useState(false);
   const [productName, setProductName] = useState('');
   const [charCount, setCharCount] = useState(0);
+  // const [overallRating, setOverallRating] = userState(0);
+  // const [isRecommended, setIsRecommended] = userState(null);
   const toggleModal = () => {
     setProductName(document.getElementById('product-name').innerHTML);
     setModal(!modal);
@@ -56,7 +58,7 @@ const CreateReviewModal = (props) => {
               <p>Product Experience*</p>
               <div>
                 {charcs.map((charc) => (
-                  <ReviewCharacteristics charc={charc} name={charc}/>
+                  <ReviewCharacteristics charc={charc} name={charc} />
                 ))}
               </div>
               <br />

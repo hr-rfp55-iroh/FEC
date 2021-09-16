@@ -416,6 +416,7 @@
   color: gray;
   font-size: 0.9em;
 }
+/* Star rating for 'create a review' form - START */
 .review-rating {
   float: left;
   height: 46px;
@@ -443,6 +444,7 @@
 .review-rating input:checked ~ label:hover ~ label {
   color: #dba800;
 }
+/* Star rating for 'create a review' form - END */
 .charc-selection {
   margin: 15px;
 }
