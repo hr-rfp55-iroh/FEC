@@ -3,15 +3,23 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import CartMenu from './CartMenu';
+
 const AddToCart = (props) => {
   const { skus } = props;
+  const [skusArray, setSkusArray] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [inventory, setInventory] = useState([]);
-  const [dropdown, setDropdown] = useState(0);
+  const [dropdown, setDropdown] = useState(-1);
+  const [cartAmount, setCartAmount] = useState(1);
 
+  // TODO: Refactor setSkusArray to appear in its own useEffect block.
   useEffect(() => {
-    if (Object.keys(skus).length === 0) { return; }
+    const temp = Object.keys(skus);
+    if (temp.length === 0) { return; }
+
+    setSkusArray(temp);
 
     const newInventory = [];
     const newSizes = [];
@@ -40,26 +48,40 @@ const AddToCart = (props) => {
     ));
 
   useEffect(() => {
-    console.log('A change has happened!');
     const limit = inventory[dropdown] > 15 ? 15 : inventory[dropdown];
     const stockNums = Array.from({ length: limit }, (v, k) => k + 1);
     setQuantities(stockNums);
-  }, [dropdown]);
+  }, [dropdown, inventory]);
 
   return (
-    <div>
-      <div>Add To Cart</div>
-      <select
-        defaultValue="-1"
-        onChange={(e) => setDropdown(e.target.value)}
-        id="size-selection"
-      >
-        <option value="-1">Select Size</option>
-        {mappedSizes}
-      </select>
-      <select defaultValue="-1" onChange={() => {}} id="quantity-selection">
-        {mappedQuantities}
-      </select>
+    <div id="add-to-cart">
+      <div className="cart-division">
+        <select
+          defaultValue="-1"
+          onChange={(e) => setDropdown(Number(e.target.value))}
+          id="size-selection"
+        >
+          <option value="-1">SELECT SIZE</option>
+          {mappedSizes}
+        </select>
+        <select
+          defaultValue="-1"
+          onChange={(e) => setCartAmount(Number(e.target.value))}
+          id="quantity-selection"
+        >
+          {mappedQuantities}
+        </select>
+      </div>
+      <div className="cart-division">
+        <CartMenu
+          inventory={inventory}
+          setInventory={setInventory}
+          index={dropdown}
+          amount={cartAmount}
+          setAmount={setCartAmount}
+          sku={skusArray[dropdown]}
+        />
+      </div>
     </div>
   );
 };

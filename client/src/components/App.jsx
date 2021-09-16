@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from '../../../config';
 
 import Overview from './PO/Overview';
+import Navbar from './PO/Navbar';
 import RatingReview from './RR/RatingReview';
 import Form from './QA/Form';
 import Unit from './QA/Unit';
@@ -13,18 +14,41 @@ class App extends React.Component {
 
     // currentProduct is the product_id of the currently selected product.
     this.state = {
-      currentProduct: 40346,
+      currentProduct: 40344,
       products: ['test'],
       // reviews: [],
       // questions: [],
       // cart: []
     };
     this.readProduct = this.readProduct.bind(this);
+
+    // NAVBAR
+    this.incrementProduct = this.incrementProduct.bind(this);
+    this.decrementProduct = this.decrementProduct.bind(this);
   }
 
   componentDidMount() {
     this.readProduct();
   }
+
+  // NAVBAR.JSX FUNCTIONS
+
+  incrementProduct() {
+    const { currentProduct } = this.state;
+    this.setState({
+      currentProduct: currentProduct + 1,
+    });
+  }
+
+  decrementProduct() {
+    const { currentProduct } = this.state;
+    this.setState({
+      currentProduct: currentProduct - 1,
+    });
+  }
+
+  // NAVBAR CODE ENDS HERE
+
   // Product Info HTTP requests
 
   readProduct() {
@@ -59,6 +83,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Hello World!</h1>
+        <Navbar next={this.incrementProduct} previous={this.decrementProduct} />
         <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
         <div id="PO">
           <Overview selected={currentProduct} />
