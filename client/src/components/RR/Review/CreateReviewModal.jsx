@@ -14,6 +14,7 @@ const CreateReviewModal = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     toggleModal();
   };
   const handleReviewBodyChange = (e) => {
@@ -35,13 +36,13 @@ const CreateReviewModal = (props) => {
               &nbsp;
               {productName}
             </h4>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="create-review">
               <p>Overall Rating*</p>
               <OverallRatingQuest />
               <br />
               <p>Do you recommend this product?*</p>
               <label htmlFor="recommend-yes">
-                <input type="radio" id="recommend-yes" name="recommend" value="yes" required />
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
                 Yes
               </label>
               <label htmlFor="recommend-no">
@@ -86,10 +87,10 @@ const CreateReviewModal = (props) => {
               <p className="review-form-note">
                 For authentication reasons, you will not be emailed
               </p>
-              <button className="review-form-submit-btn" type="submit">Submit</button>
             </form>
           </div>
-          <button className="review-form-close-btn" type="button" onClick={toggleModal}>Close</button>
+          <button className="review-form-close-btn" type="button" onClick={toggleModal}>x</button>
+          <button className="review-form-submit-btn" type="submit" form="create-review">Submit</button>
         </div>
       )}
       {/* <p>hello from down here</p> */}
