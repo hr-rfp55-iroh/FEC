@@ -34,29 +34,31 @@ const Form = (props) => { // TODO take in props as a param
 Form.propTypes = {
   handleDisplayUnitOnSearch: PropTypes.func,
   getResultFromSearch: PropTypes.func,
-  questionsList: PropTypes.arrayOf(PropTypes.shape({
-    answer: PropTypes.shape({
-      answerer_name: PropTypes.string,
-      body: PropTypes.string,
-      date: PropTypes.string,
-      helpfulness: PropTypes.number,
-      id: PropTypes.number,
-      photos: PropTypes.arrayOf(PropTypes.string),
-    }),
-  })),
-  answer: PropTypes.shape({
-    answerer_name: PropTypes.string,
-    body: PropTypes.string,
-    date: PropTypes.string,
-    helpfulness: PropTypes.number,
-    id: PropTypes.number,
-    photos: PropTypes.arrayOf(PropTypes.string),
-  }),
+  questionsList: PropTypes.arrayOf(PropTypes.any),
+  // answer: PropTypes.string,
+  // questionsList: PropTypes.arrayOf(PropTypes.shape({
+  // answer: PropTypes.shape({
+  //   answerer_name: PropTypes.string,
+  //   body: PropTypes.string,
+  //   date: PropTypes.string,
+  //   helpfulness: PropTypes.number,
+  //   id: PropTypes.number,
+  //   photos: PropTypes.arrayOf(PropTypes.string),
+  // }),
+  // })),
+  // answer: PropTypes.shape({
+  //   answerer_name: PropTypes.string,
+  //   body: PropTypes.string,
+  //   date: PropTypes.string,
+  //   helpfulness: PropTypes.number,
+  //   id: PropTypes.number,
+  //   photos: PropTypes.arrayOf(PropTypes.string),
+  // }),
 };
 
 Form.defaultProps = {
-  questionsList: '',
-  answer: '',
+  questionsList: [],
+  // answer: '',
   handleDisplayUnitOnSearch: '',
   getResultFromSearch: '',
 
