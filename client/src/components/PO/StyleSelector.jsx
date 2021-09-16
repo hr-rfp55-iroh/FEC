@@ -103,8 +103,8 @@ const StyleSelector = (props) => {
 
   return (
     <div>
-      {priceDiv}
-      <div>{styleName}</div>
+      <div className="infos">{priceDiv}</div>
+      <div className="infos">{styleName}</div>
       <div id="style-selector">
         {mappedList}
       </div>

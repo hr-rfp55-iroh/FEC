@@ -12,7 +12,7 @@ const AddToCart = (props) => {
   const [sizes, setSizes] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [dropdown, setDropdown] = useState(-1);
-  const [cartAmount, setCartAmount] = useState('');
+  const [cartAmount, setCartAmount] = useState(1);
 
   // TODO: Refactor setSkusArray to appear in its own useEffect block.
   useEffect(() => {
@@ -54,30 +54,34 @@ const AddToCart = (props) => {
   }, [dropdown, inventory]);
 
   return (
-    <div>
-      <div>Add To Cart</div>
-      <select
-        defaultValue="-1"
-        onChange={(e) => setDropdown(e.target.value)}
-        id="size-selection"
-      >
-        <option value="-1">Select Size</option>
-        {mappedSizes}
-      </select>
-      <select
-        defaultValue="-1"
-        onChange={(e) => setCartAmount(e.target.value)}
-        id="quantity-selection"
-      >
-        {mappedQuantities}
-      </select>
-      <CartMenu
-        inventory={inventory}
-        setInventory={setInventory}
-        index={dropdown}
-        amount={cartAmount}
-        sku={skusArray[dropdown]}
-      />
+    <div id="add-to-cart">
+      <div className="cart-division">
+        <select
+          defaultValue="-1"
+          onChange={(e) => setDropdown(Number(e.target.value))}
+          id="size-selection"
+        >
+          <option value="-1">SELECT SIZE</option>
+          {mappedSizes}
+        </select>
+        <select
+          defaultValue="-1"
+          onChange={(e) => setCartAmount(Number(e.target.value))}
+          id="quantity-selection"
+        >
+          {mappedQuantities}
+        </select>
+      </div>
+      <div className="cart-division">
+        <CartMenu
+          inventory={inventory}
+          setInventory={setInventory}
+          index={dropdown}
+          amount={cartAmount}
+          setAmount={setCartAmount}
+          sku={skusArray[dropdown]}
+        />
+      </div>
     </div>
   );
 };

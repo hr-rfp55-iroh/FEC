@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Information = (props) => {
   const { category, name } = props;
   return (
-    <div>
+    <div className="infos">
       <div id="category">{category}</div>
       <div id="product-name">{name}</div>
     </div>
