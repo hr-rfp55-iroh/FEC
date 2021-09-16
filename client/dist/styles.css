@@ -368,4 +368,65 @@
 .review-list-btn {
   margin: 15px 0px;
 }
-
+.review-form-content {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: #ffffff;
+  padding: 15px 15px;
+  border-radius: 3px;
+  width: 85%;
+  min-width: 500px;
+  max-height: 80%;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+.review-form-close-btn {
+  position: absolute;
+  top: 6%;
+  left: 89%;
+}
+.review-form-submit-btn {
+  position: absolute;
+  padding: 5px 5px;
+  top: 92%;
+  left: 45%;
+}
+.review-form-note {
+  color: gray;
+  font-size: 0.9em;
+}
+.review-rating {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.review-rating input {
+  position:absolute;
+  top:-9999px;
+}
+.review-rating label {
+  float:right;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.review-rating label:before {
+  content: '★';
+}
+.review-rating input:checked ~ label {
+  color: #ffc700;
+}
+.review-rating label:hover,
+.review-rating label:hover ~ label,
+.review-rating input:checked ~ label:hover,
+.review-rating input:checked ~ label:hover ~ label {
+  color: #dba800;
+}
+.charc-selection {
+  margin: 15px;
+}
+.review-form-content textarea {
+  width: 100%;
+}
