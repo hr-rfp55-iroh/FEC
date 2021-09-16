@@ -40,7 +40,7 @@ const Answer = ({ answer }) => {
         role="button"
         onClick={(e) => handleHelpfulAnswer(e)}
         onKeyPress={handleHelpfulAnswer}
-        className="helpful"
+        className="pointer"
         tabIndex={-1}
       >
         <strong>Yes</strong>
@@ -62,7 +62,7 @@ const Answer = ({ answer }) => {
               tabIndex={-1}
             >
               {' '}
-              Report
+              <strong>Report</strong>
             </span>
           )
           : <span><strong> Reported</strong></span>
