@@ -48,7 +48,7 @@ class Unit extends React.Component {
 
   getQuestions() {
     const { currentProduct } = this.props;
-    axios(`http://localhost:3004/qa/questions/${currentProduct}`, { params: { count: 25 } })
+    axios(`/qa/questions/${currentProduct}`, { params: { count: 25 } })
       .then((results) => this.setState({
         isQuestionsLoaded: true,
         questionsList: results.data.results,
