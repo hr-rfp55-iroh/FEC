@@ -63,9 +63,9 @@ class ReviewList extends React.Component {
             Sort on
             &nbsp;
             <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
+              <option value="relevant" selected>Relevant</option>
               <option value="helpful">Helpful</option>
               <option value="newest">Newest</option>
-              <option value="relevant" selected>Relevant</option>
             </select>
           </label>
         </div>
