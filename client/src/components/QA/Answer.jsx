@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Moment from 'moment';
 
 const Answer = ({ answer }) => {
   const {
-    answerer_name, body, date, helpfulness, photos,
+    answerer_name, body, date, helpfulness, photos, id,
   } = answer;
   const photoAlias = photos;
   const [reported, setReported] = useState(false);
-  // const handleReport = (e) => {
-
-  // }
+  const [helpfulTrigger, setHelpfulTrigger] = useState(helpfulness);
+  const ansObj = { answer_id: id };
+  const handleReportAnswer = (e) => {
+    e.preventDefault();
+    axios.put('/qa/answers/report', ansObj);
+    // .then(() => )
+    // .catch((error) => console.log(error));
+  };
+  const handleHelpfulAnswer = (e) => {
+    e.preventDefault();
+    axios.put('/qa/answers/helpful', ansObj)
+      .then(() => setHelpfulTrigger(helpfulTrigger + 1))
+      .catch(() => alert('Cannot mark answer as helpful'));
+  };
   return (
     <div>
       <span><strong>A:</strong></span>
@@ -20,30 +33,41 @@ const Answer = ({ answer }) => {
       {answerer_name}
       ,
       {' '}
-      {date}
+      {Moment(date).format('MMMM Do YYYY')}
       {' '}
       | Helpful?
-      <span>Yes</span>
+      <span
+        role="button"
+        onClick={(e) => handleHelpfulAnswer(e)}
+        onKeyPress={handleHelpfulAnswer}
+        className="helpful"
+        tabIndex={-1}
+      >
+        <strong>Yes</strong>
+      </span>
       {' '}
-      {/* //TODO onclick toggle FN for YES! */}
       (
-      {helpfulness}
+      {helpfulTrigger}
       ) |
       {' '}
-      {!reported
-        ? (
-          <button
-            type="submit"
-            className="helpful"
-            onClick={(e) => { e.preventDefault(); setReported(true); }}
-          >
-            {' '}
-            Report
-          </button>
-        )
-        : <span><strong> Reported</strong></span>}
+      {
+        !reported
+          ? (
+            <span
+              role="button"
+              type="submit"
+              className="report"
+              onKeyDown={handleReportAnswer}
+              onClick={(e) => { handleReportAnswer(e); setReported(true); }}
+              tabIndex={-1}
+            >
+              {' '}
+              Report
+            </span>
+          )
+          : <span><strong> Reported</strong></span>
+      }
       {' '}
-      {/* //TODO onclick toggle FN for report -> reported */}
       {/* //TODO find a way to resize image to improve efficiency */}
       <div>
         {photoAlias.map((photo) => (<div key={photo.toString()}><img alt="" src={photo} id="answer-images" /></div>))}
@@ -58,13 +82,12 @@ Answer.propTypes = {
     date: PropTypes.string,
     helpfulness: PropTypes.number,
     id: PropTypes.number,
-    photos: PropTypes.shape({ photo: PropTypes.string }),
+    photos: PropTypes.arrayOf(PropTypes.string),
   }),
   answerer_name: PropTypes.string,
   body: PropTypes.string,
   date: PropTypes.string,
   helpfulness: PropTypes.number,
-  // photos: PropTypes.shape(PropTypes.string]),
 };
 
 Answer.defaultProps = {
@@ -73,7 +96,6 @@ Answer.defaultProps = {
   body: '',
   date: '',
   helpfulness: 0,
-  // photos: PropTypes.shape({ PropTypes.string }),
 };
 
 export default Answer;

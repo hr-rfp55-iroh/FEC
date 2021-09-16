@@ -42,15 +42,14 @@ app.post('/cart', (req, res) => {
 });
 
 // get questions for the item
-app.get('/qa/questions', (req, res) => {
+app.get('/qa/questions/:product_id', (req, res) => {
   if (req) {
     // TODO : include params for page and count of questions returned
     // ? will need to find an example that actually returns more than one page of data
-    qa.getQforProduct(req.query, options, (err, data) => {
+    qa.getQforProduct(req.params, req.query, options, (err, data) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        // console.log('successful questions request');
         res.status(200).send(data);
       }
     });
@@ -100,11 +99,11 @@ app.post('/qa/answers', (req, res) => {
 app.put('/qa/questions/helpful', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.markQasHelpful(req, (err, data) => {
+    qa.markQasHelpful(req, (err) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(204).send(null);
       }
     });
   }
@@ -114,11 +113,11 @@ app.put('/qa/questions/helpful', (req, res) => {
 app.put('/qa/questions/report', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.reportQ(req, (err, data) => {
+    qa.reportQ(req, (err) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.sendStatus(201);
       }
     });
   }
@@ -127,11 +126,12 @@ app.put('/qa/questions/report', (req, res) => {
 app.put('/qa/answers/helpful', (req, res) => {
   if (req) {
     // console.log(req);
-    qa.markAnsAsHelpful(req, (err, data) => {
+    qa.markAnsAsHelpful(req, (err) => {
       if (err) {
+        console.log(err);
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(201).send(null);
       }
     });
   }
@@ -145,7 +145,7 @@ app.put('/qa/answers/report', (req, res) => {
       if (err) {
         res.status(418).send(err);
       } else {
-        res.status(201).send(data);
+        res.status(204).send(data);
       }
     });
   }
