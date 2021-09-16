@@ -11,7 +11,7 @@ class StarRating extends React.Component {
 
   render() {
     return (
-      <div id="star-rating-overview">
+      <div id="star-rating-overview" className="infos">
         <div>
           <img src="./static/empty-star.svg" height="14" alt="star system" />
           <img src="./static/star-one-quarter.svg" height="14" alt="star system" />
