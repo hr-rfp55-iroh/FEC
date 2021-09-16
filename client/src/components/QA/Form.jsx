@@ -17,7 +17,7 @@ const Form = (props) => { // TODO take in props as a param
 
   return (
     <div>
-      Questions & Answers
+      <h2>Questions & Answers</h2>
       <form>
         <input
           type="text"

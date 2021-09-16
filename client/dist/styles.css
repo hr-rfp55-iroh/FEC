@@ -152,6 +152,7 @@
 /* Q&A Style */
 #QA {
   border: 2px solid black;
+  padding: 20px;
 }
 #answer-images {
   width: 100px;
@@ -160,10 +161,14 @@
 
 }
 
-.btn-modal {
+/* .btn-modal {
+
   padding: 10px 10px;
   display: block;
   font-size: 20px;
+} */
+.pointer:hover{
+  cursor: pointer;
 }
 
 .modal, .overlay {
@@ -209,8 +214,14 @@
 .submit-question-error {
   color: red
 }
+.submit-answer-error {
+  color: red
+}
 .report {
   color: rgb(0, 4, 255)
+}
+.report:hover {
+  cursor: pointer;
 }
 .searchBar{
   width: 60%;
