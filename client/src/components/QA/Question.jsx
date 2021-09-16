@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Moment from 'moment';
 import Answer from './Answer';
 
 const Question = ({
@@ -34,11 +35,13 @@ const Question = ({
     <div>
       <span><strong>Q:</strong></span>
       {question_body}
+      {' '}
       By:
       {asker_name}
       ,
       {' '}
-      {question_date}
+      {Moment(question_date).format('MMMM Do YYYY')}
+      {' '}
       | Helpful?
       <span
         role="button"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Moment from 'moment';
 
 const Answer = ({ answer }) => {
   const {
@@ -32,7 +33,7 @@ const Answer = ({ answer }) => {
       {answerer_name}
       ,
       {' '}
-      {date}
+      {Moment(date).format('MMMM Do YYYY')}
       {' '}
       | Helpful?
       <span
