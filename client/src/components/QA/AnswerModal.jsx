@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// {
-//   "question_id" : 329012, //id of the question
-//   "body": "Who wants burgies and tacos?", //body of answer -- from form input
-//   "name": "IceCube", -- from user input
-//   "email": "text@gmail.com", -- from user input
-//   "photos": ["https://www.gayot.com/images/reviews/amor-y-tacos.jpg", "https://media-cdn.tripadvisor.com/media/photo-p/0e/9d/e7/0c/in-n-out-2.jpg"] - from user input
-// }
 const AnswerModal = (props) => {
   const { question_id } = props;
   const [modal, setModal] = useState(false);
@@ -41,7 +34,7 @@ const AnswerModal = (props) => {
       isFieldsFilled = false;
       missingFields.nickname = 'Missing nickname 📇 ';
     }
-    // if (photos.length === 0) {
+    // if (photos.length === 0) { // TODO : require photo validation to be able to submit
     //   isFieldsFilled = false;
     //   missingFields.photos = 'Missing photos! ';
     // }
