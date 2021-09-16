@@ -7,6 +7,7 @@ class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
     this.state = {
       reviews: [],
       count: 2,
@@ -14,7 +15,7 @@ class ReviewList extends React.Component {
   }
 
   componentDidMount() {
-    this.getReviews();
+    this.getReviews('relevant');
   }
 
   handleMoreReviewsClick() {
@@ -24,10 +25,15 @@ class ReviewList extends React.Component {
     });
   }
 
-  getReviews() {
+  handleSortSelection(e) {
+    const { handleSortSelection } = this.props;
+    this.getReviews(e.target.value);
+    handleSortSelection(e.target.value);
+  }
+
+  getReviews(sortOption) {
     const { selected } = this.props;
-    console.log('this is selected', selected);
-    axios.get('/reviews/', { params: { product_id: selected } })
+    axios.get('/reviews/', { params: { product_id: selected, sort: sortOption } })
       .then((response) => {
         this.setState({
           reviews: response.data,
@@ -55,7 +61,7 @@ class ReviewList extends React.Component {
             &nbsp;
             Sort on
             &nbsp;
-            <select name="sort-options" id="sort-options">
+            <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
               <option value="helpful">Helpful</option>
               <option value="newest">Newest</option>
               <option value="relevant" selected>Relevant</option>
@@ -86,11 +92,13 @@ class ReviewList extends React.Component {
 }
 
 ReviewList.propTypes = {
+  handleSortSelection: PropTypes.func,
   selected: PropTypes.number,
   filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 ReviewList.defaultProps = {
+  handleSortSelection: () => {},
   selected: 40344,
   filter: [1, 2, 3, 4, 5],
 };
