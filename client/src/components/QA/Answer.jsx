@@ -61,7 +61,7 @@ const Answer = ({ answer }) => {
               tabIndex={-1}
             >
               {' '}
-              Report
+              <strong>Report</strong>
             </span>
           )
           : <span><strong> Reported</strong></span>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Answer from './Answer';
+import AnswerModal from './AnswerModal';
 
 const Question = ({
   question_body, question_date, asker_name, answers, question_id, question_helpfulness,
@@ -55,13 +56,15 @@ const Question = ({
       {helpfulnessAlias}
       ) |
       {' '}
-      <span>Add Answer</span>
+      <span><AnswerModal question_id={question_id} /></span>
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
       {sortedAnswers.slice(0, count).map((answer) => <Answer answer={answer} key={answer.body} />)}
       {sortedAnswers.length > count ? showMoreAnswersBtn : button}
       {/* {button} */}
+      <hr />
+      <br />
     </div>
   );
 };
