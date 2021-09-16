@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReviewStarRating from './ReviewStarRating';
 import ReviewCharacteristics from './ReviewCharacteristics';
-import PhotoQuest from './PhotoQuest';
+import PhotoUpload from './PhotoUpload';
 
 const starSelections = {
   1: 'Poor', 2: 'Fair', 3: 'Average', 4: 'Good', 5: 'Great',
@@ -76,17 +76,16 @@ const CreateReviewModal = (props) => {
                 </p>
               )}
               <br />
-              <p>Upload your photos</p>
-              <PhotoQuest />
+              <PhotoUpload />
               <br />
               <p>What is your nickname*</p>
-              <textarea maxLength="60" placeholder="Example:jackson11!" />
+              <input type="text" name="new-review-nickname" id="new-review-nickname" maxLength="60" placeholder="Example:jackson11!" required />
               <p className="review-form-note">
                 For privacy reasons, do not use your full name or email address
               </p>
               <br />
               <p>Your Email*</p>
-              <textarea maxLength="60" placeholder="Example:jackson11@email.com" />
+              <input type="email" name="new-review-email" id="new-review-email" maxLength="60" placeholder="Example:jackson11@email.com" required />
               <p className="review-form-note">
                 For authentication reasons, you will not be emailed
               </p>

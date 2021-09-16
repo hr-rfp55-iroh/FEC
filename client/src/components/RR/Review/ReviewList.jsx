@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
-import CreateReviewModal from './CreateReviewModal';
+import NewReviewModal from './NewReviewModal';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class ReviewList extends React.Component {
               MORE REVIEWS
             </button>
           )}
-        <CreateReviewModal characteristics={characteristics} />
+        <NewReviewModal characteristics={characteristics} />
       </div>
     );
   }

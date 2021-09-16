@@ -449,3 +449,20 @@
 .review-form-content textarea {
   width: 100%;
 }
+#new-review-nickname,
+#new-review-email {
+  width: 20%;
+}
+#new-review-photo {
+  opacity: 0;
+  width: 1px;
+}
+#new-review-photo-label {
+  background-color: lightgrey;
+  border: 1px solid black;
+  padding: 3px 0px 3px 10px;
+  border-radius: 5px;
+}
+.photo-upload {
+  margin-bottom: 10px;
+}
