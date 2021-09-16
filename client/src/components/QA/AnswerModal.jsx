@@ -49,7 +49,7 @@ const AnswerModal = (props) => {
     const obj = {
       body: text, email, name: nickname, question_id,
     };
-    console.log(obj);
+    console.log(obj, 'obj to submit');
     const customAlert = (sampleText) => { alert(sampleText); };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)
@@ -62,7 +62,7 @@ const AnswerModal = (props) => {
 
   return (
     <>
-      <span className="button-modal" onClick={toggleModal} onKeyPress={toggleModal} type="submit"><strong>Submit An Answer</strong></span>
+      <span role="button" className="button-modal" onClick={toggleModal} onKeyPress={toggleModal} type="submit" tabIndex={-1}><strong>Submit An Answer</strong></span>
       {modal && (
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
@@ -86,15 +86,25 @@ const AnswerModal = (props) => {
                 </div>
                 <br />
                 <span>For privacy reasons, do not use your full name or email address</span>
-                <textarea name="submitAnswer" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
+                <textarea name="submitAnswer" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Example: jack543!" required />
                 <div>What is your email? (required)</div>
                 <div>
                   <span className="submit-answer-error">{errors.email}</span>
                 </div>
                 <br />
-                <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required /><br />
+                <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
+                <br />
                 <span>For authentication reasons, you will not be emailed</span>
-
+                <br />
+                <br />
+                <div> Upload your photos:</div>
+                <br />
+                <br />
+                <input type="file" />
+                <input type="file" />
+                <input type="file" />
+                <input type="file" />
+                <input type="file" />
               </form>
             </div>
 
@@ -107,12 +117,12 @@ const AnswerModal = (props) => {
   );
 };
 
-// AnswerModal.propTypes = {
-//   currentProduct: PropTypes.number,
-// };
+AnswerModal.propTypes = {
+  question_id: PropTypes.number,
+};
 
-// AnswerModal.defaultProps = {
-//   currentProduct: 30344,
-// };
+AnswerModal.defaultProps = {
+  question_id: 0,
+};
 
 export default AnswerModal;
