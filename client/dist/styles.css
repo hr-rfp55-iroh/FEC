@@ -349,34 +349,36 @@
   color: gray;
   font-size: 0.9em;
 }
-.rate {
+.review-rating {
   float: left;
   height: 46px;
   padding: 0 10px;
 }
-.rate:not(:checked) > input {
+.review-rating input {
   position:absolute;
   top:-9999px;
 }
-.rate:not(:checked) > label {
+.review-rating label {
   float:right;
-  width:1em;
-  overflow:hidden;
-  white-space:nowrap;
   cursor:pointer;
   font-size:30px;
   color:#ccc;
 }
-.rate:not(:checked) label:before {
+.review-rating label:before {
   content: '★';
 }
-.rate > input:checked ~ label {
+.review-rating input:checked ~ label {
   color: #ffc700;
 }
-.rate:not(:checked) label:hover,
-.rate:not(:checked) label:hover ~ label {
-  color: #deb217;
+.review-rating label:hover,
+.review-rating label:hover ~ label,
+.review-rating input:checked ~ label:hover,
+.review-rating input:checked ~ label:hover ~ label {
+  color: #dba800;
 }
-.rate input:checked + label:hover {
-  color: #c59b08;
+.charc-selection {
+  margin: 15px;
+}
+.review-form-content textarea {
+  width: 100%;
 }

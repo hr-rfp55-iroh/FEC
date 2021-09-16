@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import OverallRatingQuest from './OverallRatingQuest';
-import CharacteristicQuest from './CharacteristicQuest';
+import ReviewStarRating from './ReviewStarRating';
+import ReviewCharacteristics from './ReviewCharacteristics';
 import PhotoQuest from './PhotoQuest';
+
+const starSelections = {
+  1: 'Poor', 2: 'Fair', 3: 'Average', 4: 'Good', 5: 'Great',
+};
 
 const CreateReviewModal = (props) => {
   const [modal, setModal] = useState(false);
@@ -38,11 +42,10 @@ const CreateReviewModal = (props) => {
             </h4>
             <form onSubmit={handleSubmit} id="create-review">
               <p>Overall Rating*</p>
-              <OverallRatingQuest />
-              <br />
+              <ReviewStarRating name="overall" selections={starSelections} />
               <p>Do you recommend this product?*</p>
               <label htmlFor="recommend-yes">
-                <input type="radio" id="recommend-yes" name="recommend" value="yes" />
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" required />
                 Yes
               </label>
               <label htmlFor="recommend-no">
@@ -50,10 +53,10 @@ const CreateReviewModal = (props) => {
                 No
               </label>
               <br />
-              <p>Characteristics*</p>
+              <p>Product Experience*</p>
               <div>
                 {charcs.map((charc) => (
-                  <CharacteristicQuest charc={charc} />
+                  <ReviewCharacteristics charc={charc} name={charc}/>
                 ))}
               </div>
               <br />
