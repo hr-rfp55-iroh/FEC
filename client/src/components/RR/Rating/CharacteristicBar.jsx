@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const charcsRange = {
   Size: ['Too Small', 'Perfect', 'Too Big'],
-  Width: ['Too Small', 'Perfect', 'Too Big'],
+  Width: ['Too Narrow', 'Perfect', 'Too Wide'],
   Comfort: ['Poor', 'Great'],
   Quality: ['Poor', 'Great'],
   Length: ['Too Short ', 'Perfect', 'Too Long'],

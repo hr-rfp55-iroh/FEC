@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
+import CreateReviewModal from './CreateReviewModal';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, count } = this.state;
-    const { filter } = this.props;
+    const { filter, characteristics } = this.props;
     let filteredReviews = reviews.slice();
     if (filter.length) {
       filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
@@ -83,9 +84,7 @@ class ReviewList extends React.Component {
               MORE REVIEWS
             </button>
           )}
-        <button type="button" className="review-list-btn">
-          ADD A REVIEW
-        </button>
+        <CreateReviewModal characteristics={characteristics} />
       </div>
     );
   }
@@ -95,12 +94,14 @@ ReviewList.propTypes = {
   handleSortSelection: PropTypes.func,
   selected: PropTypes.number,
   filter: PropTypes.arrayOf(PropTypes.number),
+  characteristics: PropTypes.objectOf(PropTypes.any),
 };
 
 ReviewList.defaultProps = {
   handleSortSelection: () => {},
   selected: 40344,
   filter: [1, 2, 3, 4, 5],
+  characteristics: {},
 };
 
 export default ReviewList;

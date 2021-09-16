@@ -1,5 +1,18 @@
 /* General Layout */
 
+#navbar-products {
+  position: relative;
+  margin-left: 75px;
+}
+
+.nav-button {
+  cursor: pointer;
+  background: white;
+  border: 1px solid black;
+  width: 200px;
+  margin: 5px 5px 5px 5px;
+}
+
 /* Product Overview Style */
 #product-overview {
   width: 90%;
@@ -54,7 +67,6 @@
 #prices {
   display: flex;
   font-size: 10pt;
-  padding: 5px;
 }
 
 #original-price {
@@ -73,16 +85,21 @@
 #po-gallery-pnl, #po-info-pnl, #po-overview-pnl {
   margin: 10px 10px 10px 10px;
   position: relative;
-  padding: 10px;
+  padding: 15px;
+}
+
+.infos {
+  margin-left: 5px;
 }
 
 #style-selector {
+  margin-top: 15px;
+  margin-left: 5px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .style-thumb, .style-thumb img {
-  margin-top: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   height: 70px;
@@ -92,13 +109,44 @@
 }
 
 .style-thumb {
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
   position: relative;
 }
 
 #checkmark {
   top: 0;
+  right: 0;
   z-index: 10;
   position: absolute;
+}
+
+#add-to-cart {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 10px;
+  flex-direction: column;
+  display: flex;
+}
+
+#size-selection, #quantity-selection, #cart-menu button {
+  cursor: pointer;
+  background-color: white;
+  text-align: center;
+  font-size: 12pt;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+#size-selection, #quantity-selection {
+  width: 150px;
+  height: 50px;
+}
+
+#cart-menu button {
+  width: 310px;
+  height: 50px;
+  margin-top: 5px;
 }
 
 /* Q&A Style */
@@ -328,4 +376,65 @@
 .review-list-btn {
   margin: 15px 0px;
 }
-
+.review-form-content {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: #ffffff;
+  padding: 15px 15px;
+  border-radius: 3px;
+  width: 85%;
+  min-width: 500px;
+  max-height: 80%;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+.review-form-close-btn {
+  position: absolute;
+  top: 6%;
+  left: 89%;
+}
+.review-form-submit-btn {
+  position: absolute;
+  padding: 5px 5px;
+  top: 92%;
+  left: 45%;
+}
+.review-form-note {
+  color: gray;
+  font-size: 0.9em;
+}
+.review-rating {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.review-rating input {
+  position:absolute;
+  top:-9999px;
+}
+.review-rating label {
+  float:right;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.review-rating label:before {
+  content: '★';
+}
+.review-rating input:checked ~ label {
+  color: #ffc700;
+}
+.review-rating label:hover,
+.review-rating label:hover ~ label,
+.review-rating input:checked ~ label:hover,
+.review-rating input:checked ~ label:hover ~ label {
+  color: #dba800;
+}
+.charc-selection {
+  margin: 15px;
+}
+.review-form-content textarea {
+  width: 100%;
+}

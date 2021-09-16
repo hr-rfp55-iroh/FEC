@@ -107,6 +107,7 @@ class RatingReview extends React.Component {
     // const selected = 40345;
     // const selected = 40347;
     const { filter, metaData } = this.state;
+    const { characteristics } = metaData;
     return (
       <div>
         <h2>Ratings and Reviews</h2>
@@ -121,6 +122,7 @@ class RatingReview extends React.Component {
             selected={selected}
             filter={filter}
             handleSortSelection={this.handleSortSelection}
+            characteristics={characteristics}
           />
         </div>
       </div>

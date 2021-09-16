@@ -18,18 +18,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/../client/dist`));
 
 app.get('/po/info/:id', (req, res) => {
-  po.getProductById(req.params.id, options, (err, results) => {
-    if (err) {
-      res.status(404).send(err);
-    } else { res.send(results); }
+  po.getProductById(req.params.id, (err, results) => {
+    if (err) { res.status(404).send(err); } else { res.send(results); }
   });
 });
 
 app.get('/po/styles/:id', (req, res) => {
-  po.getStylesById(req.params.id, options, (err, results) => {
-    if (err) {
-      res.status(404).send(err);
-    } else { res.send(results); }
+  po.getStylesById(req.params.id, (err, results) => {
+    if (err) { res.status(404).send(err); } else { res.send(results); }
+  });
+});
+
+app.get('/cart', (req, res) => {
+  po.getCart((err, results) => {
+    if (err) { res.status(404).send(err); } else { res.send(results); }
+  });
+});
+
+app.post('/cart', (req, res) => {
+  po.postToCart(req.body, (err, results) => {
+    if (err) { res.status(500).send(err); } else { res.send(results); }
   });
 });
 
