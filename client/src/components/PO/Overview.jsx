@@ -97,7 +97,29 @@ const Overview = (props) => {
           setStyleChanges={setStyleChanges}
         />
         <AddToCart skus={skus} />
-        <li>Share on Social Media</li>
+        <div id="sns-bar">
+          <span>Share on Socal Media</span>
+          <div>
+            <img
+              className="sns-icons"
+              src="./static/icon-twitter.svg"
+              height="50"
+              alt="twitter"
+            />
+            <img
+              className="sns-icons"
+              src="./static/icon-facebook.svg"
+              height="50"
+              alt="facebook"
+            />
+            <img
+              className="sns-icons"
+              src="./static/icon-pinterest.svg"
+              height="50"
+              alt="pinterest"
+            />
+          </div>
+        </div>
       </div>
       <div id="po-overview-pnl">
         {description}

@@ -22,7 +22,14 @@ const Style = (props) => {
   }, [localChanges]);
 
   const checkmarkDiv = selected
-    ? (<div id="checkmark">✅</div>)
+    ? (
+      <div id="checkmark">
+        <img
+          src="./static/checkmark.svg"
+          alt="checkmark"
+        />
+      </div>
+    )
     : (<div id="checkmark" />);
 
   const handleClick = () => {

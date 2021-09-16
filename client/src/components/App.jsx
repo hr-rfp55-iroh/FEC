@@ -68,10 +68,10 @@ class App extends React.Component {
           isProductsLoaded: true,
         });
         const { products } = this.state;
-        // console.log(products);
+        console.log(products);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
         this.setState({
           isProductsLoaded: false,
         });
@@ -85,16 +85,16 @@ class App extends React.Component {
     const { products, currentProduct, isProductsLoaded } = this.state;
     return (
       <div>
-        <h1>Hello World!</h1>
+        <h1>Project Catwalk</h1>
 
         <Navbar next={this.incrementProduct} previous={this.decrementProduct} />
-        <button
+        {/* <button
           type="submit"
           onClick={this.readProduct}
           onKeyPress={this.readProduct}
         >
           A button
-        </button>
+        </button> */}
         <div id="PO">
           <Overview selected={currentProduct} />
         </div>
