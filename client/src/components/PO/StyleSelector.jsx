@@ -20,6 +20,16 @@ const StyleSelector = (props) => {
     axios.get(`/po/styles/${productSelected}`)
       .then((results) => {
         setStyles(results.data.results);
+
+        return results.data.results;
+      })
+      .then((results) => {
+        for (const result of results) {
+          if (result['default?']) {
+            setStyleName(result.name);
+            setSkus(result.skus);
+          }
+        }
       });
   }, [productSelected]);
 
@@ -82,13 +92,8 @@ const StyleSelector = (props) => {
 
   // Set initial values for name, skus and price
   useEffect(() => {
-    const defaultName = styles.length === 0 ? '' : styles[0].name;
+    const defaultName = styles.length === 0 ? '' : styleName;
     if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
-  });
-
-  useEffect(() => {
-    const defaultSkus = styles.length === 0 ? '' : styles[0].skus;
-    if (defaultSkus !== '' && styleIndex === 0) { setSkus(defaultSkus); }
   });
 
   useEffect(() => {
@@ -104,7 +109,7 @@ const StyleSelector = (props) => {
   return (
     <div>
       <div className="infos">{priceDiv}</div>
-      <div className="infos">{styleName}</div>
+      <div className="infos"><h3>{styleName}</h3></div>
       <div id="style-selector">
         {mappedList}
       </div>

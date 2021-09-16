@@ -46,11 +46,18 @@ const Style = (props) => {
       role="button"
       tabIndex={0}
     >
-      <img
-        alt={name}
-        title={name}
-        src={thumb}
-      />
+      {(() => {
+        if (thumb) {
+          return (
+            <img
+              alt={name}
+              title={name}
+              src={thumb}
+            />
+          );
+        }
+        return ('');
+      })()}
       {checkmarkDiv}
     </div>
   );

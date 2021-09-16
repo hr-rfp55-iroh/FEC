@@ -117,6 +117,7 @@
 }
 
 #size-selection, #quantity-selection, #cart-menu button {
+  cursor: pointer;
   background-color: white;
   text-align: center;
   font-size: 12pt;
