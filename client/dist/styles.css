@@ -320,4 +320,34 @@
 .review-list-btn {
   margin: 15px 0px;
 }
-
+.review-form-content {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: #ffffff;
+  padding: 15px 15px;
+  border-radius: 3px;
+  width: 85%;
+  min-width: 500px;
+  max-height: 85%;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+.review-form-close-btn,
+.review-form-submit-btn {
+  position: absolute;
+  padding: 5px 5px;
+}
+.review-form-close-btn {
+  top: 80%;
+  left: 40%;
+}
+.review-form-submit-btn {
+  top: 80%;
+  left: 50%;
+}
+.review-form-note {
+  color: gray;
+  font-size: 0.9em;
+}
