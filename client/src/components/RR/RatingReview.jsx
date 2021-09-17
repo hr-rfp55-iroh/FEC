@@ -58,6 +58,7 @@ class RatingReview extends React.Component {
 
   getReviewMetadata() {
     const { selected } = this.props;
+    // const selected = 40436;
     axios.get('/reviews/meta/', { params: { product_id: selected } })
       .then((response) => {
         const { ratings, recommended, characteristics } = response.data;
@@ -94,6 +95,7 @@ class RatingReview extends React.Component {
 
   render() {
     const { selected } = this.props;
+    // const selected = 40436;
     const { filter, metaData } = this.state;
     const { characteristics } = metaData;
     return (
