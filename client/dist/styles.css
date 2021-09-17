@@ -231,6 +231,7 @@ h1 {
 
 .overlay {
   background: rgba(0, 0, 0, 0.8);
+  z-index: 11;
 }
 .modal-content {
   position: absolute;
@@ -464,6 +465,7 @@ h1 {
   color: gray;
   font-size: 0.9em;
 }
+/* Star rating for 'create a review' form - START */
 .review-rating {
   float: left;
   height: 46px;
@@ -491,9 +493,27 @@ h1 {
 .review-rating input:checked ~ label:hover ~ label {
   color: #dba800;
 }
+/* Star rating for 'create a review' form - END */
 .charc-selection {
   margin: 15px;
 }
 .review-form-content textarea {
   width: 100%;
+}
+#new-review-nickname,
+#new-review-email {
+  width: 20%;
+}
+#new-review-photo {
+  opacity: 0;
+  width: 1px;
+}
+#new-review-photo-label {
+  background-color: lightgrey;
+  border: 1px solid black;
+  padding: 3px 0px 3px 10px;
+  border-radius: 5px;
+}
+.photo-upload {
+  margin-bottom: 10px;
 }
