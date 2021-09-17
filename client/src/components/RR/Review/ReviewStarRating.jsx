@@ -11,6 +11,8 @@ class ReviewStarRating extends React.Component {
   }
 
   handleSelectOption(e) {
+    const { handleChange, name } = this.props;
+    handleChange(e.target.value, name);
     this.setState({
       text: e.target.value,
     });
@@ -23,7 +25,7 @@ class ReviewStarRating extends React.Component {
     return (
       <div className="star">
         <div className="review-rating" onChange={this.handleSelectOption}>
-          <input type="radio" id={`5star${name}`} name={`review-rating-${name}`} value="5" required />
+          <input type="radio" id={`5star${name}`} name={`review-rating-${name}`} value="5" />
           <label htmlFor={`5star${name}`} ></label>
           <input type="radio" id={`4star${name}`} name={`review-rating-${name}`} value="4" />
           <label htmlFor={`4star${name}`} ></label>
@@ -34,7 +36,7 @@ class ReviewStarRating extends React.Component {
           <input type="radio" id={`1star${name}`} name={`review-rating-${name}`} value="1" />
           <label htmlFor={`1star${name}`} ></label>
         </div>
-        <p>{displayText}</p>
+        <p id={`review-rating-${name}`}>{displayText}</p>
       </div>
     );
   }
@@ -43,11 +45,13 @@ class ReviewStarRating extends React.Component {
 ReviewStarRating.propTypes = {
   name: PropTypes.string,
   selections: PropTypes.objectOf(PropTypes.any),
+  handleChange: PropTypes.func,
 };
 
 ReviewStarRating.defaultProps = {
   name: '',
   selections: {},
+  handleChange: () => {},
 };
 
 export default ReviewStarRating;

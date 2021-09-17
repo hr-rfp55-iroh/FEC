@@ -24,12 +24,12 @@ const charcsSelections = {
 };
 
 const ReviewCharacteristics = (props) => {
-  const { charc, name } = props;
+  const { charc, name, handleChange } = props;
   const selections = charcsSelections[charc];
   return (
     <div>
       <div>{charc}</div>
-      <ReviewStarRating name={name} selections={selections} />
+      <ReviewStarRating name={name} selections={selections} handleChange={handleChange} />
       <div className="star" />
     </div>
   );
@@ -38,11 +38,13 @@ const ReviewCharacteristics = (props) => {
 ReviewCharacteristics.propTypes = {
   charc: PropTypes.string,
   name: PropTypes.string,
+  handleChange: PropTypes.func,
 };
 
 ReviewCharacteristics.defaultProps = {
   charc: '',
   name: '',
+  handleChange: () => {},
 };
 
 export default ReviewCharacteristics;
