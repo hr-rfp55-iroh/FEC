@@ -12,6 +12,17 @@ const getReviews = (options, callback) => {
     });
 };
 
+const postReview = (options, data, callback) => {
+  axios.post(`${url}/reviews`, data, options)
+    .then(() => {
+      callback(null);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
+
 module.exports = {
   getReviews,
+  postReview,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class PhotoUpload extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class PhotoUpload extends React.Component {
   }
 
   handleFileUpload(e) {
+    const { handlePhotoUpload } = this.props;
     const { files, count } = this.state;
     const uploadFiles = Object.values(e.target.files);
     const newCount = count + uploadFiles.length;
@@ -18,6 +20,7 @@ class PhotoUpload extends React.Component {
       alert('You can upload maximum 5 photos.');
     } else {
       const newFiles = files.slice().concat(uploadFiles);
+      handlePhotoUpload(newFiles);
       this.setState({
         files: newFiles,
         count: newCount,
@@ -46,5 +49,13 @@ class PhotoUpload extends React.Component {
     );
   }
 }
+
+PhotoUpload.propTypes = {
+  handlePhotoUpload: PropTypes.func,
+};
+
+PhotoUpload.defaultProps = {
+  handlePhotoUpload: () => {},
+};
 
 export default PhotoUpload;
