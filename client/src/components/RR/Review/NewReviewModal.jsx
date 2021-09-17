@@ -12,7 +12,7 @@ const CreateReviewModal = (props) => {
   const [modal, setModal] = useState(false);
   const [productName, setProductName] = useState('');
   const [charCount, setCharCount] = useState(0);
-  //Elements in form
+  // Elements in form
   const [overallRating, setOverallRating] = useState(0);
   const [isRecommended, setIsRecommended] = useState(null);
   // Elements in product experience section
@@ -100,48 +100,14 @@ const CreateReviewModal = (props) => {
             </h4>
             <form onSubmit={handleSubmit} id="create-review">
               <p>Overall Rating*</p>
-              <ReviewStarRating
-                name="overall"
-                selections={starSelections}
-                handleChange={(num) => {
-                  setOverallRating(num);
-                }}
-              />
+              <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(num); }} />
               <p>Do you recommend this product?*</p>
               <label htmlFor="recommend-yes">
-                <input
-                  type="radio"
-                  id="recommend-yes"
-                  name="recommend"
-                  value="yes"
-                  onChange={() => {
-                    setIsRecommended(true);
-                  }}
-                />
+                <input type="radio" id="recommend-yes" name="recommend" value="yes" onChange={() => { setIsRecommended(true); }} />
                 Yes
               </label>
               <label htmlFor="recommend-no">
-                <input
-                  type="radio"
-                  id="recommend-no"
-                  name="recommend"
-                  value="no"
-                  onChange={() => {
-                    // console.log('overall:', overallRating);
-                    // console.log('recommend', isRecommended);
-                    console.log('size:', sizeRating);
-                    console.log('width:', widthRating);
-                    console.log('comfort:', comfortRating);
-                    console.log('quality:', qualityRating);
-                    console.log('length:', lengthRating);
-                    console.log('fit:', fitRating);
-                    // console.log('summary:', reviewSum);
-                    // console.log('body:', reviewBody);
-                    // console.log('nickname:', nickname);
-                    // console.log('email:', email);
-                    setIsRecommended(false);
-                  }}
-                />
+                <input type="radio" id="recommend-no" name="recommend" value="no" onChange={() => { setIsRecommended(false); }} />
                 No
               </label>
               <br />
@@ -226,3 +192,16 @@ CreateReviewModal.defaultProps = {
 };
 
 export default CreateReviewModal;
+
+// console.log('overall:', overallRating);
+// console.log('recommend', isRecommended);
+// console.log('size:', sizeRating);
+// console.log('width:', widthRating);
+// console.log('comfort:', comfortRating);
+// console.log('quality:', qualityRating);
+// console.log('length:', lengthRating);
+// console.log('fit:', fitRating);
+// console.log('summary:', reviewSum);
+// console.log('body:', reviewBody);
+// console.log('nickname:', nickname);
+// console.log('email:', email);
