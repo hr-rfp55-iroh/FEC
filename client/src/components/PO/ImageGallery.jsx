@@ -2,21 +2,35 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const ImageGallery = (props) => {
-  const { photos } = props;
-  const [photoIndex, setPhotoIndex] = useState(0);
+import Image from './Image';
 
-  console.log('STYLE PHOTOS!', photos);
+const ImageGallery = (props) => {
+  const { photos, photoIndex, setPhotoIndex } = props;
+
+  const mappedPhotos = photos.map((photo, index) => (
+    <Image
+      key={index.toString()}
+      index={index}
+      thumb={photo.thumbnail_url}
+      setPhotoIndex={setPhotoIndex}
+    />
+  ));
 
   return (
-    <>
+    < >
       {(() => {
         if (photos.length !== 0) {
+          if (!photos[photoIndex].url) { return ('no photos available'); }
           return (
-            <img
-              alt="style"
-              src={photos[0].url}
-            />
+            < >
+              <div id="image-selector">
+                {mappedPhotos}
+              </div>
+              <img
+                alt="style"
+                src={photos[photoIndex].url}
+              />
+            </>
           );
         }
         return ('');

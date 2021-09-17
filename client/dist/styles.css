@@ -61,18 +61,37 @@ h1 {
 }
 
 #po-gallery-pnl {
+  text-align: center;
   background: seagreen;
   color: honeydew;
+}
+
+#image-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-thumb, .image-thumb img {
+  margin-bottom: 10px;
+  cursor: pointer;
+  z-index: 25;
+  position: relative;
+  height: 90px;
+  width: 70px;
+}
+
+.image-thumb:hover {
+  border: 1px solid white;
 }
 
 #po-gallery-pnl img {
   position: absolute;
   display: block;
-  top: 0;
-  left: 0;
+  top: 25%;
+  left: 25%;
   min-height: 100%;
   min-width: 100%;
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-25%, -25%);
 }
 
 

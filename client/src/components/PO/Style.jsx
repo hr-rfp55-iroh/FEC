@@ -74,20 +74,6 @@ const Style = (props) => {
   );
 };
 
-// thumb={style.photos[0].thumbnail_url}
-// selected={style['default?']}
-// price={style.original_price}
-// salePrice={style.sale_price}
-// name={style.name}
-// index={index}
-// styleId={style.style_id}
-// setStyleChanges={setStyleChanges}
-// setPrice={setPrice}
-// setSalePrice={setSalePrice}
-// setStyleName={setStyleName}
-// setStyleIndex={setStyleIndex}
-// setStyleId={setStyleId}
-
 Style.propTypes = {
   thumb: PropTypes.string,
   selected: PropTypes.bool,

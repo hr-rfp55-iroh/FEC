@@ -26,6 +26,7 @@ const Overview = (props) => {
   const [styleChanges, setStyleChanges] = useState(false);
   const [price, setPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   // Fetches the info for the product
   useEffect(() => {
@@ -51,6 +52,7 @@ const Overview = (props) => {
             setStyleId(result.style_id);
             setStyleName(result.name);
             setSkus(result.skus);
+            setPhotos(result.photos);
             setPrice(result.original_price);
             setSalePrice(result.sale_price);
           }
@@ -82,7 +84,12 @@ const Overview = (props) => {
   return (
     <div id="product-overview">
       <div id="po-gallery-pnl">
-        <ImageGallery photos={photos} />
+        <ImageGallery
+          selected={selected}
+          photos={photos}
+          photoIndex={photoIndex}
+          setPhotoIndex={setPhotoIndex}
+        />
       </div>
       <div id="po-info-pnl">
         <StarRating />
