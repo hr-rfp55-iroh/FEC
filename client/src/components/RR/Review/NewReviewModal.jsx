@@ -26,13 +26,22 @@ const CreateReviewModal = (props) => {
   // Elements in form
   const [reviewSum, setReviewSum] = useState('');
   const [reviewBody, setReviewBody] = useState('');
+  const [photoUrls, setPhotoUrls] = useState([]);
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   // characteristics rating for current product
   const { characteristics } = props;
   const charcs = Object.keys(characteristics);
+  const charcsInfo = {};
+
+  // Open/Close Modal
+  const toggleModal = () => {
+    setProductName(document.getElementById('product-name').innerHTML);
+    setModal(!modal);
+  };
 
   const validateForm = () => {
+    // Create a variable to store all ratings for all characteristics
     const prodExp = {
       Size: sizeRating,
       Width: widthRating,
@@ -41,6 +50,13 @@ const CreateReviewModal = (props) => {
       Length: lengthRating,
       Fit: fitRating,
     };
+    // Construct the characteristics object to pass into the POST request to API
+    charcs.forEach((charc) => {
+      const key = characteristics[charc].id;
+      const value = prodExp[charc];
+      charcsInfo[key] = value;
+    });
+    // Create a list of missing fields to be included in the alert message
     let missingItems = '';
     if (!overallRating) {
       missingItems += '- Overall Rating\n';
@@ -69,37 +85,29 @@ const CreateReviewModal = (props) => {
     return missingItems;
   };
 
-  const toggleModal = () => {
-    setProductName(document.getElementById('product-name').innerHTML);
-    setModal(!modal);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const missingItems = validateForm();
     if (!missingItems) {
-      console.log('Ready to post review!');
-      // const { selected } = props;
-      // axios.post('/reviews', {
-      //   data: {
-      //     product_id: selected,
-      //     rating: overallRating,
-      //     summary: reviewSum,
-      //     body: reviewBody,
-      //     recommend: isRecommended,
-      //     name: nickname,
-      //     email,
-      //     // photos
-      //     // characteristics
-      //   },
-      // })
-      //   .then(() => {
-      //     console.log('Review posted!');
-      //     toggleModal();
-      //   })
-      //   .catch((err) => {
-      //     console.log('Error posting review to API: ', err);
-      //   });
+      const { selected } = props;
+      axios.post('/reviews', {
+        product_id: selected,
+        rating: overallRating,
+        summary: reviewSum,
+        body: reviewBody,
+        recommend: isRecommended,
+        name: nickname,
+        email,
+        photos: photoUrls,
+        characteristics: charcsInfo,
+      })
+        .then(() => {
+          console.log('Review posted!');
+          toggleModal();
+        })
+        .catch((err) => {
+          console.log('Error posting review to API: ', err);
+        });
     } else {
       alert(`You must enter the following:\n${missingItems}`);
     }
@@ -121,7 +129,7 @@ const CreateReviewModal = (props) => {
             </h4>
             <form onSubmit={handleSubmit} id="create-review">
               <p>Overall Rating*</p>
-              <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(num); }} />
+              <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(Number(num)); }} />
               <p>Do you recommend this product?*</p>
               <label htmlFor="recommend-yes">
                 <input type="radio" id="recommend-yes" name="recommend" value="yes" onChange={() => { setIsRecommended(true); }} />
@@ -140,17 +148,17 @@ const CreateReviewModal = (props) => {
                     name={charc}
                     handleChange={(num, name) => {
                       if (name === 'Size') {
-                        setSizeRating(num);
+                        setSizeRating(Number(num));
                       } else if (name === 'Width') {
-                        setWidthRating(num);
+                        setWidthRating(Number(num));
                       } else if (name === 'Comfort') {
-                        setComfortRating(num);
+                        setComfortRating(Number(num));
                       } else if (name === 'Quality') {
-                        setQualityRating(num);
+                        setQualityRating(Number(num));
                       } else if (name === 'Length') {
-                        setLengthRating(num);
+                        setLengthRating(Number(num));
                       } else {
-                        setFitRating(num);
+                        setFitRating(Number(num));
                       }
                     }}
                   />
@@ -180,7 +188,11 @@ const CreateReviewModal = (props) => {
                 </p>
               )}
               <br />
-              <PhotoUpload />
+              <PhotoUpload handlePhotoUpload={(files) => {
+                const urls = files.map((photo) => URL.createObjectURL(photo));
+                setPhotoUrls(urls);
+              }}
+              />
               <br />
               <p>Your nickname*</p>
               <input type="text" name="new-review-nickname" id="new-review-nickname" maxLength="60" placeholder="Example:jackson11!" onChange={(e) => { setNickname(e.target.value); }} />

@@ -157,7 +157,7 @@ app.get('/reviews/', (req, res) => {
   const count = 1000;
   review.getReviews({ headers, params: { product_id, sort, count } }, (err, data) => {
     if (err) {
-      res.status(500).send(`error getting reviews from Atelier API: ${err}`);
+      res.status(500).send(`Error getting reviews from Atelier API: ${err}`);
     } else {
       res.status(200).send(data);
     }
@@ -169,9 +169,20 @@ app.get('/reviews/meta/', (req, res) => {
   const { headers } = options;
   rating.getReviewMetadata({ headers, params: { product_id } }, (err, data) => {
     if (err) {
-      res.status(500).send(`error getting reviews from Atelier API: ${err}`);
+      res.status(500).send(`Error getting reviews from Atelier API: ${err}`);
     } else {
       res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/reviews', (req, res) => {
+  const { headers } = options;
+  review.postReview({ headers }, req.body, (err) => {
+    if (err) {
+      res.status(500).send(`Error posting review from Atelier API: ${err}`);
+    } else {
+      res.status(201).send('Review posted!');
     }
   });
 });
