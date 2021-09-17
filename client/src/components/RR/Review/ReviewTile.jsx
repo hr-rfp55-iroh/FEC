@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReviewPhoto from './ReviewPhoto';
 import Star from '../Rating/Star';
+import ReviewBody from './ReviewBody';
 
 const reformatDateString = (string) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octover', 'November', 'December'];
@@ -58,6 +58,13 @@ class ReviewTile extends React.Component {
       response,
       helpfulness,
     } = review;
+    const bodyInfo = {
+      reviewer_name,
+      body,
+      photos,
+      recommend,
+      response,
+    };
     // const testRating = 2.125;
     return (
       <li className="review-tile">
@@ -71,31 +78,7 @@ class ReviewTile extends React.Component {
           </div>
           <div className="review-summary">{summary}</div>
         </div>
-        <div>
-          <div style={{ margin: '10px 0px' }}>{body}</div>
-          {photos.length > 0
-          && (
-          <div className="photo-list">
-            {photos.map((photo) => (
-              <ReviewPhoto photo={photo} />
-            ))}
-          </div>
-          )}
-          {recommend
-          && (
-            <div style={{ margin: '10px 0px' }}>&#10003; I recommend this product</div>
-          )}
-          <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>
-            {reviewer_name}
-          </div>
-          {response
-          && (
-            <div className="review-response">
-              <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>Response from seller:</div>
-              {response}
-            </div>
-          )}
-        </div>
+        <ReviewBody bodyInfo={bodyInfo} />
         <div className="review-footer">
           <div>Was this review helpful?</div>
           &nbsp;
