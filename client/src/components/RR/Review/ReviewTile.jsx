@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import ReviewPhoto from './ReviewPhoto';
 import Star from '../Rating/Star';
 
@@ -12,15 +13,41 @@ const reformatDateString = (string) => {
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);
-
+    this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
+    this.handleReportClick = this.handleReportClick.bind(this);
     this.state = {
 
     };
   }
 
+  handleHelpfulClick(e) {
+    const review_id = e.target.value;
+    const { updateReviewList } = this.props;
+    axios.put(`/reviews/${review_id}/helpful`)
+      .then(() => {
+        updateReviewList();
+      })
+      .catch((err) => {
+        console.log('Error sending PUT request to update helpfulness rating: ', err);
+      });
+  }
+
+  handleReportClick(e) {
+    const review_id = e.target.value;
+    const { updateReviewList } = this.props;
+    axios.put(`/reviews/${review_id}/report`)
+      .then(() => {
+        updateReviewList();
+      })
+      .catch((err) => {
+        console.log('Error sending PUT request to report review: ', err);
+      });
+  }
+
   render() {
     const { review } = this.props;
     const {
+      review_id,
       rating,
       reviewer_name,
       date,
@@ -69,14 +96,16 @@ class ReviewTile extends React.Component {
             </div>
           )}
         </div>
-
         <div className="review-footer">
           <div>Was this review helpful?</div>
           &nbsp;
-          <a style={{ color: 'grey' }} href="/">Yes</a>
-          &nbsp;&#40;
-          {helpfulness}
-          &#41;
+          <button type="button" id="helpful-btn" value={review_id} onClick={this.handleHelpfulClick}>Yes</button>
+          <div className="review-footer-text">
+            &#40;
+            {helpfulness}
+            &#41;&nbsp;&nbsp;&#124;&nbsp;
+          </div>
+          <button type="button" id="report-btn" value={review_id} onClick={this.handleReportClick}>Report</button>
         </div>
       </li>
     );
@@ -85,6 +114,7 @@ class ReviewTile extends React.Component {
 
 ReviewTile.propTypes = {
   review: PropTypes.objectOf(PropTypes.any),
+  updateReviewList: PropTypes.func,
 };
 
 ReviewTile.defaultProps = {
@@ -99,6 +129,7 @@ ReviewTile.defaultProps = {
     response: 'default',
     helpfulness: 0,
   },
+  updateReviewList: () => {},
 };
 
 export default ReviewTile;

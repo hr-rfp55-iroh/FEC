@@ -9,14 +9,17 @@ class ReviewList extends React.Component {
     super(props);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
     this.handleSortSelection = this.handleSortSelection.bind(this);
+    this.updateReviewList = this.updateReviewList.bind(this);
     this.state = {
       reviews: [],
       count: 2,
+      sort: 'relevant',
     };
   }
 
   componentDidMount() {
-    this.getReviews('relevant');
+    const { sort } = this.state;
+    this.getReviews(sort);
   }
 
   handleMoreReviewsClick() {
@@ -27,9 +30,12 @@ class ReviewList extends React.Component {
   }
 
   handleSortSelection(e) {
+    this.setState({
+      sort: e.target.value,
+    });
     const { handleSortSelection } = this.props;
     this.getReviews(e.target.value);
-    handleSortSelection(e.target.value);
+    handleSortSelection();
   }
 
   getReviews(sortOption) {
@@ -43,6 +49,11 @@ class ReviewList extends React.Component {
       .catch((err) => {
         console.log('Error getting review data: ', err);
       });
+  }
+
+  updateReviewList() {
+    const { sort } = this.state;
+    this.getReviews(sort);
   }
 
   render() {
@@ -73,7 +84,7 @@ class ReviewList extends React.Component {
           && (
           <ul id="review-list">
             {filteredReviews.slice(0, count).map((review) => (
-              <ReviewTile review={review} />
+              <ReviewTile review={review} updateReviewList={this.updateReviewList} />
             ))}
           </ul>
           )}

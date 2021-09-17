@@ -364,10 +364,10 @@
   display: flex;
   color: grey;
   margin: 5px 0px;
-  font-size: 0.85em;
 }
 .review-header {
   justify-content: space-between;
+  font-size: 0.85em;
 }
 .review-summary {
   font-size: 1.1em;
@@ -384,6 +384,21 @@
   background-color: lightgray;
   padding: 15px;
   margin: 10px;
+}
+.review-footer-text {
+  font-size: 0.85em;
+}
+#helpful-btn,
+#report-btn {
+  color: grey;
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+}
+#helpful-btn:hover,
+#report-btn:hover {
+  color: black;
+  cursor: pointer;
 }
 .review-list-btn {
   margin: 15px 0px;

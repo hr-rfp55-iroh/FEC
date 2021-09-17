@@ -150,12 +150,11 @@ app.put('/qa/answers/report', (req, res) => {
     });
   }
 });
-
+// get reviews for a product
 app.get('/reviews/', (req, res) => {
   const { product_id, sort } = req.query;
-  const { headers } = options;
   const count = 1000;
-  review.getReviews({ headers, params: { product_id, sort, count } }, (err, data) => {
+  review.getReviews({ product_id, sort, count }, (err, data) => {
     if (err) {
       res.status(500).send(`Error getting reviews from Atelier API: ${err}`);
     } else {
@@ -163,11 +162,10 @@ app.get('/reviews/', (req, res) => {
     }
   });
 });
-
+// get overall rating data for a product
 app.get('/reviews/meta/', (req, res) => {
   const { product_id } = req.query;
-  const { headers } = options;
-  rating.getReviewMetadata({ headers, params: { product_id } }, (err, data) => {
+  rating.getReviewMetadata({ product_id }, (err, data) => {
     if (err) {
       res.status(500).send(`Error getting reviews from Atelier API: ${err}`);
     } else {
@@ -175,14 +173,35 @@ app.get('/reviews/meta/', (req, res) => {
     }
   });
 });
-
+// post review for a product
 app.post('/reviews', (req, res) => {
-  const { headers } = options;
-  review.postReview({ headers }, req.body, (err) => {
+  review.postReview(req.body, (err) => {
     if (err) {
       res.status(500).send(`Error posting review from Atelier API: ${err}`);
     } else {
       res.status(201).send('Review posted!');
+    }
+  });
+});
+// update helpfulness rating for a review
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  const { review_id } = req.params;
+  review.putHelpful(review_id, (err) => {
+    if (err) {
+      res.status(500).send(`Error updating helpfulness rating from Atelier API: ${err}`);
+    } else {
+      res.status(200).send('Updated!');
+    }
+  });
+});
+// report a review
+app.put('/reviews/:review_id/report', (req, res) => {
+  const { review_id } = req.params;
+  review.putReport(review_id, (err) => {
+    if (err) {
+      res.status(500).send(`Error updating helpfulness rating from Atelier API: ${err}`);
+    } else {
+      res.status(200).send('Updated!');
     }
   });
 });
