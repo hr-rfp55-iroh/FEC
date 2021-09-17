@@ -51,13 +51,30 @@ h1 {
 }
 
 #po-gallery-pnl {
+  position: relative;
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: 60%;
   height: 500px;
   line-height: 500px;
-  color: beige;
-  background: slategray;
-  text-align: center;
 }
+
+#po-gallery-pnl {
+  background: seagreen;
+  color: honeydew;
+}
+
+#po-gallery-pnl img {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  /* transform: translate(-50%, -50%); */
+}
+
 
 #po-info-pnl {
   width: 30%;

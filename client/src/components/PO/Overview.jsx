@@ -7,6 +7,7 @@ import StarRating from './StarRating';
 import Information from './Information';
 import StyleSelector from './StyleSelector';
 import AddToCart from './AddToCart';
+import ImageGallery from './ImageGallery';
 
 const Overview = (props) => {
   const { selected } = props;
@@ -15,7 +16,7 @@ const Overview = (props) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [skus, setSkus] = useState({});
-  // const [thumbnails, setThumbnails] = useState([]);
+  const [photos, setPhotos] = useState([]);
 
   // style states
   const [styles, setStyles] = useState([]);
@@ -57,10 +58,13 @@ const Overview = (props) => {
       });
   }, [selected]);
 
-  // Set a list of skus when index is set
+  // Set style specific arrays
   useEffect(() => {
-    if (styles.length === 0 || styles[styleIndex] === undefined) { return; }
+    if (styles.length === 0 || styles[styleIndex] === undefined) {
+      return;
+    }
 
+    setPhotos(styles[styleIndex].photos);
     setSkus(styles[styleIndex].skus);
   }, [styleChanges]);
 
@@ -78,7 +82,7 @@ const Overview = (props) => {
   return (
     <div id="product-overview">
       <div id="po-gallery-pnl">
-        <li>Image Gallery</li>
+        <ImageGallery photos={photos} />
       </div>
       <div id="po-info-pnl">
         <StarRating />
