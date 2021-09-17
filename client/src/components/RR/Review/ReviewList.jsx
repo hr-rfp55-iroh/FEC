@@ -47,7 +47,7 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, count } = this.state;
-    const { filter, characteristics } = this.props;
+    const { filter, characteristics, selected } = this.props;
     let filteredReviews = reviews.slice();
     if (filter.length) {
       filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
@@ -84,7 +84,7 @@ class ReviewList extends React.Component {
               MORE REVIEWS
             </button>
           )}
-        <NewReviewModal characteristics={characteristics} />
+        <NewReviewModal characteristics={characteristics} selected={selected} />
       </div>
     );
   }

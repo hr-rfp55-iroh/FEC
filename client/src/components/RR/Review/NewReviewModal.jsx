@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import ReviewStarRating from './ReviewStarRating';
 import ReviewCharacteristics from './ReviewCharacteristics';
 import PhotoUpload from './PhotoUpload';
@@ -77,8 +78,28 @@ const CreateReviewModal = (props) => {
     e.preventDefault();
     const missingItems = validateForm();
     if (!missingItems) {
-      toggleModal();
-      console.log('NEED TO ADD POST REQUEST');
+      console.log('Ready to post review!');
+      // const { selected } = props;
+      // axios.post('/reviews', {
+      //   data: {
+      //     product_id: selected,
+      //     rating: overallRating,
+      //     summary: reviewSum,
+      //     body: reviewBody,
+      //     recommend: isRecommended,
+      //     name: nickname,
+      //     email,
+      //     // photos
+      //     // characteristics
+      //   },
+      // })
+      //   .then(() => {
+      //     console.log('Review posted!');
+      //     toggleModal();
+      //   })
+      //   .catch((err) => {
+      //     console.log('Error posting review to API: ', err);
+      //   });
     } else {
       alert(`You must enter the following:\n${missingItems}`);
     }
@@ -178,17 +199,18 @@ const CreateReviewModal = (props) => {
           <button className="review-form-submit-btn" type="submit" form="create-review">Submit</button>
         </div>
       )}
-      {/* <p>hello from down here</p> */}
     </div>
   );
 };
 
 CreateReviewModal.propTypes = {
   characteristics: PropTypes.objectOf(PropTypes.any),
+  selected: PropTypes.number,
 };
 
 CreateReviewModal.defaultProps = {
   characteristics: {},
+  selected: 40344,
 };
 
 export default CreateReviewModal;
