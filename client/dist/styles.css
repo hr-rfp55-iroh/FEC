@@ -374,8 +374,6 @@
   font-weight: bold;
   margin: 5px 0px;
 }
-.review-body {
-}
 #review-body-text {
   margin-bottom: 15px;
   overflow-wrap: break-word;
@@ -385,6 +383,14 @@
 }
 .photo {
   margin-right: 5px;
+}
+.review-photo-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%;
+  max-width: 70%;
 }
 .review-response {
   background-color: lightgray;

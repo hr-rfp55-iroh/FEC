@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReviewPhoto from './ReviewPhoto';
 
 class ReviewBody extends React.Component {
   constructor(props) {
@@ -8,19 +7,24 @@ class ReviewBody extends React.Component {
     this.state = {
       modal: false,
       showAll: false,
+      displayUrl: '',
     };
     this.handleShowCollapseClick = this.handleShowCollapseClick.bind(this);
+    this.togglePhotoModal = this.togglePhotoModal.bind(this);
   }
 
   handleShowCollapseClick() {
     const { showAll } = this.state;
-    const { bodyInfo } = this.props;
-    const {
-      body,
-    } = bodyInfo;
-    console.log('CLicked', body.length);
     this.setState({
       showAll: !showAll,
+    });
+  }
+
+  togglePhotoModal(e) {
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+      displayUrl: e.target.getAttribute('src'),
     });
   }
 
@@ -33,9 +37,9 @@ class ReviewBody extends React.Component {
       recommend,
       response,
     } = bodyInfo;
-    const { showAll } = this.state;
+    const { showAll, modal, displayUrl } = this.state;
     return (
-      <div className="review-body">
+      <div>
         { showAll && (
         <div id="review-body-text">
           <p>
@@ -59,8 +63,16 @@ class ReviewBody extends React.Component {
         && (
         <div className="photo-list">
           {photos.map((photo) => (
-            <ReviewPhoto photo={photo} />
+            <div className="photo" onClick={this.togglePhotoModal} onKeyPress={this.togglePhotoModal} role="presentation">
+              <img src={photo.url} height="60" alt="product-review" value={photo.url} />
+            </div>
           ))}
+        </div>
+        )}
+        {modal && (
+        <div className="overlay">
+          <img src={displayUrl} alt="product-review" className="review-photo-modal" />
+          <button className="review-form-close-btn" type="button" onClick={this.togglePhotoModal}>x</button>
         </div>
         )}
         {recommend
