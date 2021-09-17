@@ -154,7 +154,8 @@ app.put('/qa/answers/report', (req, res) => {
 app.get('/reviews/', (req, res) => {
   const { product_id, sort } = req.query;
   const { headers } = options;
-  review.getReviews({ headers, params: { product_id, sort } }, (err, data) => {
+  const count = 1000;
+  review.getReviews({ headers, params: { product_id, sort, count } }, (err, data) => {
     if (err) {
       res.status(500).send(`error getting reviews from Atelier API: ${err}`);
     } else {

@@ -4,7 +4,7 @@ import ReviewStarRating from './ReviewStarRating';
 
 const charcsSelections = {
   Size: {
-    1: 'A size too small', 2: 'Half a size too small', 3:'Perfect', 4: 'Half a size too big', 5: 'A size too big',
+    1: 'A size too small', 2: 'Half a size too small', 3: 'Perfect', 4: 'Half a size too big', 5: 'A size too big',
   },
   Width: {
     1: 'Too narrow', 2: 'Slightly narrow', 3: 'Perfect', 4: 'Slightly wide', 5: 'Too wide',
@@ -24,24 +24,27 @@ const charcsSelections = {
 };
 
 const ReviewCharacteristics = (props) => {
-  const { charc, name } = props;
+  const { charc, name, handleChange } = props;
   const selections = charcsSelections[charc];
   return (
     <div>
       <div>{charc}</div>
-      <ReviewStarRating name={name} selections={selections} />
-      <div className="star">
-      </div>
+      <ReviewStarRating name={name} selections={selections} handleChange={handleChange} />
+      <div className="star" />
     </div>
   );
 };
 
 ReviewCharacteristics.propTypes = {
+  charc: PropTypes.string,
   name: PropTypes.string,
+  handleChange: PropTypes.func,
 };
 
 ReviewCharacteristics.defaultProps = {
+  charc: '',
   name: '',
+  handleChange: () => {},
 };
 
 export default ReviewCharacteristics;
