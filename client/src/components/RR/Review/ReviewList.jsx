@@ -24,6 +24,14 @@ class ReviewList extends React.Component {
     this.getReviews(sort);
   }
 
+  componentDidUpdate(prevProps) {
+    const { selected } = this.props;
+    const { sort } = this.state;
+    if (prevProps.selected !== selected) {
+      this.getReviews(sort);
+    }
+  }
+
   handleMoreReviewsClick() {
     let { count } = this.state;
     this.setState({

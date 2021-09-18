@@ -32,6 +32,13 @@ class RatingReview extends React.Component {
     this.getReviewMetadata();
   }
 
+  componentDidUpdate(prevProps) {
+    const { selected } = this.props;
+    if (prevProps.selected !== selected) {
+      this.getReviewMetadata();
+    }
+  }
+
   handleSortSelection() {
     this.getReviewMetadata();
   }
