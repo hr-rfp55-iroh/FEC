@@ -55,6 +55,7 @@ const Overview = (props) => {
             setPhotos(result.photos);
             setPrice(result.original_price);
             setSalePrice(result.sale_price);
+            setPhotoIndex(0);
           }
         }
       });
@@ -66,6 +67,7 @@ const Overview = (props) => {
       return;
     }
 
+    setPhotoIndex(0);
     setPhotos(styles[styleIndex].photos);
     setSkus(styles[styleIndex].skus);
   }, [styleChanges]);

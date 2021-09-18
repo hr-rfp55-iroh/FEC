@@ -21,4 +21,16 @@ const Image = (props) => {
   );
 };
 
+Image.propTypes = {
+  index: PropTypes.number,
+  setPhotoIndex: PropTypes.func,
+  thumb: PropTypes.string,
+};
+
+Image.defaultProps = {
+  index: 0,
+  setPhotoIndex: null,
+  thumb: '',
+};
+
 export default Image;

@@ -21,6 +21,7 @@
 }
 
 h1 {
+  top: 0;
   padding: 2em 2em;
   width: 80%;
   margin: auto;
@@ -42,6 +43,24 @@ h1 {
 }
 
 /* Product Overview Style */
+#mag {
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  /* display: inline-block; */
+  z-index: 12;
+  position: absolute;
+  font-size: 20pt;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+}
+
+#mag:hover {
+  font-size: 22pt;
+  opacity: .7;
+}
+
 #product-overview {
   width: 90%;
   margin: auto;
@@ -51,13 +70,25 @@ h1 {
 }
 
 #po-gallery-pnl {
+  cursor: zoom-in;
   position: relative;
   display: block;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   width: 60%;
   height: 500px;
   line-height: 500px;
+}
+
+#po-gallery-pnl img {
+  position: absolute;
+  display: block;
+  top: 25%;
+  left: 25%;
+  min-height: 100%;
+  min-width: 100%;
+  width: 50%;
+  transform: translate(-25%, -25%);
 }
 
 #po-gallery-pnl {
@@ -81,19 +112,8 @@ h1 {
 }
 
 .image-thumb:hover {
-  border: 1px solid white;
+  opacity: .7;
 }
-
-#po-gallery-pnl img {
-  position: absolute;
-  display: block;
-  top: 25%;
-  left: 25%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-25%, -25%);
-}
-
 
 #po-info-pnl {
   width: 30%;
@@ -256,6 +276,8 @@ h1 {
 }
 
 .modal, .overlay {
+  overflow-y: auto;
+  z-index: 99;
   top: 0;
   left: 0;
   right: 0;
@@ -267,9 +289,11 @@ h1 {
 
 .overlay {
   background: rgba(0, 0, 0, 0.8);
-  z-index: 11;
+  z-index: 100;
 }
+
 .modal-content {
+  z-index: 101;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -282,6 +306,16 @@ h1 {
   min-width: 500px;
   /* min-height: 300px; */
   /* max-height: 600px; */
+}
+
+.modal-content-img {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 60%;
+  padding: 15px 15px;
+  min-height: auto;
 }
 
 .submit-button {
