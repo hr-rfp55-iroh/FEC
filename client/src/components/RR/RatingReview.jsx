@@ -151,7 +151,7 @@ class RatingReview extends React.Component {
           <div className="review">
             {filteredReviews.length}
             &nbsp;
-            reviews,
+            Reviews,
             <label htmlFor="sort-options">
               &nbsp;
               Sort on

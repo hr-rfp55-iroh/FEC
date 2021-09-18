@@ -461,6 +461,27 @@ h1 {
   color: rgb(95, 94, 94);
 }
 /* -- Review Section -- */
+.review-list-container {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0px;
+}
+#review-search-bar {
+  display: flex;
+  justify-content: space-between;
+  height: 25px;
+  width: 50%;
+  border-radius: 3px;
+  border: 1px solid black;
+  margin: 10px 0px;
+}
+#review-search-input {
+  width: 90%;
+  border: none;
+}
+#review-search-input:focus {
+  outline: none;
+}
 #review-list {
   height: 600px;
   overflow: hidden;
@@ -492,7 +513,7 @@ h1 {
   font-weight: bold;
   margin: 5px 0px;
 }
-#review-body-text {
+.review-body-text {
   margin-bottom: 15px;
   overflow-wrap: break-word;
 }
@@ -518,10 +539,10 @@ h1 {
 .review-footer-text {
   font-size: 0.85em;
 }
-#helpful-btn,
-#report-btn,
-#show-more-btn,
-#collapse-body-btn {
+.helpful-btn,
+.report-btn,
+.show-more-btn,
+.collapse-body-btn {
   color: grey;
   border: none;
   background-color: white;
@@ -533,7 +554,8 @@ h1 {
   cursor: pointer;
 }
 .review-list-btn {
-  margin: 15px 0px;
+  margin: 15px 10px 0px 0px;
+  width: fit-content;
 }
 .review-form-content {
   position: absolute;
@@ -560,7 +582,8 @@ h1 {
   top: 92%;
   left: 45%;
 }
-.review-form-note {
+.review-form-note,
+.review-search-note {
   color: gray;
   font-size: 0.9em;
 }
