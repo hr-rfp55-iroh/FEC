@@ -25,15 +25,18 @@ class RatingReview extends React.Component {
     };
     this.handleRatingFilterClick = this.handleRatingFilterClick.bind(this);
     this.handleRemoveFilterClick = this.handleRemoveFilterClick.bind(this);
-    this.handleSortSelection = this.handleSortSelection.bind(this);
+    this.updateRatings = this.updateRatings.bind(this);
   }
 
   componentDidMount() {
     this.getReviewMetadata();
   }
 
-  handleSortSelection() {
-    this.getReviewMetadata();
+  componentDidUpdate(prevProps) {
+    const { selected } = this.props;
+    if (prevProps.selected !== selected) {
+      this.getReviewMetadata();
+    }
   }
 
   handleRatingFilterClick(star) {
@@ -93,6 +96,10 @@ class RatingReview extends React.Component {
       });
   }
 
+  updateRatings() {
+    this.getReviewMetadata();
+  }
+
   render() {
     const { selected } = this.props;
     // const selected = 40436;
@@ -111,7 +118,7 @@ class RatingReview extends React.Component {
           <ReviewList
             selected={selected}
             filter={filter}
-            handleSortSelection={this.handleSortSelection}
+            updateRatings={this.updateRatings}
             characteristics={characteristics}
           />
         </div>

@@ -15,7 +15,7 @@ const RatingSummary = (props) => {
     <div className="rating">
       {avgRating && (
         <div className="star">
-          <div id="rating-avg">{avgRating}</div>
+          <div id="rating-avg">{avgRating.toFixed(1)}</div>
           <Star rating={avgRating} />
         </div>
       )}

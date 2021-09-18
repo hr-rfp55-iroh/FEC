@@ -8,6 +8,8 @@ class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
+    this.handleAllReviewsClick = this.handleAllReviewsClick.bind(this);
+    this.handleCollapseReviewsClick = this.handleCollapseReviewsClick.bind(this);
     this.handleSortSelection = this.handleSortSelection.bind(this);
     this.updateReviewList = this.updateReviewList.bind(this);
     this.state = {
@@ -22,6 +24,14 @@ class ReviewList extends React.Component {
     this.getReviews(sort);
   }
 
+  componentDidUpdate(prevProps) {
+    const { selected } = this.props;
+    const { sort } = this.state;
+    if (prevProps.selected !== selected) {
+      this.getReviews(sort);
+    }
+  }
+
   handleMoreReviewsClick() {
     let { count } = this.state;
     this.setState({
@@ -29,13 +39,26 @@ class ReviewList extends React.Component {
     });
   }
 
+  handleAllReviewsClick() {
+    const { reviews } = this.state;
+    this.setState({
+      count: reviews.length,
+    });
+  }
+
+  handleCollapseReviewsClick() {
+    this.setState({
+      count: 2,
+    });
+  }
+
   handleSortSelection(e) {
     this.setState({
       sort: e.target.value,
     });
-    const { handleSortSelection } = this.props;
+    const { updateRatings } = this.props;
     this.getReviews(e.target.value);
-    handleSortSelection();
+    updateRatings();
   }
 
   getReviews(sortOption) {
@@ -58,7 +81,9 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, count } = this.state;
-    const { filter, characteristics, selected } = this.props;
+    const {
+      filter, characteristics, selected, updateRatings,
+    } = this.props;
     let filteredReviews = reviews.slice();
     if (filter.length) {
       filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
@@ -91,25 +116,42 @@ class ReviewList extends React.Component {
         {filteredReviews.length > 2
           && count < filteredReviews.length
           && (
-            <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
-              MORE REVIEWS
-            </button>
+            <div>
+              <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
+                MORE REVIEWS
+              </button>
+              <button type="button" className="review-list-btn" onClick={this.handleAllReviewsClick}>
+                ALL REVIEWS
+              </button>
+            </div>
           )}
-        <NewReviewModal characteristics={characteristics} selected={selected} />
+        {filteredReviews.length > 2
+          && count >= filteredReviews.length
+          && (
+          <button type="button" className="review-list-btn" onClick={this.handleCollapseReviewsClick}>
+            COLLAPSE REVIEWS
+          </button>
+          )}
+        <NewReviewModal
+          characteristics={characteristics}
+          selected={selected}
+          updateReviewList={this.updateReviewList}
+          updateRatings={updateRatings}
+        />
       </div>
     );
   }
 }
 
 ReviewList.propTypes = {
-  handleSortSelection: PropTypes.func,
+  updateRatings: PropTypes.func,
   selected: PropTypes.number,
   filter: PropTypes.arrayOf(PropTypes.number),
   characteristics: PropTypes.objectOf(PropTypes.any),
 };
 
 ReviewList.defaultProps = {
-  handleSortSelection: () => {},
+  updateRatings: () => {},
   selected: 40344,
   filter: [1, 2, 3, 4, 5],
   characteristics: {},
