@@ -27,19 +27,20 @@ class RatingReview extends React.Component {
     };
     this.handleRatingFilterClick = this.handleRatingFilterClick.bind(this);
     this.handleRemoveFilterClick = this.handleRemoveFilterClick.bind(this);
-    this.refreshRatingReview = this.refreshRatingReview.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
+    this.updateRatingReview = this.updateRatingReview.bind(this);
     this.getReviews = this.getReviews.bind(this);
   }
 
   componentDidMount() {
-    this.refreshRatingReview();
+    this.updateRatingReview();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { selected } = this.props;
     const { sort } = this.state;
     if (prevProps.selected !== selected || prevState.sort !== sort) {
-      this.refreshRatingReview();
+      this.updateRatingReview();
     }
   }
 
@@ -124,12 +125,13 @@ class RatingReview extends React.Component {
       });
   }
 
-  refreshRatingReview() {
+  updateRatingReview() {
     this.getReviewMetadata();
     this.getReviews();
   }
 
   render() {
+    const { selected } = this.props;
     const { reviews, metaData, filter } = this.state;
     const { characteristics } = metaData;
     let filteredReviews = reviews.slice();
@@ -146,7 +148,7 @@ class RatingReview extends React.Component {
             handleRatingFilterClick={this.handleRatingFilterClick}
             handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
-          <div>
+          <div className="review">
             {filteredReviews.length}
             &nbsp;
             reviews,
@@ -160,13 +162,14 @@ class RatingReview extends React.Component {
                 <option value="newest">Newest</option>
               </select>
             </label>
+            <ReviewList
+              filteredReviews={filteredReviews}
+              characteristics={characteristics}
+              updateRatingReview={this.updateRatingReview}
+              getReviews={this.getReviews}
+              selected={selected}
+            />
           </div>
-          <ReviewList
-            filterReviews={filteredReviews}
-            characteristics={characteristics}
-            updateRatingReview={this.updateRatingReview}
-            getReviews={this.getReviews}
-          />
         </div>
       </div>
     );

@@ -103,10 +103,9 @@ const CreateReviewModal = (props) => {
       })
         .then(() => {
           console.log('Review posted!');
-          const { updateReviewList, updateRatings } = props;
+          const { updateRatingReview } = props;
           toggleModal();
-          updateReviewList();
-          updateRatings();
+          updateRatingReview();
         })
         .catch((err) => {
           console.log('Error posting review to API: ', err);
@@ -219,17 +218,15 @@ const CreateReviewModal = (props) => {
 };
 
 CreateReviewModal.propTypes = {
-  characteristics: PropTypes.objectOf(PropTypes.any),
   selected: PropTypes.number,
-  updateReviewList: PropTypes.func,
-  updateRatings: PropTypes.func,
+  characteristics: PropTypes.objectOf(PropTypes.any),
+  updateRatingReview: PropTypes.func,
 };
 
 CreateReviewModal.defaultProps = {
+  selected: 0,
   characteristics: {},
-  selected: 40344,
-  updateReviewList: () => {},
-  updateRatings: () => {},
+  updateRatingReview: () => {},
 };
 
 export default CreateReviewModal;

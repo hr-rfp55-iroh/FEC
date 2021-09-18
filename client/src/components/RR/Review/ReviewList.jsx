@@ -38,10 +38,10 @@ class ReviewList extends React.Component {
   render() {
     const { count } = this.state;
     const {
-      filteredReviews, characteristics, updateRatingReview, getReviews,
+      filteredReviews, characteristics, updateRatingReview, getReviews, selected,
     } = this.props;
     return (
-      <div className="review">
+      <div>
         {filteredReviews.length > 0
           && (
           <ul id="review-list">
@@ -70,6 +70,7 @@ class ReviewList extends React.Component {
           </button>
           )}
         <NewReviewModal
+          selected={selected}
           characteristics={characteristics}
           updateRatingReview={updateRatingReview}
         />
@@ -79,6 +80,7 @@ class ReviewList extends React.Component {
 }
 
 ReviewList.propTypes = {
+  selected: PropTypes.number,
   filteredReviews: PropTypes.arrayOf(PropTypes.any),
   characteristics: PropTypes.objectOf(PropTypes.any),
   updateRatingReview: PropTypes.func,
@@ -86,6 +88,7 @@ ReviewList.propTypes = {
 };
 
 ReviewList.defaultProps = {
+  selected: 0,
   filteredReviews: [],
   characteristics: {},
   updateRatingReview: () => {},
