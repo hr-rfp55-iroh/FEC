@@ -10,26 +10,9 @@ class ReviewList extends React.Component {
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
     this.handleAllReviewsClick = this.handleAllReviewsClick.bind(this);
     this.handleCollapseReviewsClick = this.handleCollapseReviewsClick.bind(this);
-    this.handleSortSelection = this.handleSortSelection.bind(this);
-    this.updateReviewList = this.updateReviewList.bind(this);
     this.state = {
-      reviews: [],
       count: 2,
-      sort: 'relevant',
     };
-  }
-
-  componentDidMount() {
-    const { sort } = this.state;
-    this.getReviews(sort);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { selected } = this.props;
-    const { sort } = this.state;
-    if (prevProps.selected !== selected) {
-      this.getReviews(sort);
-    }
   }
 
   handleMoreReviewsClick() {
@@ -40,9 +23,9 @@ class ReviewList extends React.Component {
   }
 
   handleAllReviewsClick() {
-    const { reviews } = this.state;
+    const { filteredReviews } = this.props;
     this.setState({
-      count: reviews.length,
+      count: filteredReviews.length,
     });
   }
 
@@ -52,64 +35,18 @@ class ReviewList extends React.Component {
     });
   }
 
-  handleSortSelection(e) {
-    this.setState({
-      sort: e.target.value,
-    });
-    const { updateRatings } = this.props;
-    this.getReviews(e.target.value);
-    updateRatings();
-  }
-
-  getReviews(sortOption) {
-    const { selected } = this.props;
-    axios.get('/reviews/', { params: { product_id: selected, sort: sortOption } })
-      .then((response) => {
-        this.setState({
-          reviews: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting review data: ', err);
-      });
-  }
-
-  updateReviewList() {
-    const { sort } = this.state;
-    this.getReviews(sort);
-  }
-
   render() {
-    const { reviews, count } = this.state;
+    const { count } = this.state;
     const {
-      filter, characteristics, selected, updateRatings,
+      filteredReviews, characteristics, updateRatingReview, getReviews,
     } = this.props;
-    let filteredReviews = reviews.slice();
-    if (filter.length) {
-      filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
-    }
     return (
       <div className="review">
-        <div>
-          {filteredReviews.length}
-          &nbsp;
-          reviews,
-          <label htmlFor="sort-options">
-            &nbsp;
-            Sort on
-            &nbsp;
-            <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
-              <option value="relevant" selected>Relevant</option>
-              <option value="helpful">Helpful</option>
-              <option value="newest">Newest</option>
-            </select>
-          </label>
-        </div>
         {filteredReviews.length > 0
           && (
           <ul id="review-list">
             {filteredReviews.slice(0, count).map((review) => (
-              <ReviewTile review={review} updateReviewList={this.updateReviewList} />
+              <ReviewTile review={review} getReviews={getReviews} />
             ))}
           </ul>
           )}
@@ -134,9 +71,7 @@ class ReviewList extends React.Component {
           )}
         <NewReviewModal
           characteristics={characteristics}
-          selected={selected}
-          updateReviewList={this.updateReviewList}
-          updateRatings={updateRatings}
+          updateRatingReview={updateRatingReview}
         />
       </div>
     );
@@ -144,17 +79,17 @@ class ReviewList extends React.Component {
 }
 
 ReviewList.propTypes = {
-  updateRatings: PropTypes.func,
-  selected: PropTypes.number,
-  filter: PropTypes.arrayOf(PropTypes.number),
+  filteredReviews: PropTypes.arrayOf(PropTypes.any),
   characteristics: PropTypes.objectOf(PropTypes.any),
+  updateRatingReview: PropTypes.func,
+  getReviews: PropTypes.func,
 };
 
 ReviewList.defaultProps = {
-  updateRatings: () => {},
-  selected: 40344,
-  filter: [1, 2, 3, 4, 5],
+  filteredReviews: [],
   characteristics: {},
+  updateRatingReview: () => {},
+  getReviews: () => {},
 };
 
 export default ReviewList;

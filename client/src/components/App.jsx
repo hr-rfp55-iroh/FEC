@@ -14,10 +14,8 @@ class App extends React.Component {
     // currentProduct is the product_id of the currently selected product.
     this.state = {
       currentProduct: 40344,
-      products: ['test'],
-      // reviews: [],
-      // questions: [],
-      // cart: []
+      products: [],
+      rating: null,
     };
 
     this.readProduct = this.readProduct.bind(this);
@@ -25,6 +23,9 @@ class App extends React.Component {
     // NAVBAR
     this.incrementProduct = this.incrementProduct.bind(this);
     this.decrementProduct = this.decrementProduct.bind(this);
+
+    // RR
+    this.updateAvgRating = this.updateAvgRating.bind(this);
   }
 
   componentDidMount() {
@@ -79,10 +80,18 @@ class App extends React.Component {
   }
   // Q&A HTTP requests
 
-  // R&R HTTP requests
+  // RR
+  // Update product rating in state to pass it to Product Overview
+  updateAvgRating(num) {
+    this.setState({
+      rating: num,
+    });
+  }
 
   render() {
-    const { products, currentProduct, isProductsLoaded } = this.state;
+    const {
+      rating, products, currentProduct, isProductsLoaded,
+    } = this.state;
     return (
       <div>
         <div id="grocery">
@@ -90,15 +99,8 @@ class App extends React.Component {
         </div>
         <h1>Project Catwalk</h1>
         <Navbar next={this.incrementProduct} previous={this.decrementProduct} />
-        {/* <button
-          type="submit"
-          onClick={this.readProduct}
-          onKeyPress={this.readProduct}
-        >
-          A button
-        </button> */}
         <div id="PO">
-          <Overview selected={currentProduct} />
+          <Overview selected={currentProduct} rating={rating} />
         </div>
         {isProductsLoaded ? (
           <div id="QA">
@@ -106,7 +108,7 @@ class App extends React.Component {
           </div>
         ) : ''}
         <div id="RR">
-          <RatingReview selected={currentProduct} />
+          <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
         </div>
       </div>
     );
