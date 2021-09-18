@@ -8,6 +8,8 @@ class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
+    this.handleAllReviewsClick = this.handleAllReviewsClick.bind(this);
+    this.handleCollapseReviewsClick = this.handleCollapseReviewsClick.bind(this);
     this.handleSortSelection = this.handleSortSelection.bind(this);
     this.updateReviewList = this.updateReviewList.bind(this);
     this.state = {
@@ -26,6 +28,19 @@ class ReviewList extends React.Component {
     let { count } = this.state;
     this.setState({
       count: count += 2,
+    });
+  }
+
+  handleAllReviewsClick() {
+    const { reviews } = this.state;
+    this.setState({
+      count: reviews.length,
+    });
+  }
+
+  handleCollapseReviewsClick() {
+    this.setState({
+      count: 2,
     });
   }
 
@@ -91,9 +106,21 @@ class ReviewList extends React.Component {
         {filteredReviews.length > 2
           && count < filteredReviews.length
           && (
-            <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
-              MORE REVIEWS
-            </button>
+            <div>
+              <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
+                MORE REVIEWS
+              </button>
+              <button type="button" className="review-list-btn" onClick={this.handleAllReviewsClick}>
+                ALL REVIEWS
+              </button>
+            </div>
+          )}
+        {filteredReviews.length > 2
+          && count >= filteredReviews.length
+          && (
+          <button type="button" className="review-list-btn" onClick={this.handleCollapseReviewsClick}>
+            COLLAPSE REVIEWS
+          </button>
           )}
         <NewReviewModal characteristics={characteristics} selected={selected} />
       </div>
