@@ -1,53 +1,31 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-restricted-syntax */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import Style from './Style';
 
 const StyleSelector = (props) => {
-  const { productSelected, setSkus } = props;
-
-  const [price, setPrice] = useState('');
-  const [sale, setSale] = useState('');
-  const [styleId, setStyleId] = useState(-1);
-  const [styleIndex, setStyleIndex] = useState(0);
-  const [styleName, setStyleName] = useState('');
-  const [styles, setStyles] = useState([]);
-
-  // Displays a product's styles when product is selected
-  useEffect(() => {
-    axios.get(`/po/styles/${productSelected}`)
-      .then((results) => {
-        setStyles(results.data.results);
-
-        return results.data.results;
-      })
-      .then((results) => {
-        for (const result of results) {
-          if (result['default?']) {
-            setStyleName(result.name);
-            setSkus(result.skus);
-          }
-        }
-      });
-  }, [productSelected]);
-
-  useEffect(() => {
-    if (styles.length === 0) { return; }
-
-    setSkus(styles[styleIndex].skus);
-  }, [styleIndex]);
+  const { styles, styleChanges } = props;
+  const { styleName, price, salePrice } = props;
+  const {
+    setPrice,
+    setSalePrice,
+    setStyleName,
+    setStyleIndex,
+    setStyleId,
+    setStyleChanges,
+  } = props;
 
   // Conditional rendering of prices block
-  const priceDiv = sale
+  const priceDiv = salePrice
     ? (
       <div id="prices">
         <div id="original-price" style={{ textDecoration: 'line-through' }}>
           {price}
         </div>
         <div id="sale">
-          {sale}
+          {salePrice}
         </div>
       </div>
     )
@@ -59,52 +37,27 @@ const StyleSelector = (props) => {
       </div>
     );
 
-  // Sets the selected style and rerenders list of styles.
-  useEffect(() => {
-    const newStyles = [...styles];
-
-    for (const style of newStyles) {
-      style['default?'] = style.style_id === styleId;
-    }
-
-    setStyles(newStyles);
-  }, [styleId]);
-
   const mappedList = styles.map(
     (style, index) => (
       <Style
-        index={index}
-        setIndex={setStyleIndex}
+        key={style.style_id.toString()}
         thumb={style.photos[0].thumbnail_url}
-        key={style.style_id}
-        setStyleName={setStyleName}
-        setStyleId={setStyleId}
-        setPrice={setPrice}
-        setSale={setSale}
-        name={style.name}
-        styleId={style.style_id}
-        price={style.original_price}
-        sale={style.sale_price}
         selected={style['default?']}
+        price={style.original_price}
+        salePrice={style.sale_price}
+        name={style.name}
+        index={index}
+        styleId={style.style_id}
+        styleChanges={styleChanges}
+        setStyleChanges={setStyleChanges}
+        setPrice={setPrice}
+        setSalePrice={setSalePrice}
+        setStyleName={setStyleName}
+        setStyleIndex={setStyleIndex}
+        setStyleId={setStyleId}
       />
     ),
   );
-
-  // Set initial values for name, skus and price
-  useEffect(() => {
-    const defaultName = styles.length === 0 ? '' : styleName;
-    if (styleName === '' && defaultName !== '') { setStyleName(defaultName); }
-  });
-
-  useEffect(() => {
-    if (styles.length !== 0 && price === '') {
-      const defaultPrice = styles[0].sale_price
-        ? styles[0].sale_price
-        : styles[0].original_price;
-
-      setPrice(defaultPrice);
-    }
-  });
 
   return (
     <div>
@@ -118,13 +71,37 @@ const StyleSelector = (props) => {
 };
 
 StyleSelector.propTypes = {
-  productSelected: PropTypes.number,
-  setSkus: PropTypes.func,
+  styles: PropTypes.array,
+  styleChanges: PropTypes.bool,
+  styleName: PropTypes.string,
+  price: PropTypes.string,
+  salePrice: PropTypes.string,
+};
+
+StyleSelector.propTypes = {
+  setPrice: PropTypes.func,
+  setSalePrice: PropTypes.func,
+  setStyleName: PropTypes.func,
+  setStyleIndex: PropTypes.func,
+  setStyleId: PropTypes.func,
+  setStyleChanges: PropTypes.func,
 };
 
 StyleSelector.defaultProps = {
-  productSelected: -1,
-  setSkus: null,
+  styles: [],
+  styleChanges: false,
+  styleName: '',
+  price: '',
+  salePrice: '',
+};
+
+StyleSelector.defaultProps = {
+  setPrice: null,
+  setSalePrice: null,
+  setStyleName: null,
+  setStyleIndex: null,
+  setStyleId: null,
+  setStyleChanges: null,
 };
 
 export default StyleSelector;

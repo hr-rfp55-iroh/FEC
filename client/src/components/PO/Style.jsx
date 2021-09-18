@@ -1,25 +1,35 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const Style = (props) => {
+  const { selected, styleChanges } = props;
+  const { thumb, price, salePrice } = props;
+  const { name, index, styleId } = props;
   const {
-    thumb,
-    styleId,
-    name,
-    price,
-    sale,
-    index,
-    setStyleId,
-    setStyleName,
+    setStyleChanges,
     setPrice,
-    setSale,
-    setIndex,
-    selected,
+    setSalePrice,
+    setStyleName,
+    setStyleIndex,
+    setStyleId,
   } = props;
 
+  const [localChanges, setLocalChanges] = useState(false);
+
+  useEffect(() => {
+    setStyleChanges(!styleChanges);
+  }, [localChanges]);
+
   const checkmarkDiv = selected
-    ? (<div id="checkmark">✅</div>)
+    ? (
+      <div id="checkmark">
+        <img
+          src="./static/checkmark.svg"
+          alt="checkmark"
+        />
+      </div>
+    )
     : (<div id="checkmark" />);
 
   const handleClick = () => {
@@ -31,11 +41,12 @@ const Style = (props) => {
     sizeOption.dispatchEvent(event);
 
     // Set all appropriate info and trigger rerender
-    setIndex(index);
-    setSale(sale);
     setPrice(price);
+    setSalePrice(salePrice);
     setStyleName(name);
+    setStyleIndex(index);
     setStyleId(styleId);
+    setLocalChanges(!localChanges);
   };
 
   return (
@@ -64,33 +75,43 @@ const Style = (props) => {
 };
 
 Style.propTypes = {
-  selected: PropTypes.bool,
-  price: PropTypes.string,
-  sale: PropTypes.string,
   thumb: PropTypes.string,
+  selected: PropTypes.bool,
+  styleChanges: PropTypes.bool,
+  price: PropTypes.string,
+  salePrice: PropTypes.string,
   name: PropTypes.string,
   index: PropTypes.number,
   styleId: PropTypes.number,
+};
+
+Style.propTypes = {
+  setStyleChanges: PropTypes.func,
   setStyleId: PropTypes.func,
   setStyleName: PropTypes.func,
   setPrice: PropTypes.func,
-  setSale: PropTypes.func,
-  setIndex: PropTypes.func,
+  setSalePrice: PropTypes.func,
+  setStyleIndex: PropTypes.func,
 };
 
 Style.defaultProps = {
   selected: false,
+  styleChanges: false,
   price: '',
-  sale: '',
+  salePrice: '',
   thumb: '',
   name: '',
   index: 0,
   styleId: -1,
+};
+
+Style.defaultProps = {
+  setStyleChanges: null,
   setStyleId: null,
   setStyleName: null,
   setPrice: null,
-  setSale: null,
-  setIndex: null,
+  setSalePrice: null,
+  setStyleIndex: null,
 };
 
 export default Style;

@@ -19,6 +19,7 @@ class App extends React.Component {
       // questions: [],
       // cart: []
     };
+
     this.readProduct = this.readProduct.bind(this);
 
     // NAVBAR
@@ -34,6 +35,7 @@ class App extends React.Component {
 
   incrementProduct() {
     const { currentProduct } = this.state;
+
     this.setState({
       currentProduct: currentProduct + 1,
     });
@@ -41,8 +43,10 @@ class App extends React.Component {
 
   decrementProduct() {
     const { currentProduct } = this.state;
+    const add = currentProduct === 40344 ? 0 : 1;
+
     this.setState({
-      currentProduct: currentProduct - 1,
+      currentProduct: currentProduct - add,
     });
   }
 
@@ -81,9 +85,18 @@ class App extends React.Component {
     const { products, currentProduct, isProductsLoaded } = this.state;
     return (
       <div>
-        <h1>Hello World!</h1>
+        <div id="grocery">
+          <img src="./static/grocery-bags.png" alt="grocery" />
+        </div>
+        <h1>Project Catwalk</h1>
         <Navbar next={this.incrementProduct} previous={this.decrementProduct} />
-        <button type="submit" onClick={this.readProduct} onKeyPress={this.readProduct}>A button</button>
+        {/* <button
+          type="submit"
+          onClick={this.readProduct}
+          onKeyPress={this.readProduct}
+        >
+          A button
+        </button> */}
         <div id="PO">
           <Overview selected={currentProduct} />
         </div>

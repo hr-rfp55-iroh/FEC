@@ -10,6 +10,7 @@ const Navbar = (props) => {
         className="nav-button"
         type="button"
         onClick={previous}
+        onKeyPress={previous}
       >
         PREVIOUS
       </button>
@@ -17,6 +18,7 @@ const Navbar = (props) => {
         className="nav-button"
         type="button"
         onClick={next}
+        onKeyPress={next}
       >
         NEXT
       </button>
