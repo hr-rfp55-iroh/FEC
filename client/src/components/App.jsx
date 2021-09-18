@@ -100,14 +100,14 @@ class App extends React.Component {
         <div id="PO">
           <Overview selected={currentProduct} />
         </div>
-        <div id="RR">
-          <RatingReview selected={currentProduct} />
-        </div>
         {isProductsLoaded ? (
           <div id="QA">
             <Unit products={products} currentProduct={currentProduct} />
           </div>
         ) : ''}
+        <div id="RR">
+          <RatingReview selected={currentProduct} />
+        </div>
       </div>
     );
   }
