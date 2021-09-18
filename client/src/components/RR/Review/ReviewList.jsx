@@ -56,9 +56,9 @@ class ReviewList extends React.Component {
     this.setState({
       sort: e.target.value,
     });
-    const { handleSortSelection } = this.props;
+    const { updateRatings } = this.props;
     this.getReviews(e.target.value);
-    handleSortSelection();
+    updateRatings();
   }
 
   getReviews(sortOption) {
@@ -81,7 +81,9 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, count } = this.state;
-    const { filter, characteristics, selected } = this.props;
+    const {
+      filter, characteristics, selected, updateRatings,
+    } = this.props;
     let filteredReviews = reviews.slice();
     if (filter.length) {
       filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
@@ -130,21 +132,26 @@ class ReviewList extends React.Component {
             COLLAPSE REVIEWS
           </button>
           )}
-        <NewReviewModal characteristics={characteristics} selected={selected} />
+        <NewReviewModal
+          characteristics={characteristics}
+          selected={selected}
+          updateReviewList={this.updateReviewList}
+          updateRatings={updateRatings}
+        />
       </div>
     );
   }
 }
 
 ReviewList.propTypes = {
-  handleSortSelection: PropTypes.func,
+  updateRatings: PropTypes.func,
   selected: PropTypes.number,
   filter: PropTypes.arrayOf(PropTypes.number),
   characteristics: PropTypes.objectOf(PropTypes.any),
 };
 
 ReviewList.defaultProps = {
-  handleSortSelection: () => {},
+  updateRatings: () => {},
   selected: 40344,
   filter: [1, 2, 3, 4, 5],
   characteristics: {},
