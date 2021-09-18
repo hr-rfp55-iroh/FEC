@@ -29,14 +29,16 @@ const RatingBreakdown = (props) => {
   return (
     <div className="rating-breakdown">
       <div className="rating-header">Rating Breakdown</div>
-      {filter.length > 0
-        && (
-          <FilterLabel
-            filter={filter}
-            handleRatingFilterClick={handleRatingFilterClick}
-            handleRemoveFilterClick={handleRemoveFilterClick}
-          />
-        )}
+      <div className="rating-filter-label">
+        {filter.length > 0
+          && (
+            <FilterLabel
+              filter={filter}
+              handleRatingFilterClick={handleRatingFilterClick}
+              handleRemoveFilterClick={handleRemoveFilterClick}
+            />
+          )}
+      </div>
       {barInfo.map((info) => (
         <RatingBar
           info={info}

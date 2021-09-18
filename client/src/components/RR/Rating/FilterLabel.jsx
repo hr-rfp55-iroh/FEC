@@ -17,7 +17,7 @@ const FilterLabel = (props) => {
           &nbsp;star
         </button>
       ))}
-      <button type="button" className="filter-label" onClick={handleRemoveClick}>Remove all</button>
+      <button type="button" className="filter-label" onClick={handleRemoveClick}>x</button>
     </div>
 
   );

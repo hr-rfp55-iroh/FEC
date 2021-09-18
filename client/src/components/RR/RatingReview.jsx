@@ -139,8 +139,8 @@ class RatingReview extends React.Component {
       filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
     }
     return (
-      <div>
-        <h2>Ratings and Reviews</h2>
+      <div style={{ height: '100%' }}>
+        <h2>Ratings &#38; Reviews</h2>
         <div className="container">
           <RatingSummary
             metaData={metaData}
@@ -149,19 +149,21 @@ class RatingReview extends React.Component {
             handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
           <div className="review">
-            {filteredReviews.length}
-            &nbsp;
-            Reviews,
-            <label htmlFor="sort-options">
+            <div id="review-sort-bar">
+              {filteredReviews.length}
               &nbsp;
-              Sort on
-              &nbsp;
-              <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
-                <option value="relevant" selected>Relevant</option>
-                <option value="helpful">Helpful</option>
-                <option value="newest">Newest</option>
-              </select>
-            </label>
+              Reviews,
+              <label htmlFor="sort-options">
+                &nbsp;
+                Sort on
+                &nbsp;
+                <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
+                  <option value="relevant" selected>Relevant</option>
+                  <option value="helpful">Helpful</option>
+                  <option value="newest">Newest</option>
+                </select>
+              </label>
+            </div>
             <ReviewList
               filteredReviews={filteredReviews}
               characteristics={characteristics}
