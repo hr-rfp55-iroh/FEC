@@ -20,23 +20,34 @@ class RatingReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: [],
+      reviews: [],
       metaData: {},
+      filter: [],
+      sort: 'relevant',
     };
     this.handleRatingFilterClick = this.handleRatingFilterClick.bind(this);
     this.handleRemoveFilterClick = this.handleRemoveFilterClick.bind(this);
-    this.updateRatings = this.updateRatings.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
+    this.updateRatingReview = this.updateRatingReview.bind(this);
+    this.getReviews = this.getReviews.bind(this);
   }
 
   componentDidMount() {
-    this.getReviewMetadata();
+    this.updateRatingReview();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { selected } = this.props;
-    if (prevProps.selected !== selected) {
-      this.getReviewMetadata();
+    const { sort } = this.state;
+    if (prevProps.selected !== selected || prevState.sort !== sort) {
+      this.updateRatingReview();
     }
+  }
+
+  handleSortSelection(e) {
+    this.setState({
+      sort: e.target.value,
+    });
   }
 
   handleRatingFilterClick(star) {
@@ -59,9 +70,22 @@ class RatingReview extends React.Component {
     });
   }
 
-  getReviewMetadata() {
+  getReviews() {
     const { selected } = this.props;
-    // const selected = 40436;
+    const { sort } = this.state;
+    axios.get('/reviews/', { params: { product_id: selected, sort } })
+      .then((response) => {
+        this.setState({
+          reviews: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log('Error getting review data: ', err);
+      });
+  }
+
+  getReviewMetadata() {
+    const { selected, updateAvgRating } = this.props;
     axios.get('/reviews/meta/', { params: { product_id: selected } })
       .then((response) => {
         const { ratings, recommended, characteristics } = response.data;
@@ -91,36 +115,63 @@ class RatingReview extends React.Component {
           });
         }
       })
+      .then(() => {
+        const { metaData } = this.state;
+        const { avgRating } = metaData;
+        updateAvgRating(avgRating);
+      })
       .catch((err) => {
         console.log('Error getting review metadata: ', err);
       });
   }
 
-  updateRatings() {
+  updateRatingReview() {
     this.getReviewMetadata();
+    this.getReviews();
   }
 
   render() {
     const { selected } = this.props;
-    // const selected = 40436;
-    const { filter, metaData } = this.state;
+    const { reviews, metaData, filter } = this.state;
     const { characteristics } = metaData;
+    let filteredReviews = reviews.slice();
+    if (filter.length) {
+      filteredReviews = reviews.filter((review) => filter.indexOf(review.rating) !== -1);
+    }
     return (
-      <div>
-        <h2>Ratings and Reviews</h2>
+      <div style={{ height: '100%' }}>
+        <h2>Ratings &#38; Reviews</h2>
         <div className="container">
           <RatingSummary
             metaData={metaData}
+            filter={filter}
             handleRatingFilterClick={this.handleRatingFilterClick}
             handleRemoveFilterClick={this.handleRemoveFilterClick}
-            filter={filter}
           />
-          <ReviewList
-            selected={selected}
-            filter={filter}
-            updateRatings={this.updateRatings}
-            characteristics={characteristics}
-          />
+          <div className="review">
+            <div id="review-sort-bar">
+              {filteredReviews.length}
+              &nbsp;
+              Reviews,
+              <label htmlFor="sort-options">
+                &nbsp;
+                Sort on
+                &nbsp;
+                <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
+                  <option value="relevant" selected>Relevant</option>
+                  <option value="helpful">Helpful</option>
+                  <option value="newest">Newest</option>
+                </select>
+              </label>
+            </div>
+            <ReviewList
+              filteredReviews={filteredReviews}
+              characteristics={characteristics}
+              updateRatingReview={this.updateRatingReview}
+              getReviews={this.getReviews}
+              selected={selected}
+            />
+          </div>
         </div>
       </div>
     );
@@ -129,10 +180,12 @@ class RatingReview extends React.Component {
 
 RatingReview.propTypes = {
   selected: PropTypes.number,
+  updateAvgRating: PropTypes.func,
 };
 
 RatingReview.defaultProps = {
   selected: 40344,
+  updateAvgRating: () => {},
 };
 
 export default RatingReview;

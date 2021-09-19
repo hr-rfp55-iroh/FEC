@@ -10,94 +10,69 @@ const reformatDateString = (string) => {
   return `${months[index]} ${Number(string.slice(8, 10))}, ${string.slice(0, 4)}`;
 };
 
-class ReviewTile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleHelpfulClick = this.handleHelpfulClick.bind(this);
-    this.handleReportClick = this.handleReportClick.bind(this);
-    this.state = {
-
-    };
-  }
-
-  handleHelpfulClick(e) {
+const ReviewTile = (props) => {
+  const handleHelpfulClick = (e) => {
     const review_id = e.target.value;
-    const { updateReviewList } = this.props;
+    const { getReviews } = props;
     axios.put(`/reviews/${review_id}/helpful`)
       .then(() => {
-        updateReviewList();
+        getReviews();
       })
       .catch((err) => {
         console.log('Error sending PUT request to update helpfulness rating: ', err);
       });
-  }
+  };
 
-  handleReportClick(e) {
+  const handleReportClick = (e) => {
     const review_id = e.target.value;
-    const { updateReviewList } = this.props;
+    const { getReviews } = props;
     axios.put(`/reviews/${review_id}/report`)
       .then(() => {
-        updateReviewList();
+        getReviews();
       })
       .catch((err) => {
         console.log('Error sending PUT request to report review: ', err);
       });
-  }
+  };
 
-  render() {
-    const { review } = this.props;
-    const {
-      review_id,
-      rating,
-      reviewer_name,
-      date,
-      summary,
-      body,
-      photos,
-      recommend,
-      response,
-      helpfulness,
-    } = review;
-    const bodyInfo = {
-      reviewer_name,
-      body,
-      photos,
-      recommend,
-      response,
-    };
-    // const testRating = 2.125;
-    return (
-      <li className="review-tile">
-        <div>
-          <div className="review-header">
-            <Star rating={rating} />
-            {/* <Star rating={testRating} /> */}
-            <div>
-              {reformatDateString(date.slice(0, 10))}
-            </div>
+  const { review } = props;
+  const {
+    review_id, rating, reviewer_name, date, summary, body, photos, recommend, response, helpfulness,
+  } = review;
+  const bodyInfo = {
+    reviewer_name, body, photos, recommend, response,
+  };
+
+  return (
+    <li className="review-tile">
+      <div>
+        <div className="review-header">
+          <Star rating={rating} />
+          <div>
+            {reformatDateString(date.slice(0, 10))}
           </div>
-          <div className="review-summary">{summary}</div>
         </div>
-        <ReviewBody bodyInfo={bodyInfo} />
-        <div className="review-footer">
-          <div>Was this review helpful?</div>
-          &nbsp;
-          <button type="button" id="helpful-btn" value={review_id} onClick={this.handleHelpfulClick}>Yes</button>
-          <div className="review-footer-text">
-            &#40;
-            {helpfulness}
-            &#41;&nbsp;&nbsp;&#124;&nbsp;
-          </div>
-          <button type="button" id="report-btn" value={review_id} onClick={this.handleReportClick}>Report</button>
+        <div className="review-summary">{summary}</div>
+      </div>
+      <ReviewBody bodyInfo={bodyInfo} />
+      <div className="review-footer">
+        <div>Was this review helpful?</div>
+        &nbsp;
+        <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
+        <div className="review-footer-text">
+          &#40;
+          {helpfulness}
+          &#41;&nbsp;&nbsp;&#124;&nbsp;
         </div>
-      </li>
-    );
-  }
-}
+        <button type="button" className="report-btn" value={review_id} onClick={handleReportClick}>Report</button>
+      </div>
+    </li>
+  );
+};
 
 ReviewTile.propTypes = {
   review: PropTypes.objectOf(PropTypes.any),
-  updateReviewList: PropTypes.func,
+  getReviews: PropTypes.func,
 };
 
 ReviewTile.defaultProps = {
@@ -112,7 +87,7 @@ ReviewTile.defaultProps = {
     response: 'default',
     helpfulness: 0,
   },
-  updateReviewList: () => {},
+  getReviews: () => {},
 };
 
 export default ReviewTile;

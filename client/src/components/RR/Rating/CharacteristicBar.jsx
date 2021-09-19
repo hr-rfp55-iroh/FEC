@@ -28,11 +28,11 @@ const CharacteristicBar = (props) => {
 };
 
 CharacteristicBar.propTypes = {
-  info: PropTypes.arrayOf(PropTypes.any),
+  info: PropTypes.objectOf(PropTypes.any),
 };
 
 CharacteristicBar.defaultProps = {
-  info: [],
+  info: {},
 };
 
 export default CharacteristicBar;

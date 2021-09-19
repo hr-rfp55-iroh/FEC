@@ -41,24 +41,24 @@ class ReviewBody extends React.Component {
     return (
       <div>
         { showAll && (
-        <div id="review-body-text">
+        <div className="review-body-text">
           <p>
             {body}
             &nbsp;
-            <button type="button" id="collapse-body-btn" onClick={this.handleShowCollapseClick}>Show less</button>
+            <button type="button" className="collapse-body-btn" onClick={this.handleShowCollapseClick}>Show less</button>
           </p>
         </div>
         )}
         {!showAll && body.length > 250 && (
-          <div id="review-body-text">
+          <div className="review-body-text">
             <p>
               {body.slice(0, 250)}
               ...
-              <button type="button" id="show-more-btn" onClick={this.handleShowCollapseClick}>Show more</button>
+              <button type="button" className="show-more-btn" onClick={this.handleShowCollapseClick}>Show more</button>
             </p>
           </div>
         )}
-        {!showAll && body.length <= 250 && <p id="review-body-text">{body}</p>}
+        {!showAll && body.length <= 250 && <p className="review-body-text">{body}</p>}
         {photos.length > 0
         && (
         <div className="photo-list">
