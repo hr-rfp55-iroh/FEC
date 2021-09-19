@@ -39,27 +39,11 @@ h1 {
   background: white;
   border: 1px solid black;
   width: 200px;
-  margin: 5px 5px 5px 5px;
+  margin-top: 5px;
+  margin-left: 25px;
 }
 
 /* Product Overview Style */
-#mag {
-  cursor: pointer;
-  top: 0;
-  right: 0;
-  /* display: inline-block; */
-  z-index: 12;
-  position: absolute;
-  font-size: 20pt;
-  width: 3em;
-  height: 3em;
-  line-height: 3em;
-}
-
-#mag:hover {
-  font-size: 22pt;
-  opacity: .7;
-}
 
 #product-overview {
   width: 90%;
@@ -70,9 +54,8 @@ h1 {
 }
 
 #po-gallery-pnl {
-  cursor: zoom-in;
   position: relative;
-  display: block;
+  display: flex;
   overflow-y: hidden;
   overflow-x: hidden;
   width: 60%;
@@ -81,7 +64,7 @@ h1 {
 }
 
 #po-gallery-pnl img {
-  position: absolute;
+  position: relative;
   display: block;
   top: 25%;
   left: 25%;
@@ -91,15 +74,22 @@ h1 {
   transform: translate(-25%, -25%);
 }
 
-#po-gallery-pnl {
-  text-align: center;
-  background: seagreen;
-  color: honeydew;
-}
-
 #image-selector {
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
+}
+
+#main-image {
+  cursor: zoom-in;
+  transform: translate(25% 25%);
+  width: 90%;
+}
+
+#main-image:hover {
+  transform: scale(1.5);
 }
 
 .image-thumb, .image-thumb img {
@@ -107,8 +97,8 @@ h1 {
   cursor: pointer;
   z-index: 25;
   position: relative;
-  height: 90px;
-  width: 70px;
+  height: 110px;
+  width: 80px;
 }
 
 .image-thumb:hover {
@@ -120,22 +110,23 @@ h1 {
   text-align: left;
 }
 
+#po-info-pnl span {
+  padding: 5px;
+  font-size: 15pt;
+}
+
+.star-rating {
+  display: flex;
+  font-size: 10pt;
+  padding: 5px;
+  margin-right: 4px;
+}
+
 #star-rating-overview {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-#star-rating-overview a {
-  margin-left: 10px;
-  margin-bottom: 3px;
-  color: black;
-  font-size: 10pt;
-}
-
-#star-rating-overview a:hover {
-  color: skyblue;
 }
 
 #category {
@@ -276,7 +267,7 @@ h1 {
 }
 
 .modal, .overlay {
-  overflow-y: auto;
+  overflow-y: scroll;
   z-index: 99;
   top: 0;
   left: 0;
@@ -309,13 +300,13 @@ h1 {
 }
 
 .modal-content-img {
-  top: 50%;
+  top: 75%;
   left: 50%;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
   min-width: 60%;
   padding: 15px 15px;
-  min-height: auto;
+  min-height: 100%;
 }
 
 .submit-button {

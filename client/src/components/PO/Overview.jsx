@@ -94,8 +94,16 @@ const Overview = (props) => {
         />
       </div>
       <div id="po-info-pnl">
-        <div>{Number(rating).toFixed(1)}</div>
-        <Star rating={rating} />
+        <span>
+          {(() => {
+            const ret = Number(rating);
+            return ret === 0 ? '' : ret.toFixed(1);
+          })()}
+        </span>
+        <div className="star-rating">
+          <Star rating={rating} />
+          <a href="/">Read all reviews</a>
+        </div>
         <Information category={category} name={name} />
         <StyleSelector
           styles={styles}
