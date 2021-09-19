@@ -3,14 +3,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import StarRating from './StarRating';
+import Star from '../RR/Rating/Star';
 import Information from './Information';
 import StyleSelector from './StyleSelector';
 import AddToCart from './AddToCart';
 import ImageGallery from './ImageGallery';
 
 const Overview = (props) => {
-  const { selected } = props;
+  const { selected, rating } = props;
 
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
@@ -94,7 +94,8 @@ const Overview = (props) => {
         />
       </div>
       <div id="po-info-pnl">
-        <StarRating />
+        <div>{Number(rating).toFixed(1)}</div>
+        <Star rating={rating} />
         <Information category={category} name={name} />
         <StyleSelector
           styles={styles}
@@ -143,10 +144,12 @@ const Overview = (props) => {
 
 Overview.propTypes = {
   selected: PropTypes.number,
+  rating: PropTypes.number,
 };
 
 Overview.defaultProps = {
   selected: 1,
+  rating: 0,
 };
 
 export default Overview;
