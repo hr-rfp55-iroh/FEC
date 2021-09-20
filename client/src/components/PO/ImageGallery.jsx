@@ -50,18 +50,17 @@ const ImageGallery = (props) => {
                 {mappedPhotos}
               </div>
               <div
+                id="main-image"
                 role="button"
                 onClick={toggleModal}
                 tabIndex={0}
                 onKeyPress={toggleModal}
-                id="mag"
               >
-                🔎
+                <img
+                  alt="style"
+                  src={photos[photoIndex].url}
+                />
               </div>
-              <img
-                alt="style"
-                src={photos[photoIndex].url}
-              />
             </>
           );
         }
