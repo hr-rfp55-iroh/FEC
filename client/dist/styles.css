@@ -88,10 +88,6 @@ h1 {
   width: 90%;
 }
 
-#main-image:hover {
-  transform: scale(1.5);
-}
-
 .image-thumb, .image-thumb img {
   margin-bottom: 10px;
   cursor: pointer;
