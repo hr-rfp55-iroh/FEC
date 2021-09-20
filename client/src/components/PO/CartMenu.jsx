@@ -5,7 +5,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const CartMenu = (props) => {
-  // NOTE: Default sku is undefined. Default amount is empty string.
   const {
     sku,
     amount,
@@ -35,7 +34,7 @@ const CartMenu = (props) => {
       axios.post('/cart', item)
         .then(() => {})
         .catch((err) => {
-          console.error(err);
+          throw err;
         });
     }
 
