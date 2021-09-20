@@ -23,6 +23,13 @@ class Unit extends React.Component {
     this.getQuestions();
   }
 
+  componentDidUpdate(prevProps) {
+    const { currentProduct } = this.props;
+    if (prevProps.currentProduct !== currentProduct) {
+      this.getQuestions();
+    }
+  }
+
   handleDisplayUnitOnSearch(e) {
     const { searchResult, questionsList } = this.state;
     if (e.length >= 3) {
