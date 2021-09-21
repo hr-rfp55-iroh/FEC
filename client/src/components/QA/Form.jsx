@@ -19,14 +19,22 @@ const Form = (props) => { // TODO take in props as a param
     <div>
       {/* <h2>Questions & Answers</h2> */}
       <form>
-        <input
-          type="text"
-          value={search}
-          name="search"
-          placeholder="Have a question? Search for answers..."
-          className="searchBar"
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+        <div className="search-wrapper">
+          <img src="./static/magnifying.svg" height="20px" alt="right-arrow" />
+          <input
+            type="text"
+            value={search}
+            name="search"
+            placeholder="Have a question? Search for answers..."
+            className="search-input"
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+          {search.length !== 0 && (
+            <div onClick={console.log('Add click event handler to remove search input!')} role="presentation" className="remove-input-btn">
+              <img src="./static/close.svg" height="20px" alt="right-arrow" />
+            </div>
+          )}
+        </div>
       </form>
     </div>
   );

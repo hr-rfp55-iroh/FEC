@@ -13,12 +13,12 @@
   background-image: linear-gradient(#DFBC8D,rgb(248, 251, 247), rgb(187, 207, 182));
 }
 .banner img {
-  height: 120px;
+  height: 150px;
 }
 .banner h1 {
   margin-left: 20px;
   font-family: 'Fredoka One', cursive;
-  font-size: 3em;
+  font-size: 3.5em;
   font-style: italic;
   color:#B16124;
   text-shadow: 3px 3px 2px #D7B485;
@@ -78,19 +78,23 @@
   background: white;
   margin: 10px;
 }
-.search-bar {
+.search-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 25px;
   width: 50%;
   border-radius: 3px;
   border: 1px solid black;
   margin: 10px 0px;
 }
-.search-input,
-.searchBar {
+.search-input {
   width: 90%;
   font-size: 1.1em;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 2px 10px 2px 10px;
+  background-color: white;
 }
 .search-input {
   border: none;
@@ -98,10 +102,14 @@
 .search-bar {
   margin-left: 0;
 }
-.search-input:focus,
-.searchBar:focus {
+.search-input:focus {
   outline: none;
 }
+.remove-input-btn {
+  display: flex;
+  align-content: center;
+}
+
 /* GROCERY LIST THEME */
 
 /* #grocery {
@@ -350,7 +358,6 @@
 }
 
 /* .btn-modal {
-
   padding: 10px 10px;
   display: block;
   font-size: 20px;
@@ -426,11 +433,11 @@
 .report:hover {
   cursor: pointer;
 }
-.searchBar{
+/* .searchBar{
   width: 60%;
-  /* height: 50%; */
-  /* margin: 10px; */
-}
+  height: 50%;
+  margin: 10px;
+} */
 
 /*********** R&R Style ***********/
 #RR {
