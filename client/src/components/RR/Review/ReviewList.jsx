@@ -64,11 +64,11 @@ class ReviewList extends React.Component {
     return (
       <div className="review-list-container">
         {searchedReviews.length !== 0 && (
-        <div id="review-search-bar">
+        <div className="search-bar">
           <input
             type="text"
             value={value}
-            id="review-search-input"
+            className="search-input"
             placeholder="Search within reviews"
             onChange={this.handleSearchInputChange}
           />

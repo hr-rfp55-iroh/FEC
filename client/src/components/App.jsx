@@ -94,11 +94,12 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <div id="grocery">
+        {/* <div id="grocery">
           <img src="./static/grocery-bags.png" alt="grocery" />
-        </div>
+        </div> */}
         <div className="banner">
-          <h1>Project Catwalk</h1>
+          <img src="./static/white_lotus.png" alt="grocery" />
+          <h1>White Lotus</h1>
         </div>
         <div className="nav-bar">
           {currentProduct > 40344 ? (
@@ -119,10 +120,18 @@ class App extends React.Component {
         </div>
         {isProductsLoaded ? (
           <div id="QA">
+            <div id="QA-header">
+              <img src="./static/qa.svg" height="40px" alt="right-arrow" />
+              &nbsp;
+              <div>HAVE QUESTIONS?</div>
+            </div>
             <Unit products={products} currentProduct={currentProduct} />
           </div>
         ) : ''}
         <div id="RR">
+          <div id="RR-header">
+            <div>REVIEWS</div>
+          </div>
           <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
         </div>
       </div>

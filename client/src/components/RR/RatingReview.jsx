@@ -140,7 +140,6 @@ class RatingReview extends React.Component {
     }
     return (
       <div style={{ height: '100%' }}>
-        <h2>REVIEWS</h2>
         <div className="container">
           <RatingSummary
             metaData={metaData}
