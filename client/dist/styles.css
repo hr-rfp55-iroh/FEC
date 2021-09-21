@@ -49,6 +49,9 @@
   display: flex;
   align-items: center;
 }
+#PO .avg-star-rating {
+  margin-left: 10%;
+}
 #link-RR {
   color: black;
   margin: 0px 10px;
@@ -60,6 +63,7 @@
   background-color: black;
   color: white;
   font-weight: bold;
+  width: 100%;
 }
 #po-overview-pnl {
   font-style: italic;
@@ -67,13 +71,23 @@
   background-image: linear-gradient(rgb(187, 207, 182),rgb(248, 251, 247) 10%, rgb(248, 251, 247) 90%, rgb(187, 207, 182) 100%);
   width: 65%;
   text-align: center;
-  padding: 10px;
   height: fit-content;
+  margin-right: 5%;
+  padding: 1%;
 }
 #sns-bar {
-  width: 30%;
+  width: 20%;
+  margin-right: 5%;
   padding: 10px;
   align-items: center;
+}
+#sns-bar div {
+  text-align: center;
+}
+.cart-division {
+  padding: 2%;
+  display: flex;
+  justify-content: center;
 }
 #QA-header,
 #RR-header {
@@ -234,8 +248,8 @@
 }
 
 #po-info-pnl span {
-  padding: 5px;
-  font-size: 15pt;
+  padding: 2%;
+  font-size: 1.1em;
 }
 
 .star-rating {
@@ -284,16 +298,16 @@
 #po-gallery-pnl, #po-info-pnl {
   margin: 30px 0px;
   position: relative;
-  padding: 15px;
+  padding: 2% 0%;
 }
 
 .infos {
-  margin-left: 5px;
+  margin-left: 10%;
 }
 
 #style-selector {
   padding: 10px;
-  margin-bottom: 20px;
+  margin-left: 10%;
   display: flex;
   flex-wrap: wrap;
   max-height: 210px;
@@ -350,20 +364,22 @@
   text-align-last: center;
   font-size: 1em;
   border: 1px solid black;
-  margin: 5px;
+  margin: 2%;
+  padding: 3% 0%;
 }
 #cart-menu button {
-  font-size: 1.1em;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 5%;
 }
 #size-selection, #quantity-selection {
-  width: 150px;
-  height: 50px;
+  width: 40%;
+  height: 30%;
 }
 
-#cart-menu button {
-  width: 310px;
-  height: 50px;
-  margin-top: 5px;
+#cart-menu {
+  width: 84%;
+  height: 30%;
 }
 
 #sns-bar {
@@ -708,6 +724,10 @@
   overflow: hidden;
   overflow-x: scroll;
   overflow-y: scroll;
+  display: flex;
+}
+.review-form-content h2 {
+  width: 100%;
 }
 .review-form-close-btn {
   position: absolute;

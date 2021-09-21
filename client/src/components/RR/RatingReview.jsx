@@ -101,8 +101,8 @@ class RatingReview extends React.Component {
           });
         } else {
           const ratingCalc = ratingAverageAndCount(ratings);
-          const rec = Number(recommended.true);
-          const notRec = Number(recommended.false);
+          const rec = Number(recommended.true) || 0;
+          const notRec = Number(recommended.false) || 0;
           const recRate = Math.round((rec * 100) / (rec + notRec));
           this.setState({
             metaData: {
