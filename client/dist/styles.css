@@ -1,33 +1,173 @@
 /* General Layout */
-
+#app {
+  width: 90%;
+  margin: auto;
+  background-image: linear-gradient(white, rgb(248, 251, 247));
+  box-shadow: 0px 0px 10px rgb(208, 226, 203) ;
+  font-family: 'Poppins', sans-serif;
+}
+.banner {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  background-image: linear-gradient(#DFBC8D,rgb(248, 251, 247), rgb(187, 207, 182));
+}
+.banner img {
+  height: 150px;
+}
+.banner h1 {
+  margin-left: 20px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 3.5em;
+  font-style: italic;
+  color:#B16124;
+  text-shadow: 3px 3px 2px #D7B485;
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  margin: 2%;
+  margin-bottom: 0%;
+}
+#nav-left-arrow {
+  width: 30%;
+  text-align: right;
+}
+#nav-text {
+  width: 40%;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  font-style: italic;
+  text-shadow: 3px 3px 5px grey;
+}
+#nav-right-arrow {
+  width: 30%;
+  text-align: left;
+}
+.avg-star-rating {
+  display: flex;
+  align-items: center;
+}
+#PO .avg-star-rating {
+  margin-left: 10%;
+}
+#link-RR {
+  color: black;
+  margin: 0px 10px;
+}
+#po-info-pnl {
+  background: rgb(245, 250, 243);
+}
+#add-cart-btn {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+}
+#po-overview-pnl {
+  font-style: italic;
+  font-weight: 300;
+  background-image: linear-gradient(rgb(187, 207, 182),rgb(248, 251, 247) 10%, rgb(248, 251, 247) 90%, rgb(187, 207, 182) 100%);
+  width: 65%;
+  text-align: center;
+  height: fit-content;
+  margin-right: 5%;
+  padding: 1%;
+}
+#sns-bar {
+  width: 20%;
+  margin-right: 5%;
+  padding: 10px;
+  align-items: center;
+}
+#sns-bar div {
+  text-align: center;
+}
+.cart-division {
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+}
+#QA-header,
+#RR-header {
+  display: flex;
+  padding: 40px 20px 5px 20px;
+  font-weight: 600;
+  font-size: 1.5em;
+  border-bottom: 5px solid green;
+}
+.QA-container {
+  padding: 10px 20px;
+}
+.QA-list {
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 10px 0px;
+}
+.QA-list::-webkit-scrollbar {
+  display: none;
+}
+#RR button,
+#QA button {
+  padding: 10px;
+  border-radius: 0;
+  background: white;
+  margin: 10px;
+}
+.search-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  width: 50%;
+  border-radius: 3px;
+  border: 1px solid black;
+  margin: 10px 0px;
+}
+.search-input {
+  width: 90%;
+  font-size: 1.1em;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 2px 10px 2px 10px;
+  background-color: white;
+}
+.search-input {
+  border: none;
+}
+.search-bar {
+  margin-left: 0;
+}
+.search-input:focus {
+  outline: none;
+}
+.remove-input-btn {
+  display: flex;
+  align-content: center;
+}
 
 /* GROCERY LIST THEME */
-#app {
-  width: 100%;
-  margin: auto;
-}
 
-#grocery {
-  background: seagreen;
+/* #grocery {
   margin: auto;
   width: 1em;
-}
+} */
 
-#grocery img {
+/* #grocery img {
   position: absolute;
-  margin-top: 3em;
-  margin-left: 20em;
+  margin-top: 2%;
+  margin-left: 25%;
   height: 10em;
-}
+} */
 
-h1 {
+/* h1 {
   top: 0;
-  padding: 2em 2em;
-  width: 80%;
-  margin: auto;
-  color: honeydew;
-  background: seagreen;
-}
+  padding: 30px 30px;
+  font-size: 3em;
+  margin: 0px;
+} */
 
 #navbar-products {
   position: relative;
@@ -46,11 +186,12 @@ h1 {
 /* Product Overview Style */
 
 #product-overview {
-  width: 90%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 #po-gallery-pnl {
@@ -58,7 +199,7 @@ h1 {
   display: flex;
   overflow-y: hidden;
   overflow-x: hidden;
-  width: 60%;
+  width: 65%;
   height: 500px;
   line-height: 500px;
 }
@@ -107,8 +248,8 @@ h1 {
 }
 
 #po-info-pnl span {
-  padding: 5px;
-  font-size: 15pt;
+  padding: 2%;
+  font-size: 1.1em;
 }
 
 .star-rating {
@@ -137,7 +278,7 @@ h1 {
 
 #prices {
   display: flex;
-  font-size: 10pt;
+  font-size: 15px;
 }
 
 #original-price {
@@ -148,32 +289,38 @@ h1 {
   content: '$';
 }
 
-#po-overview-pnl {
+/* #po-overview-pnl {
   font-family: Georgia, 'Times New Roman', Times, serif;
   width: 60%;
   margin-left: 50px;
-}
+} */
 
-#po-gallery-pnl, #po-info-pnl, #po-overview-pnl {
-  margin: 10px 10px 10px 10px;
+#po-gallery-pnl, #po-info-pnl {
+  margin: 30px 0px;
   position: relative;
-  padding: 15px;
+  padding: 2% 0%;
 }
 
 .infos {
-  margin-left: 5px;
+  margin-left: 10%;
 }
 
 #style-selector {
-  margin-top: 15px;
-  margin-left: 5px;
+  padding: 10px;
+  margin-left: 10%;
   display: flex;
   flex-wrap: wrap;
+  max-height: 210px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
 }
-
+#style-selector::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 .style-thumb, .style-thumb img {
-  margin-right: 5px;
-  margin-bottom: 5px;
   height: 70px;
   width: 70px;
   border-radius: 50px;
@@ -181,12 +328,17 @@ h1 {
 }
 
 .style-thumb {
-  border-color: black;
-  border-width: 1px;
+  border-color: white;
+  border-width: 8px;
   border-style: solid;
   position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
+.style-thumb:hover {
+  box-shadow: 0px 0px 10px grey;
+}
 #checkmark {
   top: 0;
   right: 0;
@@ -208,22 +360,26 @@ h1 {
 
 #size-selection, #quantity-selection, #cart-menu button {
   cursor: pointer;
-  background-color: white;
   text-align: center;
-  font-size: 12pt;
+  text-align-last: center;
+  font-size: 1em;
   border: 1px solid black;
-  margin: 5px;
+  margin: 2%;
+  padding: 3% 0%;
 }
-
-#size-selection, #quantity-selection {
-  width: 150px;
-  height: 50px;
-}
-
 #cart-menu button {
-  width: 310px;
-  height: 50px;
-  margin-top: 5px;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 5%;
+}
+#size-selection, #quantity-selection {
+  width: 40%;
+  height: 30%;
+}
+
+#cart-menu {
+  width: 84%;
+  height: 30%;
 }
 
 #sns-bar {
@@ -242,8 +398,10 @@ h1 {
 
 /* Q&A Style */
 #QA {
-  border: 2px solid black;
-  padding: 20px;
+  /* border: 2px solid black; */
+  /* padding: 20px; */
+  width: 95%;
+  margin: auto;
 }
 #answer-images {
   width: 100px;
@@ -253,7 +411,6 @@ h1 {
 }
 
 /* .btn-modal {
-
   padding: 10px 10px;
   display: block;
   font-size: 20px;
@@ -273,7 +430,10 @@ h1 {
   width: 100vw;
   height: 100vh;
 }
-
+.overlay::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 .overlay {
   background: rgba(0, 0, 0, 0.8);
   z-index: 100;
@@ -329,21 +489,17 @@ h1 {
 .report:hover {
   cursor: pointer;
 }
-.searchBar{
+/* .searchBar{
   width: 60%;
   height: 50%;
   margin: 10px;
-}
+} */
 
 /*********** R&R Style ***********/
 #RR {
-  width: 90%;
+  width: 95%;
   margin: auto;
   height: 1000px;
-}
-#RR h2 {
-  font-weight: normal;
-  font-size: 1.2em;
 }
 .container {
   display: flex;
@@ -351,12 +507,16 @@ h1 {
   overflow-x: scroll;
 }
 .rating {
+  padding-top: 20px;;
+  padding-left: 20px;
   flex-grow: 1;
   width: 25%;
   min-width: 350px;
   height: 100%;
 }
 .review {
+  padding-top: 30px;;
+  padding-right: 20px;
   flex-grow: 2;
   width: 75%;
   min-width: 450px;
@@ -416,7 +576,7 @@ h1 {
 }
 .rating-count-label {
   width: 30%;
-  text-align: right;
+  text-align: center;
 }
 .filter-label {
   border-radius: 0%;
@@ -470,23 +630,6 @@ h1 {
 #sort-options {
   font-size: 0.9em;
 }
-#review-search-bar {
-  display: flex;
-  justify-content: space-between;
-  height: 25px;
-  width: 50%;
-  border-radius: 3px;
-  border: 1px solid black;
-  margin: 10px 0px;
-}
-#review-search-input {
-  width: 90%;
-  border: none;
-  font-size: 1.1em;
-}
-#review-search-input:focus {
-  outline: none;
-}
 #review-list {
   max-height: 600px;
   overflow: hidden;
@@ -495,6 +638,9 @@ h1 {
   padding: 0px;
   margin-top: 20px;
   margin-bottom: 0px;
+}
+#review-list::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 .review-tile {
   display: flex;
@@ -542,7 +688,7 @@ h1 {
   margin: 10px;
 }
 .review-footer-text {
-  font-size: 0.85em;
+  align-self: center;
 }
 .helpful-btn,
 .report-btn,
@@ -550,17 +696,20 @@ h1 {
 .collapse-body-btn {
   color: grey;
   border: none;
-  background-color: white;
   text-decoration: underline;
+  font-size: 1em;
 }
-#helpful-btn:hover,
-#report-btn:hover {
+.helpful-btn:hover,
+.report-btn:hover {
   color: black;
   cursor: pointer;
 }
 .review-list-btn {
   margin: 15px 10px 0px 0px;
   width: fit-content;
+}
+.review-list-btn:hover {
+  cursor: pointer;
 }
 .review-form-content {
   position: absolute;
@@ -575,6 +724,10 @@ h1 {
   overflow: hidden;
   overflow-x: scroll;
   overflow-y: scroll;
+  display: flex;
+}
+.review-form-content h2 {
+  width: 100%;
 }
 .review-form-close-btn {
   position: absolute;
@@ -644,3 +797,4 @@ h1 {
 .photo-upload {
   margin-bottom: 10px;
 }
+div::-webkit-scrollbar,

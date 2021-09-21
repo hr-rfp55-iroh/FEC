@@ -19,8 +19,6 @@ const RatingBar = (props) => {
       </div>
       <div className="rating-count-label">
         {ratingCount}
-        &nbsp;
-        ratings
       </div>
     </div>
 

@@ -101,8 +101,8 @@ class RatingReview extends React.Component {
           });
         } else {
           const ratingCalc = ratingAverageAndCount(ratings);
-          const rec = Number(recommended.true);
-          const notRec = Number(recommended.false);
+          const rec = Number(recommended.true) || 0;
+          const notRec = Number(recommended.false) || 0;
           const recRate = Math.round((rec * 100) / (rec + notRec));
           this.setState({
             metaData: {
@@ -140,7 +140,6 @@ class RatingReview extends React.Component {
     }
     return (
       <div style={{ height: '100%' }}>
-        <h2>Ratings &#38; Reviews</h2>
         <div className="container">
           <RatingSummary
             metaData={metaData}
@@ -149,6 +148,7 @@ class RatingReview extends React.Component {
             handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
           <div className="review">
+            {reviews.length !== 0 && (
             <div id="review-sort-bar">
               {filteredReviews.length}
               &nbsp;
@@ -164,6 +164,7 @@ class RatingReview extends React.Component {
                 </select>
               </label>
             </div>
+            )}
             <ReviewList
               filteredReviews={filteredReviews}
               characteristics={characteristics}

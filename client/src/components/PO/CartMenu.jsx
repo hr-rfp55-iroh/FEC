@@ -50,8 +50,9 @@ const CartMenu = (props) => {
             onClick={handleAddToCart}
             aria-label="Add to Cart"
             type="button"
+            id="add-cart-btn"
           >
-            +
+            Add to Bag
           </button>
         );
       })()}

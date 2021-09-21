@@ -96,7 +96,7 @@ const Overview = (props) => {
       <div id="po-info-pnl">
         <div className="star-rating">
           <Star rating={rating} />
-          <a href="#RR">Read all reviews</a>
+          <a href="#RR" id="link-RR">Read all reviews</a>
         </div>
         <Information category={category} name={name} />
         <StyleSelector
@@ -116,28 +116,28 @@ const Overview = (props) => {
       </div>
       <div id="po-overview-pnl">
         {description}
-        <div id="sns-bar">
-          <span>Share on Social Media</span>
-          <div>
-            <img
-              className="sns-icons"
-              src="./static/icon-twitter.svg"
-              height="50"
-              alt="twitter"
-            />
-            <img
-              className="sns-icons"
-              src="./static/icon-facebook.svg"
-              height="50"
-              alt="facebook"
-            />
-            <img
-              className="sns-icons"
-              src="./static/icon-pinterest.svg"
-              height="50"
-              alt="pinterest"
-            />
-          </div>
+      </div>
+      <div id="sns-bar">
+        <div>Share on Social Media</div>
+        <div>
+          <img
+            className="sns-icons"
+            src="./static/icon-twitter.svg"
+            height="25"
+            alt="twitter"
+          />
+          <img
+            className="sns-icons"
+            src="./static/icon-facebook.svg"
+            height="25"
+            alt="facebook"
+          />
+          <img
+            className="sns-icons"
+            src="./static/icon-pinterest.svg"
+            height="25"
+            alt="pinterest"
+          />
         </div>
       </div>
     </div>
