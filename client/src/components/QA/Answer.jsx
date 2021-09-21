@@ -7,10 +7,11 @@ const Answer = ({ answer }) => {
   const {
     answerer_name, body, date, helpfulness, photos, id,
   } = answer;
-  const photoAlias = photos;
   const [reported, setReported] = useState(false);
+  const [isLimitHelpful, setIsLimitHelpful] = useState(false);
   const [helpfulTrigger, setHelpfulTrigger] = useState(helpfulness);
   const ansObj = { answer_id: id };
+  const photoAlias = photos;
   const handleReportAnswer = (e) => {
     e.preventDefault();
     axios.put('/qa/answers/report', ansObj);
@@ -21,8 +22,20 @@ const Answer = ({ answer }) => {
     e.preventDefault();
     axios.put('/qa/answers/helpful', ansObj)
       .then(() => setHelpfulTrigger(helpfulTrigger + 1))
+      .then(() => setIsLimitHelpful(true))
       .catch(() => alert('Cannot mark answer as helpful'));
   };
+  const helpfulAnsBtn = (
+    <span
+      role="button"
+      onClick={(e) => handleHelpfulAnswer(e)}
+      onKeyPress={handleHelpfulAnswer}
+      className="pointer"
+      tabIndex={-1}
+    >
+      <strong>Yes</strong>
+    </span>
+  );
   return (
     <div>
       <span><strong>A:</strong></span>
@@ -36,15 +49,7 @@ const Answer = ({ answer }) => {
       {Moment(date).format('MMMM Do YYYY')}
       {' '}
       | Helpful?
-      <span
-        role="button"
-        onClick={(e) => handleHelpfulAnswer(e)}
-        onKeyPress={handleHelpfulAnswer}
-        className="pointer"
-        tabIndex={-1}
-      >
-        <strong>Yes</strong>
-      </span>
+      {!isLimitHelpful ? helpfulAnsBtn : 'Yes'}
       {' '}
       (
       {helpfulTrigger}
