@@ -9,6 +9,15 @@ const Question = ({
   question_body, question_date, asker_name, answers, question_id, question_helpfulness,
 }) => {
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
+  sortedAnswers.forEach((answer) => {
+    if (answer.answerer_name === 'Seller') {
+      const sellerIndex = sortedAnswers.indexOf(answer);
+      // add seller answer to the front of the array
+      sortedAnswers.unshift(answer);
+      // remove the seller answer from the previous position
+      sortedAnswers.splice(sellerIndex + 1, 1);
+    }
+  });
   const obj = { question_id };
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
