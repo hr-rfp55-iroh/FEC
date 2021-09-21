@@ -61,7 +61,7 @@ const AddToCart = (props) => {
           onChange={(e) => setDropdown(Number(e.target.value))}
           id="size-selection"
         >
-          <option value="-1">SELECT SIZE</option>
+          <option value="-1">Select Size</option>
           {mappedSizes}
         </select>
         <select

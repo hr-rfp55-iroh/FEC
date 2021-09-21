@@ -25,7 +25,7 @@ const Star = (props) => {
   const { rating } = props;
   const stars = ratingToStars(rating);
   return (
-    <div>
+    <div className="avg-star-rating">
       {stars.map((fileName) => {
         const path = `./static/${fileName}.svg`;
         return (<img src={path} height="14" alt="star system" />);
