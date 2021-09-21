@@ -5,7 +5,7 @@ import Moment from 'moment';
 
 const Answer = ({ answer }) => {
   const {
-    answerer_name, body, date, helpfulness, photos, id,
+    answerer_name, body, date, helpfulness, photos, id, getQuestions
   } = answer;
   const [reported, setReported] = useState(false);
   const [isLimitHelpful, setIsLimitHelpful] = useState(false);
@@ -23,7 +23,8 @@ const Answer = ({ answer }) => {
     axios.put('/qa/answers/helpful', ansObj)
       .then(() => setHelpfulTrigger(helpfulTrigger + 1))
       .then(() => setIsLimitHelpful(true))
-      .catch(() => alert('Cannot mark answer as helpful'));
+      .then(() => getQuestions())
+      .catch((err) => console.log(err));
   };
   const helpfulAnsBtn = (
     <span

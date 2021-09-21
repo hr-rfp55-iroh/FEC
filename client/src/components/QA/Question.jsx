@@ -6,7 +6,7 @@ import Answer from './Answer';
 import AnswerModal from './AnswerModal';
 
 const Question = ({
-  question_body, question_date, asker_name, answers, question_id, question_helpfulness,
+  question_body, question_date, asker_name, answers, question_id, question_helpfulness, getQuestions
 }) => {
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
@@ -86,7 +86,13 @@ const Question = ({
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {sortedAnswers.slice(0, count).map((answer) => <Answer answer={answer} key={answer.body} />)}
+      {sortedAnswers.slice(0, count).map((answer) => (
+        <Answer
+          answer={answer}
+          key={answer.body}
+          getQuestions={getQuestions}
+        />
+      ))}
       {sortedAnswers.length > count ? showMoreAnswersBtn : button}
       {/* {button} */}
       <hr />

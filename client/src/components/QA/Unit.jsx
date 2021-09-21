@@ -85,6 +85,7 @@ class Unit extends React.Component {
           asker_name={q.asker_name}
           question_helpfulness={q.question_helpfulness}
           answers={q.answers}
+          getQuestions={this.getQuestions}
         />
       )).slice(0, count);
     }
