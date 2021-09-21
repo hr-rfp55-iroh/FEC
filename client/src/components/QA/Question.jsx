@@ -8,6 +8,10 @@ import AnswerModal from './AnswerModal';
 const Question = ({
   question_body, question_date, asker_name, answers, question_id, question_helpfulness,
 }) => {
+  const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
+  const [count, setCount] = useState(2);
+  const [button, setButton] = useState('');
+  const obj = { question_id };
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
   sortedAnswers.forEach((answer) => {
     if (answer.answerer_name === 'Seller') {
@@ -18,10 +22,6 @@ const Question = ({
       sortedAnswers.splice(sellerIndex + 1, 1);
     }
   });
-  const obj = { question_id };
-  const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
-  const [count, setCount] = useState(2);
-  const [button, setButton] = useState('');
   const handleHelpfulQuestion = (e) => {
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
