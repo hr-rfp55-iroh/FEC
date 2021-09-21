@@ -140,7 +140,7 @@ class RatingReview extends React.Component {
     }
     return (
       <div style={{ height: '100%' }}>
-        <h2>Ratings &#38; Reviews</h2>
+        <h2>REVIEWS</h2>
         <div className="container">
           <RatingSummary
             metaData={metaData}
@@ -149,6 +149,7 @@ class RatingReview extends React.Component {
             handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
           <div className="review">
+            {reviews.length !== 0 && (
             <div id="review-sort-bar">
               {filteredReviews.length}
               &nbsp;
@@ -164,6 +165,7 @@ class RatingReview extends React.Component {
                 </select>
               </label>
             </div>
+            )}
             <ReviewList
               filteredReviews={filteredReviews}
               characteristics={characteristics}

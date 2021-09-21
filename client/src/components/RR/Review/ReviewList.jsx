@@ -63,6 +63,7 @@ class ReviewList extends React.Component {
     }
     return (
       <div className="review-list-container">
+        {searchedReviews.length !== 0 && (
         <div id="review-search-bar">
           <input
             type="text"
@@ -73,6 +74,7 @@ class ReviewList extends React.Component {
           />
           &#x1F50E;
         </div>
+        )}
         {value.length > 2
           && (
             <div className="review-search-note">{`${searchedReviews.length} review${searchedReviews.length > 1 ? 's' : ''} mentioning “${value}”`}</div>

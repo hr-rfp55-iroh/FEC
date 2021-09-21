@@ -1,32 +1,60 @@
 /* General Layout */
-
-
-/* GROCERY LIST THEME */
+/*
+Light color theme:
+white
+lighter: rgb(245, 250, 243)
+darker: rgb(225, 239, 221)
+*/
 #app {
-  width: 100%;
+  width: 90%;
   margin: auto;
+  background-image: linear-gradient(white, rgba(248, 251, 247), white);
+  box-shadow: 0px 0px 10px rgba(208, 226, 203, 1) ;
+  font-family: 'Poppins', sans-serif;
 }
+.banner {
+  background: rgb(187, 207, 182);
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  margin: 2%;
+}
+#nav-left-arrow {
+  width: 30%;
+  text-align: right;
+}
+#nav-text {
+  width: 40%;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  font-style: italic;
+  text-shadow: 3px 3px 5px grey;
+}
+#nav-right-arrow {
+  width: 30%;
+  text-align: left;
+}
+/* GROCERY LIST THEME */
 
 #grocery {
-  background: seagreen;
   margin: auto;
   width: 1em;
 }
 
 #grocery img {
   position: absolute;
-  margin-top: 3em;
-  margin-left: 20em;
+  margin-top: 2%;
+  margin-left: 25%;
   height: 10em;
 }
 
 h1 {
   top: 0;
-  padding: 2em 2em;
-  width: 80%;
-  margin: auto;
-  color: honeydew;
-  background: seagreen;
+  padding: 30px 30px;
+  font-size: 3em;
+  margin: 0px;
 }
 
 #navbar-products {
@@ -242,7 +270,7 @@ h1 {
 
 /* Q&A Style */
 #QA {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   padding: 20px;
 }
 #answer-images {
@@ -337,13 +365,14 @@ h1 {
 
 /*********** R&R Style ***********/
 #RR {
-  width: 90%;
+  width: 95%;
   margin: auto;
   height: 1000px;
 }
 #RR h2 {
-  font-weight: normal;
-  font-size: 1.2em;
+  font-weight: 600;
+  font-size: 2em;
+  border-bottom: 5px solid green;
 }
 .container {
   display: flex;
