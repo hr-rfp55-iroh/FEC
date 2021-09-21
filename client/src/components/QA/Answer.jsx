@@ -30,7 +30,7 @@ const Answer = ({ answer }) => {
       <br />
       by
       {' '}
-      {answerer_name}
+      {answerer_name.toLowerCase() === 'seller' ? <strong>{answerer_name}</strong> : answerer_name}
       ,
       {' '}
       {Moment(date).format('MMMM Do YYYY')}
