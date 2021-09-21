@@ -90,13 +90,15 @@ class Unit extends React.Component {
       )).slice(0, count);
     }
     return (
-      <div>
+      <div className="QA-container">
         <Form
           questionsList={questionsList}
           handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
           getResultFromSearch={this.getResultFromSearch}
         />
-        {list}
+        <div className="QA-list">
+          {list}
+        </div>
         <div>
           <br />
           <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />

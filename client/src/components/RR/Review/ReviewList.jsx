@@ -15,6 +15,7 @@ class ReviewList extends React.Component {
     this.handleAllReviewsClick = this.handleAllReviewsClick.bind(this);
     this.handleCollapseReviewsClick = this.handleCollapseReviewsClick.bind(this);
     this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+    this.handleRemoveSearchInput = this.handleRemoveSearchInput.bind(this);
   }
 
   handleMoreReviewsClick() {
@@ -49,6 +50,12 @@ class ReviewList extends React.Component {
     }
   }
 
+  handleRemoveSearchInput() {
+    this.setState({
+      value: '',
+    });
+  }
+
   render() {
     const { count, value } = this.state;
     const {
@@ -63,16 +70,23 @@ class ReviewList extends React.Component {
     }
     return (
       <div className="review-list-container">
-        <div id="review-search-bar">
+        {filteredReviews.length !== 0 && (
+        <div className="search-wrapper">
+          <img src="./static/magnifying.svg" height="20px" alt="right-arrow" />
           <input
             type="text"
             value={value}
-            id="review-search-input"
-            placeholder="Search within reviews"
+            className="search-input"
+            placeholder="Search within reviews..."
             onChange={this.handleSearchInputChange}
           />
-          &#x1F50E;
+          {value.length !== 0 && (
+            <div onClick={this.handleRemoveSearchInput} role="presentation" className="remove-input-btn">
+              <img src="./static/close.svg" height="20px" alt="right-arrow" />
+            </div>
+          )}
         </div>
+        )}
         {value.length > 2
           && (
             <div className="review-search-note">{`${searchedReviews.length} review${searchedReviews.length > 1 ? 's' : ''} mentioning “${value}”`}</div>
