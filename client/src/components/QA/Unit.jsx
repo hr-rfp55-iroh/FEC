@@ -100,11 +100,6 @@ class Unit extends React.Component {
           <br />
           <QuestionModal currentProduct={currentProduct} />
           <div>
-            {/* {display === 'loadMore' ?
-            (<button type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>
-            Load More Questions</button>)
-             :
-            <button type="submit" onClick={this.handleCollapse}>collapse</button>} */}
             {(() => {
               if (display === 'loadMore') {
                 return (<button type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
