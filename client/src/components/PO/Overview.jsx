@@ -94,15 +94,9 @@ const Overview = (props) => {
         />
       </div>
       <div id="po-info-pnl">
-        <span>
-          {(() => {
-            const ret = Number(rating);
-            return ret === 0 ? '' : ret.toFixed(1);
-          })()}
-        </span>
         <div className="star-rating">
           <Star rating={rating} />
-          <a href="/">Read all reviews</a>
+          <a href="#RR">Read all reviews</a>
         </div>
         <Information category={category} name={name} />
         <StyleSelector
@@ -119,8 +113,11 @@ const Overview = (props) => {
           setStyleChanges={setStyleChanges}
         />
         <AddToCart skus={skus} />
+      </div>
+      <div id="po-overview-pnl">
+        {description}
         <div id="sns-bar">
-          <span>Share on Socal Media</span>
+          <span>Share on Social Media</span>
           <div>
             <img
               className="sns-icons"
@@ -142,9 +139,6 @@ const Overview = (props) => {
             />
           </div>
         </div>
-      </div>
-      <div id="po-overview-pnl">
-        {description}
       </div>
     </div>
   );
