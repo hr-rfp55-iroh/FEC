@@ -44,7 +44,6 @@ const Form = (props) => { // TODO take in props as a param
 };
 Form.propTypes = {
   handleDisplayUnitOnSearch: PropTypes.func,
-  getResultFromSearch: PropTypes.func,
   questionsList: PropTypes.arrayOf(PropTypes.any),
   // answer: PropTypes.string,
   // questionsList: PropTypes.arrayOf(PropTypes.shape({
@@ -71,7 +70,6 @@ Form.defaultProps = {
   questionsList: [],
   // answer: '',
   handleDisplayUnitOnSearch: '',
-  getResultFromSearch: '',
 
 };
 export default Form;
