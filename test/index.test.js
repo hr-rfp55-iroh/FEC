@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import App from '../client/src/components/App.jsx';
+import App from '../client/src/components/App';
 
 afterEach(cleanup);
 
 it('App exists', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <App />, div
+    <App />, div,
   );
-  console.log('hello');
+  // console.log('hello');
   // expect(readProduct).toBeTruthy();
-})
+});

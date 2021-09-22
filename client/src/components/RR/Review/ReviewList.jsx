@@ -94,9 +94,12 @@ class ReviewList extends React.Component {
         {searchedReviews.length > 0
           && (
           <ul id="review-list">
-            {searchedReviews.slice(0, count).map((review) => (
-              <ReviewTile review={review} getReviews={getReviews} />
-            ))}
+            {searchedReviews.slice(0, count).map((review, index) => {
+              const reviewCount = index + 1;
+              return (
+                <ReviewTile review={review} getReviews={getReviews} key={`review-${reviewCount}`} />
+              );
+            })}
           </ul>
           )}
         {searchedReviews.length > 2

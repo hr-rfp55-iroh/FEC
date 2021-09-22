@@ -39,12 +39,16 @@ const RatingBreakdown = (props) => {
             />
           )}
       </div>
-      {barInfo.map((info) => (
-        <RatingBar
-          info={info}
-          handleRatingFilterClick={handleRatingFilterClick}
-        />
-      ))}
+      {barInfo.map((info, index) => {
+        const barCount = index + 1;
+        return (
+          <RatingBar
+            info={info}
+            handleRatingFilterClick={handleRatingFilterClick}
+            key={`bar-${barCount}`}
+          />
+        );
+      })}
     </div>
   );
 };
