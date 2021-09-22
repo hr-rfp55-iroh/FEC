@@ -44,7 +44,7 @@ const ReviewTile = (props) => {
   };
 
   return (
-    <li className="review-tile">
+    <li className="review-tile" data-testid="review-tile">
       <div>
         <div className="review-header">
           <Star rating={rating} />
@@ -52,7 +52,7 @@ const ReviewTile = (props) => {
             {reformatDateString(date.slice(0, 10))}
           </div>
         </div>
-        <div className="review-summary">{summary}</div>
+        <div className="review-summary" data-testid="review-summary">{summary}</div>
       </div>
       <ReviewBody bodyInfo={bodyInfo} />
       <div className="review-footer">

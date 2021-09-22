@@ -69,8 +69,8 @@ class App extends React.Component {
           products: response.data,
           isProductsLoaded: true,
         });
-        const { products } = this.state;
-        console.log(products);
+        // const { products } = this.state;
+        // console.log(products);
       })
       .catch((err) => {
         console.log(err);

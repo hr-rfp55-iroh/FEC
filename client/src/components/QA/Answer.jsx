@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Moment from 'moment';
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, getQuestions }) => {
   const {
-    answerer_name, body, date, helpfulness, photos, id,
+    answerer_name, body, date, helpfulness, photos, id
   } = answer;
-  const photoAlias = photos;
   const [reported, setReported] = useState(false);
+  const [isLimitHelpful, setIsLimitHelpful] = useState(false);
   const [helpfulTrigger, setHelpfulTrigger] = useState(helpfulness);
   const ansObj = { answer_id: id };
+  const photoAlias = photos;
   const handleReportAnswer = (e) => {
     e.preventDefault();
     axios.put('/qa/answers/report', ansObj);
@@ -21,8 +22,21 @@ const Answer = ({ answer }) => {
     e.preventDefault();
     axios.put('/qa/answers/helpful', ansObj)
       .then(() => setHelpfulTrigger(helpfulTrigger + 1))
-      .catch(() => alert('Cannot mark answer as helpful'));
+      .then(() => setIsLimitHelpful(true))
+      .then(() => getQuestions())
+      .catch((err) => console.log(err));
   };
+  const helpfulAnsBtn = (
+    <span
+      role="button"
+      onClick={(e) => handleHelpfulAnswer(e)}
+      onKeyPress={handleHelpfulAnswer}
+      className="pointer"
+      tabIndex={-1}
+    >
+      <strong>Yes</strong>
+    </span>
+  );
   return (
     <div>
       <span><strong>A:</strong></span>
@@ -30,21 +44,13 @@ const Answer = ({ answer }) => {
       <br />
       by
       {' '}
-      {answerer_name}
+      {answerer_name.toLowerCase() === 'seller' ? <strong>{answerer_name}</strong> : answerer_name}
       ,
       {' '}
       {Moment(date).format('MMMM Do YYYY')}
       {' '}
       | Helpful?
-      <span
-        role="button"
-        onClick={(e) => handleHelpfulAnswer(e)}
-        onKeyPress={handleHelpfulAnswer}
-        className="pointer"
-        tabIndex={-1}
-      >
-        <strong>Yes</strong>
-      </span>
+      {!isLimitHelpful ? helpfulAnsBtn : 'Yes'}
       {' '}
       (
       {helpfulTrigger}

@@ -16,15 +16,17 @@ const RatingSummary = (props) => {
       {avgRating && ratingCount && (
         <div>
           <div className="star">
-            <div id="rating-avg">{avgRating.toFixed(1)}</div>
-            <Star rating={avgRating} />
+            <div id="rating-avg" data-testid="rating-avg">{avgRating.toFixed(1)}</div>
+            {avgRating && (
+              <Star rating={avgRating} name="rating-summary" />
+            )}
             <div className="rating-count">
               &#40;
               {ratingCount}
               &#41;
             </div>
           </div>
-          <div className="rec-rate">
+          <div className="rec-rate" data-testid="rec-rate">
             {recRate}
             % of reviews recommend this product
           </div>

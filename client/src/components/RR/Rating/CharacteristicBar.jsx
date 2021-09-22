@@ -21,7 +21,7 @@ const CharacteristicBar = (props) => {
         <div className="bar-midpoint" />
       </div>
       <div className="charc-scale">
-        {charcsRange[charc].map((label) => (<div>{label}</div>))}
+        {charcsRange[charc].map((label) => (<div key={label}>{label}</div>))}
       </div>
     </div>
   );

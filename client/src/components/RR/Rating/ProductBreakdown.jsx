@@ -19,7 +19,12 @@ const ProductBreakdown = (props) => {
   return (
     <div className="product-breakdown">
       <div className="rating-header">Product Experience</div>
-      {barInfo.map((info) => (<CharacteristicBar info={info} />))}
+      {barInfo.map((info, index) => {
+        const charBarCount = index + 1;
+        return (
+          <CharacteristicBar info={info} key={`charBar-${charBarCount}`} />
+        );
+      })}
     </div>
   );
 };

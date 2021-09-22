@@ -10,10 +10,11 @@ class Unit extends React.Component {
     super(props);
     this.state = {
       count: 4, // on page load, display four questions
-      display: 'loadMore', // display default loadMore button
+      display: '', // display default loadMore button
+      questionsList: [],
+      currentList: [],
     };
     this.getQuestions = this.getQuestions.bind(this);
-    this.getResultFromSearch = this.getResultFromSearch.bind(this);
     this.handleDisplayMoreQ = this.handleDisplayMoreQ.bind(this);
     this.handleCollapse = this.handleCollapse.bind(this);
     this.handleDisplayUnitOnSearch = this.handleDisplayUnitOnSearch.bind(this);
@@ -30,10 +31,10 @@ class Unit extends React.Component {
     }
   }
 
-  handleDisplayUnitOnSearch(e) {
-    const { searchResult, questionsList } = this.state;
+  handleDisplayUnitOnSearch(e, result) {
+    const { questionsList } = this.state;
     if (e.length >= 3) {
-      this.setState({ display: 'none', currentList: searchResult });
+      this.setState({ display: 'none', currentList: result });
     } else {
       this.setState({ display: 'loadMore', currentList: questionsList });
     }
@@ -64,10 +65,6 @@ class Unit extends React.Component {
       .catch(() => this.setState({ isQuestionsLoaded: false }));
   }
 
-  getResultFromSearch(resultArr) {
-    this.setState({ searchResult: resultArr });
-  }
-
   render() {
     const {
       isQuestionsLoaded, questionsList, count, display, currentList,
@@ -85,6 +82,7 @@ class Unit extends React.Component {
           asker_name={q.asker_name}
           question_helpfulness={q.question_helpfulness}
           answers={q.answers}
+          getQuestions={this.getQuestions}
         />
       )).slice(0, count);
     }
@@ -93,25 +91,18 @@ class Unit extends React.Component {
         <Form
           questionsList={questionsList}
           handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
-          getResultFromSearch={this.getResultFromSearch}
         />
         <div className="QA-list">
           {list}
         </div>
         <div>
           <br />
-          <QuestionModal currentProduct={currentProduct} />
+          <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
           <div>
-            {/* {display === 'loadMore' ?
-            (<button type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>
-            Load More Questions</button>)
-             :
-            <button type="submit" onClick={this.handleCollapse}>collapse</button>} */}
             {(() => {
               if (display === 'loadMore') {
                 return (<button type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
-              }
-              if (display === 'collapse') {
+              } if (display === 'collapse') {
                 return (<button type="submit" onClick={this.handleCollapse}>collapse</button>);
               } if (display === 'none') {
                 return ('');
