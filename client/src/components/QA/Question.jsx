@@ -80,7 +80,7 @@ const Question = ({
       {helpfulnessAlias}
       ) |
       {' '}
-      <AnswerModal question_id={question_id} />
+      <AnswerModal question_id={question_id} getQuestions={getQuestions} />
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
