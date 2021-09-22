@@ -23,8 +23,7 @@ const Answer = ({ answer, getQuestions }) => {
     axios.put('/qa/answers/helpful', ansObj)
       .then(() => setHelpfulTrigger(helpfulTrigger + 1))
       .then(() => setIsLimitHelpful(true))
-      .then(() => getQuestions())
-      .catch((err) => console.log(err));
+      .then(() => getQuestions());
   };
   const helpfulAnsBtn = (
     <span
