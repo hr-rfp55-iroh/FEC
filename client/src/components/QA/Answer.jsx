@@ -94,6 +94,7 @@ Answer.propTypes = {
   body: PropTypes.string,
   date: PropTypes.string,
   helpfulness: PropTypes.number,
+  getQuestions: PropTypes.func,
 };
 
 Answer.defaultProps = {
@@ -102,6 +103,7 @@ Answer.defaultProps = {
   body: '',
   date: '',
   helpfulness: 0,
+  getQuestions: '',
 };
 
 export default Answer;
