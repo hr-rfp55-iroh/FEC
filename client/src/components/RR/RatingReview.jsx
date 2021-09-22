@@ -145,7 +145,6 @@ class RatingReview extends React.Component {
             metaData={metaData}
             filter={filter}
             handleRatingFilterClick={this.handleRatingFilterClick}
-            handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
           <div className="review">
             {reviews.length !== 0 && (
@@ -164,6 +163,20 @@ class RatingReview extends React.Component {
                 </select>
               </label>
             </div>
+            )}
+            {filter.length > 0 ? (
+              <div className="filter-bar">
+                <div className="filter-text">Filtered by: </div>
+                {filter.map((rating) => (
+                  <button type="button" className="filter-label" value={rating} onClick={(e) => (this.handleRatingFilterClick(Number(e.target.value)))}>
+                    {rating}
+                    &nbsp;star
+                  </button>
+                ))}
+                <button type="button" className="filter-label" onClick={this.handleRemoveFilterClick}>x</button>
+              </div>
+            ) : (
+              <div className="filter-bar" />
             )}
             <ReviewList
               filteredReviews={filteredReviews}
