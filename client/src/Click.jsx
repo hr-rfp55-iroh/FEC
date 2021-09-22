@@ -18,7 +18,7 @@ const Click = (props) => {
   };
 
   return (
-    <>
+    < >
       {React.Children.map(children,
         (child) => React.cloneElement(child,
           { onClick: handleClick }))}
