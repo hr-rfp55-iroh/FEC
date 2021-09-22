@@ -33,7 +33,6 @@ const Form = (props) => { // TODO take in props as a param
             onChange={(e) => handleSearch(e.target.value)}
           />
           {search.length !== 0 && (
-            // <div onClick={console.log('Add click event handler to remove search input!')} role="presentation" className="remove-input-btn">
             <div onClick={handleRemoveSearch} role="presentation" className="remove-input-btn">
               <img src="./static/close.svg" height="20px" alt="right-arrow" />
             </div>
