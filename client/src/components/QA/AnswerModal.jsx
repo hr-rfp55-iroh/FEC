@@ -42,7 +42,6 @@ const AnswerModal = (props) => {
     const obj = {
       body: text, email, name: nickname, question_id,
     };
-    console.log(obj, 'obj to submit');
     const customAlert = (sampleText) => { alert(sampleText); };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)

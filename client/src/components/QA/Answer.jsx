@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Moment from 'moment';
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, getQuestions }) => {
   const {
-    answerer_name, body, date, helpfulness, photos, id, getQuestions
+    answerer_name, body, date, helpfulness, photos, id
   } = answer;
   const [reported, setReported] = useState(false);
   const [isLimitHelpful, setIsLimitHelpful] = useState(false);

@@ -6,7 +6,7 @@ import Answer from './Answer';
 import AnswerModal from './AnswerModal';
 
 const Question = ({
-  question_body, question_date, asker_name, answers, question_id, question_helpfulness, getQuestions
+  question_body, question_date, asker_name, answers, question_id, question_helpfulness, getQuestions,
 }) => {
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
@@ -14,15 +14,13 @@ const Question = ({
   const [isLimitHelpful, setIsLimitHelpful] = useState(false);
   const obj = { question_id };
   const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
-  sortedAnswers.forEach((answer) => {
-    if (answer.answerer_name === 'Seller') {
-      const sellerIndex = sortedAnswers.indexOf(answer);
-      // add seller answer to the front of the array
-      sortedAnswers.unshift(answer);
-      // remove the seller answer from the previous position
-      sortedAnswers.splice(sellerIndex + 1, 1);
+  sortedAnswers.sort((a, b) => {
+    if (a.answerer_name === 'Seller' && b.answerer_name !== 'Seller') {
+      return -1;
     }
+    return 0;
   });
+
   const handleHelpfulQuestion = (e) => {
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
