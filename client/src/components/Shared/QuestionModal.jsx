@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const QuestionModal = (props) => {
-  const { currentProduct } = props;
+  const { currentProduct, getQuestions } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -43,6 +43,7 @@ const QuestionModal = (props) => {
       axios.post('qa/questions', obj)
         .then(toggleModal())
         .then(customAlert('Question Posted!'))
+        .then(() => getQuestions())
         .then(() => { setText(''); setEmail(''); setNickname(''); })
         .catch(() => customAlert('Question could not be posted.'));
     }

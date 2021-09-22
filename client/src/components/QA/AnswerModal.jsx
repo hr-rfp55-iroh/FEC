@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const AnswerModal = (props) => {
-  const { question_id } = props;
+  const { question_id, getQuestions } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -42,13 +42,13 @@ const AnswerModal = (props) => {
     const obj = {
       body: text, email, name: nickname, question_id,
     };
-    console.log(obj, 'obj to submit');
     const customAlert = (sampleText) => { alert(sampleText); };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)
         .then(toggleModal())
         .then(customAlert('Answer Posted!'))
         .then(() => { setText(''); setEmail(''); setNickname(''); })
+        .then(() => getQuestions())
         .catch(() => customAlert('Answer could not be posted.'));
     }
   };
