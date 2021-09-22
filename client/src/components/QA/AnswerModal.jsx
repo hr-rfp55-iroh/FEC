@@ -42,14 +42,12 @@ const AnswerModal = (props) => {
     const obj = {
       body: text, email, name: nickname, question_id,
     };
-    const customAlert = (sampleText) => { alert(sampleText); };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)
         .then(toggleModal())
-        .then(customAlert('Answer Posted!'))
         .then(() => { setText(''); setEmail(''); setNickname(''); })
-        .then(() => getQuestions())
-        .catch(() => customAlert('Answer could not be posted.'));
+        .then(() => getQuestions());
+      // .catch(() => );
     }
   };
 
