@@ -157,8 +157,8 @@ class RatingReview extends React.Component {
                 &nbsp;
                 Sort on
                 &nbsp;
-                <select name="sort-options" id="sort-options" onChange={this.handleSortSelection}>
-                  <option value="relevant" selected>Relevant</option>
+                <select name="sort-options" id="sort-options" onChange={this.handleSortSelection} defaultValue="relevant">
+                  <option value="relevant">Relevant</option>
                   <option value="helpful">Helpful</option>
                   <option value="newest">Newest</option>
                 </select>

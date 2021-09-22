@@ -95,7 +95,9 @@ const Overview = (props) => {
       </div>
       <div id="po-info-pnl">
         <div className="star-rating">
-          <Star rating={rating} />
+          {rating && (
+            <Star rating={rating} name="rating-overview" />
+          )}
           <a href="#RR" id="link-RR">Read all reviews</a>
         </div>
         <Information category={category} name={name} />
