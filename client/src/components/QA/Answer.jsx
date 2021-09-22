@@ -5,7 +5,7 @@ import Moment from 'moment';
 
 const Answer = ({ answer, getQuestions }) => {
   const {
-    answerer_name, body, date, helpfulness, photos, id
+    answerer_name, body, date, helpfulness, photos, id,
   } = answer;
   const [reported, setReported] = useState(false);
   const [isLimitHelpful, setIsLimitHelpful] = useState(false);
