@@ -68,8 +68,8 @@ class App extends React.Component {
           products: response.data,
           isProductsLoaded: true,
         });
-        const { products } = this.state;
-        console.log(products);
+        // const { products } = this.state;
+        // console.log(products);
       })
       .catch((err) => {
         console.log(err);
@@ -121,7 +121,7 @@ class App extends React.Component {
         {isProductsLoaded ? (
           <div id="QA">
             <div id="QA-header">
-              <img src="./static/qa.svg" height="40px" alt="right-arrow" />
+              <img src="./static/qa.svg" height="40px" alt="qa-icon" />
               &nbsp;
               <div>HAVE QUESTIONS?</div>
             </div>
