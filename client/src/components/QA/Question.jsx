@@ -6,17 +6,26 @@ import Answer from './Answer';
 import AnswerModal from './AnswerModal';
 
 const Question = ({
-  question_body, question_date, asker_name, answers, question_id, question_helpfulness,
+  question_body, question_date, asker_name, answers, question_id, question_helpfulness, getQuestions,
 }) => {
-  const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
-  const obj = { question_id };
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
   const [button, setButton] = useState('');
+  const [isLimitHelpful, setIsLimitHelpful] = useState(false);
+  const obj = { question_id };
+  const sortedAnswers = Object.values(answers).sort((a, b) => b.helpfulness - a.helpfulness);
+  sortedAnswers.sort((a, b) => {
+    if (a.answerer_name === 'Seller' && b.answerer_name !== 'Seller') {
+      return -1;
+    }
+    return 0;
+  });
+
   const handleHelpfulQuestion = (e) => {
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
       .then(() => setHelpfulness(helpfulnessAlias + 1))
+      .then(() => setIsLimitHelpful(true))
       .catch(() => alert('Cannot mark question as helpful'));
   };
   const handleCollapseAnswers = () => {
@@ -30,7 +39,17 @@ const Question = ({
     }
   };
   const showMoreAnswersBtn = (<button onClick={handleLoadMoreAnswers} type="submit">Load More Answers</button>);
-
+  const helpfulBtn = (
+    <span
+      role="button"
+      onKeyPress={handleHelpfulQuestion}
+      onClick={(e) => handleHelpfulQuestion(e)}
+      tabIndex={-1}
+      className="pointer"
+    >
+      <strong>Yes</strong>
+    </span>
+  );
   return (
 
     <div>
@@ -44,15 +63,16 @@ const Question = ({
       {Moment(question_date).format('MMMM Do YYYY')}
       {' '}
       | Helpful?
-      <span
-        role="button"
-        onKeyPress={handleHelpfulQuestion}
-        onClick={(e) => handleHelpfulQuestion(e)}
-        tabIndex={-1}
-        className="pointer"
-      >
-        <strong>Yes</strong>
-      </span>
+      {!isLimitHelpful ? helpfulBtn : 'Yes'}
+      {/* // <span */}
+      {/* //   role="button"
+        //   onKeyPress={handleHelpfulQuestion}
+        //   onClick={(e) => handleHelpfulQuestion(e)}
+        //   tabIndex={-1}
+        //   className="pointer"
+        // >
+        //   <strong>Yes</strong>
+        // </span> */}
       {' '}
       {/* {//TODO onclick toggleFn for "YES"} */}
       {' '}
@@ -60,11 +80,17 @@ const Question = ({
       {helpfulnessAlias}
       ) |
       {' '}
-      <span><AnswerModal question_id={question_id} /></span>
+      <AnswerModal question_id={question_id} getQuestions={getQuestions} />
       {' '}
       {/* //TODO onlick modal for "Add Answer" */}
       {' '}
-      {sortedAnswers.slice(0, count).map((answer) => <Answer answer={answer} key={answer.body} />)}
+      {sortedAnswers.slice(0, count).map((answer) => (
+        <Answer
+          answer={answer}
+          key={answer.body}
+          getQuestions={getQuestions}
+        />
+      ))}
       {sortedAnswers.length > count ? showMoreAnswersBtn : button}
       {/* {button} */}
       <hr />

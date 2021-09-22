@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Form = (props) => { // TODO take in props as a param
-  const { questionsList, handleDisplayUnitOnSearch, getResultFromSearch } = props;
+  const { questionsList, handleDisplayUnitOnSearch } = props;
   const questions = questionsList;
   const [search, setSearch] = useState('');
   const handleSearch = (e) => {
     setSearch(e);
-    handleDisplayUnitOnSearch(e);
     const result = questions.filter((question) => {
       const q = question.question_body.toLowerCase();
-      return q.includes(search);
+      return q.includes(e);
     });
-    getResultFromSearch(result);
+    handleDisplayUnitOnSearch(e, result);
+  };
+  const handleRemoveSearch = () => {
+    handleDisplayUnitOnSearch('');
+    setSearch('');
   };
 
   return (
@@ -30,7 +33,7 @@ const Form = (props) => { // TODO take in props as a param
             onChange={(e) => handleSearch(e.target.value)}
           />
           {search.length !== 0 && (
-            <div onClick={console.log('Add click event handler to remove search input!')} role="presentation" className="remove-input-btn">
+            <div onClick={handleRemoveSearch} role="presentation" className="remove-input-btn">
               <img src="./static/close.svg" height="20px" alt="right-arrow" />
             </div>
           )}
@@ -41,7 +44,6 @@ const Form = (props) => { // TODO take in props as a param
 };
 Form.propTypes = {
   handleDisplayUnitOnSearch: PropTypes.func,
-  getResultFromSearch: PropTypes.func,
   questionsList: PropTypes.arrayOf(PropTypes.any),
   // answer: PropTypes.string,
   // questionsList: PropTypes.arrayOf(PropTypes.shape({
@@ -68,7 +70,6 @@ Form.defaultProps = {
   questionsList: [],
   // answer: '',
   handleDisplayUnitOnSearch: '',
-  getResultFromSearch: '',
 
 };
 export default Form;
