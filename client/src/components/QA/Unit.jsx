@@ -10,7 +10,7 @@ class Unit extends React.Component {
     super(props);
     this.state = {
       count: 4, // on page load, display four questions
-      display: '', // display default loadMore button
+      display: 'loadMore', // display default loadMore button
       questionsList: [],
       currentList: [],
     };

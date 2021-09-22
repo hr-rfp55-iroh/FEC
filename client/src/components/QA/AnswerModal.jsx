@@ -112,10 +112,12 @@ const AnswerModal = (props) => {
 
 AnswerModal.propTypes = {
   question_id: PropTypes.number,
+  getQuestions: PropTypes.func,
 };
 
 AnswerModal.defaultProps = {
   question_id: 0,
+  getQuestions: '',
 };
 
 export default AnswerModal;
