@@ -92,10 +92,12 @@ const QuestionModal = (props) => {
 };
 
 QuestionModal.propTypes = {
+  getQuestions: PropTypes.func,
   currentProduct: PropTypes.number,
 };
 
 QuestionModal.defaultProps = {
+  getQuestions: '',
   currentProduct: 30344,
 };
 
