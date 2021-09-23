@@ -27,7 +27,8 @@ const Answer = ({ answer, getQuestions }) => {
   disableScroll(photoModal);
   const handleReportAnswer = (e) => {
     e.preventDefault();
-    axios.put('/qa/answers/report', ansObj);
+    axios.put('/qa/answers/report', ansObj)
+      .then(() => getQuestions());
   };
   const handleHelpfulAnswer = (e) => {
     e.preventDefault();
@@ -84,7 +85,6 @@ const Answer = ({ answer, getQuestions }) => {
               onKeyDown={handleReportAnswer}
               tabIndex={-1}
               onClick={(e) => { handleReportAnswer(e); setReported(true); }}
-              tabIndex={-1}
             >
               {' '}
               <strong>Report</strong>
