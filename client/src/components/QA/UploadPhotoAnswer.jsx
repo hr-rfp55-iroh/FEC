@@ -3,26 +3,37 @@ import React, { useState } from 'react';
 const UploadPhotoAnswer = (props) => {
   const [image, setImage] = useState([]);
   const [imageCount, setImageCount] = useState(0);
-  const [isAnyUploaded, setIsAnyUploaded] = useState(false);
+  const [isModalDisplayed, setModalDisplay] = useState(false);
+  const [source, setSource] = useState('');
   const handleFileUpload = (e) => {
     console.log(e);
     setImageCount(imageCount + e.target.files.length);
     if (e.target.files.length) {
-      // console.log('e.target.files:', e.target.files);
-      // console.log('Object.values(e.target.files)', Object.values(e.target.files));
+      // e.target.files.forEach((file, idx) => { console.log(file) });
+      // console.log(Object.values(e.target.files));
+      // const alias = Object.values(e.target.files);
+      // alias.forEach((file, idx) => { console.log(file.lastModified) });
       const newFiles = image.slice().concat(Object.values(e.target.files));
       setImage(newFiles);
-      // console.log('image', image);
     }
-    // if (e.target.files.length) {
-    //   setImage({
-    //     preview: URL.createObjectURL(e.target.files[0]),
-    //     raw: e.target.files[0],
-    //   });
   };
-  const handleCancelUpload = () => {
-    // set image count to 0
-    // set image.preview to []
+  const handleCancelUpload = (e) => {
+    e.preventDefault();
+    setImage([]);
+    setImageCount(0);
+  };
+  const handleModal = (e) => {
+    console.log('e.target.value', e.target.value);
+    // console.log('URL.createObjectURL(e.target.src)', URL.createObjectURL(e.target.src));
+    // console.log('image', image)
+    // console.log('image', image)
+    const alias = Object.values(e.target.files);
+    console.log(alias)
+    alias.forEach((file, idx) => { console.log(file.lastModified) });
+    setSource(e.target.src);
+  };
+  const toggleModal = () => {
+    setModalDisplay(!isModalDisplayed);
   };
 
   return (
@@ -31,15 +42,23 @@ const UploadPhotoAnswer = (props) => {
         Upload Your photos
         {' '}
         <br />
-        <input type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />
-        <div className="photo">
-
+        {imageCount < 5 && <input type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />}
+        <div className="photo-upload">
           {image.map((img) => (
-            // console.log(URL.createObjectURL(img));
-            <img src={URL.createObjectURL(img)} height="100" />
+            <>
+              {/* {console.log(img)}
+              {console.log(URL.createObjectURL(img))} */}
+              <img src={URL.createObjectURL(img)} value={URL.createObjectURL(img)} height="100" alt="" onClick={(e) => handleModal(e)} />
+            </>
           ))}
-          {/* {console.log(URL.createObjectURL(files))} */}
+          <button className="cancel-upload" type="button" onClick={(e) => handleCancelUpload(e)}>Clear Photos</button>
         </div>
+        {isModalDisplayed && (
+          <div className="overlay">
+            <img src={URL.createObjectURL(source)} alt="product-review" className="review-photo-modal" />
+            {/* <button className="review-form-close-btn" type="button" onClick={togglePhotoModal}>x</button> */}
+          </div>
+        )}
       </div>
     </div>
   );
