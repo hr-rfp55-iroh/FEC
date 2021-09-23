@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Star from '../Rating/Star';
-import ReviewBody from './ReviewBody';
+
+const Star = lazy (() => import('../Rating/Star'));
+const ReviewBody = lazy(() => import('./ReviewBody'));
 
 const reformatDateString = (string) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octover', 'November', 'December'];
@@ -55,14 +56,18 @@ const ReviewTile = (props) => {
     <li className="review-tile" data-testid="review-tile">
       <div>
         <div className="review-header">
-          <Star rating={rating} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Star rating={rating} />
+          </Suspense>
           <div>
             {reformatDateString(date.slice(0, 10))}
           </div>
         </div>
         <div className="review-summary" data-testid="review-summary">{summary}</div>
       </div>
-      <ReviewBody bodyInfo={bodyInfo} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ReviewBody bodyInfo={bodyInfo} />
+      </Suspense>
       <div className="review-footer">
         <div className="review-footer-text">Was this review helpful?</div>
         &nbsp;&nbsp;

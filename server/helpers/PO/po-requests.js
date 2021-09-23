@@ -38,9 +38,22 @@ const postToCart = (item, callback) => {
     });
 };
 
+const postToInteractions = (interaction, callback) => {
+  const url = `${apiUrl}/interactions`;
+
+  axios.post(url, interaction, options)
+    .then((response) => {
+      callback(null, response.data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
+
 module.exports = {
   getProductById,
   getStylesById,
   getCart,
   postToCart,
+  postToInteractions,
 };

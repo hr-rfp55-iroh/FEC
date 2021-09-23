@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import config from '../../../config';
 
-import Overview from './PO/Overview';
-// import Navbar from './PO/Navbar';
-import RatingReview from './RR/RatingReview';
-import Unit from './QA/Unit';
+const Overview = lazy(() => import('./PO/Overview'));
+const RatingReview = lazy(() => import('./RR/RatingReview'));
+const Unit = lazy(() => import('./QA/Unit'));
 import Click from '../Click';
 
 class App extends React.Component {
@@ -95,9 +94,9 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <Click module="navigation">
+        <Click widget="navigation">
           <div className="banner">
-            <img src="./static/white_lotus.png" alt="grocery" />
+            <img src="./static/white_lotus.webp" alt="lotus" />
             <h1>White Lotus</h1>
           </div>
           <div className="nav-bar">
@@ -115,31 +114,37 @@ class App extends React.Component {
           </div>
         </Click>
 
-        <Click module="product overview">
+        <Click widget="product overview">
           <div id="PO">
-            <Overview selected={currentProduct} rating={rating} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Overview selected={currentProduct} rating={rating} />
+           </Suspense>
           </div>
         </Click>
 
         {isProductsLoaded ? (
-          <Click module="questions and answers">
+          <Click widget="questions and answers">
             <div id="QA">
               <div id="QA-header">
                 <img src="./static/qa.svg" height="40px" alt="right-arrow" />
                 &nbsp;
                 <div>HAVE QUESTIONS?</div>
               </div>
-              <Unit currentProduct={currentProduct} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Unit currentProduct={currentProduct} />
+              </Suspense>
             </div>
           </Click>
         ) : ''}
 
-        <Click module="ratings and reviews">
+        <Click widget="ratings and reviews">
           <div id="RR">
             <div id="RR-header">
               <div>REVIEWS</div>
             </div>
-            <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
+            </Suspense>
           </div>
         </Click>
       </div>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import Star from './Star';
-import RatingBreakdown from './RatingBreakdown';
-import ProductBreakdown from './ProductBreakdown';
+
+const Star = lazy(() => import('./Star'));
+const RatingBreakdown = lazy(() => import('./RatingBreakdown'));
+const ProductBreakdown = lazy(() => import('./ProductBreakdown'));
 
 const RatingSummary = (props) => {
   const { metaData, handleRatingFilterClick } = props;

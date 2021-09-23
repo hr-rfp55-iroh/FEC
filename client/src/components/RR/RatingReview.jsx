@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import ReviewList from './Review/ReviewList';
-import RatingSummary from './Rating/RatingSummary';
-import NewReviewModal from './Review/NewReviewModal';
+const ReviewList = lazy(() => import('./Review/ReviewList'));
+const RatingSummary = lazy(() => import('./Rating/RatingSummary'));
+const NewReviewModal = lazy(() => import('./Review/NewReviewModal'));
 
 const ratingAverageAndCount = (ratingObj) => {
   let sum = 0;
@@ -142,11 +142,13 @@ class RatingReview extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <div className="container">
-          <RatingSummary
-            metaData={metaData}
-            filter={filter}
-            handleRatingFilterClick={this.handleRatingFilterClick}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <RatingSummary
+              metaData={metaData}
+              filter={filter}
+              handleRatingFilterClick={this.handleRatingFilterClick}
+            />
+          </Suspense>
           <div className="review">
             <div id="review-header-container">
               {reviews.length !== 0 && (
@@ -166,11 +168,13 @@ class RatingReview extends React.Component {
                 </label>
               </div>
               )}
-              <NewReviewModal
-                selected={selected}
-                characteristics={characteristics}
-                updateRatingReview={this.updateRatingReview}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <NewReviewModal
+                  selected={selected}
+                  characteristics={characteristics}
+                  updateRatingReview={this.updateRatingReview}
+                />
+              </Suspense>
             </div>
             {filter.length > 0 ? (
               <div className="filter-bar">
@@ -186,10 +190,12 @@ class RatingReview extends React.Component {
             ) : (
               <div className="filter-bar" />
             )}
-            <ReviewList
-              filteredReviews={filteredReviews}
-              getReviews={this.getReviews}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <ReviewList
+                filteredReviews={filteredReviews}
+                getReviews={this.getReviews}
+              />
+            </Suspense>
           </div>
         </div>
       </div>
