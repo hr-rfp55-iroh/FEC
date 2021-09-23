@@ -60,38 +60,31 @@ const AnswerModal = (props) => {
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
-
               <h2>
                 Your Answer:
               </h2>
               <div>What is your Answer? (required)</div>
+              <br />
               <form>
                 <div>
                   <span className="submit-answer-error">{errors.answer}</span>
                 </div>
-                <br />
-
-                <textarea name="submitAnswer" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter yo answer here" required />
-                <br />
+                <textarea id="answer-text" name="submitAnswer" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter yo answer here" required />
                 <div> What is your nickname? (required) </div>
                 <div>
                   <span className="submit-answer-error">{errors.nickname}</span>
                 </div>
                 <br />
-                <span>For privacy reasons, do not use your full name or email address</span>
                 <textarea name="submitAnswer" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Example: jack543!" required />
+                <p className="form-note">For privacy reasons, do not use your full name or email address</p>
                 <div>What is your email? (required)</div>
                 <div>
                   <span className="submit-answer-error">{errors.email}</span>
                 </div>
                 <br />
                 <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
-                <br />
-                <span>For authentication reasons, you will not be emailed</span>
-                <br />
-                <br />
+                <p className="form-note">For authentication reasons, you will not be emailed</p>
                 <div> Upload your photos:</div>
-                <br />
                 <br />
                 <input type="file" />
                 <input type="file" />
@@ -99,10 +92,12 @@ const AnswerModal = (props) => {
                 <input type="file" />
                 <input type="file" />
               </form>
+              <div role="presentation" id="answer-form-close-btn" onClick={toggleModal}>
+                <img src="./static/close.svg" height="20px" alt="right-arrow" />
+              </div>
             </div>
-
-            <button className="submit-button" type="submit" onClick={handleValidationAndSubmit}>Submit Form</button>
-            <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button>
+            <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
+            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}

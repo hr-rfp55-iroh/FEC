@@ -95,8 +95,7 @@ class Unit extends React.Component {
         <div className="QA-list">
           {list}
         </div>
-        <div>
-          <br />
+        <div className="QA-btn-list">
           <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
           <div>
             {(() => {

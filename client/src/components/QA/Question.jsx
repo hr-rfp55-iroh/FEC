@@ -68,7 +68,7 @@ const Question = ({
           &nbsp;
           |&nbsp;Helpful?
           &nbsp;
-          {!isLimitHelpful ? helpfulBtn : 'Yes'}
+          {!isLimitHelpful ? helpfulBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
           {/* // <span */}
           {/* //   role="button"
             //   onKeyPress={handleHelpfulQuestion}
@@ -89,18 +89,19 @@ const Question = ({
           {/* //TODO onlick modal for "Add Answer" */}
         </div>
       </div>
-      <div className="QA-answer-list">
-        {sortedAnswers.slice(0, count).map((answer) => (
-          <Answer
-            answer={answer}
-            key={answer.body}
-            getQuestions={getQuestions}
-          />
-        ))}
-        {sortedAnswers.length > count ? showMoreAnswersBtn : button}
-        {/* {button} */}
-        <br />
-      </div>
+      {sortedAnswers.length !== 0 && (
+        <div className="QA-answer-list">
+          {sortedAnswers.slice(0, count).map((answer) => (
+            <Answer
+              answer={answer}
+              key={answer.body}
+              getQuestions={getQuestions}
+            />
+          ))}
+          {sortedAnswers.length > count ? showMoreAnswersBtn : button}
+          {/* {button} */}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Star from '../Rating/Star';
@@ -11,16 +11,23 @@ const reformatDateString = (string) => {
 };
 
 const ReviewTile = (props) => {
+  const [helpful, setHelpful] = useState(false);
+
   const handleHelpfulClick = (e) => {
-    const review_id = e.target.value;
-    const { getReviews } = props;
-    axios.put(`/reviews/${review_id}/helpful`)
-      .then(() => {
-        getReviews();
-      })
-      .catch((err) => {
-        console.log('Error sending PUT request to update helpfulness rating: ', err);
-      });
+    if (!helpful) {
+      const review_id = e.target.value;
+      const { getReviews } = props;
+      axios.put(`/reviews/${review_id}/helpful`)
+        .then(() => {
+          getReviews();
+        })
+        .then(() => {
+          setHelpful(!helpful);
+        })
+        .catch((err) => {
+          console.log('Error sending PUT request to update helpfulness rating: ', err);
+        });
+    }
   };
 
   const handleReportClick = (e) => {
@@ -29,6 +36,7 @@ const ReviewTile = (props) => {
     axios.put(`/reviews/${review_id}/report`)
       .then(() => {
         getReviews();
+        setHelpful(!helpful);
       })
       .catch((err) => {
         console.log('Error sending PUT request to report review: ', err);
@@ -58,7 +66,11 @@ const ReviewTile = (props) => {
       <div className="review-footer">
         <div className="review-footer-text">Was this review helpful?</div>
         &nbsp;&nbsp;
-        <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
+        {!helpful ? (
+          <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
+        ) : (
+          <div style={{ fontWeight: 'bold' }}>Yes</div>
+        )}
         &nbsp;
         <div className="review-footer-text">
           &#40;

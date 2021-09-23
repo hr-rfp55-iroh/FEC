@@ -51,12 +51,11 @@ const QuestionModal = (props) => {
 
   return (
     <div>
-      <button className="button-modal" onClick={toggleModal} type="submit">Submit A Question</button>
+      <button id="submit-question-btn" className="button-modal" onClick={toggleModal} type="submit">SUBMIT A QUESTION</button>
       {modal && (
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
-
               <h2>
                 Your Question:
               </h2>
@@ -66,9 +65,7 @@ const QuestionModal = (props) => {
                   <span className="submit-question-error">{errors.question}</span>
                 </div>
                 <br />
-
-                <textarea name="submitQuestion" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Why did you like the product or not?" required />
-                <br />
+                <textarea id="question-text" name="submitQuestion" maxLength="1000" value={text} onChange={(e) => setText(e.target.value)} placeholder="Why did you like the product or not?" required />
                 <div> What is your nickname? (required) </div>
                 <div>
                   <span className="submit-question-error">{errors.nickname}</span>
@@ -81,12 +78,13 @@ const QuestionModal = (props) => {
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
-
               </form>
+              <div role="presentation" id="question-form-close-btn" onClick={toggleModal}>
+                <img src="./static/close.svg" height="20px" alt="right-arrow" />
+              </div>
             </div>
-
-            <button className="submit-button" type="submit" onClick={handleValidationAndSubmit}>Submit Form</button>
-            <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button>
+            <button id="question-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
+            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}

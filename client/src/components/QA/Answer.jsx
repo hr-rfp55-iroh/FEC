@@ -53,7 +53,7 @@ const Answer = ({ answer, getQuestions }) => {
         &nbsp;
         | Helpful?
         &nbsp;
-        {!isLimitHelpful ? helpfulAnsBtn : 'Yes'}
+        {!isLimitHelpful ? helpfulAnsBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
         &nbsp;
         (
         {helpfulTrigger}
@@ -74,7 +74,7 @@ const Answer = ({ answer, getQuestions }) => {
                 Report
               </span>
             )
-            : <span><strong> Reported</strong></span>
+            : (<span style={{ fontWeight: 'bold' }}>Reported</span>)
         }
         {' '}
         {/* //TODO find a way to resize image to improve efficiency */}

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewTile from './ReviewTile';
-import NewReviewModal from './NewReviewModal';
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class ReviewList extends React.Component {
   render() {
     const { count, value } = this.state;
     const {
-      filteredReviews, characteristics, updateRatingReview, getReviews, selected,
+      filteredReviews, getReviews,
     } = this.props;
     let searchedReviews = filteredReviews.slice();
     if (value.length > 2) {
@@ -104,7 +103,7 @@ class ReviewList extends React.Component {
         {searchedReviews.length > 2
           && count < searchedReviews.length
           && (
-            <div>
+            <div className="review-btn-list">
               <button type="button" className="review-list-btn" onClick={this.handleMoreReviewsClick}>
                 MORE REVIEWS
               </button>
@@ -116,33 +115,24 @@ class ReviewList extends React.Component {
         {searchedReviews.length > 2
           && count >= searchedReviews.length
           && (
-          <button type="button" className="review-list-btn" onClick={this.handleCollapseReviewsClick}>
-            COLLAPSE REVIEWS
-          </button>
+            <div className="review-btn-list">
+              <button type="button" className="review-list-btn" onClick={this.handleCollapseReviewsClick}>
+                COLLAPSE REVIEWS
+              </button>
+            </div>
           )}
-        <NewReviewModal
-          selected={selected}
-          characteristics={characteristics}
-          updateRatingReview={updateRatingReview}
-        />
       </div>
     );
   }
 }
 
 ReviewList.propTypes = {
-  selected: PropTypes.number,
   filteredReviews: PropTypes.arrayOf(PropTypes.any),
-  characteristics: PropTypes.objectOf(PropTypes.any),
-  updateRatingReview: PropTypes.func,
   getReviews: PropTypes.func,
 };
 
 ReviewList.defaultProps = {
-  selected: 0,
   filteredReviews: [],
-  characteristics: {},
-  updateRatingReview: () => {},
   getReviews: () => {},
 };
 
