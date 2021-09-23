@@ -89,6 +89,13 @@
   display: flex;
   justify-content: center;
 }
+button,
+button {
+  padding: 10px;
+  border-radius: 0;
+  background: white;
+  margin: 10px;
+}
 #QA-header,
 #RR-header {
   display: flex;
@@ -109,12 +116,25 @@
 .QA-list::-webkit-scrollbar {
   display: none;
 }
-#RR button,
-#QA button {
-  padding: 10px;
-  border-radius: 0;
-  background: white;
-  margin: 10px;
+.QA-question {
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 5px 2%;
+}
+.QA-answer-list {
+  padding: 2%;
+}
+.QA-answer {
+  margin-bottom: 1em;
+}
+.submit-answer-btn {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.submit-answer-btn:hover{
+  cursor: pointer;
+  color:steelblue;
 }
 .search-wrapper {
   display: flex;
@@ -123,8 +143,8 @@
   width: 50%;
   border-radius: 3px;
   border: 1px solid black;
-  margin: 10px 0px;
-  padding: 5px 5px;
+  margin: 1%;
+  padding: 1%;
 }
 #RR .search-wrapper {
   margin-top: 0px;
@@ -418,9 +438,6 @@
   display: block;
   font-size: 20px;
 } */
-.pointer:hover{
-  cursor: pointer;
-}
 
 .modal, .overlay {
   overflow-y: scroll;
@@ -486,12 +503,12 @@
 .submit-answer-error {
   color: red
 }
-.report {
+/* .report {
   color: rgb(0, 4, 255)
 }
 .report:hover {
   cursor: pointer;
-}
+} */
 /* .searchBar{
   width: 60%;
   height: 50%;
@@ -649,19 +666,25 @@
   background-color: whitesmoke;
   box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
 }
-#RR .clear-filter {
+#RR .clear-filter,
+#QA .load-answer,
+#RR .show-more-btn,
+#RR .collapse-body-btn  {
   margin-left: 5px;
   color: steelblue;
   border: none;
   background: transparent;
   font-size: 1em;
+  padding: 0;
+  margin: 0;
 }
 #RR .clear-filter:hover {
   margin-left: 5px;
   color: rgb(209, 85, 3);
   text-decoration: underline;
 }
-#review-list {
+#review-list,
+.QA-list {
   max-height: 600px;
   overflow: hidden;
   overflow-y: scroll;
@@ -673,26 +696,37 @@
 #review-list::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
-.review-tile {
+.review-tile,
+.QA-tile {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5%;
+  margin-bottom: 2em;
   background-color: white;
   box-shadow: 0px 0px 5px grey;
   padding: 3%;
   padding-bottom: 0%;
+  border-radius: 5px;
+}
+.QA-tile {
+  padding: 2%;
 }
 .review-header,
-.review-footer {
+.review-footer,
+.QA-question-header,
+.QA-answer-footer {
   display: flex;
   color: grey;
   margin: 5px 0px;
+}
+.review-footer {
+  margin-bottom: 3%;
 }
 .review-header {
   justify-content: space-between;
   font-size: 0.85em;
 }
-.review-summary {
+.review-summary,
+.QA-question-body{
   font-size: 1.1em;
   font-weight: bold;
   margin: 5px 0px;
@@ -724,17 +758,20 @@
   align-self: center;
 }
 .helpful-btn,
-.report-btn,
-.show-more-btn,
-.collapse-body-btn {
+.report-btn {
   color: grey;
   border: none;
   text-decoration: underline;
   font-size: 1em;
+  padding: 0;
+  margin: 0;
 }
-.helpful-btn:hover,
+.helpful-btn:hover {
+  color: green;
+  cursor: pointer;
+}
 .report-btn:hover {
-  color: black;
+  color: darkred;
   cursor: pointer;
 }
 .review-list-btn {

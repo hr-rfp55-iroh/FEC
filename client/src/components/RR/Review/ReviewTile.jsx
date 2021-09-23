@@ -57,12 +57,13 @@ const ReviewTile = (props) => {
       <ReviewBody bodyInfo={bodyInfo} />
       <div className="review-footer">
         <div className="review-footer-text">Was this review helpful?</div>
-        &nbsp;
+        &nbsp;&nbsp;
         <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
+        &nbsp;
         <div className="review-footer-text">
           &#40;
           {helpfulness}
-          &#41;&nbsp;&nbsp;&#124;&nbsp;
+          &#41;&nbsp;&nbsp;&#124;&nbsp;&nbsp;
         </div>
         <button type="button" className="report-btn" value={review_id} onClick={handleReportClick}>Report</button>
       </div>

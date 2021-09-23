@@ -55,7 +55,7 @@ const AnswerModal = (props) => {
 
   return (
     <>
-      <span role="button" className="pointer" onClick={toggleModal} onKeyPress={toggleModal} type="submit" tabIndex={-1}><strong>Submit An Answer</strong></span>
+      <span role="button" className="submit-answer-btn" onClick={toggleModal} onKeyPress={toggleModal} type="submit" tabIndex={-1}>Submit An Answer</span>
       {modal && (
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
