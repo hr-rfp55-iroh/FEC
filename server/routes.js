@@ -1,4 +1,6 @@
 const express = require('express');
+const compression = require('compression');
+
 const po = require('./helpers/PO/po-requests');
 const qa = require('./helpers/QA/Questions');
 const review = require('./helpers/RR/review-requests');
@@ -12,6 +14,7 @@ const options = {
 
 const app = express();
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

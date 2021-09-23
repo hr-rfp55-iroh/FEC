@@ -97,7 +97,7 @@ class App extends React.Component {
       <div>
         <Click module="navigation">
           <div className="banner">
-            <img src="./static/white_lotus.png" alt="grocery" />
+            <img src="./static/white_lotus.webp" alt="lotus" />
             <h1>White Lotus</h1>
           </div>
           <div className="nav-bar">
