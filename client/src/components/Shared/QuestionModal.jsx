@@ -78,12 +78,12 @@ const QuestionModal = (props) => {
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
+                <button id="question-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="question-form-close-btn" onClick={toggleModal}>
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            <button id="question-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
             {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>

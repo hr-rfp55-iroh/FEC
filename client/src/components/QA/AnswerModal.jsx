@@ -91,12 +91,13 @@ const AnswerModal = (props) => {
                 <input type="file" />
                 <input type="file" />
                 <input type="file" />
+                <br />
+                <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="answer-form-close-btn" onClick={toggleModal}>
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
             {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>

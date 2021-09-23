@@ -209,11 +209,11 @@ const CreateReviewModal = (props) => {
                 </p>
               </div>
             </form>
+            <button id="form-submit-btn" type="submit" form="create-review">Submit</button>
+            <div role="presentation" id="form-close-btn" onClick={toggleModal}>
+              <img src="./static/close.svg" height="20px" alt="right-arrow" />
+            </div>
           </div>
-          <div role="presentation" id="form-close-btn" onClick={toggleModal}>
-            <img src="./static/close.svg" height="20px" alt="right-arrow" />
-          </div>
-          <button id="form-submit-btn" type="submit" form="create-review">Submit</button>
         </div>
       )}
     </div>
