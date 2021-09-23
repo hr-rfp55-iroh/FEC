@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Click = (props) => {
-  const { children } = props;
+  const { module, children } = props;
 
   const handleClick = (e) => {
     const element = e.target;
@@ -14,7 +14,7 @@ const Click = (props) => {
       second: '2-digit',
     }).format(Date.now());
 
-    console.log(element, time);
+    console.log(module, element, time);
   };
 
   return (

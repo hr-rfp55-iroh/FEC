@@ -94,11 +94,8 @@ class App extends React.Component {
       rating, products, currentProduct, isProductsLoaded,
     } = this.state;
     return (
-      <Click>
-        <div>
-          {/* <div id="grocery">
-            <img src="./static/grocery-bags.png" alt="grocery" />
-          </div> */}
+      <div>
+        <Click module="navigation">
           <div className="banner">
             <img src="./static/white_lotus.png" alt="grocery" />
             <h1>White Lotus</h1>
@@ -116,11 +113,16 @@ class App extends React.Component {
               <img src="./static/right-arrow.svg" height="40px" alt="right-arrow" />
             </div>
           </div>
-          {/* <Navbar next={this.incrementProduct} previous={this.decrementProduct} /> */}
+        </Click>
+
+        <Click module="product overview">
           <div id="PO">
             <Overview selected={currentProduct} rating={rating} />
           </div>
-          {isProductsLoaded ? (
+        </Click>
+
+        {isProductsLoaded ? (
+          <Click module="questions and answers">
             <div id="QA">
               <div id="QA-header">
                 <img src="./static/qa.svg" height="40px" alt="right-arrow" />
@@ -129,15 +131,18 @@ class App extends React.Component {
               </div>
               <Unit products={products} currentProduct={currentProduct} />
             </div>
-          ) : ''}
+          </Click>
+        ) : ''}
+
+        <Click module="ratings and reviews">
           <div id="RR">
             <div id="RR-header">
               <div>REVIEWS</div>
             </div>
             <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
           </div>
-        </div>
-      </Click>
+        </Click>
+      </div>
     );
   }
 }
