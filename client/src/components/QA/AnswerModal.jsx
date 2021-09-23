@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import PhotoUpload from '../RR/Review/PhotoUpload';
 
 const AnswerModal = (props) => {
   const { question_id, getQuestions } = props;
@@ -82,7 +83,8 @@ const AnswerModal = (props) => {
                 <br />
                 <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
                 <p className="form-note">For authentication reasons, you will not be emailed</p>
-                <div> Upload your photos:</div>
+                <PhotoUpload />
+                {/* <div> Upload your photos:</div>
                 <br />
                 <input type="file" />
                 <input type="file" />
@@ -90,13 +92,12 @@ const AnswerModal = (props) => {
                 <input type="file" />
                 <input type="file" />
                 <br />
-                <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
+                <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button> */}
               </form>
               <div role="presentation" id="answer-form-close-btn" onClick={toggleModal}>
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}
