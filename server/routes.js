@@ -20,6 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../client/dist`));
 
+app.post('/click', (req, res) => {
+  po.postToInteractions(req.body, (err, results) => {
+    if (err) { res.status(422).send(err); } else { res.send(results); }
+  });
+});
+
 app.get('/po/info/:id', (req, res) => {
   po.getProductById(req.params.id, (err, results) => {
     if (err) { res.status(404).send(err); } else { res.send(results); }

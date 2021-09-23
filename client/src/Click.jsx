@@ -1,10 +1,13 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const Click = (props) => {
-  const { module, children } = props;
+  const { widget, children } = props;
 
   const handleClick = (e) => {
-    const element = e.target;
+    const element = e.target.toString();
     const time = Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: '2-digit',
@@ -14,7 +17,19 @@ const Click = (props) => {
       second: '2-digit',
     }).format(Date.now());
 
-    console.log(module, element, time);
+    const obj = {
+      element,
+      widget,
+      time,
+    };
+
+    // DEMO PURPOSES: console.log(obj);
+
+    axios.post('/click', obj)
+      .then(() => {})
+      .catch((err) => {
+        throw err;
+      });
   };
 
   return (
@@ -24,6 +39,16 @@ const Click = (props) => {
           { onClick: handleClick }))}
     </>
   );
+};
+
+Click.propTypes = {
+  widget: PropTypes.string,
+  children: PropTypes.node,
+};
+
+Click.defaultProps = {
+  widget: '',
+  children: null,
 };
 
 export default Click;
