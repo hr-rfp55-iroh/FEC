@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Moment from 'moment';
-import Pic from './Pic';
 
 const Answer = ({ answer, getQuestions }) => {
   const {
@@ -15,6 +14,17 @@ const Answer = ({ answer, getQuestions }) => {
   const [photoSRC, setPhotoSRC] = useState('');
   const ansObj = { answer_id: id };
   const photoAlias = photos;
+  const disableScroll = (show) => {
+    console.log('hello i am disabling scroll');
+    useEffect(() => {
+      if (show) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+    }, [show]);
+  };
+  disableScroll(photoModal);
   const handleReportAnswer = (e) => {
     e.preventDefault();
     axios.put('/qa/answers/report', ansObj);
@@ -25,6 +35,13 @@ const Answer = ({ answer, getQuestions }) => {
       .then(() => setHelpfulTrigger(helpfulTrigger + 1))
       .then(() => setIsLimitHelpful(true))
       .then(() => getQuestions());
+  };
+  const togglePhotoModal = () => {
+    setPhotoModal(!photoModal);
+  };
+  const handlePhotoPop = (e) => {
+    togglePhotoModal();
+    setPhotoSRC(e);
   };
   const helpfulAnsBtn = (
     <span
@@ -37,23 +54,12 @@ const Answer = ({ answer, getQuestions }) => {
       <strong>Yes</strong>
     </span>
   );
-  const togglePhotoModal = () => {
-    setPhotoModal(!photoModal);
-  };
-  // var photo;
-  const handlePhotoSrc = (e) => {
-    togglePhotoModal();
-    togglePhotoModal();
-    setPhotoSRC(e);
-  }
-  const mappedPhotos2 = photoAlias.map((photo, idx) => (<div key={photo.toString()}><img alt="" src={photo} id="answer-images" onClick={togglePhotoModal} /></div>));
 
   return (
     <div>
       <span><strong>A:</strong></span>
       {body}
       <br />
-      {photoModal && <Pic photoSRC={photoSRC} />}
       by
       {' '}
       {answerer_name.toLowerCase() === 'seller' ? <strong>{answerer_name}</strong> : answerer_name}
@@ -76,6 +82,7 @@ const Answer = ({ answer, getQuestions }) => {
               type="submit"
               className="report"
               onKeyDown={handleReportAnswer}
+              tabIndex={-1}
               onClick={(e) => { handleReportAnswer(e); setReported(true); }}
               tabIndex={-1}
             >
@@ -88,8 +95,20 @@ const Answer = ({ answer, getQuestions }) => {
       {' '}
       {/* //TODO find a way to resize image to improve efficiency */}
       <div>
-        {photoAlias.map((photo) => (<div key={photo.toString()}><img alt="" value={photo} src={photo} id="answer-images" onClick={(e) => handlePhotoSrc(e.target.src)} /></div>))}
+        {photoAlias.map((photo) => (
+          <>
+            <div key={photo.toString()} onClick={(e) => handlePhotoPop(e.target.src)} className="photo" role="presentation">
+              <img alt="" value={photo} src={photo} id="answer-images" />
+            </div>
+          </>
+        ))}
 
+        {photoModal && (
+          <div className="overlay">
+            <img src={photoSRC} alt="product-review" className="review-photo-modal" />
+            <button className="review-form-close-btn" type="button" onClick={togglePhotoModal}>x</button>
+          </div>
+        )}
       </div>
     </div>
   );
