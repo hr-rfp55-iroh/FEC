@@ -95,15 +95,14 @@ class Unit extends React.Component {
         <div className="QA-list">
           {list}
         </div>
-        <div>
-          <br />
+        <div className="QA-btn-list">
           <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
           <div>
             {(() => {
               if (display === 'loadMore') {
-                return (<button type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
+                return (<button className="load-question" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
               } if (display === 'collapse') {
-                return (<button type="submit" onClick={this.handleCollapse}>collapse</button>);
+                return (<button className="collapse-question" type="submit" onClick={this.handleCollapse}>Collapse</button>);
               } if (display === 'none') {
                 return ('');
               }

@@ -14,17 +14,15 @@ const Answer = ({ answer, getQuestions }) => {
   const [photoSRC, setPhotoSRC] = useState('');
   const ansObj = { answer_id: id };
   const photoAlias = photos;
-  const disableScroll = (show) => {
-    console.log('hello i am disabling scroll');
-    useEffect(() => {
-      if (show) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = 'unset';
-      }
-    }, [show]);
-  };
-  disableScroll(photoModal);
+
+  useEffect(() => {
+    if (photoModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [photoModal]);
+
   const handleReportAnswer = (e) => {
     e.preventDefault();
     axios.put('/qa/answers/report', ansObj)
@@ -49,60 +47,65 @@ const Answer = ({ answer, getQuestions }) => {
       role="button"
       onClick={(e) => handleHelpfulAnswer(e)}
       onKeyPress={handleHelpfulAnswer}
-      className="pointer"
+      className="helpful-btn"
       tabIndex={-1}
     >
-      <strong>Yes</strong>
+      Yes
     </span>
   );
 
   return (
-    <div>
-      <span><strong>A:</strong></span>
-      {body}
-      <br />
-      by
-      {' '}
-      {answerer_name.toLowerCase() === 'seller' ? <strong>{answerer_name}</strong> : answerer_name}
-      ,
-      {' '}
-      {Moment(date).format('MMMM Do YYYY')}
-      {' '}
-      | Helpful?
-      {!isLimitHelpful ? helpfulAnsBtn : 'Yes'}
-      {' '}
-      (
-      {helpfulTrigger}
-      ) |
-      {' '}
-      {
-        !reported
-          ? (
-            <span
-              role="button"
-              type="submit"
-              className="report"
-              onKeyDown={handleReportAnswer}
-              tabIndex={-1}
-              onClick={(e) => { handleReportAnswer(e); setReported(true); }}
-            >
-              {' '}
-              <strong>Report</strong>
-            </span>
-          )
-          : <span><strong> Reported</strong></span>
-      }
-      {' '}
-      {/* //TODO find a way to resize image to improve efficiency */}
+    <div className="QA-answer">
+      <div className="QA-answer-body">
+        <span><strong>A: </strong></span>
+        {body}
+      </div>
+      <div className="QA-answer-footer">
+        by
+        &nbsp;
+        {answerer_name.toLowerCase() === 'seller' ? <strong>{answerer_name}</strong> : answerer_name}
+        ,
+        &nbsp;
+        {Moment(date).format('MMMM DD, YYYY')}
+        &nbsp;
+        | Helpful?
+        &nbsp;
+        {!isLimitHelpful ? helpfulAnsBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
+        &nbsp;
+        (
+        {helpfulTrigger}
+        ) |
+        &nbsp;
+        {
+          !reported
+            ? (
+              <span
+                role="button"
+                type="submit"
+                className="report-btn"
+                onKeyDown={handleReportAnswer}
+                onClick={(e) => { handleReportAnswer(e); setReported(true); }}
+                tabIndex={-1}
+              >
+                {' '}
+                Report
+              </span>
+            )
+            : (<span style={{ fontWeight: 'bold' }}>Reported</span>)
+        }
+        {' '}
+        {/* //TODO find a way to resize image to improve efficiency */}
+      </div>
       <div>
-        {photoAlias.map((photo) => (
-          <>
-            <div key={photo.toString()} onClick={(e) => handlePhotoPop(e.target.src)} className="photo" role="presentation">
-              <img alt="" value={photo} src={photo} id="answer-images" />
-            </div>
-          </>
-        ))}
-
+        <div className="photo-list">
+          {photoAlias.map((photo) => (
+            <>
+              <div key={photo.toString()} onClick={(e) => handlePhotoPop(e.target.src)} className="photo" role="presentation">
+                <img alt="" value={photo} src={photo} id="answer-images" />
+              </div>
+            </>
+          ))}
+        </div>
         {photoModal && (
           <div className="overlay">
             <img src={photoSRC} alt="product-review" className="review-photo-modal" />
