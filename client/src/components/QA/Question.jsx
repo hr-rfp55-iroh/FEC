@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Moment from 'moment';
-import Answer from './Answer';
-import AnswerModal from './AnswerModal';
+
+const Answer = lazy(() => import('./Answer'));
+const AnswerModal = lazy(() => import('./AnswerModal'));
 
 const Question = ({
   question_body, question_date, asker_name,
@@ -85,18 +86,22 @@ const Question = ({
           )&nbsp;
           |
           &nbsp;
-          <AnswerModal question_id={question_id} getQuestions={getQuestions} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AnswerModal question_id={question_id} getQuestions={getQuestions} />
+          </Suspense>
           {/* //TODO onlick modal for "Add Answer" */}
         </div>
       </div>
       {sortedAnswers.length !== 0 && (
         <div className="QA-answer-list">
           {sortedAnswers.slice(0, count).map((answer) => (
-            <Answer
-              answer={answer}
-              key={answer.body}
-              getQuestions={getQuestions}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Answer
+                answer={answer}
+                key={answer.body}
+                getQuestions={getQuestions}
+              />
+            </Suspense>
           ))}
           {sortedAnswers.length > count ? showMoreAnswersBtn : button}
           {/* {button} */}

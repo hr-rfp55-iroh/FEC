@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 
-import CartMenu from './CartMenu';
+const CartMenu = lazy(() => import('./CartMenu'));
 
 const AddToCart = (props) => {
   const { skus } = props;
@@ -73,14 +73,16 @@ const AddToCart = (props) => {
         </select>
       </div>
       <div className="cart-division">
-        <CartMenu
-          inventory={inventory}
-          setInventory={setInventory}
-          index={dropdown}
-          amount={cartAmount}
-          setAmount={setCartAmount}
-          sku={skusArray[dropdown]}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CartMenu
+            inventory={inventory}
+            setInventory={setInventory}
+            index={dropdown}
+            amount={cartAmount}
+            setAmount={setCartAmount}
+            sku={skusArray[dropdown]}
+          />
+        </Suspense>
       </div>
     </div>
   );

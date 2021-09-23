@@ -17,7 +17,9 @@ const RatingSummary = (props) => {
           <div className="star">
             <div id="rating-avg" data-testid="rating-avg">{avgRating.toFixed(1)}</div>
             {avgRating && (
-              <Star rating={avgRating} name="rating-summary" />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Star rating={avgRating} name="rating-summary" />
+              </Suspense>
             )}
             <div className="rating-count">
               &#40;
@@ -29,11 +31,13 @@ const RatingSummary = (props) => {
             {recRate}
             % of reviews recommend this product
           </div>
-          <RatingBreakdown
-            ratings={ratings}
-            handleRatingFilterClick={handleRatingFilterClick}
-          />
-          <ProductBreakdown characteristics={characteristics} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <RatingBreakdown
+              ratings={ratings}
+              handleRatingFilterClick={handleRatingFilterClick}
+            />
+            <ProductBreakdown characteristics={characteristics} />
+          </Suspense>
         </div>
       )}
       {!ratingCount && (
