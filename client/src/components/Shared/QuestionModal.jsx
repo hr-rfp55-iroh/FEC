@@ -84,7 +84,6 @@ const QuestionModal = (props) => {
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}
