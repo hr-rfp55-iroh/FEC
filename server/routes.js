@@ -1,4 +1,6 @@
 const express = require('express');
+const compression = require('compression');
+
 const po = require('./helpers/PO/po-requests');
 const qa = require('./helpers/QA/Questions');
 const review = require('./helpers/RR/review-requests');
@@ -12,10 +14,17 @@ const options = {
 
 const app = express();
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../client/dist`));
+
+app.post('/click', (req, res) => {
+  po.postToInteractions(req.body, (err, results) => {
+    if (err) { res.status(422).send(err); } else { res.send(results); }
+  });
+});
 
 app.get('/po/info/:id', (req, res) => {
   po.getProductById(req.params.id, (err, results) => {
