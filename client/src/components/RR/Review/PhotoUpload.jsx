@@ -40,6 +40,7 @@ class PhotoUpload extends React.Component {
           </label>
         </div>
         <div className="photo">
+          {console.log(files)}
           {files.map((photo) => (<img src={URL.createObjectURL(photo)} height="100" alt="product-review" />))}
         </div>
         <p className="review-form-note">
@@ -55,7 +56,7 @@ PhotoUpload.propTypes = {
 };
 
 PhotoUpload.defaultProps = {
-  handlePhotoUpload: () => {},
+  handlePhotoUpload: () => { },
 };
 
 export default PhotoUpload;
