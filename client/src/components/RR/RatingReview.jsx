@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+
 const ReviewList = lazy(() => import('./Review/ReviewList'));
 const RatingSummary = lazy(() => import('./Rating/RatingSummary'));
 const NewReviewModal = lazy(() => import('./Review/NewReviewModal'));

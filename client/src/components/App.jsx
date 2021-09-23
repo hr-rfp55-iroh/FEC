@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import config from '../../../config';
+import Click from '../Click';
 
 const Overview = lazy(() => import('./PO/Overview'));
 const RatingReview = lazy(() => import('./RR/RatingReview'));
 const Unit = lazy(() => import('./QA/Unit'));
-import Click from '../Click';
 
 class App extends React.Component {
   constructor(props) {

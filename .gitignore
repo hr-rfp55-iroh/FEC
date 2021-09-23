@@ -19,6 +19,8 @@ client/dist/client_src_components_RR_Review_ReviewTile_jsx.bundle.js
 client/dist/static/white_lotus.webp
 client/dist/vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-248d90.bundle.js
 client/dist/vendors-node_modules_prop-types_index_js.bundle.js
+client/dist/client_src_components_RR_Rating_CharacteristicBar_jsx.bundle.js
+client/dist/client_src_components_RR_Rating_RatingBar_jsx.bundle.js
 
 config.js
 

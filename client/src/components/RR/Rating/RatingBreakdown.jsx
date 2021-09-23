@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import RatingBar from './RatingBar';
+
+const RatingBar = lazy(() => import('./RatingBar'));
 
 const ratingsBreakdown = (ratings) => {
   const result = [];
@@ -29,11 +30,13 @@ const RatingBreakdown = (props) => {
       {barInfo.map((info, index) => {
         const barCount = index + 1;
         return (
-          <RatingBar
-            info={info}
-            handleRatingFilterClick={handleRatingFilterClick}
-            key={`bar-${barCount}`}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <RatingBar
+              info={info}
+              handleRatingFilterClick={handleRatingFilterClick}
+              key={`bar-${barCount}`}
+            />
+          </Suspense>
         );
       })}
     </div>
