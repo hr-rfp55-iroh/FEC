@@ -47,7 +47,6 @@ class Unit extends React.Component {
     if (count + 1 >= currentList.length) {
       this.setState({ display: 'collapse' });
     }
-    // handle edge case of no question length: display only add quesiton button
   }
 
   handleCollapse() {
