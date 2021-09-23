@@ -6,6 +6,7 @@ import Overview from './PO/Overview';
 // import Navbar from './PO/Navbar';
 import RatingReview from './RR/RatingReview';
 import Unit from './QA/Unit';
+import Click from '../Click';
 
 class App extends React.Component {
   constructor(props) {
@@ -94,46 +95,53 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        {/* <div id="grocery">
-          <img src="./static/grocery-bags.png" alt="grocery" />
-        </div> */}
-        <div className="banner">
-          <img src="./static/white_lotus.png" alt="grocery" />
-          <h1>White Lotus</h1>
-        </div>
-        <div className="nav-bar">
-          {currentProduct > 40344 ? (
-            <div onClick={this.decrementProduct} onKeyPress={this.decrementProduct} role="presentation" id="nav-left-arrow">
-              <img src="./static/left-arrow.svg" height="40px" alt="left-arrow" />
-            </div>
-          ) : (
-            <div id="nav-left-arrow" />
-          )}
-          <div id="nav-text">Now Trending</div>
-          <div onClick={this.incrementProduct} onKeyPress={this.incrementProduct} role="presentation" id="nav-right-arrow">
-            <img src="./static/right-arrow.svg" height="40px" alt="right-arrow" />
+        <Click module="navigation">
+          <div className="banner">
+            <img src="./static/white_lotus.png" alt="grocery" />
+            <h1>White Lotus</h1>
           </div>
-        </div>
-        {/* <Navbar next={this.incrementProduct} previous={this.decrementProduct} /> */}
-        <div id="PO">
-          <Overview selected={currentProduct} rating={rating} />
-        </div>
+          <div className="nav-bar">
+            {currentProduct > 40344 ? (
+              <div onClick={this.decrementProduct} onKeyPress={this.decrementProduct} role="presentation" id="nav-left-arrow">
+                <img src="./static/left-arrow.svg" height="40px" alt="left-arrow" />
+              </div>
+            ) : (
+              <div id="nav-left-arrow" />
+            )}
+            <div id="nav-text">Now Trending</div>
+            <div onClick={this.incrementProduct} onKeyPress={this.incrementProduct} role="presentation" id="nav-right-arrow">
+              <img src="./static/right-arrow.svg" height="40px" alt="right-arrow" />
+            </div>
+          </div>
+        </Click>
+
+        <Click module="product overview">
+          <div id="PO">
+            <Overview selected={currentProduct} rating={rating} />
+          </div>
+        </Click>
+
         {isProductsLoaded ? (
-          <div id="QA">
-            <div id="QA-header">
-              <img src="./static/qa.svg" height="40px" alt="qa-icon" />
-              &nbsp;
-              <div>HAVE QUESTIONS?</div>
+          <Click module="questions and answers">
+            <div id="QA">
+              <div id="QA-header">
+                <img src="./static/qa.svg" height="40px" alt="right-arrow" />
+                &nbsp;
+                <div>HAVE QUESTIONS?</div>
+              </div>
+              <Unit products={products} currentProduct={currentProduct} />
             </div>
-            <Unit products={products} currentProduct={currentProduct} />
-          </div>
+          </Click>
         ) : ''}
-        <div id="RR">
-          <div id="RR-header">
-            <div>REVIEWS</div>
+
+        <Click module="ratings and reviews">
+          <div id="RR">
+            <div id="RR-header">
+              <div>REVIEWS</div>
+            </div>
+            <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
           </div>
-          <RatingReview selected={currentProduct} updateAvgRating={this.updateAvgRating} />
-        </div>
+        </Click>
       </div>
     );
   }
