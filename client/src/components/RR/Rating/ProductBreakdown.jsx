@@ -1,4 +1,4 @@
-import React, { Suspend, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 
 const CharacteristicBar = lazy(() => import('./CharacteristicBar'));
