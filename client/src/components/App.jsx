@@ -95,9 +95,9 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <Click module="navigation">
+        <Click widget="navigation">
           <div className="banner">
-            <img src="./static/white_lotus.png" alt="grocery" />
+            <img src="./static/white_lotus.webp" alt="lotus" />
             <h1>White Lotus</h1>
           </div>
           <div className="nav-bar">
@@ -115,14 +115,14 @@ class App extends React.Component {
           </div>
         </Click>
 
-        <Click module="product overview">
+        <Click widget="product overview">
           <div id="PO">
             <Overview selected={currentProduct} rating={rating} />
           </div>
         </Click>
 
         {isProductsLoaded ? (
-          <Click module="questions and answers">
+          <Click widget="questions and answers">
             <div id="QA">
               <div id="QA-header">
                 <img src="./static/qa.svg" height="40px" alt="right-arrow" />
@@ -134,7 +134,7 @@ class App extends React.Component {
           </Click>
         ) : ''}
 
-        <Click module="ratings and reviews">
+        <Click widget="ratings and reviews">
           <div id="RR">
             <div id="RR-header">
               <div>REVIEWS</div>
