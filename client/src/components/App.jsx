@@ -125,7 +125,7 @@ class App extends React.Component {
               &nbsp;
               <div>HAVE QUESTIONS?</div>
             </div>
-            <Unit products={products} currentProduct={currentProduct} />
+            <Unit currentProduct={currentProduct} />
           </div>
         ) : ''}
         <div id="RR">
