@@ -117,7 +117,7 @@ const CreateReviewModal = (props) => {
 
   return (
     <div>
-      <button className="review-list-btn" onClick={toggleModal} type="button">ADD A REVIEW</button>
+      <button id="add-review-btn" className="review-list-btn" onClick={toggleModal} type="button">SUBMIT A REVIEW</button>
       {modal && (
         <div className="overlay">
           <div className="review-form-content">
@@ -130,87 +130,90 @@ const CreateReviewModal = (props) => {
               {productName}
             </h4>
             <form onSubmit={handleSubmit} id="create-review">
-              <p>Overall Rating*</p>
-              <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(Number(num)); }} />
-              <p>Do you recommend this product?*</p>
-              <label htmlFor="recommend-yes">
-                <input type="radio" id="recommend-yes" name="recommend" value="yes" onChange={() => { setIsRecommended(true); }} />
-                Yes
-              </label>
-              <label htmlFor="recommend-no">
-                <input type="radio" id="recommend-no" name="recommend" value="no" onChange={() => { setIsRecommended(false); }} />
-                No
-              </label>
-              <br />
-              <p>Product Experience*</p>
-              <div>
-                {charcs.map((charc) => (
-                  <ReviewCharacteristics
-                    charc={charc}
-                    name={charc}
-                    handleChange={(num, name) => {
-                      if (name === 'Size') {
-                        setSizeRating(Number(num));
-                      } else if (name === 'Width') {
-                        setWidthRating(Number(num));
-                      } else if (name === 'Comfort') {
-                        setComfortRating(Number(num));
-                      } else if (name === 'Quality') {
-                        setQualityRating(Number(num));
-                      } else if (name === 'Length') {
-                        setLengthRating(Number(num));
-                      } else {
-                        setFitRating(Number(num));
-                      }
-                    }}
-                  />
-                ))}
+              <div className="review-form-rating">
+                <p>Overall Rating*</p>
+                <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(Number(num)); }} />
+                <p>Do you recommend this product?*</p>
+                <label htmlFor="recommend-yes">
+                  <input type="radio" id="recommend-yes" name="recommend" value="yes" onChange={() => { setIsRecommended(true); }} />
+                  Yes
+                </label>
+                <label htmlFor="recommend-no">
+                  <input type="radio" id="recommend-no" name="recommend" value="no" onChange={() => { setIsRecommended(false); }} />
+                  No
+                </label>
+                <br />
+                <p>Product Experience*</p>
+                <div>
+                  {charcs.map((charc) => (
+                    <ReviewCharacteristics
+                      charc={charc}
+                      name={charc}
+                      handleChange={(num, name) => {
+                        if (name === 'Size') {
+                          setSizeRating(Number(num));
+                        } else if (name === 'Width') {
+                          setWidthRating(Number(num));
+                        } else if (name === 'Comfort') {
+                          setComfortRating(Number(num));
+                        } else if (name === 'Quality') {
+                          setQualityRating(Number(num));
+                        } else if (name === 'Length') {
+                          setLengthRating(Number(num));
+                        } else {
+                          setFitRating(Number(num));
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-              <br />
-              <p>Review Summary</p>
-              <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { setReviewSum(e.target.value); }} />
-              <p>Review Body*</p>
-              <textarea
-                maxLength="1000"
-                placeholder="Why did you like the product or not?"
-                onChange={(e) => {
-                  setCharCount(e.target.value.length);
-                  setReviewBody(e.target.value);
+              <div className="review-form-text">
+                <p>Review Summary</p>
+                <textarea maxLength="60" placeholder="Example: Best purchase ever!" onChange={(e) => { setReviewSum(e.target.value); }} />
+                <p>Review Body*</p>
+                <textarea
+                  maxLength="1000"
+                  placeholder="Why did you like the product or not?"
+                  onChange={(e) => {
+                    setCharCount(e.target.value.length);
+                    setReviewBody(e.target.value);
+                  }}
+                  id="form-review-body-text"
+                />
+                {charCount < 50 ? (
+                  <p className="form-note">
+                    Minimum required characters left:
+                    &nbsp;
+                    {50 - charCount}
+                  </p>
+                ) : (
+                  <p className="form-note">
+                    Minimum reached
+                  </p>
+                )}
+                <PhotoUpload handlePhotoUpload={(files) => {
+                  const urls = files.map((photo) => URL.createObjectURL(photo));
+                  setPhotoUrls(urls);
                 }}
-              />
-              {charCount < 50 ? (
-                <p className="review-form-note">
-                  Minimum required characters left:
-                  &nbsp;
-                  {50 - charCount}
+                />
+                <p>Your nickname*</p>
+                <input type="text" name="new-review-nickname" id="new-review-nickname" maxLength="60" placeholder="Example:jackson11!" onChange={(e) => { setNickname(e.target.value); }} />
+                <p className="form-note">
+                  For privacy reasons, do not use your full name or email address
                 </p>
-              ) : (
-                <p className="review-form-note">
-                  Minimum reached
+                <p>Your Email*</p>
+                <input name="new-review-email" id="new-review-email" maxLength="60" placeholder="Example:jackson11@email.com" onChange={(e) => { setEmail(e.target.value); }} />
+                <p className="form-note">
+                  For authentication reasons, you will not be emailed
                 </p>
-              )}
-              <br />
-              <PhotoUpload handlePhotoUpload={(files) => {
-                const urls = files.map((photo) => URL.createObjectURL(photo));
-                setPhotoUrls(urls);
-              }}
-              />
-              <br />
-              <p>Your nickname*</p>
-              <input type="text" name="new-review-nickname" id="new-review-nickname" maxLength="60" placeholder="Example:jackson11!" onChange={(e) => { setNickname(e.target.value); }} />
-              <p className="review-form-note">
-                For privacy reasons, do not use your full name or email address
-              </p>
-              <br />
-              <p>Your Email*</p>
-              <input name="new-review-email" id="new-review-email" maxLength="60" placeholder="Example:jackson11@email.com" onChange={(e) => { setEmail(e.target.value); }} />
-              <p className="review-form-note">
-                For authentication reasons, you will not be emailed
-              </p>
+              </div>
             </form>
+            <button id="form-submit-btn" type="submit" form="create-review">Submit</button>
+            <div role="presentation" id="form-close-btn" onClick={toggleModal}>
+              <img src="./static/close.svg" height="20px" alt="right-arrow" />
+            </div>
           </div>
-          <button className="review-form-close-btn" type="button" onClick={toggleModal}>x</button>
-          <button className="review-form-submit-btn" type="submit" form="create-review">Submit</button>
         </div>
       )}
     </div>

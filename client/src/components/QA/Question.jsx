@@ -32,69 +32,76 @@ const Question = ({
     setCount(2);
   };
   const handleLoadMoreAnswers = () => {
-    const collpaseAnswersBtn = (<button onClick={handleCollapseAnswers} type="submit">Collapse Answers</button>);
+    const collpaseAnswersBtn = (<button className="load-answer" onClick={handleCollapseAnswers} type="submit">Collapse Answers</button>);
     setCount(count + 2);
     if (sortedAnswers.length > count) {
       setButton(collpaseAnswersBtn);
     }
   };
-  const showMoreAnswersBtn = (<button onClick={handleLoadMoreAnswers} type="submit">Load More Answers</button>);
+  const showMoreAnswersBtn = (<button className="load-answer" onClick={handleLoadMoreAnswers} type="submit">Load More Answers</button>);
   const helpfulBtn = (
     <span
       role="button"
       onKeyPress={handleHelpfulQuestion}
       onClick={(e) => handleHelpfulQuestion(e)}
       tabIndex={-1}
-      className="pointer"
+      className="helpful-btn"
     >
-      <strong>Yes</strong>
+      Yes
     </span>
   );
   return (
-
-    <div>
-      <span><strong>Q:</strong></span>
-      {question_body}
-      {' '}
-      By:
-      {asker_name}
-      ,
-      {' '}
-      {Moment(question_date).format('MMMM Do YYYY')}
-      {' '}
-      | Helpful?
-      {!isLimitHelpful ? helpfulBtn : 'Yes'}
-      {/* // <span */}
-      {/* //   role="button"
-        //   onKeyPress={handleHelpfulQuestion}
-        //   onClick={(e) => handleHelpfulQuestion(e)}
-        //   tabIndex={-1}
-        //   className="pointer"
-        // >
-        //   <strong>Yes</strong>
-        // </span> */}
-      {' '}
-      {/* {//TODO onclick toggleFn for "YES"} */}
-      {' '}
-      (
-      {helpfulnessAlias}
-      ) |
-      {' '}
-      <AnswerModal question_id={question_id} getQuestions={getQuestions} />
-      {' '}
-      {/* //TODO onlick modal for "Add Answer" */}
-      {' '}
-      {sortedAnswers.slice(0, count).map((answer) => (
-        <Answer
-          answer={answer}
-          key={answer.body}
-          getQuestions={getQuestions}
-        />
-      ))}
-      {sortedAnswers.length > count ? showMoreAnswersBtn : button}
-      {/* {button} */}
-      <hr />
-      <br />
+    <div className="QA-tile">
+      <div className="QA-question">
+        <div className="QA-question-body">
+          Q:
+          &nbsp;
+          {question_body}
+        </div>
+        <div className="QA-question-header">
+          By:
+          {' '}
+          {asker_name}
+          ,
+          {' '}
+          {Moment(question_date).format('MMMM DD, YYYY')}
+          &nbsp;
+          |&nbsp;Helpful?
+          &nbsp;
+          {!isLimitHelpful ? helpfulBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
+          {/* // <span */}
+          {/* //   role="button"
+            //   onKeyPress={handleHelpfulQuestion}
+            //   onClick={(e) => handleHelpfulQuestion(e)}
+            //   tabIndex={-1}
+            //   className="pointer"
+            // >
+            //   <strong>Yes</strong>
+          // </span> */}
+          {/* {//TODO onclick toggleFn for "YES"} */}
+          &nbsp;
+          (
+          {helpfulnessAlias}
+          )&nbsp;
+          |
+          &nbsp;
+          <AnswerModal question_id={question_id} getQuestions={getQuestions} />
+          {/* //TODO onlick modal for "Add Answer" */}
+        </div>
+      </div>
+      {sortedAnswers.length !== 0 && (
+        <div className="QA-answer-list">
+          {sortedAnswers.slice(0, count).map((answer) => (
+            <Answer
+              answer={answer}
+              key={answer.body}
+              getQuestions={getQuestions}
+            />
+          ))}
+          {sortedAnswers.length > count ? showMoreAnswersBtn : button}
+          {/* {button} */}
+        </div>
+      )}
     </div>
   );
 };

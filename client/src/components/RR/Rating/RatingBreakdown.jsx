@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RatingBar from './RatingBar';
-import FilterLabel from './FilterLabel';
 
 const ratingsBreakdown = (ratings) => {
   const result = [];
@@ -22,23 +21,11 @@ const ratingsBreakdown = (ratings) => {
 };
 
 const RatingBreakdown = (props) => {
-  const {
-    ratings, handleRatingFilterClick, handleRemoveFilterClick, filter,
-  } = props;
+  const { ratings, handleRatingFilterClick } = props;
   const barInfo = ratingsBreakdown(ratings);
   return (
     <div className="rating-breakdown">
       <div className="rating-header">Rating Breakdown</div>
-      <div className="rating-filter-label">
-        {filter.length > 0
-          && (
-            <FilterLabel
-              filter={filter}
-              handleRatingFilterClick={handleRatingFilterClick}
-              handleRemoveFilterClick={handleRemoveFilterClick}
-            />
-          )}
-      </div>
       {barInfo.map((info, index) => {
         const barCount = index + 1;
         return (
@@ -56,8 +43,6 @@ const RatingBreakdown = (props) => {
 RatingBreakdown.propTypes = {
   ratings: PropTypes.objectOf(PropTypes.any),
   handleRatingFilterClick: PropTypes.func,
-  handleRemoveFilterClick: PropTypes.func,
-  filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 RatingBreakdown.defaultProps = {
@@ -69,8 +54,6 @@ RatingBreakdown.defaultProps = {
     5: '0',
   },
   handleRatingFilterClick: () => {},
-  handleRemoveFilterClick: () => {},
-  filter: [],
 };
 
 export default RatingBreakdown;

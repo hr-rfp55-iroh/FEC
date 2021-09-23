@@ -5,9 +5,7 @@ import RatingBreakdown from './RatingBreakdown';
 import ProductBreakdown from './ProductBreakdown';
 
 const RatingSummary = (props) => {
-  const {
-    metaData, handleRatingFilterClick, handleRemoveFilterClick, filter,
-  } = props;
+  const { metaData, handleRatingFilterClick } = props;
   const {
     characteristics, ratings, avgRating, ratingCount, recRate,
   } = metaData;
@@ -33,8 +31,6 @@ const RatingSummary = (props) => {
           <RatingBreakdown
             ratings={ratings}
             handleRatingFilterClick={handleRatingFilterClick}
-            handleRemoveFilterClick={handleRemoveFilterClick}
-            filter={filter}
           />
           <ProductBreakdown characteristics={characteristics} />
         </div>
@@ -53,15 +49,11 @@ const RatingSummary = (props) => {
 RatingSummary.propTypes = {
   metaData: PropTypes.objectOf(PropTypes.any),
   handleRatingFilterClick: PropTypes.func,
-  handleRemoveFilterClick: PropTypes.func,
-  filter: PropTypes.arrayOf(PropTypes.number),
 };
 
 RatingSummary.defaultProps = {
   metaData: {},
   handleRatingFilterClick: () => {},
-  handleRemoveFilterClick: () => {},
-  filter: [],
 };
 
 export default RatingSummary;

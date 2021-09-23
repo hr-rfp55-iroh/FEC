@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import ReviewList from './Review/ReviewList';
 import RatingSummary from './Rating/RatingSummary';
+import NewReviewModal from './Review/NewReviewModal';
 
 const ratingAverageAndCount = (ratingObj) => {
   let sum = 0;
@@ -145,32 +146,49 @@ class RatingReview extends React.Component {
             metaData={metaData}
             filter={filter}
             handleRatingFilterClick={this.handleRatingFilterClick}
-            handleRemoveFilterClick={this.handleRemoveFilterClick}
           />
           <div className="review">
-            {reviews.length !== 0 && (
-            <div id="review-sort-bar">
-              {filteredReviews.length}
-              &nbsp;
-              Reviews,
-              <label htmlFor="sort-options">
+            <div id="review-header-container">
+              {reviews.length !== 0 && (
+              <div id="review-sort-bar">
+                {filteredReviews.length}
                 &nbsp;
-                Sort on
-                &nbsp;
-                <select name="sort-options" id="sort-options" onChange={this.handleSortSelection} defaultValue="relevant">
-                  <option value="relevant">Relevant</option>
-                  <option value="helpful">Helpful</option>
-                  <option value="newest">Newest</option>
-                </select>
-              </label>
+                Reviews,
+                <label htmlFor="sort-options">
+                  &nbsp;
+                  Sort on
+                  &nbsp;
+                  <select name="sort-options" id="sort-options" onChange={this.handleSortSelection} defaultValue="relevant">
+                    <option value="relevant">Relevant</option>
+                    <option value="helpful">Helpful</option>
+                    <option value="newest">Newest</option>
+                  </select>
+                </label>
+              </div>
+              )}
+              <NewReviewModal
+                selected={selected}
+                characteristics={characteristics}
+                updateRatingReview={this.updateRatingReview}
+              />
             </div>
+            {filter.length > 0 ? (
+              <div className="filter-bar">
+                <div className="filter-text">Filtered by: </div>
+                {filter.map((rating) => (
+                  <button type="button" className="filter-label" value={rating} onClick={(e) => (this.handleRatingFilterClick(Number(e.target.value)))}>
+                    {rating}
+                    &nbsp;star
+                  </button>
+                ))}
+                <button type="button" className="clear-filter" onClick={this.handleRemoveFilterClick}>Clear filter</button>
+              </div>
+            ) : (
+              <div className="filter-bar" />
             )}
             <ReviewList
               filteredReviews={filteredReviews}
-              characteristics={characteristics}
-              updateRatingReview={this.updateRatingReview}
               getReviews={this.getReviews}
-              selected={selected}
             />
           </div>
         </div>
