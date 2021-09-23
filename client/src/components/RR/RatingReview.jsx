@@ -173,7 +173,7 @@ class RatingReview extends React.Component {
                     &nbsp;star
                   </button>
                 ))}
-                <button type="button" className="filter-label" onClick={this.handleRemoveFilterClick}>x</button>
+                <button type="button" className="clear-filter" onClick={this.handleRemoveFilterClick}>Clear filter</button>
               </div>
             ) : (
               <div className="filter-bar" />
