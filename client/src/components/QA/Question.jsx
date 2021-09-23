@@ -6,7 +6,8 @@ import Answer from './Answer';
 import AnswerModal from './AnswerModal';
 
 const Question = ({
-  question_body, question_date, asker_name, answers, question_id, question_helpfulness, getQuestions,
+  question_body, question_date, asker_name,
+  answers, question_id, question_helpfulness, getQuestions,
 }) => {
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
@@ -25,8 +26,7 @@ const Question = ({
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
       .then(() => setHelpfulness(helpfulnessAlias + 1))
-      .then(() => setIsLimitHelpful(true))
-      .catch(() => alert('Cannot mark question as helpful'));
+      .then(() => setIsLimitHelpful(true));
   };
   const handleCollapseAnswers = () => {
     setCount(2);
@@ -112,6 +112,7 @@ Question.propTypes = {
   asker_name: PropTypes.string,
   question_helpfulness: PropTypes.number,
   question_id: PropTypes.number,
+  getQuestions: PropTypes.func,
   answers: PropTypes.shape({
     answerer_name: PropTypes.string,
     body: PropTypes.string,
@@ -130,6 +131,7 @@ Question.defaultProps = {
   question_helpfulness: '',
   answers: '',
   question_id: '',
+  getQuestions: PropTypes.func,
 };
 
 export default Question;

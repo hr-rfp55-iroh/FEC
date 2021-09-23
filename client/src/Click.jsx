@@ -13,8 +13,6 @@ const Click = (props) => {
       minute: '2-digit',
       second: '2-digit',
     }).format(Date.now());
-
-    console.log(module, element, time);
   };
 
   return (
