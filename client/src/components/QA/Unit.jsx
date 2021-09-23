@@ -100,9 +100,9 @@ class Unit extends React.Component {
           <div>
             {(() => {
               if (display === 'loadMore') {
-                return (<button className="load-question" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
+                return (<button id="load-questions-btn" className="button-modal" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>LOAD MORE QUESTIONS</button>);
               } if (display === 'collapse') {
-                return (<button className="collapse-question" type="submit" onClick={this.handleCollapse}>Collapse</button>);
+                return (<button id="collapse-questions-btn" className="collapse-question" type="submit" onClick={this.handleCollapse}>COLLAPSE</button>);
               } if (display === 'none') {
                 return ('');
               }
