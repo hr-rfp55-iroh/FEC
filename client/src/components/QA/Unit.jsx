@@ -10,7 +10,7 @@ class Unit extends React.Component {
     super(props);
     this.state = {
       count: 4, // on page load, display four questions
-      display: '', // display default loadMore button
+      display: 'loadMore', // display default loadMore button
       questionsList: [],
       currentList: [],
     };
@@ -100,9 +100,9 @@ class Unit extends React.Component {
           <div>
             {(() => {
               if (display === 'loadMore') {
-                return (<button className="load-question" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>Load More Questions</button>);
+                return (<button id="load-questions-btn" className="button-modal" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>LOAD MORE QUESTIONS</button>);
               } if (display === 'collapse') {
-                return (<button className="collapse-question" type="submit" onClick={this.handleCollapse}>Collapse</button>);
+                return (<button id="collapse-questions-btn" className="collapse-question" type="submit" onClick={this.handleCollapse}>COLLAPSE</button>);
               } if (display === 'none') {
                 return ('');
               }
