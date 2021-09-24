@@ -60,7 +60,9 @@ const QuestionModal = (props) => {
                 Ask Your Question:
               </h1>
               <h2>
-                About the {productName}
+                About the
+                {' '}
+                {productName}
               </h2>
               <div>What is your question? (required)</div>
               <form>
@@ -97,11 +99,13 @@ const QuestionModal = (props) => {
 QuestionModal.propTypes = {
   getQuestions: PropTypes.func,
   currentProduct: PropTypes.number,
+  productName: PropTypes.string,
 };
 
 QuestionModal.defaultProps = {
   getQuestions: '',
   currentProduct: 30344,
+  productName: '',
 };
 
 export default QuestionModal;
