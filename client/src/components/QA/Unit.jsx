@@ -105,17 +105,15 @@ class Unit extends React.Component {
           <Suspense fallback={<div>Loading...</div>}>
             <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} productName={productName} />
           </Suspense>
-          <div>
-            {(() => {
-              if (display === 'loadMore') {
-                return (<button id="load-questions-btn" className="button-modal" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>LOAD MORE QUESTIONS</button>);
-              } if (display === 'collapse') {
-                return (<button id="collapse-questions-btn" className="collapse-question" type="submit" onClick={this.handleCollapse}>COLLAPSE</button>);
-              } if (display === 'none') {
-                return ('');
-              }
-            })()}
-          </div>
+          {(() => {
+            if (display === 'loadMore') {
+              return (<button id="load-questions-btn" className="button-modal" type="submit" onClick={(e) => this.handleDisplayMoreQ(e)}>LOAD MORE QUESTIONS</button>);
+            } if (display === 'collapse') {
+              return (<button id="collapse-questions-btn" className="collapse-question" type="submit" onClick={this.handleCollapse}>COLLAPSE</button>);
+            } if (display === 'none') {
+              return ('');
+            }
+          })()}
         </div>
       </div>
     );

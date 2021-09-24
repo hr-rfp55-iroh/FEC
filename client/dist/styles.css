@@ -1,11 +1,4 @@
 /* General Layout */
-#app {
-  width: 90%;
-  margin: auto;
-  background-image: linear-gradient(white, rgb(248, 251, 247));
-  box-shadow: 0px 0px 10px rgb(208, 226, 203) ;
-  font-family: 'Poppins', sans-serif;
-}
 .banner {
   display: flex;
   align-items: center;
@@ -37,8 +30,7 @@
   width: 40%;
   text-align: center;
   font-size: 2em;
-  font-weight: 600;
-  font-style: italic;
+  font-weight: bold;
   text-shadow: 3px 3px 5px grey;
 }
 #nav-right-arrow {
@@ -56,24 +48,11 @@
   color: black;
   margin: 0px 10px;
 }
-#po-info-pnl {
-  background: rgb(245, 250, 243);
-}
 #add-cart-btn {
   background-color: black;
   color: white;
   font-weight: bold;
   width: 100%;
-}
-#po-overview-pnl {
-  font-style: italic;
-  font-weight: 300;
-  background-image: linear-gradient(rgb(187, 207, 182),rgb(248, 251, 247) 10%, rgb(248, 251, 247) 90%, rgb(187, 207, 182) 100%);
-  width: 65%;
-  text-align: center;
-  height: fit-content;
-  margin-right: 5%;
-  padding: 1%;
 }
 #sns-bar {
   width: 20%;
@@ -100,8 +79,8 @@ button {
   display: flex;
   padding: 40px 20px 5px 20px;
   font-weight: 600;
-  font-size: 1.2em;
-  border-bottom: 5px solid green;
+  font-size: 1.5em;
+  border-bottom: 5px solid black;
 }
 .QA-container {
   padding: 10px 20px;
@@ -109,23 +88,34 @@ button {
 .QA-list {
   max-height: 600px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin: 10px 0px;
 }
-.QA-list::-webkit-scrollbar {
-  /* display: none; */
+.QA-list::-webkit-scrollbar,
+#review-list::-webkit-scrollbar,
+#style-selector::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5em;
+}
+.QA-list::-webkit-scrollbar-thumb,
+#review-list::-webkit-scrollbar,
+#style-selector::-webkit-scrollbar {
+  background: lightgrey;
+  border-radius: 10px;
+  size: 10px;
 }
 .QA-question {
   display: flex;
   justify-content: space-between;
-  background-color: whitesmoke;
   padding: 5px 2%;
+  font-size: 1.1em;
 }
 .QA-answer-list {
   padding: 2%;
 }
 .QA-answer {
   margin-bottom: 1em;
+  font-size: 1.1em;
 }
 .submit-answer-btn {
   font-weight: bold;
@@ -133,7 +123,7 @@ button {
 }
 .submit-answer-btn:hover{
   cursor: pointer;
-  color:steelblue;
+  color:rgb(89, 161, 219);
 }
 .review-btn-list,
 .QA-btn-list {
@@ -158,13 +148,14 @@ button {
   border: 1px solid black;
   margin: 1%;
   padding: 1%;
+  background: white;
 }
 #RR .search-wrapper {
   margin-top: 0px;
 }
 .search-input {
   width: 90%;
-  font-size: 1.1em;
+  font-size: 0.9em;
   border: 1px solid grey;
   border-radius: 5px;
   padding: 2px 10px 2px 10px;
@@ -288,16 +279,6 @@ button {
   opacity: .7;
 }
 
-#po-info-pnl {
-  width: 30%;
-  text-align: left;
-}
-
-#po-info-pnl span {
-  padding: 2%;
-  font-size: 1.1em;
-}
-
 .star-rating {
   display: flex;
   font-size: 10pt;
@@ -335,18 +316,6 @@ button {
   content: '$';
 }
 
-/* #po-overview-pnl {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  width: 60%;
-  margin-left: 50px;
-} */
-
-#po-info-pnl {
-  margin: 30px 0px;
-  position: relative;
-  padding: 2% 0%;
-}
-
 .infos {
   margin-left: 10%;
 }
@@ -358,13 +327,10 @@ button {
   flex-wrap: wrap;
   max-height: 210px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
-}
-#style-selector::-webkit-scrollbar {
-  /* display: none; */
 }
 .style-thumb, .style-thumb img {
   height: 70px;
@@ -408,19 +374,20 @@ button {
   cursor: pointer;
   text-align: center;
   text-align-last: center;
-  font-size: 1em;
+  font-size: 0.9em;
   border: 1px solid black;
   margin: 2%;
   padding: 3% 0%;
 }
 #cart-menu button {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0;
   padding: 5%;
 }
 #size-selection, #quantity-selection {
   width: 40%;
   height: 30%;
+  height:fit-content
 }
 
 #cart-menu {
@@ -431,6 +398,7 @@ button {
 #sns-bar {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #sns-bar span {
@@ -450,8 +418,7 @@ button {
   margin: auto;
 }
 #answer-images {
-  width: 100px;
-  height: 100px;
+  height: 60px;
   margin-left: 20px;
 
 }
@@ -463,7 +430,7 @@ button {
 } */
 
 .modal, .overlay {
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 99;
   top: 0;
   left: 0;
@@ -472,10 +439,6 @@ button {
   position: fixed;
   width: 100vw;
   height: 100vh;
-}
-.overlay::-webkit-scrollbar,
-.modal::-webkit-scrollbar {
-  /* display: none; */
 }
 .overlay {
   background: rgba(0, 0, 0, 0.8);
@@ -546,7 +509,7 @@ button {
 .container {
   display: flex;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .rating {
   padding-top: 20px;;
@@ -584,6 +547,7 @@ button {
   justify-content: space-between;
   height: 25%;
   min-height: 220px;
+  font-size: 0.9em;
 }
 .rating-header {
   font-weight: bold;
@@ -599,6 +563,8 @@ button {
 .bar:hover {
   background-color: whitesmoke;
   box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+  color: black;
+  font-weight: bold;
 }
 .rating-bar,
 .charc-bar {
@@ -620,6 +586,7 @@ button {
   padding-top: 5%;
   display: flex;
   flex-direction: column;
+  font-size: 0.9em;
 }
 .charc {
   display: flex;
@@ -656,11 +623,11 @@ button {
   justify-content: space-between;
 }
 #review-sort-bar {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
 }
 #sort-options {
-  font-size: 0.9em;
+  font-size: 0.8em;
   border-radius: 5px;
   padding: 2px;
   background-color: whitesmoke;
@@ -688,22 +655,23 @@ button {
   padding: 2px;
   margin: 0px 3px 0px 0px;
   font-size: 1em;
+  color: rgb(89, 161, 219);
 }
 #RR .filter-label:hover {
-  background-color: whitesmoke;
-  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+  color: rgb(209, 85, 3);
+  text-decoration: underline;
 }
 #RR .clear-filter,
 #QA .load-answer,
 #RR .show-more-btn,
 #RR .collapse-body-btn  {
   margin-left: 5px;
-  color: steelblue;
+  color: rgb(89, 161, 219);
   border: none;
   background: transparent;
-  font-size: 1em;
   padding: 0;
   margin: 0;
+  font-weight: 300;
 }
 #RR .clear-filter:hover {
   margin-left: 5px;
@@ -714,25 +682,22 @@ button {
 .QA-list {
   max-height: 600px;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   list-style: none;
   padding: 1%;
   margin-top: 20px;
   margin-bottom: 0px;
-}
-#review-list::-webkit-scrollbar {
-  /* display: none; */
 }
 .review-tile,
 .QA-tile {
   display: flex;
   flex-direction: column;
   margin-bottom: 2em;
-  background-color: white;
   box-shadow: 0px 0px 5px grey;
   padding: 2%;
   padding-bottom: 0%;
   border-radius: 5px;
+  font-size: 0.9em;
 }
 .QA-tile {
   padding: 2%;
@@ -744,6 +709,7 @@ button {
   display: flex;
   color: grey;
   margin: 5px 0px;
+  font-size: 0.9em;
 }
 .review-footer {
   margin-bottom: 3%;
@@ -792,6 +758,7 @@ button {
   font-size: 1em;
   padding: 0;
   margin: 0;
+  background: transparent;
 }
 .helpful-btn:hover {
   color: green;
@@ -801,21 +768,23 @@ button {
   color: darkred;
   cursor: pointer;
 }
-.review-list-btn {
+/* .review-list-btn {
   margin: 15px 10px 0px 0px;
   width: fit-content;
-}
+} */
 #add-review-btn,
 #submit-question-btn,
 #load-questions-btn,
-#collapse-questions-btn {
-  margin: auto;
+#collapse-questions-btn,
+.review-list-btn {
+  margin: 0% 5%;
   background-color: lightgray;
-  font-size: 1em;
+  font-size: 0.7em;
+  width: 14em;
 }
-.review-list-btn:hover {
+/* .review-list-btn:hover {
   cursor: pointer;
-}
+} */
 .review-form-content {
   position: absolute;
   top: 50%;
@@ -934,4 +903,58 @@ button {
 }
 .photo-upload {
   margin-bottom: 10px;
+}
+
+/* Hide default HTML checkbox */
+#switch-btn {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+#slider-round {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#slider-round:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: whitesmoke;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#switch-btn:checked + #slider-round {
+  /* background-color: #344a3a; */
+}
+
+#switch-btn:focus + #slider-round {
+  box-shadow: 0 0 1px #344a3a;
+}
+
+#switch-btn:checked + #slider-round:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+#slider-round {
+  border-radius: 34px;
+}
+
+#slider-round:before {
+  border-radius: 50%;
 }
