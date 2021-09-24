@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import UploadPhotoAnswer from './UploadPhotoAnswer';
@@ -16,6 +16,14 @@ const AnswerModal = (props) => {
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [modal]);
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const preparePhotos = (photoUploads) => {
@@ -67,6 +75,7 @@ const AnswerModal = (props) => {
                 {productName}
                 {' '}
                 :
+                {' '}
                 {question}
               </h2>
               <div>What is your Answer? (required)</div>
