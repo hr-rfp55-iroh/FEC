@@ -23,18 +23,27 @@ const UploadPhotoAnswer = (props) => {
   return (
     <div>
       <div>
-        Upload Your photos
-        {' '}
-        <br />
-        {imageCount < 5 && <input type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />}
+        <div className="photo-upload">
+          <label htmlFor="new-answer-photo">
+            Upload your photos : Maximum 5 photos
+            {
+              imageCount < 5
+              && (
+                <input id="new-answer-photo-label" name="Upload your photos" type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />
+              )
+            }
+          </label>
+
+        </div>
         <div className="photo-upload">
           {image.map((img) => (
             <>
               <img src={URL.createObjectURL(img)} value={URL.createObjectURL(img)} height="100" alt="" />
             </>
           ))}
-          <button className="cancel-upload" type="button" onClick={(e) => handleCancelUpload(e)}>Clear Photos</button>
+          <button id="cancel-upload-btn" type="button" onClick={(e) => handleCancelUpload(e)}>Clear Photos</button>
         </div>
+
       </div>
     </div>
   );
