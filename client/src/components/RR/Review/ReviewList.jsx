@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import ReviewTile from './ReviewTile';
+
+const ReviewTile = lazy(() => import('./ReviewTile'));
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -95,7 +96,9 @@ class ReviewList extends React.Component {
             {searchedReviews.slice(0, count).map((review, index) => {
               const reviewCount = index + 1;
               return (
-                <ReviewTile review={review} getReviews={getReviews} key={`review-${reviewCount}`} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ReviewTile review={review} getReviews={getReviews} key={`review-${reviewCount}`} />
+                </Suspense>
               );
             })}
           </ul>
