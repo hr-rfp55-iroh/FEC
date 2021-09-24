@@ -77,12 +77,14 @@ const QuestionModal = (props) => {
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
+                <p className="form-note">For privacy reasons, do not use your full name or email address</p>
                 <div>What is your email? (required)</div>
                 <div>
                   <span className="submit-question-error">{errors.email}</span>
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
+                <p className="form-note">For authentication reasons, you will not be emailed</p>
                 <button id="question-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="question-form-close-btn" onClick={toggleModal}>
