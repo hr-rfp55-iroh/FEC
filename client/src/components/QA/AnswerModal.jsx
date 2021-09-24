@@ -17,19 +17,7 @@ const AnswerModal = (props) => {
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const preparePhotos = (photos) => {
-    console.log(photos, 'photos');
-    let urls = Object.values(photos);
-    // console.log(urls.map(each => console.log('hello', each)))
-    const transferToURL = (photoArr) => {
-      // console.log('array', Array.from(photoArr))
-      // let test = Array.from(photoArr);
-      let alias = photoArr.map((img, i) => URL.createObjectURL(img[i]));
-      console.log('test from inside fn', alias)
-      return alias;
-    }
-    // let test = urls.map(each => transferToURL(each));
-    let test = transferToURL(urls);
-    console.log('test', test);
+    const urls = photos.map((photo) => URL.createObjectURL(photo));
     setPhotos(urls);
   };
   const handleValidationAndSubmit = (e) => {
@@ -52,10 +40,6 @@ const AnswerModal = (props) => {
       isFieldsFilled = false;
       missingFields.nickname = 'Missing nickname 📇 ';
     }
-    // if (photos.length === 0) { // TODO : require photo validation to be able to submit
-    //   isFieldsFilled = false;
-    //   missingFields.photos = 'Missing photos! ';
-    // }
     setErrors(missingFields);
 
     const obj = {
@@ -101,15 +85,7 @@ const AnswerModal = (props) => {
                 <br />
                 <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
                 <p className="form-note">For authentication reasons, you will not be emailed</p>
-                <UploadPhotoAnswer preparePhotos={preparePhotos} />
-                {/* <div> Upload your photos:</div>
-                <br />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <br /> */}
+                <UploadPhotoAnswer preparePhotos={preparePhotos} key={question_id} />
                 <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="answer-form-close-btn" onClick={toggleModal}>
