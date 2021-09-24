@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import PhotoUpload from '../RR/Review/PhotoUpload';
 import UploadPhotoAnswer from './UploadPhotoAnswer';
 
 const AnswerModal = (props) => {
@@ -18,13 +17,20 @@ const AnswerModal = (props) => {
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const preparePhotos = (photos) => {
-    // setPhotos(URL.createObjectURL(photos));
+    console.log(photos, 'photos');
     let urls = Object.values(photos);
-    console.log('urls', urls)
-
-    urls = photos.map((img) => { URL.createObjectURL(img) });
-    console.log('urls', urls)
-    // setPhotos(urls);
+    // console.log(urls.map(each => console.log('hello', each)))
+    const transferToURL = (photoArr) => {
+      // console.log('array', Array.from(photoArr))
+      // let test = Array.from(photoArr);
+      let alias = photoArr.map((img, i) => URL.createObjectURL(img[i]));
+      console.log('test from inside fn', alias)
+      return alias;
+    }
+    // let test = urls.map(each => transferToURL(each));
+    let test = transferToURL(urls);
+    console.log('test', test);
+    setPhotos(urls);
   };
   const handleValidationAndSubmit = (e) => {
     e.preventDefault();
