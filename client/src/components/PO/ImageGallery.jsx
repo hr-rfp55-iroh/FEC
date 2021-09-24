@@ -9,9 +9,8 @@ const ImageGallery = (props) => {
   const [modal, setModal] = useState(false);
 
   const mappedPhotos = photos.map((photo, index) => (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense key={index.toString()} fallback={<div>Loading...</div>}>
       <Image
-        key={index.toString()}
         index={index}
         thumb={photo.thumbnail_url}
         setPhotoIndex={setPhotoIndex}

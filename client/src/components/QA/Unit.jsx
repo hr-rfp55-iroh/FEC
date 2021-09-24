@@ -74,10 +74,9 @@ class Unit extends React.Component {
     const { currentProduct } = this.props;
     if (isQuestionsLoaded) {
       list = currentList.map((q) => (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense key={q.question_id} fallback={<div>Loading...</div>}>
           <Question
             className="question-component"
-            key={q.question_id}
             question_id={q.question_id}
             question_body={q.question_body}
             question_date={q.question_date}

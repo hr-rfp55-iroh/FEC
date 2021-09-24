@@ -98,12 +98,10 @@ const Answer = ({ answer, getQuestions }) => {
       </div>
       <div>
         <div className="photo-list">
-          {photoAlias.map((photo) => (
-            <>
-              <div key={photo.toString()} onClick={(e) => handlePhotoPop(e.target.src)} className="photo" role="presentation">
-                <img alt="" value={photo} src={photo} id="answer-images" />
-              </div>
-            </>
+          {photoAlias.map((photo, index) => (
+            <div key={`${photo}${index}`} onClick={(e) => handlePhotoPop(e.target.src)} className="photo" role="presentation">
+              <img alt="" value={photo} src={photo} id="answer-images" />
+            </div>
           ))}
         </div>
         {photoModal && (

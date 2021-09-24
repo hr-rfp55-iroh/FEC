@@ -96,8 +96,8 @@ class ReviewList extends React.Component {
             {searchedReviews.slice(0, count).map((review, index) => {
               const reviewCount = index + 1;
               return (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ReviewTile review={review} getReviews={getReviews} key={`review-${reviewCount}`} />
+                <Suspense key={`review-${reviewCount}`} fallback={<div>Loading...</div>}>
+                  <ReviewTile review={review} getReviews={getReviews} />
                 </Suspense>
               );
             })}

@@ -420,9 +420,9 @@ button {
   margin: auto;
 }
 #answer-images {
-  height: 60px;
+  width: 5em;
+  height: 5em;
   margin-left: 20px;
-
 }
 
 /* .btn-modal {
@@ -962,3 +962,4 @@ button {
 #slider-round:before {
   border-radius: 50%;
 }
+
