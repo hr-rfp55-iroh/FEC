@@ -8,7 +8,7 @@ const AnswerModal = lazy(() => import('./AnswerModal'));
 
 const Question = ({
   question_body, question_date, asker_name,
-  answers, question_id, question_helpfulness, getQuestions,
+  answers, question_id, question_helpfulness, getQuestions, productName,
 }) => {
   const [helpfulnessAlias, setHelpfulness] = useState(question_helpfulness);
   const [count, setCount] = useState(2);
@@ -87,7 +87,7 @@ const Question = ({
           |
           &nbsp;
           <Suspense fallback={<div>Loading...</div>}>
-            <AnswerModal question_id={question_id} getQuestions={getQuestions} />
+            <AnswerModal question_id={question_id} getQuestions={getQuestions} question={question_body} productName={productName} />
           </Suspense>
           {/* //TODO onlick modal for "Add Answer" */}
         </div>

@@ -61,13 +61,14 @@ class Unit extends React.Component {
         isQuestionsLoaded: true,
         questionsList: results.data.results,
         currentList: results.data.results,
+        productName: document.getElementById('product-name').innerHTML,
       }))
       .catch(() => this.setState({ isQuestionsLoaded: false }));
   }
 
   render() {
     const {
-      isQuestionsLoaded, questionsList, count, display, currentList,
+      isQuestionsLoaded, questionsList, count, display, currentList, productName,
     } = this.state;
     let list;
     const { currentProduct } = this.props;
@@ -84,6 +85,7 @@ class Unit extends React.Component {
             question_helpfulness={q.question_helpfulness}
             answers={q.answers}
             getQuestions={this.getQuestions}
+            productName={productName}
           />
         </Suspense>
       )).slice(0, count);
@@ -101,7 +103,7 @@ class Unit extends React.Component {
         </div>
         <div className="QA-btn-list">
           <Suspense fallback={<div>Loading...</div>}>
-            <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
+            <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} productName={productName} />
           </Suspense>
           <div>
             {(() => {

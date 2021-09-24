@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import UploadPhotoAnswer from './UploadPhotoAnswer';
 
 const AnswerModal = (props) => {
-  const { question_id, getQuestions } = props;
+  const {
+    question_id, getQuestions, question, productName,
+  } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -62,7 +64,10 @@ const AnswerModal = (props) => {
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
               <h2>
-                Your Answer:
+                {productName}
+                {' '}
+                :
+                {question}
               </h2>
               <div>What is your Answer? (required)</div>
               <br />
@@ -102,11 +107,16 @@ const AnswerModal = (props) => {
 AnswerModal.propTypes = {
   question_id: PropTypes.number,
   getQuestions: PropTypes.func,
+  question: PropTypes.string,
+  productName: PropTypes.string,
+
 };
 
 AnswerModal.defaultProps = {
   question_id: 0,
   getQuestions: '',
+  question: '',
+  productName: '',
 };
 
 export default AnswerModal;
