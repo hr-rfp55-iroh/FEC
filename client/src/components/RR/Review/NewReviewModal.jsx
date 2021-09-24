@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ReviewStarRating from './ReviewStarRating';
-import ReviewCharacteristics from './ReviewCharacteristics';
-import PhotoUpload from './PhotoUpload';
+
+const ReviewStarRating = lazy(() => import('./ReviewStarRating'));
+const ReviewCharacteristics = lazy(() => import('./ReviewCharacteristics'));
+const PhotoUpload = lazy(() => import('./PhotoUpload'));
 
 const starSelections = {
   1: 'Poor', 2: 'Fair', 3: 'Average', 4: 'Good', 5: 'Great',
@@ -132,7 +133,9 @@ const CreateReviewModal = (props) => {
             <form onSubmit={handleSubmit} id="create-review">
               <div className="review-form-rating">
                 <p>Overall Rating*</p>
-                <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(Number(num)); }} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ReviewStarRating name="overall" selections={starSelections} handleChange={(num) => { setOverallRating(Number(num)); }} />
+                </Suspense>
                 <p>Do you recommend this product?*</p>
                 <label htmlFor="recommend-yes">
                   <input type="radio" id="recommend-yes" name="recommend" value="yes" onChange={() => { setIsRecommended(true); }} />
@@ -146,25 +149,27 @@ const CreateReviewModal = (props) => {
                 <p>Product Experience*</p>
                 <div>
                   {charcs.map((charc) => (
-                    <ReviewCharacteristics
-                      charc={charc}
-                      name={charc}
-                      handleChange={(num, name) => {
-                        if (name === 'Size') {
-                          setSizeRating(Number(num));
-                        } else if (name === 'Width') {
-                          setWidthRating(Number(num));
-                        } else if (name === 'Comfort') {
-                          setComfortRating(Number(num));
-                        } else if (name === 'Quality') {
-                          setQualityRating(Number(num));
-                        } else if (name === 'Length') {
-                          setLengthRating(Number(num));
-                        } else {
-                          setFitRating(Number(num));
-                        }
-                      }}
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <ReviewCharacteristics
+                        charc={charc}
+                        name={charc}
+                        handleChange={(num, name) => {
+                          if (name === 'Size') {
+                            setSizeRating(Number(num));
+                          } else if (name === 'Width') {
+                            setWidthRating(Number(num));
+                          } else if (name === 'Comfort') {
+                            setComfortRating(Number(num));
+                          } else if (name === 'Quality') {
+                            setQualityRating(Number(num));
+                          } else if (name === 'Length') {
+                            setLengthRating(Number(num));
+                          } else {
+                            setFitRating(Number(num));
+                          }
+                        }}
+                      />
+                    </Suspense>
                   ))}
                 </div>
               </div>
@@ -192,11 +197,13 @@ const CreateReviewModal = (props) => {
                     Minimum reached
                   </p>
                 )}
-                <PhotoUpload handlePhotoUpload={(files) => {
-                  const urls = files.map((photo) => URL.createObjectURL(photo));
-                  setPhotoUrls(urls);
-                }}
-                />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PhotoUpload handlePhotoUpload={(files) => {
+                    const urls = files.map((photo) => URL.createObjectURL(photo));
+                    setPhotoUrls(urls);
+                  }}
+                  />
+                </Suspense>
                 <p>Your nickname*</p>
                 <input type="text" name="new-review-nickname" id="new-review-nickname" maxLength="60" placeholder="Example:jackson11!" onChange={(e) => { setNickname(e.target.value); }} />
                 <p className="form-note">

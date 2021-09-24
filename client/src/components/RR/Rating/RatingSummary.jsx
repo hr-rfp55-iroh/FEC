@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import Star from './Star';
-import RatingBreakdown from './RatingBreakdown';
-import ProductBreakdown from './ProductBreakdown';
+
+const Star = lazy(() => import('./Star'));
+const RatingBreakdown = lazy(() => import('./RatingBreakdown'));
+const ProductBreakdown = lazy(() => import('./ProductBreakdown'));
 
 const RatingSummary = (props) => {
   const { metaData, handleRatingFilterClick } = props;
@@ -16,7 +17,9 @@ const RatingSummary = (props) => {
           <div className="star">
             <div id="rating-avg" data-testid="rating-avg">{avgRating.toFixed(1)}</div>
             {avgRating && (
-              <Star rating={avgRating} name="rating-summary" />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Star rating={avgRating} name="rating-summary" />
+              </Suspense>
             )}
             <div className="rating-count">
               &#40;
@@ -28,11 +31,13 @@ const RatingSummary = (props) => {
             {recRate}
             % of reviews recommend this product
           </div>
-          <RatingBreakdown
-            ratings={ratings}
-            handleRatingFilterClick={handleRatingFilterClick}
-          />
-          <ProductBreakdown characteristics={characteristics} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <RatingBreakdown
+              ratings={ratings}
+              handleRatingFilterClick={handleRatingFilterClick}
+            />
+            <ProductBreakdown characteristics={characteristics} />
+          </Suspense>
         </div>
       )}
       {!ratingCount && (

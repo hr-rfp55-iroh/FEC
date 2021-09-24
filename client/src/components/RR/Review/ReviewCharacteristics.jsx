@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import ReviewStarRating from './ReviewStarRating';
+
+const ReviewStarRating = lazy(() => import('./ReviewStarRating'));
 
 const charcsSelections = {
   Size: {
@@ -29,7 +30,9 @@ const ReviewCharacteristics = (props) => {
   return (
     <div>
       <div>{charc}</div>
-      <ReviewStarRating name={name} selections={selections} handleChange={handleChange} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ReviewStarRating name={name} selections={selections} handleChange={handleChange} />
+      </Suspense>
       <div className="star" />
     </div>
   );
