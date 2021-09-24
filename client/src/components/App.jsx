@@ -10,8 +10,16 @@ const Unit = lazy(() => import('./QA/Unit'));
 
 import { GlobalContext } from './GlobalContext';
 
+<<<<<<< HEAD
 import Layout from './Layout';
 import { Page, Banner, Flex, SwitchButton, Heading } from './GlobalStyle';
+=======
+    // currentProduct is the product_id of the currently selected product.
+    this.state = {
+      currentProduct: 40344,
+      rating: null,
+    };
+>>>>>>> main
 
 const App = (props) => {
   const [currentProduct, setCurrentProduct] = useState(40344);
@@ -34,11 +42,29 @@ const App = (props) => {
     setRating(num);
   }
 
+<<<<<<< HEAD
   return (
     <Layout>
       <Page>
       <Click widget="navigation">
         <Banner>
+=======
+  // RR
+  // Update product rating in state to pass it to Product Overview
+  updateAvgRating(num) {
+    this.setState({
+      rating: num,
+    });
+  }
+
+  render() {
+    const {
+      rating, currentProduct, isProductsLoaded,
+    } = this.state;
+    return (
+      <div>
+        <Click widget="navigation">
+>>>>>>> main
           <div className="banner">
             <img src="./static/white_lotus.webp" alt="lotus" />
             <h1>White Lotus</h1>

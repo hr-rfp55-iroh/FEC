@@ -236,7 +236,7 @@ CreateReviewModal.propTypes = {
 CreateReviewModal.defaultProps = {
   selected: 0,
   characteristics: {},
-  updateRatingReview: () => {},
+  updateRatingReview: () => { },
 };
 
 export default CreateReviewModal;
