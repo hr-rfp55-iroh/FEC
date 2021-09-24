@@ -70,16 +70,6 @@ const Question = ({
           |&nbsp;Helpful?
           &nbsp;
           {!isLimitHelpful ? helpfulBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
-          {/* // <span */}
-          {/* //   role="button"
-            //   onKeyPress={handleHelpfulQuestion}
-            //   onClick={(e) => handleHelpfulQuestion(e)}
-            //   tabIndex={-1}
-            //   className="pointer"
-            // >
-            //   <strong>Yes</strong>
-          // </span> */}
-          {/* {//TODO onclick toggleFn for "YES"} */}
           &nbsp;
           (
           {helpfulnessAlias}

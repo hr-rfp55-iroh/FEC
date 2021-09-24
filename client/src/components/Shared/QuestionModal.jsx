@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const QuestionModal = (props) => {
-  const { currentProduct, getQuestions } = props;
+  const { currentProduct, getQuestions, productName } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -56,8 +56,11 @@ const QuestionModal = (props) => {
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
+              <h1>
+                Ask Your Question:
+              </h1>
               <h2>
-                Your Question:
+                About the {productName}
               </h2>
               <div>What is your question? (required)</div>
               <form>
