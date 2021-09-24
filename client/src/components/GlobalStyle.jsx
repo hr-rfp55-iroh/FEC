@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Banner = styled.div`
-  background-image: ${(props) => props.theme.bannerBackgroundImage}
+  background-image: ${(props) => props.theme.bannerBackgroundImage};
+  font-family: 'Fredoka One', cursive;
 `;
 
 export const Page = styled.div`
