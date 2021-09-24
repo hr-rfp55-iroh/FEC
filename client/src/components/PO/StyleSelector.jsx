@@ -39,9 +39,8 @@ const StyleSelector = (props) => {
 
   const mappedList = styles.map(
     (style, index) => (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense key={style.style_id.toString()} fallback={<div>Loading...</div>}>
         <Style
-          key={style.style_id.toString()}
           thumb={style.photos[0].thumbnail_url}
           selected={style['default?']}
           price={style.original_price}
@@ -64,7 +63,7 @@ const StyleSelector = (props) => {
   return (
     <div>
       <div className="infos">{priceDiv}</div>
-      <div className="infos"><h3>{styleName}</h3></div>
+      <div className="infos">{styleName}</div>
       <div id="style-selector">
         {mappedList}
       </div>

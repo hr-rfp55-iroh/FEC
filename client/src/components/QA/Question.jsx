@@ -85,10 +85,9 @@ const Question = ({
       {sortedAnswers.length !== 0 && (
         <div className="QA-answer-list">
           {sortedAnswers.slice(0, count).map((answer) => (
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense key={answer.body} fallback={<div>Loading...</div>}>
               <Answer
                 answer={answer}
-                key={answer.body}
                 getQuestions={getQuestions}
               />
             </Suspense>

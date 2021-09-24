@@ -30,11 +30,10 @@ const RatingBreakdown = (props) => {
       {barInfo.map((info, index) => {
         const barCount = index + 1;
         return (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense key={`bar-${barCount}`} fallback={<div>Loading...</div>}>
             <RatingBar
               info={info}
               handleRatingFilterClick={handleRatingFilterClick}
-              key={`bar-${barCount}`}
             />
           </Suspense>
         );

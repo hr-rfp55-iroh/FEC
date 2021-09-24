@@ -63,7 +63,7 @@ class ReviewBody extends React.Component {
         && (
         <div className="photo-list">
           {photos.map((photo) => (
-            <div className="photo" onClick={this.togglePhotoModal} onKeyPress={this.togglePhotoModal} role="presentation">
+            <div key={photo.url} className="photo" onClick={this.togglePhotoModal} onKeyPress={this.togglePhotoModal} role="presentation">
               <img src={photo.url} height="60" alt="product-review" value={photo.url} />
             </div>
           ))}

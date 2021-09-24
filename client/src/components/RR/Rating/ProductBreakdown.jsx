@@ -23,8 +23,8 @@ const ProductBreakdown = (props) => {
       {barInfo.map((info, index) => {
         const charBarCount = index + 1;
         return (
-          <Suspense fallback={<div>Loading...</div>}>
-            <CharacteristicBar info={info} key={`charBar-${charBarCount}`} />
+          <Suspense key={`charBar-${charBarCount}`} fallback={<div>Loading...</div>}>
+            <CharacteristicBar info={info} />
           </Suspense>
         );
       })}
