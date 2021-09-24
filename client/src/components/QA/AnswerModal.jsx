@@ -16,8 +16,8 @@ const AnswerModal = (props) => {
   };
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
-  const preparePhotos = (photos) => {
-    const urls = photos.map((photo) => URL.createObjectURL(photo));
+  const preparePhotos = (photoUploads) => {
+    const urls = photoUploads.map((photo) => URL.createObjectURL(photo));
     setPhotos(urls);
   };
   const handleValidationAndSubmit = (e) => {
