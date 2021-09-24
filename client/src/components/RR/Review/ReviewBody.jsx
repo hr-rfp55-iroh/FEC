@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { QuestionHeader } from '../../GlobalStyle';
+
 class ReviewBody extends React.Component {
   constructor(props) {
     super(props);
@@ -77,17 +79,20 @@ class ReviewBody extends React.Component {
         )}
         {recommend
         && (
-          <div style={{ margin: '10px 0px' }}>&#10003; I recommend this product</div>
+          <div style={{ margin: '10px 0px', fontWeight: 'normal' }}>&#10003; I recommend this product</div>
         )}
+        <br />
         <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>
           {reviewer_name}
         </div>
         {response
         && (
-          <div className="review-response">
-            <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>Response from seller:</div>
-            {response}
-          </div>
+          <QuestionHeader>
+            <div className="review-response">
+              <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>Response from seller:</div>
+              {response}
+            </div>
+          </QuestionHeader>
         )}
       </div>
     );
