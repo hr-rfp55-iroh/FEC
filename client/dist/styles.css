@@ -850,6 +850,7 @@ button {
 }
 #form-submit-btn,
 #question-form-submit-btn,
+#cancel-upload-btn,
 #answer-form-submit-btn {
   padding: 5px 5px;
   margin: 5% 0% 0% 40%;
@@ -924,7 +925,8 @@ button {
   opacity: 0;
   width: 1px;
 }
-#new-review-photo-label {
+#new-review-photo-label,
+#new-answer-photo-label {
   background-color: lightgrey;
   border: 1px solid black;
   padding: 3px 0px 3px 10px;

@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import UploadPhotoAnswer from './UploadPhotoAnswer';
 
 const AnswerModal = (props) => {
-  const { question_id, getQuestions } = props;
+  const {
+    question_id, getQuestions, question, productName,
+  } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
+  const [photos, setPhotos] = useState([]);
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [modal]);
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
+  const preparePhotos = (photoUploads) => {
+    const urls = photoUploads.map((photo) => URL.createObjectURL(photo));
+    setPhotos(urls);
+  };
   const handleValidationAndSubmit = (e) => {
     e.preventDefault();
     const missingFields = {};
@@ -34,13 +50,10 @@ const AnswerModal = (props) => {
       isFieldsFilled = false;
       missingFields.nickname = 'Missing nickname 📇 ';
     }
-    // if (photos.length === 0) { // TODO : require photo validation to be able to submit
-    //   isFieldsFilled = false;
-    //   missingFields.photos = 'Missing photos! ';
-    // }
     setErrors(missingFields);
+
     const obj = {
-      body: text, email, name: nickname, question_id,
+      body: text, email, name: nickname, question_id, photos,
     };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)
@@ -59,7 +72,11 @@ const AnswerModal = (props) => {
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
               <h2>
-                Your Answer:
+                {productName}
+                {' '}
+                :
+                {' '}
+                {question}
               </h2>
               <div>What is your Answer? (required)</div>
               <br />
@@ -82,21 +99,13 @@ const AnswerModal = (props) => {
                 <br />
                 <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
                 <p className="form-note">For authentication reasons, you will not be emailed</p>
-                <div> Upload your photos:</div>
-                <br />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <input type="file" />
-                <br />
+                <UploadPhotoAnswer preparePhotos={preparePhotos} key={question_id} />
                 <button id="answer-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="answer-form-close-btn" onClick={toggleModal}>
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}
@@ -107,11 +116,16 @@ const AnswerModal = (props) => {
 AnswerModal.propTypes = {
   question_id: PropTypes.number,
   getQuestions: PropTypes.func,
+  question: PropTypes.string,
+  productName: PropTypes.string,
+
 };
 
 AnswerModal.defaultProps = {
   question_id: 0,
   getQuestions: '',
+  question: '',
+  productName: '',
 };
 
 export default AnswerModal;

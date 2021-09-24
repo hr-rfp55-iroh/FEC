@@ -55,7 +55,7 @@ PhotoUpload.propTypes = {
 };
 
 PhotoUpload.defaultProps = {
-  handlePhotoUpload: () => {},
+  handlePhotoUpload: () => { },
 };
 
 export default PhotoUpload;

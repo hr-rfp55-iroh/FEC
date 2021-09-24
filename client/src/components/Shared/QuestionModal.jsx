@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const QuestionModal = (props) => {
-  const { currentProduct, getQuestions } = props;
+  const { currentProduct, getQuestions, productName } = props;
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [text, setText] = useState('');
@@ -12,6 +12,14 @@ const QuestionModal = (props) => {
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [modal]);
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
   const handleValidationAndSubmit = (e) => {
@@ -56,8 +64,13 @@ const QuestionModal = (props) => {
         <div className="modal">
           <div className="overlay" role="button" tabIndex="0">
             <div className="modal-content">
+              <h1>
+                Ask Your Question:
+              </h1>
               <h2>
-                Your Question:
+                About the
+                {' '}
+                {productName}
               </h2>
               <div>What is your question? (required)</div>
               <form>
@@ -72,19 +85,20 @@ const QuestionModal = (props) => {
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="jackson11!" required />
+                <p className="form-note">For privacy reasons, do not use your full name or email address</p>
                 <div>What is your email? (required)</div>
                 <div>
                   <span className="submit-question-error">{errors.email}</span>
                 </div>
                 <br />
                 <textarea name="submitQuestion" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
+                <p className="form-note">For authentication reasons, you will not be emailed</p>
                 <button id="question-form-submit-btn" type="submit" onClick={handleValidationAndSubmit}>Submit</button>
               </form>
               <div role="presentation" id="question-form-close-btn" onClick={toggleModal}>
                 <img src="./static/close.svg" height="20px" alt="right-arrow" />
               </div>
             </div>
-            {/* <button className="close-modal" type="submit" onClick={toggleModal}>Close The Modal </button> */}
           </div>
         </div>
       )}
@@ -93,11 +107,15 @@ const QuestionModal = (props) => {
 };
 
 QuestionModal.propTypes = {
+  getQuestions: PropTypes.func,
   currentProduct: PropTypes.number,
+  productName: PropTypes.string,
 };
 
 QuestionModal.defaultProps = {
+  getQuestions: '',
   currentProduct: 30344,
+  productName: '',
 };
 
 export default QuestionModal;
