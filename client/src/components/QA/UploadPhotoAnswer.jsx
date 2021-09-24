@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const UploadPhotoAnswer = (props) => {
   const { preparePhotos } = props;
@@ -37,6 +38,15 @@ const UploadPhotoAnswer = (props) => {
       </div>
     </div>
   );
+};
+
+UploadPhotoAnswer.propTypes = {
+  preparePhotos: PropTypes.func,
+
+};
+
+UploadPhotoAnswer.defaultProps = {
+  preparePhotos: () => { },
 };
 
 export default UploadPhotoAnswer;
