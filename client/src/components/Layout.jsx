@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-import { GlobalContext } from '../context/globalContext';
+import { GlobalContext } from './GlobalContext';
 
-// 1.
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
@@ -12,38 +11,29 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  html {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-  }
-
   body {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+    font-family: Arial;
     background: ${(props) => props.theme.background};
   }
 `;
 
-// 2.
 const Layout = ({ children }) => {
   const darkTheme = {
-    background: '#111827',
-    secondaryBackground: '#374151',
-    text: '#F9FAFB',
-    button: '#E5E7EB',
+    background: '#9c091f',
+    secondaryBackground: '#141b9c',
+    text: '#9c091f',
+    button: '#9c091f',
   };
 
   const lightTheme = {
-    background: '#F9FAFB',
-    secondaryBackground: '#E5E7EB',
-    text: '#111827',
-    button: '#374151',
+    background: '#228f2d',
+    secondaryBackground: '#f55442',
+    text: '#228f2d',
+    button: '#228f2d',
   };
 
-    // 3.
   const currentTheme = useContext(GlobalContext);
 
-    // 4.
   let theme;
   switch (currentTheme.theme) {
     case 'dark':
