@@ -2,9 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../../config';
 
-import Overview from './PO/Overview';
-import RatingReview from './RR/RatingReview';
-import Unit from './QA/Unit';
 import Click from '../Click';
 
 class App extends React.Component {
