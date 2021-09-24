@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import CharacteristicBar from './CharacteristicBar';
+
+const CharacteristicBar = lazy(() => import('./CharacteristicBar'));
 
 const productBreakdown = (charcsObj) => {
   const result = [];
@@ -22,7 +23,9 @@ const ProductBreakdown = (props) => {
       {barInfo.map((info, index) => {
         const charBarCount = index + 1;
         return (
-          <CharacteristicBar info={info} key={`charBar-${charBarCount}`} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <CharacteristicBar info={info} key={`charBar-${charBarCount}`} />
+          </Suspense>
         );
       })}
     </div>
