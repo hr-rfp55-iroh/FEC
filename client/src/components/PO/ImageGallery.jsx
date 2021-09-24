@@ -42,7 +42,7 @@ const ImageGallery = (props) => {
       )}
       {(() => {
         if (photos.length !== 0) {
-          if (!photos[photoIndex].url) { return (<div id="no-photos">no photos available</div>); }
+          if (!photos[photoIndex].url) { return (<img src="./static/no-image.jpeg" alt="nothing" />); }
           return (
             < >
               <div id="image-selector">
