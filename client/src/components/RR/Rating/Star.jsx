@@ -30,7 +30,7 @@ const Star = (props) => {
     <div className="avg-star-rating">
       {stars.map((fileName, index) => {
         const path = `./static/${fileName}.svg`;
-        return (<img src={path} height="14" alt="star system" key={`${name}-${fileName}-${keyNum[index]}`} />);
+        return (<img src={path} height="20" alt="star system" key={`${name}-${fileName}-${keyNum[index]}`} />);
       })}
     </div>
   );

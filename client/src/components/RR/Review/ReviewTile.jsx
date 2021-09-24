@@ -66,6 +66,7 @@ const ReviewTile = (props) => {
               {reformatDateString(date.slice(0, 10))}
             </div>
           </div>
+          <br />
           <div className="review-summary" data-testid="review-summary">{summary}</div>
         </div>
         <Suspense fallback={<div>Loading...</div>}>

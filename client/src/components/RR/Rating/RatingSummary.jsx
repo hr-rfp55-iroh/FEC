@@ -5,6 +5,8 @@ const Star = lazy(() => import('./Star'));
 const RatingBreakdown = lazy(() => import('./RatingBreakdown'));
 const ProductBreakdown = lazy(() => import('./ProductBreakdown'));
 
+import { RatingPnl } from '../../GlobalStyle';
+
 const RatingSummary = (props) => {
   const { metaData, handleRatingFilterClick } = props;
   const {
@@ -14,19 +16,22 @@ const RatingSummary = (props) => {
     <div className="rating">
       {avgRating && ratingCount && (
         <div>
-          <div className="star">
-            <div id="rating-avg" data-testid="rating-avg">{avgRating.toFixed(1)}</div>
-            {avgRating && (
-              <Suspense fallback={<div>Loading...</div>}>
-                <Star rating={avgRating} name="rating-summary" />
-              </Suspense>
-            )}
-            <div className="rating-count">
-              &#40;
-              {ratingCount}
-              &#41;
+            <div className="star">
+              <div id="rating-avg" data-testid="rating-avg">{avgRating.toFixed(1)}</div>
+              {avgRating && (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <RatingPnl>
+                    <Star rating={avgRating} name="rating-summary" />
+                  </RatingPnl>
+                </Suspense>
+              )}
+              &nbsp;
+              <div className="rating-count">
+                &#40;
+                {ratingCount}
+                &#41;
+              </div>
             </div>
-          </div>
           <div className="rec-rate" data-testid="rec-rate">
             {recRate}
             % of reviews recommend this product
