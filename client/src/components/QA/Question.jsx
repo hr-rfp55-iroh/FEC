@@ -6,6 +6,8 @@ import Moment from 'moment';
 const Answer = lazy(() => import('./Answer'));
 const AnswerModal = lazy(() => import('./AnswerModal'));
 
+import { Tile, QuestionHeader } from '../GlobalStyle';
+
 const Question = ({
   question_body, question_date, asker_name,
   answers, question_id, question_helpfulness, getQuestions, productName,
@@ -52,36 +54,56 @@ const Question = ({
     </span>
   );
   return (
-    <div className="QA-tile">
-      <div className="QA-question">
-        <div className="QA-question-body">
-          Q:
-          &nbsp;
-          {question_body}
-        </div>
-        <div className="QA-question-header">
-          By:
-          {' '}
-          {asker_name}
-          ,
-          {' '}
-          {Moment(question_date).format('MMMM DD, YYYY')}
-          &nbsp;
-          |&nbsp;Helpful?
-          &nbsp;
-          {!isLimitHelpful ? helpfulBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
-          &nbsp;
-          (
-          {helpfulnessAlias}
-          )&nbsp;
-          |
-          &nbsp;
-          <Suspense fallback={<div>Loading...</div>}>
-            <AnswerModal question_id={question_id} getQuestions={getQuestions} question={question_body} productName={productName} />
-          </Suspense>
-          {/* //TODO onlick modal for "Add Answer" */}
-        </div>
+    <Tile>
+      <div className="QA-tile">
+        <QuestionHeader>
+          <div className="QA-question">
+            <div className="QA-question-body">
+              Q:
+              &nbsp;
+              {question_body}
+            </div>
+            <div className="QA-question-header">
+              By:
+              {' '}
+              {asker_name}
+              ,
+              {' '}
+              {Moment(question_date).format('MMMM DD, YYYY')}
+              &nbsp;
+              |&nbsp;Helpful?
+              &nbsp;
+              {!isLimitHelpful ? helpfulBtn : (<span style={{ fontWeight: 'bold' }}>Yes</span>)}
+              &nbsp;
+              (
+              {helpfulnessAlias}
+              )&nbsp;
+              |
+              &nbsp;
+              <Suspense fallback={<div>Loading...</div>}>
+                <AnswerModal question_id={question_id} getQuestions={getQuestions} question={question_body} productName={productName} />
+              </Suspense>
+              {/* //TODO onlick modal for "Add Answer" */}
+            </div>
+          </div>
+        </QuestionHeader>
+        {sortedAnswers.length !== 0 && (
+          <div className="QA-answer-list">
+            {sortedAnswers.slice(0, count).map((answer) => (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Answer
+                  answer={answer}
+                  key={answer.body}
+                  getQuestions={getQuestions}
+                />
+              </Suspense>
+            ))}
+            {sortedAnswers.length > count ? showMoreAnswersBtn : button}
+            {/* {button} */}
+          </div>
+        )}
       </div>
+<<<<<<< HEAD
       {sortedAnswers.length !== 0 && (
         <div className="QA-answer-list">
           {sortedAnswers.slice(0, count).map((answer) => (
@@ -97,6 +119,9 @@ const Question = ({
         </div>
       )}
     </div>
+=======
+    </Tile>
+>>>>>>> main
   );
 };
 
