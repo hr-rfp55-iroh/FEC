@@ -11,11 +11,21 @@ const AnswerModal = (props) => {
   const [text, setText] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
+  const [photos, setPhotos] = useState([]);
   const toggleModal = () => {
     setModal(!modal);
   };
   // regex fn to test for basic email structure "_____@__.__"
   const isEmailValid = (emailEntry) => (/\S+@\S+\.\S+/.test(emailEntry));
+  const preparePhotos = (photos) => {
+    // setPhotos(URL.createObjectURL(photos));
+    let urls = Object.values(photos);
+    console.log('urls', urls)
+
+    urls = photos.map((img) => { URL.createObjectURL(img) });
+    console.log('urls', urls)
+    // setPhotos(urls);
+  };
   const handleValidationAndSubmit = (e) => {
     e.preventDefault();
     const missingFields = {};
@@ -41,8 +51,9 @@ const AnswerModal = (props) => {
     //   missingFields.photos = 'Missing photos! ';
     // }
     setErrors(missingFields);
+
     const obj = {
-      body: text, email, name: nickname, question_id,
+      body: text, email, name: nickname, question_id, photos,
     };
     if (isFieldsFilled) {
       axios.post('qa/answers', obj)
@@ -84,7 +95,7 @@ const AnswerModal = (props) => {
                 <br />
                 <textarea name="submitAnswer" maxLength="60" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email here" required />
                 <p className="form-note">For authentication reasons, you will not be emailed</p>
-                <UploadPhotoAnswer />
+                <UploadPhotoAnswer preparePhotos={preparePhotos} />
                 {/* <div> Upload your photos:</div>
                 <br />
                 <input type="file" />

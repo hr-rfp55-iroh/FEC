@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 
 const UploadPhotoAnswer = (props) => {
+  const { preparePhotos } = props;
   const [image, setImage] = useState([]);
+  const [imagesForUpload, setImagesForUpload] = useState([]);
   const [imageCount, setImageCount] = useState(0);
   const handleFileUpload = (e) => {
     setImageCount(imageCount + e.target.files.length);
     if (e.target.files.length) {
-      const newFiles = image.slice().concat(Object.values(e.target.files));
-      setImage(newFiles);
+      console.log('here', [...imagesForUpload, ...e.target.files])
+      preparePhotos([...imagesForUpload, ...e.target.files]);
+      // setImagesForUpload([...imagesForUpload, e.target.files])
+      // const alias = e.target.files.map((file) => { URL.createObjectURL(file); });
+      // console.log('alias', alias)
+      // setImagesForUpload([...images, URL.createObjectURL(e.target.files)]);
+      const newDisplay = image.slice().concat(Object.values(e.target.files));
+      setImage(newDisplay);
+      // console.log('images', imagesForUpload);
     }
   };
   const handleCancelUpload = (e) => {
     e.preventDefault();
     setImage([]);
     setImageCount(0);
+    preparePhotos([]);
   };
 
   return (
@@ -31,7 +41,6 @@ const UploadPhotoAnswer = (props) => {
           ))}
           <button className="cancel-upload" type="button" onClick={(e) => handleCancelUpload(e)}>Clear Photos</button>
         </div>
-
       </div>
     </div>
   );
