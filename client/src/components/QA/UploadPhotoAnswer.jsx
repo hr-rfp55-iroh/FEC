@@ -3,22 +3,13 @@ import React, { useState } from 'react';
 const UploadPhotoAnswer = (props) => {
   const { preparePhotos } = props;
   const [image, setImage] = useState([]);
-  const [imagesForUpload, setImagesForUpload] = useState([]);
   const [imageCount, setImageCount] = useState(0);
   const handleFileUpload = (e) => {
-    console.log(e.currentTarget.files);
     setImageCount(imageCount + e.target.files.length);
     if (e.target.files.length) {
-      // console.log('here', [...imagesForUpload, ...e.target.files])
-      // preparePhotos([...imagesForUpload, ...e.target.files]);
-      // setImagesForUpload([...imagesForUpload, e.target.files])
-      // const alias = e.target.files.map((file) => { URL.createObjectURL(file); });
-      // console.log('alias', alias)
-      // setImagesForUpload([...images, URL.createObjectURL(e.target.files)]);
       const newDisplay = image.slice().concat(Object.values(e.target.files));
       setImage(newDisplay);
-      preparePhotos(newDisplay)
-      // console.log('images', imagesForUpload);
+      preparePhotos(newDisplay);
     }
   };
   const handleCancelUpload = (e) => {
