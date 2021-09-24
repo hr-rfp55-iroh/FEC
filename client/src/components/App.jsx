@@ -3,7 +3,6 @@ import axios from 'axios';
 import config from '../../../config';
 
 import Overview from './PO/Overview';
-// import Navbar from './PO/Navbar';
 import RatingReview from './RR/RatingReview';
 import Unit from './QA/Unit';
 import Click from '../Click';

@@ -24,33 +24,49 @@ const ImageGallery = (props) => {
   return (
     < >
       {modal && (
-        <div className="modal">
-          <div
-            onClick={toggleModal}
-            onKeyPress={toggleModal}
-            className="overlay"
-            role="button"
-            tabIndex={0}
-          >
-            <div className="modal-content-img">
-              <img
-                alt="style"
-                src={photos[photoIndex].url}
-              />
-            </div>
+        <div
+          onClick={toggleModal}
+          onKeyPress={toggleModal}
+          className="overlay"
+          role="button"
+          tabIndex={0}
+        >
+          <div>
+            <img
+              id="image-gallery-modal"
+              alt="style"
+              src={photos[photoIndex].url}
+            />
           </div>
         </div>
       )}
       {(() => {
         if (photos.length !== 0) {
-          if (!photos[photoIndex].url) { return ('no photos available'); }
+          if (!photos[photoIndex].url) { return (<div id="no-photos">no photos available</div>); }
           return (
             < >
               <div id="image-selector">
                 {mappedPhotos}
               </div>
               <div
-                id="main-image"
+                role="button"
+                id="left-arrow"
+                className="gallery-arrow"
+                onClick={() => {
+                  if (photoIndex === 0) {
+                    setPhotoIndex(photos.length - 1);
+                    return;
+                  }
+
+                  setPhotoIndex(photoIndex - 1);
+                }}
+                onKeyPress={() => {}}
+                tabIndex={0}
+              >
+                <img src="./static/left-arrow.svg" height="10px" alt="right-arrow" />
+              </div>
+              <div
+                className="main-image"
                 role="button"
                 onClick={toggleModal}
                 tabIndex={0}
@@ -60,6 +76,22 @@ const ImageGallery = (props) => {
                   alt="style"
                   src={photos[photoIndex].url}
                 />
+              </div>
+              <div
+                role="button"
+                id="right-arrow"
+                className="gallery-arrow"
+                onClick={() => {
+                  if (photoIndex === photos.length - 1) {
+                    setPhotoIndex(0);
+                    return;
+                  }
+                  setPhotoIndex(photoIndex + 1);
+                }}
+                onKeyPress={() => {}}
+                tabIndex={0}
+              >
+                <img src="./static/right-arrow.svg" height="10px" alt="right-arrow" />
               </div>
             </>
           );

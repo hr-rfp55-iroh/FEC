@@ -184,26 +184,31 @@ button {
   align-content: center;
 }
 
-/* GROCERY LIST THEME */
+/* CAROUSEL */
 
-/* #grocery {
-  margin: auto;
-  width: 1em;
-} */
-
-/* #grocery img {
+.gallery-arrow, .gallery-arrow img {
+  opacity: .7;
+  cursor: pointer;
+  z-index: 30;
   position: absolute;
-  margin-top: 2%;
-  margin-left: 25%;
-  height: 10em;
-} */
+  width: 5em;
+  height: 5em;
+}
 
-/* h1 {
-  top: 0;
-  padding: 30px 30px;
-  font-size: 3em;
-  margin: 0px;
-} */
+#left-arrow, #left-arrow img {
+  left: 13%;
+  top: 90%;
+}
+
+#right-arrow, #right-arrow img {
+  right: 5%;
+  top: 90%;
+}
+
+.gallery-arrow:hover {
+  opacity: 1;
+}
+
 
 #navbar-products {
   position: relative;
@@ -227,28 +232,21 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
 }
 
-#po-gallery-pnl {
+#po-gallery-pnl, #no-photos {
+  line-height: 50em;
+  margin: 30px;
   position: relative;
   display: flex;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  width: 65%;
-  height: 500px;
-  line-height: 500px;
+  overflow: hidden;
+  width: 60%;
+  height: 50em;
 }
 
 #po-gallery-pnl img {
-  position: relative;
+  position: static;
   display: block;
-  top: 25%;
-  left: 25%;
-  min-height: 100%;
-  min-width: 100%;
-  width: 50%;
-  transform: translate(-25%, -25%);
 }
 
 #image-selector {
@@ -259,10 +257,22 @@ button {
   margin-right: 10px;
 }
 
-#main-image {
+.main-image {
+  display: flex;
+  align-items: center;
   cursor: zoom-in;
-  transform: translate(25% 25%);
+  position: relative;
   width: 90%;
+  height: 100%;
+}
+
+.main-image img {
+  top: 25%;
+  left: 25%;
+  width: 100%;
+  position: relative;
+  transform: translate(-25, -25%);
+
 }
 
 .image-thumb, .image-thumb img {
@@ -331,7 +341,7 @@ button {
   margin-left: 50px;
 } */
 
-#po-gallery-pnl, #po-info-pnl {
+#po-info-pnl {
   margin: 30px 0px;
   position: relative;
   padding: 2% 0%;
@@ -490,12 +500,11 @@ button {
 }
 
 .modal-content-img {
-  top: 75%;
-  left: 50%;
+  top: 25%;
+  left: 25%;
   position: absolute;
-  transform: translate(-50%, -25%);
-  width: 50%;
-  padding: 15px 15px;
+  transform: translate(-25%, -25%);
+  width: 70%;
 }
 
 .submit-button {
@@ -759,7 +768,7 @@ button {
 .photo {
   margin-right: 5px;
 }
-.review-photo-modal {
+.review-photo-modal, #po-gallery-pnl #image-gallery-modal {
   position: absolute;
   top: 50%;
   left: 50%;
