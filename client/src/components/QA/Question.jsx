@@ -29,6 +29,7 @@ const Question = ({
     e.preventDefault();
     axios.put('/qa/questions/helpful', obj)
       .then(() => setHelpfulness(helpfulnessAlias + 1))
+      .then(() => getQuestions())
       .then(() => setIsLimitHelpful(true));
   };
   const handleCollapseAnswers = () => {

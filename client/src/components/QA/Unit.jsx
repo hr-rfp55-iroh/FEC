@@ -61,7 +61,7 @@ class Unit extends React.Component {
         isQuestionsLoaded: true,
         questionsList: results.data.results,
         currentList: results.data.results,
-        productName: document.getElementById('product-name').innerHTML,
+        // productName: document.getElementById('product-name').innerHTML,
       }))
       .catch(() => this.setState({ isQuestionsLoaded: false }));
   }

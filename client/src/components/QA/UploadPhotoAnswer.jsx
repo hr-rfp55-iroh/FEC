@@ -24,16 +24,18 @@ const UploadPhotoAnswer = (props) => {
     <div>
       <div>
         <div className="photo-upload">
-          <label htmlFor="new-answer-photo">
-            Upload your photos : Maximum 5 photos
+          <label htmlFor="new-review-photo" id="new-review-photo-label">
+            Upload your photos{'  '}
             {
               imageCount < 5
               && (
-                <input id="new-answer-photo-label" name="Upload your photos" type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />
+                <input id="new-review-photo" name="Upload-your-photos" value="" type="file" accept=".png, .jpg, .jpeg" multiple onChange={(e) => handleFileUpload(e)} />
               )
             }
           </label>
-
+          <br />
+          <br />
+          You uploaded {imageCount} / 5 photos.
         </div>
         <div className="photo-upload">
           {image.map((img) => (

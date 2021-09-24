@@ -9,7 +9,9 @@ const QuestionModal = (props) => {
   const [text, setText] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
+  const [productName2, setProductName2] = useState('');
   const toggleModal = () => {
+    setProductName2(document.getElementById('product-name').innerHTML);
     setModal(!modal);
   };
 
@@ -70,7 +72,7 @@ const QuestionModal = (props) => {
               <h2>
                 About the
                 {' '}
-                {productName}
+                {productName2}
               </h2>
               <div>What is your question? (required)</div>
               <form>
