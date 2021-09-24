@@ -1,20 +1,22 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 
-import Image from './Image';
+const Image = lazy(() => import('./Image'));
 
 const ImageGallery = (props) => {
   const { photos, photoIndex, setPhotoIndex } = props;
   const [modal, setModal] = useState(false);
 
   const mappedPhotos = photos.map((photo, index) => (
-    <Image
-      key={index.toString()}
-      index={index}
-      thumb={photo.thumbnail_url}
-      setPhotoIndex={setPhotoIndex}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Image
+        key={index.toString()}
+        index={index}
+        thumb={photo.thumbnail_url}
+        setPhotoIndex={setPhotoIndex}
+      />
+    </Suspense>
   ));
 
   const toggleModal = () => {

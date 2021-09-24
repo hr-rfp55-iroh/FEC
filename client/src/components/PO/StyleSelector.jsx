@@ -1,9 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-restricted-syntax */
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 
-import Style from './Style';
+const Style = lazy(() => import('./Style'));
 
 const StyleSelector = (props) => {
   const { styles, styleChanges } = props;
@@ -39,23 +39,25 @@ const StyleSelector = (props) => {
 
   const mappedList = styles.map(
     (style, index) => (
-      <Style
-        key={style.style_id.toString()}
-        thumb={style.photos[0].thumbnail_url}
-        selected={style['default?']}
-        price={style.original_price}
-        salePrice={style.sale_price}
-        name={style.name}
-        index={index}
-        styleId={style.style_id}
-        styleChanges={styleChanges}
-        setStyleChanges={setStyleChanges}
-        setPrice={setPrice}
-        setSalePrice={setSalePrice}
-        setStyleName={setStyleName}
-        setStyleIndex={setStyleIndex}
-        setStyleId={setStyleId}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Style
+          key={style.style_id.toString()}
+          thumb={style.photos[0].thumbnail_url}
+          selected={style['default?']}
+          price={style.original_price}
+          salePrice={style.sale_price}
+          name={style.name}
+          index={index}
+          styleId={style.style_id}
+          styleChanges={styleChanges}
+          setStyleChanges={setStyleChanges}
+          setPrice={setPrice}
+          setSalePrice={setSalePrice}
+          setStyleName={setStyleName}
+          setStyleIndex={setStyleIndex}
+          setStyleId={setStyleId}
+        />
+      </Suspense>
     ),
   );
 

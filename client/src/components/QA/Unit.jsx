@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Question from './Question';
-import QuestionModal from '../Shared/QuestionModal';
-import Form from './Form';
+
+const Question = lazy(() => import('./Question'));
+const QuestionModal = lazy(() => import('../Shared/QuestionModal'));
+const Form = lazy(() => import('./Form'));
 
 class Unit extends React.Component {
   constructor(props) {
@@ -73,30 +74,36 @@ class Unit extends React.Component {
     const { currentProduct } = this.props;
     if (isQuestionsLoaded) {
       list = currentList.map((q) => (
-        <Question
-          className="question-component"
-          key={q.question_id}
-          question_id={q.question_id}
-          question_body={q.question_body}
-          question_date={q.question_date}
-          asker_name={q.asker_name}
-          question_helpfulness={q.question_helpfulness}
-          answers={q.answers}
-          getQuestions={this.getQuestions}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Question
+            className="question-component"
+            key={q.question_id}
+            question_id={q.question_id}
+            question_body={q.question_body}
+            question_date={q.question_date}
+            asker_name={q.asker_name}
+            question_helpfulness={q.question_helpfulness}
+            answers={q.answers}
+            getQuestions={this.getQuestions}
+          />
+        </Suspense>
       )).slice(0, count);
     }
     return (
       <div className="QA-container">
-        <Form
-          questionsList={questionsList}
-          handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Form
+            questionsList={questionsList}
+            handleDisplayUnitOnSearch={this.handleDisplayUnitOnSearch}
+          />
+        </Suspense>
         <div className="QA-list">
           {list}
         </div>
         <div className="QA-btn-list">
-          <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <QuestionModal currentProduct={currentProduct} getQuestions={this.getQuestions} />
+          </Suspense>
           <div>
             {(() => {
               if (display === 'loadMore') {
