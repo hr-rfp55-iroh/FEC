@@ -9,6 +9,8 @@ const StyleSelector = lazy(() => import('./StyleSelector'));
 const AddToCart = lazy(() => import('./AddToCart'));
 const ImageGallery = lazy(() => import('./ImageGallery'));
 
+import { PoInfoPnl, PoOverviewPnl } from '../GlobalStyle';
+
 const Overview = (props) => {
   const { selected, rating } = props;
 
@@ -95,7 +97,7 @@ const Overview = (props) => {
           />
         </Suspense>
       </div>
-      <div id="po-info-pnl">
+      <PoInfoPnl>
         <div className="star-rating">
           {rating && (
             <Suspense fallback={<div>Loading...</div>}>
@@ -104,8 +106,10 @@ const Overview = (props) => {
           )}
           <a href="#RR" id="link-RR">Read all reviews</a>
         </div>
+        <br />
         <Suspense fallback={<div>Loading...</div>}>
           <Information category={category} name={name} />
+          <br />
           <StyleSelector
             styles={styles}
             styleName={styleName}
@@ -119,35 +123,38 @@ const Overview = (props) => {
             setStyleId={setStyleId}
             setStyleChanges={setStyleChanges}
           />
+          <br />
           <AddToCart skus={skus} />
+          <br />
         </Suspense>
-      </div>
-      <div id="po-overview-pnl">
-        {description}
-      </div>
-      <div id="sns-bar">
-        <div>Share on Social Media</div>
-        <div>
-          <img
-            className="sns-icons"
-            src="./static/icon-twitter.svg"
-            height="25"
-            alt="twitter"
-          />
-          <img
-            className="sns-icons"
-            src="./static/icon-facebook.svg"
-            height="25"
-            alt="facebook"
-          />
-          <img
-            className="sns-icons"
-            src="./static/icon-pinterest.svg"
-            height="25"
-            alt="pinterest"
-          />
+        <div id="sns-bar">
+          <div>Share on Social Media</div>
+          <br />
+          <div>
+            <img
+              className="sns-icons"
+              src="./static/icon-twitter.svg"
+              height="25"
+              alt="twitter"
+            />
+            <img
+              className="sns-icons"
+              src="./static/icon-facebook.svg"
+              height="25"
+              alt="facebook"
+            />
+            <img
+              className="sns-icons"
+              src="./static/icon-pinterest.svg"
+              height="25"
+              alt="pinterest"
+            />
+          </div>
         </div>
-      </div>
+      </PoInfoPnl>
+      <PoOverviewPnl>
+        {description}
+      </PoOverviewPnl>
     </div>
   );
 };

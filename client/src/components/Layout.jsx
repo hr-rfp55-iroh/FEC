@@ -7,28 +7,35 @@ import { GlobalContext } from './GlobalContext';
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  * {
-    text-decoration: none;
-  }
-
   body {
-    font-family: Arial;
-    background: ${(props) => props.theme.background};
+    font-family: 'Poppins', sans-serif;
   }
 `;
 
 const Layout = ({ children }) => {
   const darkTheme = {
     background: '#9c091f',
-    secondaryBackground: '#141b9c',
-    text: '#9c091f',
+    backgroundPOInfoPnl: '#516e59',
+    pageBackgroundImage: 'linear-gradient(#516e59, #1f261e 20%, #181f17)',
+    poTextBackgroundImage: 'linear-gradient(#181f17, #516e59 50%, #1f261e 100%, #181f17 100%)',
+    pageBoxShadow: '0px 0px 10px black',
+    bannerBackgroundImage: 'linear-gradient(#520c02,#8e93a1, #324a33)',
+    text: '#ffffff',
+    secondaryText: '#8e93a1',
+    footerText: '#c8c9cc',
     button: '#9c091f',
   };
 
   const lightTheme = {
-    background: '#228f2d',
-    secondaryBackground: '#f55442',
-    text: '#228f2d',
+    background: 'white',
+    backgroundPOInfoPnl: 'rgb(245, 250, 243)',
+    pageBackgroundImage: 'linear-gradient(white, rgb(248, 251, 247))',
+    poTextBackgroundImage: 'linear-gradient(rgb(187, 207, 182),rgb(248, 251, 247) 10%, #f8fbf7 90%, rgb(187, 207, 182) 100%)',
+    pageBoxShadow: '0px 0px 10px rgb(208, 226, 203)',
+    bannerBackgroundImage: 'linear-gradient(#DFBC8D,rgb(248, 251, 247), rgb(187, 207, 182))',
+    text: 'light',
+    secondaryText: '',
+    footerText: '#939496',
     button: '#228f2d',
   };
 

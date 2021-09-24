@@ -5,6 +5,8 @@ import axios from 'axios';
 const Star = lazy (() => import('../Rating/Star'));
 const ReviewBody = lazy(() => import('./ReviewBody'));
 
+import { Tile } from '../../GlobalStyle';
+
 const reformatDateString = (string) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octover', 'November', 'December'];
   const index = Number(string.slice(5, 7)) - 1;
@@ -53,38 +55,40 @@ const ReviewTile = (props) => {
   };
 
   return (
-    <li className="review-tile" data-testid="review-tile">
-      <div>
-        <div className="review-header">
-          <Suspense fallback={<div>Loading...</div>}>
-            <Star rating={rating} />
-          </Suspense>
-          <div>
-            {reformatDateString(date.slice(0, 10))}
+    <Tile>
+      <li className="review-tile" data-testid="review-tile">
+        <div>
+          <div className="review-header">
+            <Suspense fallback={<div>Loading...</div>}>
+              <Star rating={rating} />
+            </Suspense>
+            <div>
+              {reformatDateString(date.slice(0, 10))}
+            </div>
           </div>
+          <div className="review-summary" data-testid="review-summary">{summary}</div>
         </div>
-        <div className="review-summary" data-testid="review-summary">{summary}</div>
-      </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ReviewBody bodyInfo={bodyInfo} />
-      </Suspense>
-      <div className="review-footer">
-        <div className="review-footer-text">Was this review helpful?</div>
-        &nbsp;&nbsp;
-        {!helpful ? (
-          <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
-        ) : (
-          <div style={{ fontWeight: 'bold' }}>Yes</div>
-        )}
-        &nbsp;
-        <div className="review-footer-text">
-          &#40;
-          {helpfulness}
-          &#41;&nbsp;&nbsp;&#124;&nbsp;&nbsp;
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReviewBody bodyInfo={bodyInfo} />
+        </Suspense>
+        <div className="review-footer">
+          <div className="review-footer-text">Was this review helpful?</div>
+          &nbsp;&nbsp;
+          {!helpful ? (
+            <button type="button" className="helpful-btn" value={review_id} onClick={handleHelpfulClick}>Yes</button>
+          ) : (
+            <div style={{ fontWeight: 'bold' }}>Yes</div>
+          )}
+          &nbsp;
+          <div className="review-footer-text">
+            &#40;
+            {helpfulness}
+            &#41;&nbsp;&nbsp;&#124;&nbsp;&nbsp;
+          </div>
+          <button type="button" className="report-btn" value={review_id} onClick={handleReportClick}>Report</button>
         </div>
-        <button type="button" className="report-btn" value={review_id} onClick={handleReportClick}>Report</button>
-      </div>
-    </li>
+      </li>
+    </Tile>
   );
 };
 

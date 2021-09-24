@@ -11,7 +11,7 @@ const Unit = lazy(() => import('./QA/Unit'));
 import { GlobalContext } from './GlobalContext';
 
 import Layout from './Layout';
-import { Container, Flex, NavBar, SwitchButton, Heading } from './GlobalStyle';
+import { Page, Banner, Flex, SwitchButton, Heading } from './GlobalStyle';
 
 const App = (props) => {
   const [currentProduct, setCurrentProduct] = useState(40344);
@@ -35,13 +35,15 @@ const App = (props) => {
   }
 
   return (
-    <div>
-      <Layout>
+    <Layout>
+      <Page>
       <Click widget="navigation">
-        <div className="banner">
-          <img src="./static/white_lotus.webp" alt="lotus" />
-          <h1>White Lotus</h1>
-        </div>
+        <Banner>
+          <div className="banner">
+            <img src="./static/white_lotus.webp" alt="lotus" />
+            <h1>White Lotus</h1>
+          </div>
+        </Banner>
         <div className="nav-bar">
           {currentProduct > 40344 ? (
             <div onClick={decrementProduct} onKeyPress={decrementProduct} role="presentation" id="nav-left-arrow">
@@ -97,8 +99,8 @@ const App = (props) => {
             <span></span>
           </SwitchButton>
         </Flex>
-      </Layout>
-    </div>
+      </Page>
+    </Layout>
   );
 };
 

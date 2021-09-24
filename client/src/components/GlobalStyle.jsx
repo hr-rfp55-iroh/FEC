@@ -30,8 +30,39 @@ export const Flex = styled.div`
     `}
 `;
 
-export const NavBar = styled.div`
-  background-color: ${(props) => props.theme.secondaryBackground};
+export const Banner = styled.div`
+  background-image: ${(props) => props.theme.bannerBackgroundImage}
+`;
+
+export const Page = styled.div`
+  background-image: ${(props) => props.theme.pageBackgroundImage};
+  box-shadow: ${(props) => props.theme.pageBoxShadow};
+  color: ${(props) => props.theme.text};
+`;
+
+export const PoInfoPnl = styled.div`
+  background-color: ${(props) => props.theme.backgroundPOInfoPnl};
+  width: 30%;
+  text-align: left;
+  margin: 30px 0px;
+  padding: 2% 0%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PoOverviewPnl = styled.div`
+  background-image: ${(props) => props.theme.poTextBackgroundImage};
+  font-style: italic;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+  height: fit-content;
+  margin-right: 5%;
+  padding: 1%;
+`;
+
+export const Tile = styled.div`
+  background-color: ${(props) => props.theme.backgroundPOInfoPnl};
 `;
 
 export const SwitchButton = styled.label`
