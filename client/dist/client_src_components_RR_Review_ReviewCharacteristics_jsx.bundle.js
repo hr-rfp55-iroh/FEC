@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunkfec"] = self["webpackChunkfec"] || []).push([["client_src_components_RR_Review_ReviewCharacteristics_jsx"],{
+
+/***/ "./client/src/components/RR/Review/ReviewCharacteristics.jsx":
+/*!*******************************************************************!*\
+  !*** ./client/src/components/RR/Review/ReviewCharacteristics.jsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);\n\n\nvar ReviewStarRating = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(function () {\n  return __webpack_require__.e(/*! import() */ \"client_src_components_RR_Review_ReviewStarRating_jsx\").then(__webpack_require__.bind(__webpack_require__, /*! ./ReviewStarRating */ \"./client/src/components/RR/Review/ReviewStarRating.jsx\"));\n});\nvar charcsSelections = {\n  Size: {\n    1: 'A size too small',\n    2: 'Half a size too small',\n    3: 'Perfect',\n    4: 'Half a size too big',\n    5: 'A size too big'\n  },\n  Width: {\n    1: 'Too narrow',\n    2: 'Slightly narrow',\n    3: 'Perfect',\n    4: 'Slightly wide',\n    5: 'Too wide'\n  },\n  Comfort: {\n    1: 'Uncomfortable',\n    2: 'Slightly uncomfortable',\n    3: 'Ok',\n    4: 'Comfortable',\n    5: 'Perfect'\n  },\n  Quality: {\n    1: 'Poor',\n    2: 'Below average',\n    3: 'What I expected',\n    4: 'Pretty great',\n    5: 'Perfect'\n  },\n  Length: {\n    1: 'Runs short',\n    2: 'Runs slightly short',\n    3: 'Perfect',\n    4: 'Runs slightly long',\n    5: 'Runs long'\n  },\n  Fit: {\n    1: 'Runs tight',\n    2: 'Runs slightly tight',\n    3: 'Perfect',\n    4: 'Runs slightly loose',\n    5: 'Runs loose'\n  }\n};\n\nvar ReviewCharacteristics = function ReviewCharacteristics(props) {\n  var charc = props.charc,\n      name = props.name,\n      handleChange = props.handleChange;\n  var selections = charcsSelections[charc];\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, charc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {\n    fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Loading...\")\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ReviewStarRating, {\n    name: name,\n    selections: selections,\n    handleChange: handleChange\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"star\"\n  }));\n};\n\nReviewCharacteristics.propTypes = {\n  charc: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string),\n  name: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string),\n  handleChange: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func)\n};\nReviewCharacteristics.defaultProps = {\n  charc: '',\n  name: '',\n  handleChange: function handleChange() {}\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewCharacteristics);\n\n//# sourceURL=webpack://fec/./client/src/components/RR/Review/ReviewCharacteristics.jsx?");
+
+/***/ })
+
+}]);
