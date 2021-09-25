@@ -78,7 +78,13 @@ The inline modals also allow user to submit questions and post answers to the ex
 - Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
 
 # Setup
+
+Making requests to the Atelier API that this app depends on requires a Github Access Token published by an active Hack Reactor Student. Speak to your technical mentor for more details.
+
 ## Installation
+
+The following installation will cover how to get started with the code for this project.
+
 1. Clone the repository.
 ```bash
 git clone https://github.com/hr-rfp55-iroh/FEC
