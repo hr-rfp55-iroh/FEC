@@ -20,13 +20,25 @@
 
 The front end capstone project to create a client-facing retail retail web portal using React.
 
-## Installation
+# Installation
 ```bash
 git clone https://github.com/hr-rfp55-iroh/FEC
 cd FEC
 npm install
 ```
-## Development Work
-- commands for dev environment setup
-## Deployment
-- commands for deployment?
+# Development Work
+
+# Deployment
+
+# Application Components
+## Product Overview
+
+- Developed by [Jan Deocampo](https://github.com/Darumin)
+
+## Questions & Answers
+
+- Developed by [Aaron Tran](https://github.com/aaronlamtran)
+
+## Ratings & Reviews
+
+- Developed by [Huong Nguyen](https://github.com/huongtran1993)
