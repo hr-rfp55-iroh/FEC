@@ -49,14 +49,32 @@ The inline modals also allow user to submit questions and post answers to the ex
 
 # Setup
 ## Installation
+1. Clone the repository.
 ```bash
 git clone https://github.com/hr-rfp55-iroh/FEC
+```
+2. Navigate into the root directory.
+```bash
 cd FEC
+```
+3. Make a copy of the file `config.example.js` and rename to `config.js`
+4. Assign the `API_KEY` variable to your GitHub Auth Token.
+5. Install dependencies.
+```bash
 npm install
+```
+6. Build the webpack bundle
+```bash
 npm build
+```
+7. Open up another terminal, start the server
+```bash
 npm start
 ```
-Navigate to localhost:3004
+
+8. Navigate to [localhost:3004](http://localhost:3004) in the browser
+
+
 
 
 
