@@ -33,14 +33,15 @@ The front end capstone project to create a fashion e-commerce web app that meets
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
 
-# Installation
+# Setup
+## Installation
 ```bash
 git clone https://github.com/hr-rfp55-iroh/FEC
 cd FEC
 npm install
 ```
-# Development Work
+## Development Work
 
-# Deployment
+## Deployment
 
 
