@@ -65,7 +65,7 @@ npm install
 ```
 6. Build the webpack bundle
 ```bash
-npm build
+npm run build
 ```
 7. Open up another terminal, start the server
 ```bash
