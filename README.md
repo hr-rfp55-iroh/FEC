@@ -20,6 +20,10 @@
 
 The front end capstone project to create a client-facing retail retail web portal using React.
 
+## Purpose
+
+The project was designed to cultivate and grow our understanding of building, maintaining, and optimizing a full react application. While the project was completed as a group, each individual was fully responsible for their component. This allowed 
+
 # Application Components
 ## Product Overview
 
