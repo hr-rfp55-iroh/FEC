@@ -13,3 +13,9 @@
 ![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 ![white_lotus_banner](docs/img/white_lotus_banner.png)
+
+
+
+# Project Catwalk 
+
+The front end capstone project to create a client-facing retail retail web portal using React.
