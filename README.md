@@ -31,6 +31,14 @@ The front end capstone project to create a fashion e-commerce web app that meets
 
 - Developed by [Aaron Tran](https://github.com/aaronlamtran)
 
+The Q&A provides the questions and answers posted by users and sellers. 
+
+All questions and answers are sorted by usefulness that is voted by users while the answers from sellers are listed on the top. 
+
+The Live Search enables searching questions real time. 
+
+The inline modals also allow user to submit questions and post answers to the existing questions. Meanwhile, the form authentication feature in the modal prevents dummy data from being sent to the API. 
+
 ## Ratings & Reviews
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
