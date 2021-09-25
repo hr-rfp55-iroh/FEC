@@ -28,15 +28,21 @@
         <li><a href="#rr">Ratings & Reviews</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#setup">Setup</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
-
-
-![white lotus gif](docs/img/whitelotusdemo3.gif)
 
 # About
 
 We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+
+
+![white lotus gif](docs/img/whitelotusdemo3.gif)
 
 
 # Application Components
