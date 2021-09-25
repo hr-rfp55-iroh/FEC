@@ -27,8 +27,8 @@ We are a fashion e-commerce app with an emphasis on product detail. White Lotus 
     <li>
       <a href="#application-components">Usage</a>
       <ul>
-        <li><a href="##product-overview">Product Overview</a></li>
-        <li><a href="##questions-and-answers">Questions & Answers</a></li>
+        <li><a href="#product-overview">Product Overview</a></li>
+        <li><a href="#questions-and-answers">Questions & Answers</a></li>
       </ul>
     </li>
   </ol>
