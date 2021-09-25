@@ -20,7 +20,7 @@
 
 The front end capstone project to create a fashion e-commerce web app that meets the specifications and requirements outlined by project stakeholders.
 
-![white lotus gif](docs/img/whitelotusdemo.gif)
+![white lotus gif](docs/img/whitelotusdemo3.gif)
 
 # Application Components
 ## Product Overview
