@@ -15,20 +15,17 @@
 ![white_lotus_banner](docs/img/whiteLotus_banner.png)
 
 
-
-# White Lotus
-
-We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#about">About</a></li>
     <li>
-      <a href="#application-components">Usage</a>
+      <a href="#application-components">Application Components</a>
       <ul>
         <li><a href="#po">Product Overview</a></li>
-        <li><a href="#questions-and-answers">Questions & Answers</a></li>
+        <li><a href="#qa">Questions & Answers</a></li>
+        <li><a href="#rr">Ratings & Reviews</a></li>
       </ul>
     </li>
   </ol>
@@ -37,12 +34,17 @@ We are a fashion e-commerce app with an emphasis on product detail. White Lotus 
 
 ![white lotus gif](docs/img/whitelotusdemo3.gif)
 
+# About
+
+We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+
+
 # Application Components
 ## Product Overview <a name="po"></a>
 
 - Developed by [Jan Deocampo](https://github.com/Darumin)
 
-## Questions and Answers
+## Questions & Answers <a name="qa"></a>
 
 - Developed by [Aaron Tran](https://github.com/aaronlamtran)
 
@@ -54,7 +56,7 @@ The Live Search enables searching questions real time.
 
 The inline modals also allow user to submit questions and post answers to the existing questions. Meanwhile, the form authentication feature in the modal prevents dummy data from being sent to the API. 
 
-## Ratings & Reviews
+## Ratings & Reviews <a name="rr"></a>
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
 
