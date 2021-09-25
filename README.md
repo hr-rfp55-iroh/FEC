@@ -41,7 +41,7 @@
 
 We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. 
 
-This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+This app was developed according to the specifications and requirements outlined by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
 
 # App Components <a name="app"></a>
 
@@ -50,6 +50,12 @@ This app was developed according to the specifications and requirements outline 
 ## Product Overview <a name="po"></a>
 
 - Developed by [Jan Deocampo](https://github.com/Darumin)
+
+The product overview is the primary component the user interacts with. It contains an image gallery, info about the selected product, and a styles selector.
+
+The image gallery is the central section of the component. It features a carousel with thumbnails that depict product styles. Additional information can be found on the right panel next to the gallery, with product description right below.
+
+Aside from the image view, the product overview tracks important data, such as current ratings average and sales prices.
 
 ## Questions & Answers <a name="qa"></a>
 
