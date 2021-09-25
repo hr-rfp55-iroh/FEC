@@ -39,7 +39,7 @@
 
 # About
 
-We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outlined by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outlined by the project stakeholders, and represents the developers’ fully realized concept of a front end capstone.
 
 # App Components <a name="app"></a>
 
@@ -71,9 +71,9 @@ The inline modals also allow user to submit questions and post answers to the ex
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
 
-- The R&R allows users to view a breakdown of the ratings, browse the reviews, and submit reviews for the current product. 
+The R&R allows users to view a breakdown of the ratings, browse the reviews, and submit reviews for the current product. 
 
-- Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
+Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
 
 # Setup
 
