@@ -41,8 +41,10 @@ The front end capstone project to create a fashion e-commerce web app that meets
 git clone https://github.com/hr-rfp55-iroh/FEC
 cd FEC
 npm install
+npm build
+npm start
 ```
-## Development Work
+Navigate to localhost:3004
 
 ## Deployment
 
