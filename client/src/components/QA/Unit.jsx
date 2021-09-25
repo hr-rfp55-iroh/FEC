@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const Question = lazy(() => import('./Question'));
-const QuestionModal = lazy(() => import('../Shared/QuestionModal'));
+const QuestionModal = lazy(() => import('./QuestionModal'));
 const Form = lazy(() => import('./Form'));
 
 class Unit extends React.Component {

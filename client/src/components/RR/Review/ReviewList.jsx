@@ -92,7 +92,7 @@ class ReviewList extends React.Component {
           )}
         {searchedReviews.length > 0
           && (
-          <ul id="review-list">
+          <div id="review-list">
             {searchedReviews.slice(0, count).map((review, index) => {
               const reviewCount = index + 1;
               return (
@@ -101,7 +101,7 @@ class ReviewList extends React.Component {
                 </Suspense>
               );
             })}
-          </ul>
+          </div>
           )}
         {searchedReviews.length > 2
           && count < searchedReviews.length
