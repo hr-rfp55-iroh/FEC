@@ -7,7 +7,9 @@
     "test": "jest",
     "start": "nodemon --watch server",
     "build": "webpack -w",
-    "jest": "jest --init"
+    "jest": "jest --init",
+    "build-prod": "webpack -p",
+    "start-prod": "node server"
   },
   "repository": {
     "type": "git",
