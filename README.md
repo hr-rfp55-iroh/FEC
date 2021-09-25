@@ -39,9 +39,7 @@
 
 # About
 
-We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. 
-
-This app was developed according to the specifications and requirements outlined by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outlined by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
 
 # App Components <a name="app"></a>
 
