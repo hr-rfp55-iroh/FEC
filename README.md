@@ -21,7 +21,7 @@
   <ol>
     <li><a href="#about">About</a></li>
     <li>
-      <a href="#application-components">Application Components</a>
+      <a href="#app">Application Components</a>
       <ul>
         <li><a href="#po">Product Overview</a></li>
         <li><a href="#qa">Questions & Answers</a></li>
@@ -39,16 +39,21 @@
 
 # About
 
-We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outlined by the project stakeholders, and represents the developers’ fully realized concept of a front end capstone.
 
+# App Components <a name="app"></a>
 
 ![white lotus gif](docs/img/whitelotusdemo3.gif)
 
-
-# Application Components
 ## Product Overview <a name="po"></a>
 
 - Developed by [Jan Deocampo](https://github.com/Darumin)
+
+The product overview is the primary component the user interacts with. It contains an image gallery, info about the selected product, and a styles selector.
+
+The image gallery is the central section of the component. It features a carousel with thumbnails that depict product styles. Additional information can be found on the right panel next to the gallery, with product description right below.
+
+Aside from the image view, the product overview tracks important data, such as current ratings average and sales prices.
 
 ## Questions & Answers <a name="qa"></a>
 
@@ -66,12 +71,18 @@ The inline modals also allow user to submit questions and post answers to the ex
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
 
-- The R&R allows users to view a breakdown of the ratings, browse the reviews, and submit reviews for the current product. 
+The R&R allows users to view a breakdown of the ratings, browse the reviews, and submit reviews for the current product. 
 
-- Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
+Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
 
 # Setup
+
+Making requests to the Atelier API that this app depends on requires a Github Access Token published by an active Hack Reactor Student. Speak to your technical mentor for more details.
+
 ## Installation
+
+The following installation will cover how to get started with the code for this project.
+
 1. Clone the repository.
 ```bash
 git clone https://github.com/hr-rfp55-iroh/FEC
@@ -81,7 +92,7 @@ git clone https://github.com/hr-rfp55-iroh/FEC
 cd FEC
 ```
 3. Make a copy of the file `config.example.js` and rename to `config.js`
-4. Assign the `API_KEY` variable to your GitHub Auth Token.
+4. Assign the `API_KEY` variable to your GitHub Access Token.
 5. Install dependencies.
 ```bash
 npm install
