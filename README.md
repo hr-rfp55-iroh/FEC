@@ -43,6 +43,10 @@ The inline modals also allow user to submit questions and post answers to the ex
 
 - Developed by [Huong Nguyen](https://github.com/huongtran1993)
 
+- The R&R allows users to view a breakdown of the ratings, browse the reviews, and submit reviews for the current product. 
+
+- Users can to filter for reviews based on ratings, sort the review list, and search for reviews with specific keywords. Users can also mark a review as helpful or submit a new review. Upon submission, the review list will automatically update to display the new view without refreshing the page. Lastly, users can report a review, which will remove the review from the review list permanently.
+
 # Setup
 ## Installation
 ```bash
