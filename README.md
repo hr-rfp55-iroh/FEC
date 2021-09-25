@@ -92,7 +92,7 @@ git clone https://github.com/hr-rfp55-iroh/FEC
 cd FEC
 ```
 3. Make a copy of the file `config.example.js` and rename to `config.js`
-4. Assign the `API_KEY` variable to your GitHub Auth Token.
+4. Assign the `API_KEY` variable to your GitHub Access Token.
 5. Install dependencies.
 ```bash
 npm install
