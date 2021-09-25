@@ -21,7 +21,7 @@
   <ol>
     <li><a href="#about">About</a></li>
     <li>
-      <a href="#application-components">Application Components</a>
+      <a href="#app">Application Components</a>
       <ul>
         <li><a href="#po">Product Overview</a></li>
         <li><a href="#qa">Questions & Answers</a></li>
@@ -39,9 +39,11 @@
 
 # About
 
-We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+We are a fashion e-commerce app with an emphasis on product detail. White Lotus allows users to browse styles, track ratings and reviews, and submit related questions and answers, all on one page. 
 
-# Application Components
+This app was developed according to the specifications and requirements outline by project’s stakeholders, and represents the developers’ fully realized concept for a front end capstone.
+
+# App Components <a name="app"></a>
 
 ![white lotus gif](docs/img/whitelotusdemo3.gif)
 
