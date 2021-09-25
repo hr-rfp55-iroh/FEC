@@ -667,7 +667,6 @@ button {
 #RR .show-more-btn,
 #RR .collapse-body-btn  {
   margin-left: 5px;
-  color: rgb(89, 161, 219);
   border: none;
   background: transparent;
   padding: 0;
@@ -708,7 +707,6 @@ button {
 .QA-question-header,
 .QA-answer-footer {
   display: flex;
-  color: grey;
   margin: 5px 0px;
   font-size: 0.9em;
 }
@@ -755,7 +753,6 @@ button {
 }
 .helpful-btn,
 .report-btn {
-  color: grey;
   border: none;
   text-decoration: underline;
   font-size: 1em;
@@ -962,3 +959,10 @@ button {
   border-radius: 50%;
 }
 
+#switch-btn-label {
+  position: absolute;
+  top: 200px;
+  left: 93%;
+  width: fit-content;
+  font-weight: 600;
+}

@@ -56,7 +56,7 @@ const ReviewTile = (props) => {
 
   return (
     <Tile>
-      <li className="review-tile" data-testid="review-tile">
+      <div className="review-tile" data-testid="review-tile">
         <div>
           <div className="review-header">
             <Suspense fallback={<div>Loading...</div>}>
@@ -88,7 +88,7 @@ const ReviewTile = (props) => {
           </div>
           <button type="button" className="report-btn" value={review_id} onClick={handleReportClick}>Report</button>
         </div>
-      </li>
+      </div>
     </Tile>
   );
 };

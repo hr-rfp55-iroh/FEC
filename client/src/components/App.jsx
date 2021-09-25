@@ -88,6 +88,7 @@ const App = (props) => {
           </div>
         </Click>
         <SwitchButton>
+          .
           <input
             id="switch-btn"
             type='checkbox'
