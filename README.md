@@ -19,3 +19,14 @@
 # Project Catwalk 
 
 The front end capstone project to create a client-facing retail retail web portal using React.
+
+# Installation
+```bash
+git clone ![](https://github.com/hr-rfp55-iroh/FEC)
+cd FEC
+npm install
+```
+# Development Work
+
+# Deployment
+
