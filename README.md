@@ -46,6 +46,5 @@ npm start
 ```
 Navigate to localhost:3004
 
-## Deployment
 
 
