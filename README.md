@@ -12,7 +12,7 @@
 ![eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 ![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
-![white_lotus_banner](docs/img/white_lotus_banner.png)
+![white_lotus_banner](docs/img/whiteLotus_banner.png)
 
 
 
